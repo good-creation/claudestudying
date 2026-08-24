@@ -13,7 +13,7 @@
 <body>
 
 <div class="topbar" id="topbar"></div>
-<nav class="rail" id="rail" aria-label="動画タイムライン">
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
   <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
 </nav>
 
@@ -37,7 +37,7 @@
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">Lesson 10 / Anthropic 公式動画</p>
+    <p class="eyebrow">Lesson 10 / Anthropic 公式コース</p>
     <p class="eyebrow" style="color:var(--signal)">03:21 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
@@ -79,7 +79,7 @@
       <p>フックは、Claude Code の<strong>ライフサイクルの様々な地点でコマンドを実行させる</strong>仕組み。そして、ここまで扱ってきたすべてとの違いが一点で語られる。</p>
       <blockquote class="quote">
         <p>フックと他のすべての違いは、フックが決定論的であること。必ず走る。</p>
-        <cite>— 動画内 / 00:10</cite>
+        <cite>— 公式解説 / 00:10</cite>
       </blockquote>
       <p>対比として出されるのが <a href="06-claude-md.html">CLAUDE.md</a> だ。そこに「ファイル編集のたびに Prettier を実行して」と書くことはできる。そして<strong>ほとんどの場合そうしてくれる。でも、時々しない。完璧ではない。</strong>フックはそれを、例外なく毎回にする。</p>
       <div class="tip">
@@ -202,7 +202,7 @@
         <figcaption>公式コース図版 — <code>PreToolUse</code> で <code>Bash</code> をマッチさせ、<code>$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh</code> を実行している。下に <code>PostToolUse</code> の <code>Edit|Write</code> が続く。</figcaption>
       </figure>
 
-      <p>これが<strong>厳格なルールを強制する方法</strong>だ、と動画は言う。例として挙がるのは3つ。</p>
+      <p>これが<strong>厳格なルールを強制する方法</strong>。例として挙がるのは3つ。</p>
       <ul class="chips">
         <li>本番設定ディレクトリへの書き込みをブロック</li><li>rm -rf を含む bash コマンドをブロック</li><li>main へのコミットをブロック</li>
       </ul>

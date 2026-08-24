@@ -13,7 +13,7 @@
 <body>
 
 <div class="topbar" id="topbar"></div>
-<nav class="rail" id="rail" aria-label="動画タイムライン">
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
   <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
 </nav>
 
@@ -37,14 +37,14 @@
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">Lesson 06 / Anthropic 公式動画</p>
+    <p class="eyebrow">Lesson 06 / Anthropic 公式コース</p>
     <p class="eyebrow" style="color:var(--signal)">03:01 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
   <h1 class="hero__title"><em>CLAUDE.md</em></h1>
 
   <p class="hero__lede">
-    プロジェクトのルートに置く1枚の Markdown が、Claude Code に<strong>永続的な記憶</strong>を与える。動画の言い方を借りれば、それは<strong>コードベースのオンボーディング資料</strong>。フラストレーションの溜まるセッションと生産的なセッションを分けるのは、たいていここ。
+    プロジェクトのルートに置く1枚の Markdown が、Claude Code に<strong>永続的な記憶</strong>を与える。それは<strong>コードベースのオンボーディング資料</strong>。フラストレーションの溜まるセッションと生産的なセッションを分けるのは、たいていここ。
   </p>
 
   <div class="tl" aria-hidden="true">
@@ -75,7 +75,7 @@
     <div class="sec__mark"><div><span class="sec__t">0:02</span><span class="sec__kind">動機</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">毎回ゼロから<br>始めさせないために</h2>
-      <p><code>CLAUDE.md</code> がない状態で Claude Code を開くと、<strong>毎回まっさらから始めることになる</strong>。動画が挙げるのは3つの再発見コスト。</p>
+      <p><code>CLAUDE.md</code> がない状態で Claude Code を開くと、<strong>毎回まっさらから始めることになる</strong>。そこで発生するのが3つの再発見コスト。</p>
       <ul class="chips">
         <li>コードベースを探索し直す</li><li>必要な依存関係を理解し直す</li><li>実装済みの機能を把握し直す</li>
       </ul>
@@ -90,7 +90,7 @@
       <p>正体は素朴だ。<strong>プロジェクトのルートに置く Markdown ファイル</strong>で、Claude Code はセッションを開始するたびに<strong>自動的にそれを読む</strong>。</p>
       <blockquote class="quote">
         <p>言ってしまえば、CLAUDE.md の内容はあなた自身のプロンプトに追記される。</p>
-        <cite>— 動画内 / 00:44</cite>
+        <cite>— 公式解説 / 00:44</cite>
       </blockquote>
       <p>この一文が仕組みのすべてで、だからこそ<em>短く保つ</em>ことが効いてくる。書いた分だけ、毎回のプロンプトが長くなる。</p>
       <p>ゼロから書く必要はない。<code>/init</code> を実行すれば、Claude があなたのコードベースを見て生成してくれる。</p>
@@ -101,7 +101,7 @@
     <div class="sec__mark"><div><span class="sec__t">0:52</span><span class="sec__kind">中身</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">何を書くのか</h2>
-      <p>動画で実際に開かれるファイルの中身がそのまま手本になる。</p>
+      <p>以下のファイル内容が、そのまま手本になる。</p>
       <ul class="acts">
         <li><h3>スタック</h3><p>「これは App Router、Tailwind、Drizzle ORM を使った Next.js 15 のアプリ」——1行で全体像。</p></li>
         <li><h3>コマンド</h3><p>開発サーバー、テスト実行、Lint。<em>プロジェクト固有の呼び出し方</em>を書いておく。</p></li>

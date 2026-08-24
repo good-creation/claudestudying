@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>まとめ できることと費用 — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="Claude Code でできること8分類、コマンドと設定ファイルの早見表、そして無料・有料の全体像。コース全体の最終まとめ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav></nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">最終まとめ / Summary</p>
+    <p class="eyebrow" style="color:var(--signal)">レッスン01〜11 ＋ 付録の全体像</p>
+  </div>
+
+  <h1 class="hero__title">できること<br><em>と、費用</em></h1>
+
+  <p class="hero__lede">
+    コース全体を1ページに畳んだもの。<strong>何ができるのか</strong>を8分類で、<strong>どのコマンドとファイルで操作するのか</strong>を早見表で、<strong>どこまでが無料でどこから課金なのか</strong>を一覧で。
+  </p>
+
+  <ul class="chips" style="margin-top:30px">
+    <li><a href="#do">できること 8分類</a></li>
+    <li><a href="#cmd">コマンド早見表</a></li>
+    <li><a href="#file">設定ファイル早見表</a></li>
+    <li><a href="#cost">費用の全体像</a></li>
+    <li><a href="#ctx">もう一つのコスト</a></li>
+    <li><a href="#start">はじめ方</a></li>
+  </ul>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="do">
+    <div class="sec__mark"><div><span class="sec__t">DO</span><span class="sec__kind">能力</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">できること 8分類</h2>
+      <p>機能名ではなく<strong>あなたが何をさせたいか</strong>で並べたもの。右端はそれを扱ったレッスン。</p>
+
+      <ul class="acts">
+        <li>
+          <h3>読む — コードベースを理解する<mark>01 / 07</mark></h3>
+          <p>「この機能を説明して」「このバグをコード全体で追跡して」。コピペで渡す必要はなく、<strong>ファイルとコードベース全体に直接アクセスする</strong>。調べるだけなら explore サブエージェントに投げるとメインのコンテキストが汚れない。</p>
+        </li>
+        <li>
+          <h3>書く — ファイルを編集する<mark>01</mark></h3>
+          <p>1ファイル単位ではなく、<strong>関数のリファクタとその参照元すべての更新</strong>まで。変更の波及範囲を担当する。</p>
+        </li>
+        <li>
+          <h3>実行する — コマンドを走らせる<mark>01 / 02</mark></h3>
+          <p>ビルド、テスト、パッケージのインストール。重要なのは実行して終わりではない点で、<strong>出力を見て次に何をするかを自分で決める</strong>。これがエージェンティックループの実体。</p>
+        </li>
+        <li>
+          <h3>調べる — Web を検索する<mark>01</mark></h3>
+          <p>最新の API リファレンスやドキュメントが必要なら自分で取りに行く。学習データのカットオフを外部で埋める。</p>
+        </li>
+        <li>
+          <h3>計画する — コードを書く前に設計する<mark>03 / 04</mark></h3>
+          <p>プランモードでは<strong>ファイルを編集できない</strong>。読み取り専用ツールだけで調査し、質問を返し、実行可能な詳細プランを出す。<strong>軌道修正に最適な場所は、コードが書かれる前</strong>。</p>
+        </li>
+        <li>
+          <h3>憶えさせる — 永続的な記憶を持たせる<mark>05 / 06</mark></h3>
+          <p><code>CLAUDE.md</code> に書けば毎セッション自動で読まれる。内容はプロンプトに追記されるので<strong>短く保つ</strong>。プロジェクト用とユーザー用の2階層。</p>
+        </li>
+        <li>
+          <h3>拡張する — 知識・接続・並列を足す<mark>07 / 08 / 09</mark></h3>
+          <p><strong>スキル</strong>＝専門知識をオンデマンドで。<strong>MCP</strong>＝外部サービスに接続。<strong>サブエージェント</strong>＝独立したコンテキストで探索させ、答えだけ返させる。</p>
+        </li>
+        <li>
+          <h3>強制する — 必ず起きることを保証する<mark>10</mark></h3>
+          <p>フックだけが<strong>モデルの判断を経由しない</strong>。自動フォーマット、ログ記録、危険な操作のブロック。「毎回必ず実行される必要があるなら、プロンプトではなくフックに入れる」。</p>
+        </li>
+      </ul>
+
+      <div class="warn">
+        <b>この8つを支える3つの前提</b>
+        <p><strong>① コンテキストは有限</strong> — 全部読ませるのではなく戦略的に探させる。<strong>② デフォルトで許可を求める</strong> — 実行と変更の前に必ず止まる。<strong>③ 間違えることがある</strong> — 意図の誤解、新しいバグ、過剰設計。状況を把握し続けることで早期に発見できる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="cmd">
+    <div class="sec__mark"><div><span class="sec__t">CMD</span><span class="sec__kind">早見表</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コマンド早見表</h2>
+
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head"><div>コマンド</div><div>種別</div><div>何をするか</div></div>
+        <div class="modes__row">
+          <div class="modes__n">/init</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">コードベースを見て <code>CLAUDE.md</code> を生成する</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/compact</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">会話を要約して空き容量を作る（記憶は残す）</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/clear</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">すべて削除してゼロから始める</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/context</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">何が容量を食っているかをカテゴリ別に表示する</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/agents</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">サブエージェントの作成・管理</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/hooks</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">フックの設定（<code>settings.json</code> 直接編集でも可）</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/mcp</div><div class="modes__c" data-h="種別">セッション内</div>
+          <div class="modes__c" data-h="内容">接続中の MCP サーバー確認・再接続・<strong>無効化</strong></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">/commit-push-pr</div><div class="modes__c" data-h="種別">スキル</div>
+          <div class="modes__c" data-h="内容">コミット・プッシュ・PR 作成を一手で</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Shift + Tab</div><div class="modes__c" data-h="種別">キー操作</div>
+          <div class="modes__c" data-h="内容">手動 / 自動承認 / プランモード を循環</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">claude --from-pr &lt;N&gt;</div><div class="modes__c" data-h="種別">起動オプション</div>
+          <div class="modes__c" data-h="内容">その PR を作ったセッションの続きから再開する</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">claude mcp add</div><div class="modes__c" data-h="種別">CLI</div>
+          <div class="modes__c" data-h="内容">MCP サーバーを追加（<code>--transport http</code> / <code>stdio</code>）</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">claude plugin install</div><div class="modes__c" data-h="種別">CLI</div>
+          <div class="modes__c" data-h="内容">プラグイン導入（Cloudflare Skills など）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="file">
+    <div class="sec__mark"><div><span class="sec__t">FILE</span><span class="sec__kind">早見表</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">設定ファイル早見表</h2>
+      <p>共通する型がある——<strong>リポジトリに置けばチーム全員に配られ、個人設定フォルダに置けば自分の全プロジェクトについてくる。</strong></p>
+
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head"><div>ファイル</div><div>読まれ方</div><div>入れるもの</div></div>
+        <div class="modes__row">
+          <div class="modes__n">CLAUDE.md<small>PROJECT / USER</small></div>
+          <div class="modes__c is-ask" data-h="読まれ方">毎回・全文</div>
+          <div class="modes__c" data-h="入れるもの">スタック、コマンド、コードスタイル、全体ルール</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">.claude/skills/<small>SKILL.md</small></div>
+          <div class="modes__c" data-h="読まれ方">名前と説明だけ常駐<br>本体はマッチ時のみ</div>
+          <div class="modes__c" data-h="入れるもの">レビュー基準、コミット形式、ブランドガイドライン</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">.claude/agents/<small>Markdown + YAML</small></div>
+          <div class="modes__c" data-h="読まれ方">呼ばれたときだけ<br>別コンテキスト</div>
+          <div class="modes__c" data-h="入れるもの">コードレビュアー（<strong>読み取り専用に限定する</strong>）など</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">.claude/settings.json</div>
+          <div class="modes__c is-ask" data-h="読まれ方">フックは必ず実行</div>
+          <div class="modes__c" data-h="入れるもの">PreToolUse / PostToolUse、権限の既定値</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">.mcp.json</div>
+          <div class="modes__c" data-h="読まれ方">ツール定義が常駐</div>
+          <div class="modes__c" data-h="入れるもの">プロジェクト共有の MCP サーバー</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <b>使い分けの一行</b>
+        <p><strong>常に効かせたい → CLAUDE.md</strong>／<strong>特定タスクのときだけ → スキル</strong>／<strong>絶対に守らせたい → フック</strong>。強制力はこの順に上がり、コンテキスト消費は逆順に下がる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="cost">
+    <div class="sec__mark"><div><span class="sec__t">COST</span><span class="sec__kind">費用</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">無料・有料の全体像</h2>
+
+      <h3 style="font-family:var(--gothic);font-size:16px;font-weight:700;margin:28px 0 0">A — Claude Code 本体と同梱機能</h3>
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head"><div>項目</div><div>費用</div><div>備考</div></div>
+        <div class="modes__row">
+          <div class="modes__n">Claude Code の利用</div>
+          <div class="modes__c is-paid" data-h="費用">有料プラン</div>
+          <div class="modes__c" data-h="備考">Claude の有料プラン（Pro / Max）に含まれる。または API の従量課金で利用</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">対話・コード生成</div>
+          <div class="modes__c is-free" data-h="費用">プラン内</div>
+          <div class="modes__c" data-h="備考">Max Plan の範囲で利用できる</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">プランモード / 承認モード</div>
+          <div class="modes__c is-free" data-h="費用">追加費用なし</div>
+          <div class="modes__c" data-h="備考">本体の機能</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">サブエージェント</div>
+          <div class="modes__c is-free" data-h="費用">追加費用なし</div>
+          <div class="modes__c" data-h="備考">ただし別コンテキストで動くぶんトークンは消費する</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">スキル / フック / CLAUDE.md</div>
+          <div class="modes__c is-free" data-h="費用">追加費用なし</div>
+          <div class="modes__c" data-h="備考">ただの Markdown / JSON ファイル</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">MCP に接続すること自体</div>
+          <div class="modes__c is-free" data-h="費用">追加費用なし</div>
+          <div class="modes__c" data-h="備考">接続先サービスの契約は別（下記 B）</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--gothic);font-size:16px;font-weight:700;margin:40px 0 0">B — 接続先・外部サービス</h3>
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head"><div>項目</div><div>費用</div><div>備考</div></div>
+        <div class="modes__row">
+          <div class="modes__n">MCP の接続先<small>LINEAR / FIGMA など</small></div>
+          <div class="modes__c" data-h="費用">各サービス次第</div>
+          <div class="modes__c" data-h="備考">Claude Code 側ではなく、そのサービスの契約に従う</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Claude in Chrome</div>
+          <div class="modes__c is-paid" data-h="費用">有料プラン向け</div>
+          <div class="modes__c" data-h="備考">拡張機能の説明に「全ての有料サブスクライバーが利用可能」とある</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Cloudflare Skills / MCP 接続</div>
+          <div class="modes__c is-free" data-h="費用">無料で開始可</div>
+          <div class="modes__c" data-h="備考">Cloudflare 側は基本的に無料で始められる</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Workers / Pages / D1 / R2</div>
+          <div class="modes__c is-free" data-h="費用">無料枠内なら0円</div>
+          <div class="modes__c" data-h="備考">枠を超えれば Cloudflare 側の従量課金</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Cloudflare Workers AI</div>
+          <div class="modes__c is-paid" data-h="費用">別課金</div>
+          <div class="modes__c" data-h="備考">Max Plan とは別。無料枠超過後は Cloudflare 側の課金対象</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Anthropic API を AI Gateway 経由で呼ぶ</div>
+          <div class="modes__c is-paid" data-h="費用">別課金</div>
+          <div class="modes__c" data-h="備考">Max Plan とは別に <strong>API 料金が発生し得る</strong></div>
+        </div>
+      </div>
+
+      <div class="warn">
+        <b>いちばん誤解しやすい一点</b>
+        <p><strong>AI Gateway は、Max Plan の通信をそのまま経由させて可視化する仕組みではない。</strong>Gateway を使う構成では通常 Anthropic API キーで呼び出すことになり、<strong>定額プランとは別に API 課金が発生し得る</strong>。「Max Plan のまま利用量を一元管理できる」という理解にはならない。詳細は <a href="cloudflare.html#cost">付録の費用セクション</a>。</p>
+      </div>
+
+      <div class="tip">
+        <b>この表の扱い</b>
+        <p>プラン構成と料金は変わります。ここは<strong>「どこに費用の境界があるか」を把握するための地図</strong>として使い、実際の金額は <a href="https://claude.com/pricing" target="_blank" rel="noopener">Anthropic の料金ページ</a>と <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare のドキュメント</a>で確認してください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ctx">
+    <div class="sec__mark"><div><span class="sec__t">CTX</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">もう一つのコスト</h2>
+      <p>お金の話とは別に、<strong>コンテキストという有限の資源</strong>がこのコース全体を貫いている。金額がゼロでも、こちらは確実に消費される。</p>
+
+      <div class="modes modes--2col">
+        <div class="modes__row modes__row--head"><div>常駐して容量を食うもの</div><div>減らし方</div></div>
+        <div class="modes__row">
+          <div class="modes__n">MCP のツール定義</div>
+          <div class="modes__c" data-h="減らし方"><code>/mcp</code> で使っていないサーバーを無効化する。CLI で代替できるなら CLI（<code>gh</code>、<code>aws</code>）のほうが安い</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">CLAUDE.md の全文</div>
+          <div class="modes__c" data-h="減らし方">短く保つ。詳細は <code>@</code> でドキュメントを参照させる</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">会話とツール出力の蓄積</div>
+          <div class="modes__c" data-h="減らし方">同じ機能を続けるなら <code>/compact</code>、別の機能に移るなら <code>/clear</code></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">探索の全過程</div>
+          <div class="modes__c" data-h="減らし方">答えだけ要るタスクはサブエージェントに投げ、要約だけ受け取る</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">曖昧なプロンプト</div>
+          <div class="modes__c" data-h="減らし方">具体的に書く。<strong>短いプロンプトのほうが長期的には多く消費する</strong></div>
+        </div>
+      </div>
+
+      <p class="wrapup">スキルが優れているのは、<em>名前と説明だけ常駐して、本体は必要なときにしか読み込まれない</em>から。コンテキストを費用として見ると、各機能の設計意図が揃って見えてくる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="start">
+    <div class="sec__mark"><div><span class="sec__t">START</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">はじめ方</h2>
+      <p>全部を一度に入れる必要はない。<strong>権限とコンテキストは、後から広げるほうが安全</strong>。</p>
+
+      <ol class="steps">
+        <li><h3>ターミナルで <code>claude</code> を起動して普通に話しかける</h3><p>特別な構文はない。デフォルトは手動モードなので、実行・変更の前に必ず止まる。</p></li>
+        <li><h3>しばらく CLAUDE.md 無しで使う</h3><p>どこで毎回軌道修正しているかが見えてくる。それが書くべき内容。準備できたら <code>/init</code>。</p></li>
+        <li><h3>複数ステップの依頼はプランモードから始める</h3><p><kbd>Shift</kbd>+<kbd>Tab</kbd>。コードが書かれる前に計画を直す。</p></li>
+        <li><h3>探索 → 計画 → コード → コミット を回す</h3><p>コミット前にサブエージェントのレビュアーを挟む。</p></li>
+        <li><h3>繰り返す説明をスキルに、必ず守らせたいことをフックに移す</h3><p>お願いから保証へ。</p></li>
+        <li><h3>MCP は読み取り用途から試す</h3><p>使わないサーバーは <code>/mcp</code> で無効化する。</p></li>
+      </ol>
+
+      <p class="wrapup">読むところから始めて、<em>触らせる範囲を後から広げる</em>。順番を逆にしない。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="note">
+    <div class="sec__mark"><div><span class="sec__t">NOTE</span><span class="sec__kind">出典</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このページについて</h2>
+      <p>レッスン01〜11（Anthropic 公式コース）と<a href="cloudflare.html">付録</a>の内容を、横断的に再構成したまとめです。各項目の根拠は該当レッスンを参照してください。</p>
+      <div class="warn">
+        <b>費用表について</b>
+        <p>費用の区分は、コース本編と付録で示された内容および公開情報にもとづく<strong>整理</strong>です。<strong>具体的な金額や無料枠は変動します。</strong>契約・課金の判断をする前に、必ず各サービスの公式料金ページで最新の情報を確認してください。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="cloudflare.html"><b>前 — 付録</b><em>Cloudflare × Claude Code</em></a>
+  <a class="is-next" href="index.html"><b>コース</b><em>目次に戻る</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>まとめ — レッスン01〜11 ＋ 付録の全体像</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+</body>
+</html>

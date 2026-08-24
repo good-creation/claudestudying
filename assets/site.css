@@ -319,13 +319,17 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 .modes__c.is-ask{color:var(--ink);font-weight:500}
 /* 2列版（項目 / 説明）。列数だけ変えて .modes の見た目を流用する */
 .modes--2col .modes__row{grid-template-columns:1fr 1.7fr}
+.modes--3col .modes__row{grid-template-columns:1.25fr .75fr 1.5fr}
+/* 費用表：無料 / 別課金 の色分け */
+.modes__c.is-free{color:var(--signal);font-weight:500}
+.modes__c.is-paid{color:var(--caution);font-weight:700}
 /* ページ内目次。.chips をリンクとして使う */
 .chips a{color:inherit;text-decoration:none}
 .chips li:has(a):hover{border-color:var(--signal)}
 .chips li:has(a):hover a{color:var(--signal)}
 
 @media (max-width:760px){
-  .modes--2col .modes__row{grid-template-columns:1fr}
+  .modes--2col .modes__row,.modes--3col .modes__row{grid-template-columns:1fr}
   .modes__row{grid-template-columns:1fr 1fr;gap:6px 16px;padding:18px 0}
   .modes__row--head{display:none}
   .modes__n{grid-column:1/-1}

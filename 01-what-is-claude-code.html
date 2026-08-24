@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>01 What is Claude Code? — Claude Code 入門コース 学習ノート</title>
-<meta name="description" content="Anthropic 公式動画「What is Claude Code?」（2:55）の全文書き起こしと公式コース本文から再構成した日本語の学習ノート。">
+<meta name="description" content="Anthropic 公式コース「What is Claude Code?」の内容を再構成した日本語の学習ノート。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 <div class="topbar" id="topbar"></div>
 
-<nav class="rail" id="rail" aria-label="動画タイムライン">
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
   <div class="rail__line">
     <div class="rail__prog" id="railProg"></div>
     <div class="rail__head" id="railHead" data-t="0:00"></div>
@@ -43,14 +43,14 @@
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">Lesson 01 / Anthropic 公式動画</p>
+    <p class="eyebrow">Lesson 01 / Anthropic 公式コース</p>
     <p class="eyebrow" style="color:var(--signal)">02:55 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
   <h1 class="hero__title">What is<br><em>Claude&nbsp;Code</em>?</h1>
 
   <p class="hero__lede">
-    コースの1本目。<strong>「Claude Code とは何か」「チャット版の Claude と何が違うのか」「使いこなすために知っておくべき前提は何か」</strong>という三つの問いに答える。以下はその全内容を、動画の時間軸のまま日本語で再構成したもの。
+    コースの1本目。<strong>「Claude Code とは何か」「チャット版の Claude と何が違うのか」「使いこなすために知っておくべき前提は何か」</strong>という三つの問いに答える。以下はその全内容を、要点の流れに沿って日本語で再構成したもの。
   </p>
 
   <div class="tl" aria-hidden="true">
@@ -81,13 +81,13 @@
     <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">定義</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">Claude Code とは何か</h2>
-      <p>動画は定義から始まる。Claude Code は<strong>エージェント型のコーディングツール</strong>であり、あなたのコードベースを理解し、ファイルを編集し、コマンドを実行し、既存の開発ツールと統合して、作業をより速く終わらせる。</p>
+      <p>まず押さえたい定義は、Claude Code が<strong>エージェント型のコーディングツール</strong>であること。あなたのコードベースを理解し、ファイルを編集し、コマンドを実行し、既存の開発ツールと統合して、作業をより速く終わらせる。</p>
       <p>この一文に、後半で展開される要素がすべて畳み込まれている。「理解する」「編集する」「実行する」「統合する」——単にコードを書いて返すのではなく、環境の中で動くことが前提になっている。</p>
       <p>動作環境として挙げられるのは次の5つ。</p>
       <ul class="chips">
         <li>Terminal</li><li>Visual Studio Code</li><li>Claude Desktop App</li><li>Web</li><li>JetBrains IDEs</li>
       </ul>
-      <p>そのうえで「この動画ではターミナル版を使う」と断りが入る。以降の説明はすべてターミナルでの利用を前提としている。</p>
+      <p>以降の説明は、ターミナルでの利用を前提としている。</p>
     </div>
   </section>
 
@@ -95,7 +95,7 @@
     <div class="sec__mark"><div><span class="sec__t">0:30</span><span class="sec__kind">対比</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">Claude.ai と<br>何が違うのか</h2>
-      <p>「すでに Claude.ai を使ったことがあるなら、両者の違いが気になっているはずだ」——動画はここを最初に潰しにいく。違いは機能の多寡ではなく、<strong>コードに直接触れられるかどうか</strong>にある。</p>
+      <p>すでに Claude.ai を使ったことがあるなら、まず気になるのが両者の違い。違いは機能の多寡ではなく、<strong>コードに直接触れられるかどうか</strong>にある。</p>
 
       <div class="cmp">
         <div class="cmp__row cmp__row--head">
@@ -108,7 +108,7 @@
         <div class="cmp__row"><div class="cmp__ax">位置づけ</div><div class="cmp__a">チャットアシスタント</div><div class="cmp__b">AI エージェント</div></div>
       </div>
 
-      <p>動画の言葉では「一番分かりやすい違いは、Claude Code が<strong>AI エージェントとして動く</strong>という点」。コピペの往復がなくなるのは結果であって、原因はこのアーキテクチャの違いにある。</p>
+      <p>一番分かりやすい違いは、Claude Code が<strong>AI エージェントとして動く</strong>こと。コピペの往復がなくなるのは結果であって、原因はこのアーキテクチャの違いにある。</p>
     </div>
   </section>
 
@@ -119,7 +119,7 @@
 
       <blockquote class="quote">
         <p>環境と相互作用し、定義された目標を達成するためにアクションを実行できるソフトウェア。</p>
-        <cite>— 動画内の定義 / 01:02</cite>
+        <cite>— 公式解説の定義 / 01:02</cite>
       </blockquote>
 
       <p>そして、その核心は<strong>大規模言語モデルがリアルタイムでループ動作すること</strong>だと説明される。一問一答ではなく、判断と実行と観測を回し続ける構造のことだ。この「ループ」がコース2本目の主題になる。</p>
@@ -162,7 +162,7 @@
         </li>
         <li>
           <h3>ターミナルコマンドを実行する</h3>
-          <p>ビルドスクリプトの実行、テストの実行、パッケージのインストール。重要なのは「実行して終わり」ではない点で、動画は <em>use the output to decide what to do next</em>（出力を使って次に何をすべきかを判断する）と明示している。ここがループの実体にあたる。</p>
+          <p>ビルドスクリプトの実行、テストの実行、パッケージのインストール。重要なのは「実行して終わり」ではない点で、<em>use the output to decide what to do next</em>（出力を使って次に何をすべきかを判断する）。ここがループの実体にあたる。</p>
         </li>
         <li>
           <h3>Web を検索する</h3>
@@ -209,7 +209,7 @@
     <div class="sec__body">
       <h2 class="sec__h">まとめ</h2>
       <p class="wrapup">Claude Code は<em>エージェント型のコーディングツール</em>。コードベースを読み取り、ファイルを編集し、コマンドを実行し、外部ツールに接続することで、より速く成果を出すのを助ける。</p>
-      <p>締めは配布の話。ターミナル、VS Code、JetBrains、Claude デスクトップアプリで今すぐ使える、として動画は終わる。</p>
+      <p>Claude Code は、ターミナル、VS Code、JetBrains、Claude デスクトップアプリで使用できる。</p>
       <p>この回は概念の導入に徹していて、インストール手順や具体的なコマンドは出てこない。「エージェントとして動く」の中身——ループ・コンテキスト・ツール・権限——は、次の <a href="02-how-claude-code-works.html">02 Claude Code はどう動いているのか</a> で分解される。</p>
     </div>
   </section>
