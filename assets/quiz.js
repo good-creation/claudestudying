@@ -95,6 +95,7 @@
 
     result.className = 'qresult is-on is-' + state;
     result.innerHTML =
+      '<img class="clawd clawd--md" src="img/clawd.png" alt="" aria-hidden="true" style="margin-bottom:18px">' +
       '<p class="qresult__k">Result — 合格ライン ' + Math.round(PASS * 100) + '%</p>' +
       '<p class="qresult__v">' + label + '</p>' +
       '<p class="qresult__s">正解 <b>' + correct + '</b> / ' + total + '　（' + pct + '%）　' +

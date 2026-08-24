@@ -53,4 +53,4 @@ if problems:
     for p in problems:
         print("  FAIL  %-32s %-24s %s" % p)
     sys.exit(1)
-print("  OK — %d images on disk" % len(glob.glob("img/*.jpg")))
+print("  OK — %d images on disk" % len(glob.glob("img/*.jpg") + glob.glob("img/*.png")))

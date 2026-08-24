@@ -67,6 +67,7 @@
   --rule:#C3C8BF;
   --rule-soft:#D6DAD2;
   --signal:#1B34C4;
+  --signal-bright:#1B34C4;   /* 大見出し用。既定は --signal と同じ */
   --signal-wash:#CFD7F5;
   --caution:#8C5A0E;
   --caution-bg:#F1EADC;
@@ -108,7 +109,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .hero__top{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid var(--rule)}
 .hero__top p{margin:0}
 .hero__title{font-family:var(--mincho);font-weight:900;font-size:clamp(42px,9.6vw,108px);line-height:.96;letter-spacing:-.02em;margin:clamp(26px,5vw,48px) 0 0}
-.hero__title em{font-style:normal;color:var(--signal)}
+.hero__title em{font-style:normal;color:var(--signal-bright)}
 .hero__lede{max-width:34em;margin:clamp(22px,3vw,34px) 0 0;font-size:clamp(15px,1.55vw,18px);line-height:2;color:var(--ink-2)}
 .hero__lede strong{color:var(--ink);font-weight:700}
 
@@ -501,3 +502,41 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 #qQuit{border-color:var(--rule)}
 #qQuit:hover{border-color:var(--caution);color:var(--caution)}
 .quizbar.is-over #qQuit{display:none}
+
+/* ============================================================
+   Cloudflare 付録：アクセントをブランドのオレンジに差し替える
+   ------------------------------------------------------------
+   純正の Cloudflare オレンジ #F6821F は、この地色（#E9EBE6）に対して
+   コントラスト 2.1:1 しかなく本文にもヘッドラインにも使えない。
+   そこで用途で2段に分ける：
+     --signal        小さい文字・リンク用     4.9:1（WCAG AA）
+     --signal-bright 大きな見出し専用         3.5:1（AA 大文字）
+   警告色は、オレンジと混同しないよう赤系へ寄せる。
+   ============================================================ */
+body.theme-cf{
+  --signal:#A8410B;
+  --signal-bright:#D2500C;
+  --signal-wash:#F7DCC6;
+  --caution:#A02B25;
+  --caution-bg:#F3E3E0;
+}
+body.theme-cf .q__type[data-t="choice"]{color:var(--signal);border-color:#E3C3AA}
+
+/* ---------- マスコット ---------- */
+.clawd{display:block;height:auto}
+.clawd--xs{width:40px}
+.clawd--sm{width:62px}
+.clawd--md{width:104px}
+.clawd--lg{width:clamp(110px,16vw,168px)}
+
+/* ヒーロー右上に置く */
+.hero{position:relative}
+.hero__clawd{position:absolute;right:var(--gutter);top:clamp(64px,9vw,116px);
+  width:clamp(76px,8.5vw,128px);pointer-events:none}
+@media (max-width:900px){
+  .hero__clawd{position:static;margin:26px 0 0;width:78px}
+}
+
+/* ページ末尾の区切り */
+.endmark{display:flex;justify-content:center;padding:38px 0 6px}
+.endmark img{width:56px;opacity:.85}
