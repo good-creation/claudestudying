@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 How Claude Code Works — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="エージェンティックループ、コンテキストウィンドウ、ツール、権限モード。Claude Code の中身を4つの概念に分解する。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome">
+  <div class="shell chrome__in">
+    <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+    <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか" aria-current="page">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 02 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">02:50 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">How Claude&nbsp;Code<br><em>Works</em></h1>
+
+  <p class="hero__lede">
+    「エージェントとして動く」の中身を開ける回。Claude Code を<strong>魔法の箱に見せないために</strong>、エージェンティックループ・コンテキストウィンドウ・ツール・権限という4つの部品に分解する。1本目が「何であるか」なら、これは「どう動いているか」。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2.4%"><s>ループ</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:36.5%"><s>コンテキスト</s><i></i><b>1:02</b></div>
+      <div class="tl__tick" style="left:50.6%"><s>ツール</s><i></i><b>1:26</b></div>
+      <div class="tl__tick" style="left:64.7%"><s>権限</s><i></i><b>1:50</b></div>
+      <div class="tl__tick" style="left:87.6%"><s>まとめ</s><i></i><b>2:29</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>02:50</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.14</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>2:50</span> <small>/ 170s</small></dd></div>
+    <div><dt>Views</dt><dd><span>590,206</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/6bs5b4FltCU" target="_blank" rel="noopener">youtu.be/6bs5b4FltCU ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="170">
+
+  <section class="sec" id="s1" data-start="4" data-label="エージェンティックループ">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">中核</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">エージェンティックループ</h2>
+      <p>「Claude Code が普通のチャットアプリと違うのは分かった。では、どう動いているのか」——動画はこう切り出し、<strong>Claude Code はエージェンティックループを通じて最もよく説明できる</strong>と答える。以下がその一周。</p>
+
+      <ol class="steps">
+        <li>
+          <h3>プロンプトを入力する</h3>
+          <p>あなたが Claude Code にやってほしいことを書く。ここがループの入口。</p>
+        </li>
+        <li>
+          <h3>コンテキストを集める</h3>
+          <p>プロンプトを完了するのに必要な情報を集める。モデルとやり取りし、モデルは<em>テキスト</em>か、<em>Claude Code が実行できるツール呼び出し</em>のどちらかを返す。</p>
+        </li>
+        <li>
+          <h3>アクションを実行する</h3>
+          <p>ファイルを編集する、コマンドを実行する、など。返ってきたツール呼び出しを実際に走らせる段階。</p>
+        </li>
+        <li>
+          <h3>結果を検証する</h3>
+          <p>その結果が、そもそもプロンプトが意図したことを達成しているかどうかを判断する。<strong>自分の作業を自分で検証する</strong>のがエージェントの要点。</p>
+        </li>
+        <li>
+          <h3>完了、あるいはもう一周</h3>
+          <p>達成していれば Claude は終了し、次のプロンプトを待つ。達成していなければループの頭に戻り、<em>結果が完全で検証可能になるまで</em>再試行する。</p>
+        </li>
+      </ol>
+
+      <p>そしてこのループ全体を通じて、あなたは<strong>コンテキストを追加したり、中断したり、モデルを誘導したり</strong>できる。ループは閉じた自動機械ではなく、途中で人が手を入れられる構造になっている。</p>
+
+      <figure class="fig">
+        <img src="img/agentic-loop.jpg" alt="Your prompt から Gather context → Take action → Verify results のループを経て Done に至る図。ループの下から「You interrupt, steer or add context」の矢印が入っている。" loading="lazy">
+        <figcaption>公式コース図版 — Your prompt →〈Gather context → Take action → Verify results〉→ Done。検証で満たなければ Gather context へ戻る。下から刺さる矢印が「あなたが中断・誘導・コンテキスト追加できる」ポイント。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="62" data-label="コンテキストウィンドウ">
+    <div class="sec__mark"><div><span class="sec__t">1:02</span><span class="sec__kind">部品 01</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コンテキストウィンドウ</h2>
+      <p>Claude にはコンテキストウィンドウがあり、<strong>会話・ファイルの内容・コマンドの出力などをどれだけ保存し、振り返って参照できるか</strong>を決めている。1本目で「作業メモリ」と呼ばれていたものの正体。</p>
+      <p>そして上限に達したとき何が起きるかが、この回で新しく足される情報だ。Claude Code は会話を<strong>圧縮（compact）</strong>する——コンテキストウィンドウから何を取り除けるか、何を要約できるかを自動的に判断し、使用可能なサイズまで戻す。</p>
+      <div class="tip">
+        <b>読み替えると</b>
+        <p>長い作業ほど、序盤のやり取りは要約に置き換わっていく。だから「さっき言ったこと」が常に原文のまま残っているとは限らない。重要な前提は、会話ではなくファイル（<code>CLAUDE.md</code> など）に置いておくほうが安全になる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="86" data-label="ツール">
+    <div class="sec__mark"><div><span class="sec__t">1:26</span><span class="sec__kind">部品 02</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ツール</h2>
+      <p>動画は<strong>ツールこそがエージェントの動作の基盤（backbone）</strong>だと言い切る。対比として置かれるのが普通の AI アシスタントで、そちらは「テキストを受け取り、テキストを返すだけ。その間に何もない」。</p>
+
+      <blockquote class="quote">
+        <p>ツールを使うことで、Claude Code はタスクの完了に近づくために、いつコードを実行すべきかを判断できる。</p>
+        <cite>— 動画内 / 01:31</cite>
+      </blockquote>
+
+      <p>例として挙がるのはファイル読み取りツールと Web 検索ツール。そして Claude Code は<strong>セマンティックな理解</strong>を用いて、いつツールを呼び出すべきか、そしてその出力をどう使うかを判断する。あらかじめ決まった手順を再生しているのではなく、意味を見て呼ぶかどうかを決めている、ということ。</p>
+      <ul class="chips">
+        <li>Read file</li><li>Search web</li><li>Edit file</li><li>Run command</li><li>…</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="110" data-label="権限モード">
+    <div class="sec__mark"><div><span class="sec__t">1:50</span><span class="sec__kind">部品 03</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">権限モード</h2>
+      <p>Claude Code にはいくつかの権限モードがある。<kbd>Shift</kbd> + <kbd>Tab</kbd> で切り替えられる。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>モード</div><div>ファイル編集</div><div>コマンド実行</div><div>特徴</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">手動<small>DEFAULT</small></div>
+          <div class="modes__c is-ask" data-h="ファイル編集">毎回たずねる</div>
+          <div class="modes__c is-ask" data-h="コマンド実行">毎回たずねる</div>
+          <div class="modes__c" data-h="特徴">すべての操作に明示的な許可が要る</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">自動承認<small>ACCEPT EDITS</small></div>
+          <div class="modes__c" data-h="ファイル編集">確認なしで実行</div>
+          <div class="modes__c is-ask" data-h="コマンド実行">たずねる</div>
+          <div class="modes__c" data-h="特徴">編集の往復が消え、危険な操作だけ残る</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">プランモード<small>PLAN</small></div>
+          <div class="modes__c" data-h="ファイル編集">しない</div>
+          <div class="modes__c" data-h="コマンド実行">読み取り専用ツールのみ</div>
+          <div class="modes__c" data-h="特徴">着手前に行動計画をまとめる</div>
+        </div>
+      </div>
+
+      <p>これらはすべて<strong>設定ファイルで構成できる</strong>。プロジェクトごとに既定のモードや、許可なしで通してよいコマンドを決めておける。</p>
+
+      <figure class="fig">
+        <img src="img/permissions.jpg" alt="Claude Code のターミナル画面。npm init -y の実行前に「This command requires approval / Do you want to proceed?」と3択が表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — 手動モードでの承認プロンプト。<code>npm init -y</code> の実行前に「1. Yes / 2. Yes, and don't ask again for: npm init:* / 3. No」。2 を選ぶと、そのコマンドパターンだけが以後スキップされる。</figcaption>
+      </figure>
+
+      <div class="warn">
+        <b>Caution</b>
+        <p>権限のスキップには注意。<strong>Claude Code にコマンドを自由に実行させることは、問題が発生する前にミスを発見するのがより難しくなることを意味する</strong>。速さと引き換えに失うのは、介入できる時間そのもの。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="149" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:29</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">Claude Code は、<em>エージェンティックループ</em>・<em>管理されたコンテキストウィンドウ</em>・<em>ツール</em>・<em>設定可能な権限</em>という複数のエージェント的な概念を、すべてターミナル内で組み合わせている。</p>
+      <p>そして締めの一文が、1本目の「チャットとの違い」に答えを返している——<strong>コードベースを読み取り、アクションを実行し、自らの作業を検証できる。それこそがチャットウィンドウとは根本的に異なる点だ。</strong></p>
+      <p>次の <a href="03-your-first-prompt.html">03 最初のプロンプト</a> では、ここで出てきた権限モードとプランモードを、実際に手を動かす側から見ていく。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>contacts</em>（正しくは context）など、音声認識の誤りがそのまま残っている箇所がある。</p>
+    <div class="tr__body">
+      <div><span>0:04</span><p>We know that Claude code is different from usual chat applications, but how does it work? Claude code is best explained through the agentic loop. You enter a prompt into Claude code. Claude code will then gather contacts</p></div>
+      <div><span>0:22</span><p>required to complete your prompt. It does so by interacting with the model which will return text or a tool call that Claude code can execute. Then it takes action. For example, editing a file or running a</p></div>
+      <div><span>0:35</span><p>command. Finally, it verifies those results and determines if they achieve what your prompt set out to do in the first place. If they do, then Claude finishes and waits for the next prompt. And if they don't, Claude goes back and</p></div>
+      <div><span>0:50</span><p>runs the loop again until the results are complete and verifiable. Throughout this loop, you're able to add contacts, interrupt it, or steer the model to help guide it towards your end goal. Claude has a context window, which</p></div>
+      <div><span>1:05</span><p>determines how much of your conversation, file contents, command outputs, and more it can store and look back on. Once you reach that limit, Claude code compacts your conversation, which automatically determines what it</p></div>
+      <div><span>1:19</span><p>can take out of the context window and what it can summarize in order to bring the context window back down. Tools are the backbone of how agents work. Currently, most AI assistants are simply</p></div>
+      <div><span>1:31</span><p>input text and output text. Nothing in between. Tools let Claude code and other agents determine when to execute code to get closer to a task. This could be read file tool or search web tool, for</p></div>
+      <div><span>1:44</span><p>example. Claude code uses semantic searching to determine when to call a tool and get the output of it. Claude code also has permission modes. Default behavior is that it has to ask explicit permission before editing a</p></div>
+      <div><span>1:58</span><p>file or running a shell command. You can use shift and tab to toggle between different modes. Auto accept edits files without asking, but still ask for commands. Plan mode uses read-only tools to help</p></div>
+      <div><span>2:10</span><p>compile a plan of action before starting. It's worth being cautious when skipping permissions. Giving Claude code free reign to run commands means a mistake could be harder to catch before even happens.</p></div>
+      <div><span>2:29</span><p>Claude code works by combining different agentic concepts, an agentic loop, a managed context window, tools, and configurable permissions into your terminal. It can read your code base, take action, and verify its own work,</p></div>
+      <div><span>2:42</span><p>and that makes it fundamentally different from a chat window.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="01-what-is-claude-code.html"><b>前のレッスン — 01</b><em>Claude Code とは何か</em></a>
+  <a class="is-next" href="03-your-first-prompt.html"><b>次のレッスン — 03</b><em>最初のプロンプトを書く</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「How Claude Code Works」／ claude.com/courses</span>
+  <a href="https://youtu.be/6bs5b4FltCU" target="_blank" rel="noopener">youtu.be/6bs5b4FltCU ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

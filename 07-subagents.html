@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 What are subagents? — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="独立したコンテキストウィンドウを持つ専門アシスタント。旅路ではなく答えだけを持ち帰る仕組み。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か" aria-current="page">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 07 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">02:48 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">What are<br><em>subagents</em>?</h1>
+
+  <p class="hero__lede">
+    この回の一文はこれに尽きる——<strong>旅路なしで、答えを得る（you get the answer without the journey）。</strong>15ファイル読んで得た1つの事実だけを持ち帰り、途中経過はすべて捨てる。コンテキストを守るための、いちばん強い道具。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.8%"><s>定義</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:14.3%"><s>効用</s><i></i><b>0:24</b></div>
+      <div class="tl__tick" style="left:43.5%"><s>実例</s><i></i><b>1:13</b></div>
+      <div class="tl__tick" style="left:69.0%"><s>組み込み</s><i></i><b>1:56</b></div>
+      <div class="tl__tick" style="left:85.1%"><s>自作</s><i></i><b>2:23</b></div>
+      <div class="tl__tick" style="left:92.3%"><s>まとめ</s><i></i><b>2:35</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>02:48</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.03.20</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>2:48</span> <small>/ 168s</small></dd></div>
+    <div><dt>Views</dt><dd><span>412,320</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/jKErNxuxPXg" target="_blank" rel="noopener">youtu.be/jKErNxuxPXg ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="168">
+
+  <section class="sec" id="s1" data-start="3" data-label="サブエージェントとは">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">専門アシスタントに委譲する</h2>
+      <blockquote class="quote">
+        <p>サブエージェントとは、Claude がタスクを委譲できる専門アシスタントのこと。</p>
+        <cite>— 動画冒頭 / 00:03</cite>
+      </blockquote>
+      <p>それぞれのサブエージェントは、<strong>自分専用の会話コンテキストウィンドウ</strong>と、<strong>あなたが定義したカスタムシステムプロンプト</strong>を持って動く。そして終わったとき、メインスレッドに返るのは<strong>要約だけ</strong>——中間作業はすべて隔離されたまま残る。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="24" data-label="コンテキストの節約">
+    <div class="sec__mark"><div><span class="sec__t">0:24</span><span class="sec__kind">効用</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">なぜコンテキストが<br>守られるのか</h2>
+      <p>Claude Code とチャットしているとき、あなたはメインのコンテキストウィンドウに文脈を足し続けている。<strong>すべてのツール呼び出しと、その結果が、そこに保存される</strong>（→ <a href="05-context-management.html">05 コンテキスト管理</a>）。</p>
+      <p>Claude がサブエージェントを使うと、そこで<strong>別のウィンドウが立ち上がる</strong>。サブエージェントが受け取る入力は2つ。</p>
+
+      <ol class="steps">
+        <li>
+          <h3>設定ファイルからのカスタムシステムプロンプト</h3>
+          <p>そのサブエージェントが何者で、どう振る舞うべきかの定義。</p>
+        </li>
+        <li>
+          <h3>親エージェントが書いたタスク記述</h3>
+          <p>あなたの依頼にもとづいて、親が具体的な指示に落としたもの。</p>
+        </li>
+      </ol>
+
+      <p>あとはサブエージェントが自律的に働く。<strong>ファイルを読んでも、編集しても、ツールを使っても、そのどれもがメインの会話には現れない。</strong>返るのは要約だけで、<strong>サブエージェントの会話全体はそのあと完全に破棄される</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="73" data-label="返金処理はどこ？">
+    <div class="sec__mark"><div><span class="sec__t">1:13</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">旅路なしで、答えを</h2>
+      <p>例として置かれるのは、<strong>不慣れなコードベースで決済システムの仕組みを調べる</strong>タスク。知りたいのは「返金を処理しているのはどのサービスか」——それだけ。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">観点</div><div class="cmp__a">サブエージェントなし</div><div class="cmp__b">サブエージェントあり</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">やること</div><div class="cmp__a">15ファイルを読み、複数回検索し、関数呼び出しを追跡する</div><div class="cmp__b">同じ探索を、別ウィンドウで行う</div></div>
+        <div class="cmp__row"><div class="cmp__ax">メインに残るもの</div><div class="cmp__a">その全過程がコンテキストを埋める</div><div class="cmp__b">絞り込まれた要約だけ</div></div>
+        <div class="cmp__row"><div class="cmp__ax">得られる答え</div><div class="cmp__a">事実ひとつ</div><div class="cmp__b">事実ひとつ</div></div>
+      </div>
+
+      <p>必要だったのが<em>たった1つの事実</em>だったとしても、探索の全記録はコンテキストに残ってしまう。そこが問題だった、というのがこの例の主張。</p>
+
+      <div class="warn">
+        <b>トレードオフ</b>
+        <p>いいことばかりではない、と動画は続ける。<strong>メインのウィンドウは、サブエージェントがどうやって結論に至ったのか、途中で何を発見したのかが見えなくなる。</strong>要約に含まれなかったものは、メイン側には存在しない。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="116" data-label="組み込みサブエージェント">
+    <div class="sec__mark"><div><span class="sec__t">1:56</span><span class="sec__kind">組み込み</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">最初から入っているもの</h2>
+      <p>Claude Code には、すぐ使える組み込みのサブエージェントがいくつかある。</p>
+      <ul class="acts">
+        <li><h3>general-purpose</h3><p>探索と実行の<strong>両方</strong>が必要な、複数ステップのタスク用。</p></li>
+        <li><h3>explore</h3><p>コードベースの<strong>高速な検索</strong>用。<a href="04-explore-plan-code-commit.html">04</a> で「プランモードに入らずに探索だけしたいとき」に挙がっていたのがこれ。</p></li>
+        <li><h3>plan</h3><p><strong>プランモード中</strong>に使われ、計画を提示する前のコードベース調査と分析を担当する。</p></li>
+      </ul>
+      <p>つまり、あなたがプランモードを使っていた時点で、すでにサブエージェントは裏で働いていたことになる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="143" data-label="自分で作る">
+    <div class="sec__mark"><div><span class="sec__t">2:23</span><span class="sec__kind">自作</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">自分のサブエージェントを作る</h2>
+      <p>カスタムシステムプロンプトとツールアクセスを指定して、自分で作ることもできる。実体は<strong>YAML フロントマターを持つ Markdown ファイル</strong>。</p>
+      <p>いちばん簡単な始め方は、Claude に生成させること。<code>/agents</code> を実行して <strong>Create new agent</strong> を選ぶと、いくつかのステップを進むだけで済む。</p>
+      <ul class="chips">
+        <li>エージェントのスコープを選ぶ</li><li>目的を定義する</li><li>アクセスできるツールを選ぶ</li><li>色を選ぶ</li>
+      </ul>
+      <p>Claude が名前・説明・プロンプトを生成する。この<strong>説明が、Claude がいつそのサブエージェントを呼び出すべきかの指示にもなる</strong>——スキルの description と同じ考え方（→ <a href="08-skills.html">08 スキル</a>）。</p>
+
+      <h3 style="font-family:var(--gothic);font-size:16px;margin:32px 0 0">さらなるカスタマイズ</h3>
+      <ul class="acts">
+        <li><h3>永続的なメモリ</h3><p>会話をまたいでメモリを保持できる。同じプロジェクトで継続的に使う場合にとくに有効。</p></li>
+        <li><h3>スキルの事前読み込み</h3><p><code>skills</code> キーにスキル名を列挙すると、あらかじめ読み込ませられる。<strong>ただしメイン会話でのスキルと違い、ここではスキル全体がコンテキストに読み込まれる</strong>点に注意。</p></li>
+      </ul>
+
+      <div class="tip">
+        <b>レビューに使うときの作法</b>
+        <p><a href="11-review-and-ship.html">11 レビューと出荷</a>で出てくるが、コードレビュー用のサブエージェントは<strong>読み取り専用ツールに限定する</strong>。レビュアーは問題を指摘すべきであって、ファイルを編集すべきではない。設定はリポジトリにチェックインして、チーム全体が同じレビュアーを使えるようにする。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="155" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:35</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">サブエージェントは作業を<em>焦点の定まった断片</em>に分け、メインのコンテキストウィンドウをきれいに保ち、<em>必要なものだけ</em>を持ち帰る。</p>
+      <p>組み込みを使うにせよ自作するにせよ、<strong>長いセッションからより多くを引き出すための実践的な手段</strong>だ、というのが締めくくり。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>contacts</em>（正しくは context）などの誤認識をそのまま残している。</p>
+    <div class="tr__body">
+      <div><span>0:03</span><p>Sub-agents are specialized assistants that Claude can delegate tasks to. Each sub-agent runs in its own conversation contacts window with a custom system prompt that you define. When finished, it returns a summary to</p></div>
+      <div><span>0:19</span><p>the main thread while all the intermediate work stays isolated. One of the main advantages of sub-agents is that they help manage context window usage. When you chat with Claude Code, you're adding context to the main context</p></div>
+      <div><span>0:35</span><p>window. Every tool call and its results get stored in this main context window. And so, when Claude uses a sub-agent, a separate window starts. The sub-agent receives two inputs, a custom system</p></div>
+      <div><span>0:47</span><p>prompt from your configuration file, and a task description written by the parent agent based on what you ask for. The sub-agent then works autonomously. When it reads files, edits files, or</p></div>
+      <div><span>1:01</span><p>uses tools, none of these will appear in the main conversation. Just a summary is returned back. The entire sub-agent conversation then gets completely discarded. Consider a task like investigating how</p></div>
+      <div><span>1:15</span><p>the payment system works in an unfamiliar code base. Maybe you're trying to use Claude Code to figure out which service handles refunds. Well, without a sub-agent, Claude might read 15 files, run several searches, and</p></div>
+      <div><span>1:29</span><p>trace through multiple function calls. All of that context fills your context window, even if you only needed one single fact, which service handles refunds. With a sub-agent, you get the answer</p></div>
+      <div><span>1:43</span><p>without the journey. The sub-agent explores, discovers the answer, and returns a focused summary, keeping your main context clean. But, the main window loses visibility into how the sub-agent reaches its</p></div>
+      <div><span>1:56</span><p>conclusions and what it discovered along the way. Claude Code includes several built-in sub-agents that you can use immediately, like the general-purpose sub-agent, used for multi-step tasks that require both</p></div>
+      <div><span>2:09</span><p>exploration and action. The explore sub-agent, used for fast searching of code bases. The plan sub-agent, used during plan mode for research and analysis of your code base before presenting a plan.</p></div>
+      <div><span>2:23</span><p>And you can also create your own sub-agents with custom system prompts and tool access. Sub-agents like Claude Code break work into focused pieces, keep your main context window clean, and bring back</p></div>
+      <div><span>2:35</span><p>just what you need, whether you're using the built-in ones or creating your own. They're a practical way to get more out of longer Claude Code sessions.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="06-claude-md.html"><b>前のレッスン — 06</b><em>CLAUDE.md ファイル</em></a>
+  <a class="is-next" href="08-skills.html"><b>次のレッスン — 08</b><em>スキルとは何か</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「What are subagents?」／ claude.com/courses</span>
+  <a href="https://youtu.be/jKErNxuxPXg" target="_blank" rel="noopener">youtu.be/jKErNxuxPXg ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

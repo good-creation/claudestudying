@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 Your first Claude Code prompt — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="自動承認と手動の切り替え、プランモード、そしてダークモード実装の実演。最初のプロンプトをどう書くか。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome">
+  <div class="shell chrome__in">
+    <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+    <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く" aria-current="page">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 03 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">02:27 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">Your first<br><em>prompt</em></h1>
+
+  <p class="hero__lede">
+    最初のプロンプトを書くのは怖い。この回はその怖さを、<strong>2つの操作</strong>で解く——コミットしていい範囲を自分で決める<strong>承認モードの切り替え</strong>と、コードを1行も書かせずに計画だけ出させる<strong>プランモード</strong>。最後にダークモード実装の実演がある。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2.0%"><s>入口</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:9.5%"><s>承認</s><i></i><b>0:14</b></div>
+      <div class="tl__tick" style="left:26.5%"><s>プラン</s><i></i><b>0:39</b></div>
+      <div class="tl__tick" style="left:44.9%"><s>実演</s><i></i><b>1:06</b></div>
+      <div class="tl__tick" style="left:83.0%"><s>まとめ</s><i></i><b>2:03</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>02:27</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.15</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>2:27</span> <small>/ 147s</small></dd></div>
+    <div><dt>Views</dt><dd><span>342,973</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/gbetp6D7J_Q" target="_blank" rel="noopener">youtu.be/gbetp6D7J_Q ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="147">
+
+  <section class="sec" id="s1" data-start="3" data-label="プロンプトの入口">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">入口</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まず、普通に話しかける</h2>
+      <p>出だしは拍子抜けするほど素っ気ない。<strong>Claude Code には、他の AI アシスタントに話しかけるのと同じように話しかければいい</strong>。特別な構文も、決まった型もない。</p>
+      <p>そのうえで動画は、プロンプトを入力するときに考慮できることを2つ挙げる。どちらも「<em>あなたを守り、同時に作業を楽にする</em>」ためのもの——承認モードとプランモードだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="14" data-label="自動承認 vs 手動">
+    <div class="sec__mark"><div><span class="sec__t">0:14</span><span class="sec__kind">承認</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">自動承認 vs 手動</h2>
+      <p>Claude が提案するすべてのファイル変更を<strong>自動承認する</strong>か、<strong>毎回明示的な許可を求めさせる</strong>かを選べる。<kbd>Shift</kbd> + <kbd>Tab</kbd> を押すと2つのモードを循環する。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>モード</div><div>ファイルの編集・作成</div><div>コマンド実行</div><div>向いている場面</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">手動<small>DEFAULT</small></div>
+          <div class="modes__c is-ask" data-h="編集">毎回たずねる</div>
+          <div class="modes__c is-ask" data-h="コマンド">毎回たずねる</div>
+          <div class="modes__c" data-h="向いている場面">不慣れなコードベース、影響が読めない変更</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">自動承認<small>ACCEPT EDITS</small></div>
+          <div class="modes__c" data-h="編集">自動で承認</div>
+          <div class="modes__c is-ask" data-h="コマンド">たずねる</div>
+          <div class="modes__c" data-h="向いている場面">差分をあとでまとめて読む前提の作業</div>
+        </div>
+      </div>
+
+      <p>動画はここで判断を押しつけない。<strong>どちらが正しいというわけではない。自分が快適に感じる方を選べばいい。</strong>——編集は自動でも、コマンドの実行だけは必ず止まる、という線引きがデフォルトで引かれているのがポイント。</p>
+
+      <figure class="fig">
+        <img src="img/modes.jpg" alt="Claude Code のターミナル画面。下部に accept edits on (shift+tab to cycle) と表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — 入力欄の下に現在のモードが出る。<code>accept edits on (shift+tab to cycle)</code> が自動承認モードの表示。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="39" data-label="プランモード">
+    <div class="sec__mark"><div><span class="sec__t">0:39</span><span class="sec__kind">プラン</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">プランモード</h2>
+      <p>同じ <kbd>Shift</kbd> + <kbd>Tab</kbd> のメニューの中に<strong>プランモード</strong>がある。やることはこうだ。</p>
+
+      <ol class="steps">
+        <li>
+          <h3>プロンプトを受け取る</h3>
+          <p>やりたいことを普通に書く。ここまでは同じ。</p>
+        </li>
+        <li>
+          <h3>読み取り専用ツールでコードベースを分析する</h3>
+          <p>提案された実装について調査する。<strong>ファイルは一切編集されない</strong>。</p>
+        </li>
+        <li>
+          <h3>不明点を質問してくる</h3>
+          <p>はっきりさせたい項目について、途中で確認の質問が入る。</p>
+        </li>
+        <li>
+          <h3>実行可能な詳細プランを返す</h3>
+          <p>そのまま実行に移せる粒度の、長く詳細な計画が返ってくる。</p>
+        </li>
+      </ol>
+
+      <p>向いている用途として挙がるのは<strong>複雑な変更の計画</strong>と<strong>安全なコードレビュー</strong>。そして動画はこう言い添える——「多くの場合、あなたが Claude に頼むのは機能に向けた複数ステップの実装だ。まさにそこでプランモードが力を発揮する」。</p>
+
+      <figure class="fig">
+        <img src="img/plan-mode.jpg" alt="Claude Code 起動直後の画面。入力欄の下に plan mode on (shift+tab to cycle) と表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>plan mode on (shift+tab to cycle)</code>。この表示が出るまで <kbd>Shift</kbd>+<kbd>Tab</kbd> を押す。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="66" data-label="ダークモードの実演">
+    <div class="sec__mark"><div><span class="sec__t">1:06</span><span class="sec__kind">実演</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">例：ダークモードトグルの追加</h2>
+      <p>ここから実演。ダークモードのトグルがほしいアプリがある、という設定だ。手順は3つ。</p>
+      <ul class="chips">
+        <li>プロジェクトのルートで claude を実行</li>
+        <li>Shift+Tab を数回押してプランモードへ</li>
+        <li>プロンプトを書く</li>
+      </ul>
+
+      <div class="prompt">
+        <b>実際に入力されたプロンプト</b>
+        <p>My app needs a dark mode implemented across the entire app. Can you create a toggle switch on the header that allows a user to toggle between light mode and dark mode? I need you to find a good contrast color that works based on my existing light theme.</p>
+        <p>アプリ全体にダークモードを実装したい。ヘッダーに、ライトモードとダークモードを切り替えるトグルスイッチを作ってほしい。既存のライトテーマに合う、コントラストの良い色を見つけてほしい。</p>
+      </div>
+
+      <p>この短いプロンプトに、次のレッスン以降で繰り返し出てくる要素がすでに3つ入っている。</p>
+      <ul class="acts">
+        <li><h3>範囲を明示している</h3><p>「アプリ全体に（across the entire app）」——どこまで手を入れるかが最初に決まっている。</p></li>
+        <li><h3>成果物が具体的</h3><p>「ヘッダーのトグルスイッチ」——何ができたら終わりかが目に見える形で書かれている。</p></li>
+        <li><h3>判断基準を渡している</h3><p>「既存のライトテーマに合うコントラストの良い色」——色の選び方という、判断が必要な部分の基準を先に与えている。</p></li>
+      </ul>
+
+      <figure class="fig">
+        <img src="img/dark-mode-prompt.jpg" alt="プランモードの Claude Code に、ダークモード実装を依頼する英文プロンプトが入力されている画面。" loading="lazy">
+        <figcaption>公式コース図版 — プランモードで入力された実際のプロンプト。左下の <code>plan mode on</code> に注目。</figcaption>
+      </figure>
+
+      <p>あとは Claude にプランを立てさせる。<strong>プランを確認して問題なければ承認し、各ステップで承認を求めさせる</strong>。最後には、Claude が何を行い、どのようにその結論に至ったのかを正確に確認できる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="122" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:03</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">プロンプトは<em>できるだけ具体的に</em>。すべてのステップで状況を把握しておきたいなら、そうできる。</p>
+      <p>そしてプランモードを使えば、<strong>実際にコードを実行する前に</strong>、達成したいことの詳細を Claude に掘り下げてもらえる。</p>
+      <p>この「まず計画、それからコード」という順番は、次の <a href="04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a> でワークフロー全体に拡張される。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。実演部分のプロンプト読み上げも含む。</p>
+    <div class="tr__body">
+      <div><span>0:03</span><p>You talk to Claude Code like you would talk to any AI assistant. When entering your prompt, here are some things that you can consider that can both protect and make things easier for you. You can choose whether Claude auto</p></div>
+      <div><span>0:17</span><p>accepts every file change it suggests or require it to ask you for explicit permission each time. With shift plus tab, you can cycle between both modes. In auto accept mode, it will automatically approve an edit or</p></div>
+      <div><span>0:29</span><p>creation of a file, but ask your permission to run commands. There isn't a right or wrong way. It's just whatever you feel the most comfortable with. Within this shift tab menu is the plan mode.</p></div>
+      <div><span>0:43</span><p>Plan mode takes your prompt and uses read-only tools to analyze your code base and do research on your suggested implementation. It will also ask you questions on items that it wants clarification on.</p></div>
+      <div><span>0:54</span><p>It then returns to you a long detailed plan that it can execute on in more detail. Plan mode works great for planning complex changes or doing a safe code review. A lot of the time you're asking Claude to do multi-step</p></div>
+      <div><span>1:06</span><p>implementations towards a feature and this is exactly what plan mode excels at. So, why don't we give it a try? I have an application here that desperately needs a dark mode toggle. So, I'm going to use</p></div>
+      <div><span>1:19</span><p>Claude Code to implement this for me. So, I'm in the root directory of my project and I'm going to hit the shift tab a couple times to go into plan mode. Then, let's write out the prompt. My app</p></div>
+      <div><span>1:29</span><p>needs a dark mode implemented across the entire app. Can you create a toggle switch on the header that allows user to toggle between light mode and dark mode? I need you to find a good contrast color</p></div>
+      <div><span>1:38</span><p>that works based on my existing light theme. And let's let Claude plan this out. And after reviewing, I think it looks pretty good. At the end of all this, we can see explicitly what Claude did and how it</p></div>
+      <div><span>1:53</span><p>came to its conclusion. And the dark mode is looking pretty good. Awesome. &gt;&gt; [music] &gt;&gt; When using Claude Code, try to be as descriptive as possible with your prompt. If you want to stay in the loop</p></div>
+      <div><span>2:14</span><p>at every step, you can do that. Use plan mode to let Claude get a little bit more in the nitty-gritty with what you want to achieve before executing on that plan.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="02-how-claude-code-works.html"><b>前のレッスン — 02</b><em>Claude Code はどう動いているのか</em></a>
+  <a class="is-next" href="04-explore-plan-code-commit.html"><b>次のレッスン — 04</b><em>探索 → 計画 → コード → コミット</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「Your first Claude Code prompt」／ claude.com/courses</span>
+  <a href="https://youtu.be/gbetp6D7J_Q" target="_blank" rel="noopener">youtu.be/gbetp6D7J_Q ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

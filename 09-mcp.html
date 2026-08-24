@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>09 MCP in Claude Code — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="コードベースの外にあるコンテキストをつなぐオープン標準。サーバーの追加、スコープ、そしてコンテキストのコスト。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ" aria-current="page">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 09 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">03:37 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title"><em>MCP</em><br>in Claude Code</h1>
+
+  <p class="hero__lede">
+    出発点はコンテキストの話。<strong>あなたのコンテキストの多くは、コードベースの外にある</strong>——データベース、業務アプリ、公開リポジトリ。MCP はそのギャップを埋めるオープン標準で、Claude Code を外部のツールとデータソースにつなぐ。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:0.9%"><s>定義</s><i></i><b>0:02</b></div>
+      <div class="tl__tick" style="left:16.6%"><s>実例</s><i></i><b>0:36</b></div>
+      <div class="tl__tick" style="left:32.3%"><s>追加</s><i></i><b>1:10</b></div>
+      <div class="tl__tick" style="left:46.1%"><s>スコープ</s><i></i><b>1:40</b></div>
+      <div class="tl__tick" style="left:55.3%"><s>コスト</s><i></i><b>2:00</b></div>
+      <div class="tl__tick" style="left:84.8%"><s>まとめ</s><i></i><b>3:04</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>03:37</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.09</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>3:37</span> <small>/ 217s</small></dd></div>
+    <div><dt>Views</dt><dd><span>301,346</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/kkBFmwkDzdo" target="_blank" rel="noopener">youtu.be/kkBFmwkDzdo ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="217">
+
+  <section class="sec" id="s1" data-start="2" data-label="MCP とは">
+    <div class="sec__mark"><div><span class="sec__t">0:02</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">外にあるコンテキストを<br>つなぐ</h2>
+      <p><strong>MCP（Model Context Protocol）は、Claude Code が外部のツールやデータソースに接続できるようにするオープン標準。</strong>質問をすると、Claude は<strong>それらのツールをいつ使うべきかを自動的に理解する</strong>。</p>
+      <p>必要性の根拠はコンテキストにある。<strong>あなたのコンテキストの多くは他の場所に住んでいる</strong>——データベース、業務アプリ、公開リポジトリ。コードベースを読むだけでは届かない範囲がある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="36" data-label="ツールと具体例">
+    <div class="sec__mark"><div><span class="sec__t">0:36</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ツールという概念、<br>そして実例</h2>
+      <p>前提として、エージェント型 AI における「ツール」を押さえ直す。<strong>ツールは、Claude Code のようなエージェントに、タスクをよりよく完了するためのアクションを実行する能力を与える。</strong>これは、テキストの出力が直接返ってくるだけの他の AI とは違う（→ <a href="02-how-claude-code-works.html">02</a>）。</p>
+
+      <ul class="acts">
+        <li>
+          <h3>Linear MCP サーバー</h3>
+          <p>チームがプロジェクト管理に Linear を使っているなら、<strong>特定の issue の詳細を取り込める</strong>。</p>
+        </li>
+        <li>
+          <h3>Context7 MCP サーバー</h3>
+          <p>いま扱っている依存関係の<strong>最新のドキュメント</strong>が必要なとき、それを Claude Code に供給する。</p>
+        </li>
+      </ul>
+
+      <figure class="fig">
+        <img src="img/mcp-linear.jpg" alt="ターミナルで「Can you make a plan off of the linear ticket: MEN-12」と依頼し、linear-server の get_issue ツール呼び出しの承認を求められている画面。" loading="lazy">
+        <figcaption>公式コース図版 — <em>「linear ticket MEN-12 から計画を立てて」</em>と頼むと、<code>linear-server - get_issue(id: "MEN-12")</code> が呼ばれる。MCP ツールも通常のツールと同じく<strong>承認を求めてくる</strong>（→ <a href="03-your-first-prompt.html">03</a>）。</figcaption>
+      </figure>
+
+      <figure class="fig">
+        <img src="img/mcp-context7.jpg" alt="ターミナルで「Can you get the latest docs from shadcn ui and see if our implementation matches the newest standards?」と依頼し、context7 の resolve-library-id ツール呼び出しの承認を求められている画面。" loading="lazy">
+        <figcaption>公式コース図版 — <em>「shadcn/ui の最新ドキュメントを取ってきて、実装が最新の標準に合っているか見て」</em>。Context7 がライブラリ ID を解決してからドキュメントを引く。</figcaption>
+      </figure>
+
+      <p>動画はさらに、<strong>claude.com/connectors に数百のコネクタがある</strong>と付け加える。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="70" data-label="サーバーの追加">
+    <div class="sec__mark"><div><span class="sec__t">1:10</span><span class="sec__kind">追加</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">サーバーを追加する</h2>
+      <p>追加は <code>claude mcp add</code> コマンド。主なタイプは2つある。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>タイプ</div><div>用途</div><div>どこで動くか</div><div>接続</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">HTTP<small>--transport http</small></div>
+          <div class="modes__c" data-h="用途">リモートサービス用</div>
+          <div class="modes__c" data-h="動作場所">サービスプロバイダーがホスト</div>
+          <div class="modes__c" data-h="接続">ネットワーク経由</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">stdio<small>--transport stdio</small></div>
+          <div class="modes__c" data-h="用途">ローカルプロセス用</div>
+          <div class="modes__c" data-h="動作場所">自分のマシン上</div>
+          <div class="modes__c" data-h="接続">標準入出力</div>
+        </div>
+      </div>
+
+      <figure class="fig">
+        <img src="img/mcp-add.jpg" alt="ターミナルで claude mcp add --transport http linear-server https://mcp.linear.app/mcp を実行している画面。" loading="lazy">
+        <figcaption>公式コース図版 — HTTP サーバーの追加例。<code>claude mcp add --transport http linear-server https://mcp.linear.app/mcp</code></figcaption>
+      </figure>
+
+      <figure class="fig">
+        <img src="img/mcp-stdio.jpg" alt="ターミナルで claude mcp add --transport stdio dev-utils -- python C:/Users/lewis/mcp-server/server.py を実行している画面。" loading="lazy">
+        <figcaption>公式コース図版 — stdio サーバーの追加例。<code>--</code> の後ろに、そのプロセスを起動するコマンドを書く。</figcaption>
+      </figure>
+
+      <p>追加したあとの管理はセッション内の <code>/mcp</code>。<strong>何が接続されているか、ステータスはどうか、そして不要なサーバーの無効化</strong>ができる。</p>
+
+      <figure class="fig">
+        <img src="img/mcp-manage.jpg" alt="/mcp の実行結果。Manage MCP servers として 4 servers、Local MCPs に linear-server（needs authentication）、Built-in MCPs に claude-in-chrome（connected）、context7（connected）、figma（needs authentication）が並んでいる。" loading="lazy">
+        <figcaption>公式コース図版 — <code>/mcp</code> の一覧。<code>Local MCPs</code>（自分で追加したもの）と <code>Built-in MCPs</code>（常時利用可能なもの）が分かれ、それぞれ接続状態が出る。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="100" data-label="スコープ">
+    <div class="sec__mark"><div><span class="sec__t">1:40</span><span class="sec__kind">スコープ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">3つのスコープ</h2>
+      <p>MCP サーバーは3通りのスコープを設定できる。ここも「誰のためか」で決まる。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>スコープ</div><div>使える範囲</div><div>共有</div><div>設定</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Local<small>ローカル</small></div>
+          <div class="modes__c" data-h="範囲">現在のプロジェクトのみ</div>
+          <div class="modes__c" data-h="共有">自分専用</div>
+          <div class="modes__c" data-h="設定">個人設定</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">User<small>ユーザー</small></div>
+          <div class="modes__c" data-h="範囲">すべてのプロジェクト</div>
+          <div class="modes__c" data-h="共有">自分専用</div>
+          <div class="modes__c" data-h="設定">個人設定</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Project<small>プロジェクト</small></div>
+          <div class="modes__c" data-h="範囲">そのリポジトリ</div>
+          <div class="modes__c is-ask" data-h="共有">コードベースに関わる全員が自動で同じサーバーを得る</div>
+          <div class="modes__c" data-h="設定"><code>.mcp.json</code> をバージョン管理にチェックイン</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <b>繰り返し出てくる型</b>
+        <p><a href="06-claude-md.html">CLAUDE.md</a>、<a href="08-skills.html">スキル</a>、<a href="10-hooks.html">フック</a>、そして MCP——<strong>いずれも「リポジトリにチェックインすればチーム全員に配れる」という同じ構造</strong>を持つ。個人の設定とチームの設定を分けるのが、Claude Code のカスタマイズ全体を貫く設計になっている。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="120" data-label="コンテキストのコスト">
+    <div class="sec__mark"><div><span class="sec__t">2:00</span><span class="sec__kind">コスト</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コンテキストのコスト</h2>
+      <p>ここが実務上いちばん効く注意点。<strong>MCP サーバーは、実際に使っていないときでもコンテキストウィンドウにツール定義を追加する。</strong>多くのサーバーを設定していると、それだけで利用可能なコンテキストを食う。</p>
+      <p>対策は単純で、<code>/mcp</code> を実行して接続されているものを確認し、<strong>実際に使っていない／使う予定のないものを無効化する</strong>。</p>
+
+      <figure class="fig">
+        <img src="img/mcp-cost.jpg" alt="/mcp から Dev-utils MCP Server の詳細を開いた画面。Status: connected、Tools: 8 tools と表示され、1. View tools / 2. Reconnect / 3. Disable の選択肢が出ている。" loading="lazy">
+        <figcaption>公式コース図版 — 個別サーバーの詳細。<code>Tools: 8 tools</code> がそのまま常駐コスト。使わないなら <strong>3. Disable</strong>。</figcaption>
+      </figure>
+
+      <p>代替手段も2つ示される。</p>
+      <ul class="acts">
+        <li>
+          <h3>CLI で代用できるなら CLI を使う</h3>
+          <p>GitHub 用の <code>gh</code>、AWS 用の <code>aws</code> のように<strong>CLI 相当のものがあるなら、そちらのほうがコンテキスト効率が高い</strong>。永続的なツール定義を追加しないから。</p>
+        </li>
+        <li>
+          <h3>Skill を使う</h3>
+          <p>スキルは<strong>名前と説明だけがコンテキストに読み込まれ</strong>、Claude が必要だと判断したときにはじめて全内容が読み込まれる。CLI ツールの使い方をここに置く、という組み合わせが提案されている（→ <a href="08-skills.html">08 スキル</a>）。</p>
+        </li>
+      </ul>
+
+      <div class="warn">
+        <b>10% の閾値</b>
+        <p>MCP ツールがコンテキストウィンドウの<strong>10% を超える</strong>と、Claude Code は自動的に<strong>ツール検索モード</strong>に切り替わり、必要に応じて適切なツールを発見しにいく。ただし動画は正直にこう付け加える——<strong>コンテキストに載っていない分、これは確実に機能するとは限らない。</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="184" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">3:04</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">MCP は Claude Code を<em>外部のツールとデータソース</em>につなぐ。</p>
+      <ul class="chips">
+        <li>claude mcp add で追加する</li><li>.mcp.json でプロジェクトにスコープする</li><li>使っていないサーバーは無効化する</li>
+      </ul>
+      <p>3つ目が効いてくるのは、たいてい後になってから。<strong>接続できることと、常時つないでおくべきことは別の話</strong>——コンテキストという有限の資源を扱っている以上、ここは意識的に管理する必要がある。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。冒頭の <em>Model contact protocol</em> は Model Context Protocol、<em>Cloud code</em> は Claude Code の誤認識。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>Model contact protocol is an open standard that lets Claude code connect to external tools and data sources. &gt;&gt; [music] &gt;&gt; When you ask a question, Claude will automatically understand when it should</p></div>
+      <div><span>0:15</span><p>use those tools to better understand your query. Context is one of the most important parts when working with Claude code. A lot of your context lives elsewhere like your databases, your productivity apps,</p></div>
+      <div><span>0:27</span><p>or [music] in public repositories. This is where MCP comes [music] in. First, it's important to understand the concept of tools when talking about Agentic AI. Tools give agents like Claude code the ability to perform</p></div>
+      <div><span>0:43</span><p>actions in order for them to better complete their tasks. This is different from other AI where you just get an output back directly in text usually. For example, if your team is using Linear as our project</p></div>
+      <div><span>0:54</span><p>management software, you can add a Linear MCP server to bring in the details of your specific issues. If you want to get up-to-date documentation of a dependency that you're working with, then the Context 7</p></div>
+      <div><span>1:06</span><p>MCP server will provide Claude code with that. There are also hundreds of different connectors at claude.com/connectors. You can add MCP servers with the Claude MCP add command. There are two main types. HTTP servers</p></div>
+      <div><span>1:22</span><p>are for remote services. These are hosted by the service provider and connect over the network. STDIO servers are for local processes that run on your machine. You can manage your servers with the</p></div>
+      <div><span>1:33</span><p>/mcp inside a Claude code session to see what's connected, the status, and disable servers that you don't want to use. MCP servers can be scoped in three different ways. One, local means it's only available in</p></div>
+      <div><span>1:47</span><p>the current project for you. Two, the user, which means it's available across all your projects. And three, project scope uses a .mcp.json file that you check into your version control, so anyone working on the code</p></div>
+      <div><span>2:00</span><p>base gets the exact same servers automatically. Now, one thing to be aware of is that MCP servers add tool definitions to your context window, even when you're not using them. So, if you have a lot of servers configured,</p></div>
+      <div><span>2:14</span><p>this eats into your available context. Run the {slash} MCP command to see what's connected and disable anything that you're not actively using or don't think that you're going to use. If a tool has a CLI equivalent like GH</p></div>
+      <div><span>2:27</span><p>for GitHub or AWS for AWS, the CLI is more context efficient because it doesn't add persistent tool definitions. You also might benefit from using a skill in this scenario. A skill has a name and a description</p></div>
+      <div><span>2:42</span><p>that is loaded into context. Similar to MCP, when Cloud thinks it needs to use that skill, it then decides to load it into the context window, which is where you could put the command line interface</p></div>
+      <div><span>2:52</span><p>tools. If your MCP tools exceed 10% of your context window, Cloud code will automatically switch to tool search mode, which will discover the right tools on demand, but this might not work as well since it's just not in the</p></div>
+      <div><span>3:04</span><p>context. &gt;&gt; [music] &gt;&gt; Now, a quick recap. MCP connects Cloud code to your external tools and data sources. &gt;&gt; [music] &gt;&gt; Add servers with Cloud MCP add, scope them to your project with .mcp.json</p></div>
+      <div><span>3:24</span><p>so that your team gets them automatically, and keep an eye on the context usage by disabling servers [music] that you're not actively using.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="08-skills.html"><b>前のレッスン — 08</b><em>スキルとは何か</em></a>
+  <a class="is-next" href="10-hooks.html"><b>次のレッスン — 10</b><em>フックで確実に実行させる</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「MCP in Claude Code」／ claude.com/courses</span>
+  <a href="https://youtu.be/kkBFmwkDzdo" target="_blank" rel="noopener">youtu.be/kkBFmwkDzdo ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

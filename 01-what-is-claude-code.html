@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 What is Claude Code? — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="Anthropic 公式動画「What is Claude Code?」（2:55）の全文書き起こしと公式コース本文から再構成した日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome">
+  <div class="shell chrome__in">
+    <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+    <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か" aria-current="page">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 01 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">02:55 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">What is<br><em>Claude&nbsp;Code</em>?</h1>
+
+  <p class="hero__lede">
+    コースの1本目。<strong>「Claude Code とは何か」「チャット版の Claude と何が違うのか」「使いこなすために知っておくべき前提は何か」</strong>という三つの問いに答える。以下はその全内容を、動画の時間軸のまま日本語で再構成したもの。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2.3%"><s>定義</s><i></i><b>0:00</b></div>
+      <div class="tl__tick" style="left:17.1%"><s>対比</s><i></i><b>0:30</b></div>
+      <div class="tl__tick" style="left:34.3%"><s>エージェント</s><i></i><b>1:00</b></div>
+      <div class="tl__tick" style="left:45.7%"><s>実例</s><i></i><b>1:20</b></div>
+      <div class="tl__tick" style="left:60%"><s>前提</s><i></i><b>1:45</b></div>
+      <div class="tl__tick" style="left:82.9%"><s>まとめ</s><i></i><b>2:25</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>02:55</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.05</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>2:55</span> <small>/ 175s</small></dd></div>
+    <div><dt>Views</dt><dd><span>7,775,756</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/fl1DSmwQKKY" target="_blank" rel="noopener">youtu.be/fl1DSmwQKKY ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="175">
+
+  <section class="sec" id="s1" data-start="4" data-label="Claude Code とは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">Claude Code とは何か</h2>
+      <p>動画は定義から始まる。Claude Code は<strong>エージェント型のコーディングツール</strong>であり、あなたのコードベースを理解し、ファイルを編集し、コマンドを実行し、既存の開発ツールと統合して、作業をより速く終わらせる。</p>
+      <p>この一文に、後半で展開される要素がすべて畳み込まれている。「理解する」「編集する」「実行する」「統合する」——単にコードを書いて返すのではなく、環境の中で動くことが前提になっている。</p>
+      <p>動作環境として挙げられるのは次の5つ。</p>
+      <ul class="chips">
+        <li>Terminal</li><li>Visual Studio Code</li><li>Claude Desktop App</li><li>Web</li><li>JetBrains IDEs</li>
+      </ul>
+      <p>そのうえで「この動画ではターミナル版を使う」と断りが入る。以降の説明はすべてターミナルでの利用を前提としている。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="30" data-label="Claude.ai との違い">
+    <div class="sec__mark"><div><span class="sec__t">0:30</span><span class="sec__kind">対比</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">Claude.ai と<br>何が違うのか</h2>
+      <p>「すでに Claude.ai を使ったことがあるなら、両者の違いが気になっているはずだ」——動画はここを最初に潰しにいく。違いは機能の多寡ではなく、<strong>コードに直接触れられるかどうか</strong>にある。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">観点</div><div class="cmp__a">Claude.ai</div><div class="cmp__b">Claude Code</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">コードの受け渡し</div><div class="cmp__a">人がコピー&amp;ペーストで渡す</div><div class="cmp__b">ファイルを直接読む</div></div>
+        <div class="cmp__row"><div class="cmp__ax">見える範囲</div><div class="cmp__a">貼り付けた分だけ</div><div class="cmp__b">ターミナルとコードベース全体</div></div>
+        <div class="cmp__row"><div class="cmp__ax">変更のしかた</div><div class="cmp__a">返ってきたコードを人が戻す</div><div class="cmp__b">Claude 自身がファイルを編集する</div></div>
+        <div class="cmp__row"><div class="cmp__ax">コマンド実行</div><div class="cmp__a">できない</div><div class="cmp__b">実行し、出力を次の判断に使う</div></div>
+        <div class="cmp__row"><div class="cmp__ax">位置づけ</div><div class="cmp__a">チャットアシスタント</div><div class="cmp__b">AI エージェント</div></div>
+      </div>
+
+      <p>動画の言葉では「一番分かりやすい違いは、Claude Code が<strong>AI エージェントとして動く</strong>という点」。コピペの往復がなくなるのは結果であって、原因はこのアーキテクチャの違いにある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="60" data-label="AI エージェントとは">
+    <div class="sec__mark"><div><span class="sec__t">1:00</span><span class="sec__kind">概念</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">AI エージェントとは</h2>
+
+      <blockquote class="quote">
+        <p>環境と相互作用し、定義された目標を達成するためにアクションを実行できるソフトウェア。</p>
+        <cite>— 動画内の定義 / 01:02</cite>
+      </blockquote>
+
+      <p>そして、その核心は<strong>大規模言語モデルがリアルタイムでループ動作すること</strong>だと説明される。一問一答ではなく、判断と実行と観測を回し続ける構造のことだ。この「ループ」がコース2本目の主題になる。</p>
+
+      <div class="loop">
+        <svg viewBox="0 0 660 150" role="img" aria-label="考える→実行する→出力を見る、というループ図">
+          <rect x="0" y="8" width="176" height="52"/>
+          <text x="88" y="39" text-anchor="middle">考える</text>
+          <line x1="182" y1="34" x2="232" y2="34"/>
+          <path class="lp-arrow" d="M232 34 l-9 -4 v8 z"/>
+          <rect x="242" y="8" width="176" height="52"/>
+          <text x="330" y="39" text-anchor="middle">実行する</text>
+          <line x1="424" y1="34" x2="474" y2="34"/>
+          <path class="lp-arrow" d="M474 34 l-9 -4 v8 z"/>
+          <rect x="484" y="8" width="176" height="52"/>
+          <text x="572" y="39" text-anchor="middle">出力を見る</text>
+          <path class="lp-ret" d="M572 66 V 104 H 88 V 70"/>
+          <path class="lp-arrow-s" d="M88 62 l-4 9 h8 z"/>
+          <text class="lp-cap" x="330" y="128" text-anchor="middle">ゴールに到達するまで繰り返す</text>
+        </svg>
+      </div>
+
+      <p>さらにエージェントは、目標達成を助けるために<strong>ツール・外部サービス・他の AI エージェント</strong>にアクセスできる場合がある、と補足される。Claude Code が「ファイル編集」「コマンド実行」「Web 検索」を持っているのは、この一般論の具体化にあたる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="80" data-label="実際に何ができるか">
+    <div class="sec__mark"><div><span class="sec__t">1:20</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">実際に何ができるのか</h2>
+      <p>抽象的な定義のあと、具体例が挙げられる。数は絞られているが、それぞれが別の能力軸を代表している。</p>
+      <ul class="acts">
+        <li>
+          <h3>コードベースを読み取り、理解する</h3>
+          <p>「この機能を説明して」「このバグをコード全体にわたって追跡して」と頼める。読解と横断的な調査。</p>
+        </li>
+        <li>
+          <h3>プロジェクト全体のファイルを編集する<mark>コース本文のみ</mark></h3>
+          <p>関数をリファクタリングし、<em>それを参照しているすべてのファイル</em>を合わせて更新できる。1ファイル単位ではなく、変更の波及範囲までを担当するということ。</p>
+        </li>
+        <li>
+          <h3>ターミナルコマンドを実行する</h3>
+          <p>ビルドスクリプトの実行、テストの実行、パッケージのインストール。重要なのは「実行して終わり」ではない点で、動画は <em>use the output to decide what to do next</em>（出力を使って次に何をすべきかを判断する）と明示している。ここがループの実体にあたる。</p>
+        </li>
+        <li>
+          <h3>Web を検索する</h3>
+          <p>ドキュメントや最新の API リファレンスが必要になれば、自分で調べに行く。学習データのカットオフを外部で埋める動き。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="105" data-label="3つの前提">
+    <div class="sec__mark"><div><span class="sec__t">1:45</span><span class="sec__kind">前提</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">効果的に使うための<br>3つの前提</h2>
+      <p>実務上いちばん重要なのがこのパート。「Claude Code を効果的に使うには、次の3つの概念を念頭に置いてほしい」として並べられる。</p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">Context window</p>
+          <h3>コンテキストウィンドウ</h3>
+          <p>Claude の作業メモリ。<strong>多くを保持できるが、一度にすべては保持できない</strong>。ここで「エージェント的」な側面が発揮される——コードベース全体をコンテキストに読み込むことなく、<em>戦略的な方法で答えを見つけ出す</em>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Permission</p>
+          <h3>許可を求める</h3>
+          <p>デフォルトでは、コマンドを実行したり変更を加えたりする前に必ず確認を求める。積極的に関与するやり方でも、あまり関与しないやり方でも、<strong>常にあなたが主導権を持っている</strong>。</p>
+        </article>
+        <article class="is-caution">
+          <p class="cards__k">Caution — it makes mistakes</p>
+          <h3>間違いを起こすことがある</h3>
+          <p>他のツールと同様に、Claude Code も完璧ではない。</p>
+          <ul>
+            <li>あなたの意図を誤解する</li>
+            <li>新しいバグを導入する</li>
+            <li>解決策を過剰に複雑化させる</li>
+          </ul>
+          <p><strong>状況を把握し続けること</strong>で、これらを早期に発見できる。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="145" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:25</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">Claude Code は<em>エージェント型のコーディングツール</em>。コードベースを読み取り、ファイルを編集し、コマンドを実行し、外部ツールに接続することで、より速く成果を出すのを助ける。</p>
+      <p>締めは配布の話。ターミナル、VS Code、JetBrains、Claude デスクトップアプリで今すぐ使える、として動画は終わる。</p>
+      <p>この回は概念の導入に徹していて、インストール手順や具体的なコマンドは出てこない。「エージェントとして動く」の中身——ループ・コンテキスト・ツール・権限——は、次の <a href="02-how-claude-code-works.html">02 Claude Code はどう動いているのか</a> で分解される。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音楽記号や言い直しはそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:04</span><p>Claude Code is [music] an agentic coding tool that understands your code base, edits your files, run commands, and integrates with your existing developer tools to help you get things done faster.</p></div>
+      <div><span>0:14</span><p>It's available in your terminal, Visual Studio Code, the Claude desktop app, on the web, and JetBrains IDEs. &gt;&gt; [music] &gt;&gt; But, we'll be using it in the terminal for this video.</p></div>
+      <div><span>0:34</span><p>If you've ever used Claude AI, you're probably wondering what the difference is between the two. Unlike Claude AI, Claude Code has direct access to your files in your terminal and your entire code base.</p></div>
+      <div><span>0:44</span><p>So, instead of copying and pasting code back and forth, it can go in and do all the work itself. The easiest differentiator is that Claude Code works as an AI agent. An AI agent is a software that can</p></div>
+      <div><span>0:59</span><p>interact with its environment and perform actions to complete a defined goal. The most basic way this can be done is by having a large language model in a loop in real time. AI agents have</p></div>
+      <div><span>1:10</span><p>access to things like tools, external services, or other AI agents to help it reach its predefined goals. So, what does that actually look like? Well, here's a couple of examples. It</p></div>
+      <div><span>1:22</span><p>can read and understand your code base. You can ask Claude Code to explain a feature or trace a bug throughout your code. Claude Code can execute your build script, run your tests, install</p></div>
+      <div><span>1:33</span><p>packages, and use the output to decide what to do next. Claude Code can search the web. If it needs documentation on the latest API references, for example, it can do that for you. To use Claude Code effectively, it's</p></div>
+      <div><span>1:47</span><p>important to know these concepts. First is the context window. Think of this as Claude's working memory. It can hold a lot, but not everything at once. This is where the agentic aspect of it comes in. Finding</p></div>
+      <div><span>2:01</span><p>strategic ways to find the answers within your code base without storing your entire code base into context. Second is that it asks for permission. By default, Claude Code will ask you</p></div>
+      <div><span>2:12</span><p>before running commands or making changes to your code base. You're always in control, whether that's being more hands-on or passive. Third, it can make mistakes. Just like any tool, Claude Code isn't</p></div>
+      <div><span>2:25</span><p>perfect. It might misunderstand your intent, introduce a new bug, or over-engineer a solution. Quick recap. Claude Code is an agentic coding tool. It reads your code base, edits your files, runs commands, [music]</p></div>
+      <div><span>2:41</span><p>and connects to external tools to help you ship faster. You can download it today in your terminal, VS Code, JetBrains, [music] and the Claude desktop app.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <span><b>前のレッスン</b><em>—</em></span>
+  <a class="is-next" href="02-how-claude-code-works.html"><b>次のレッスン — 02</b><em>Claude Code はどう動いているのか</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「What is Claude Code?」／ claude.com/courses</span>
+  <a href="https://youtu.be/fl1DSmwQKKY" target="_blank" rel="noopener">youtu.be/fl1DSmwQKKY ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

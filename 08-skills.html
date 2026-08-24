@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 What are skills? — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="一度教えれば、関連するときに自動で適用される Markdown。CLAUDE.md やスラッシュコマンドとの違い。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か" aria-current="page">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 08 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">02:54 · 全文書き起こしより</p>
+  </div>
+
+  <h1 class="hero__title">What are<br><em>skills</em>?</h1>
+
+  <p class="hero__lede">
+    出だしが痛いところを突く——<strong>チームのコーディング規約を説明するたび、あなたは同じことを繰り返している。</strong>PR レビューのたびにフィードバックの形を説明し直し、コミットのたびに好みのフォーマットを思い出させている。スキルはそれを一度で終わらせる。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.7%"><s>課題</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:9.2%"><s>定義</s><i></i><b>0:16</b></div>
+      <div class="tl__tick" style="left:27.0%"><s>起動</s><i></i><b>0:47</b></div>
+      <div class="tl__tick" style="left:34.5%"><s>置き場所</s><i></i><b>1:00</b></div>
+      <div class="tl__tick" style="left:59.8%"><s>違い</s><i></i><b>1:44</b></div>
+      <div class="tl__tick" style="left:85.6%"><s>まとめ</s><i></i><b>2:29</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>02:54</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.02.27</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>2:54</span> <small>/ 174s</small></dd></div>
+    <div><dt>Views</dt><dd><span>1,562,976</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/bjdBVZa66oU" target="_blank" rel="noopener">youtu.be/bjdBVZa66oU ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="174">
+
+  <section class="sec" id="s1" data-start="3" data-label="繰り返しの問題">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">課題</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">毎回、同じ説明をしている</h2>
+      <p>動画は3つの具体例だけで問題を提示する。どれも身に覚えのあるやつだ。</p>
+      <ul class="chips">
+        <li>チームのコーディング規約を説明する</li><li>PR レビューの形式を説明し直す</li><li>コミットメッセージの好みを思い出させる</li>
+      </ul>
+      <p>そして一行で切る——<strong>スキルはこれを解決する。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="16" data-label="スキルとは">
+    <div class="sec__mark"><div><span class="sec__t">0:16</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">一度教えれば、あとは自動</h2>
+      <blockquote class="quote">
+        <p>スキルとは、何かのやり方を Claude に一度だけ教える Markdown ファイル。Claude はその知識を、関連する場面で自動的に適用する。</p>
+        <cite>— 動画内 / 00:19</cite>
+      </blockquote>
+      <p>もう少し広い定義も与えられる。<strong>エージェントスキルは、指示・スクリプト・リソースのフォルダ</strong>であり、エージェントがそれを発見して、より正確かつ効率的に物事を行うために使う。Claude Code ではその実体が <code>SKILL.md</code> ファイルになる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="47" data-label="description が起動条件">
+    <div class="sec__mark"><div><span class="sec__t">0:47</span><span class="sec__kind">起動</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">description が入口</h2>
+      <p>仕組みの中心はここ。<strong>description こそが、Claude がそのスキルを使うかどうかを決める判断材料</strong>になる。</p>
+      <ol class="steps">
+        <li><h3>あなたが「この PR をレビューして」と頼む</h3><p>普通の依頼を書くだけ。スキル名を指定する必要はない。</p></li>
+        <li><h3>Claude が利用可能なスキルの description と突き合わせる</h3><p>依頼の内容と、すべての description を比較する。</p></li>
+        <li><h3>マッチしたものを起動する</h3><p>該当するスキルだけが読み込まれ、適用される。</p></li>
+      </ol>
+      <div class="tip">
+        <b>ここから導かれる書き方</b>
+        <p>スキルの中身がどれだけ良くても、<strong>description がタスクの言い回しと噛み合わなければ一度も起動しない</strong>。「いつ使うか」を description に書くのが実質的な仕事になる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="60" data-label="置き場所">
+    <div class="sec__mark"><div><span class="sec__t">1:00</span><span class="sec__kind">置き場所</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">誰のためのスキルか</h2>
+      <p>置き場所は、誰がそれを必要とするかで決まる。<a href="06-claude-md.html">CLAUDE.md の階層</a>とまったく同じ発想。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>種類</div><div>置き場所</div><div>届く範囲</div><div>入れるもの</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">パーソナル<small>PERSONAL</small></div>
+          <div class="modes__c" data-h="置き場所"><code>~/.claude/skills</code></div>
+          <div class="modes__c" data-h="範囲">全プロジェクトについてくる</div>
+          <div class="modes__c" data-h="入れるもの">コミットメッセージの書き方、ドキュメントの形式、コードの説明のされ方</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">プロジェクト<small>PROJECT</small></div>
+          <div class="modes__c" data-h="置き場所">リポジトリのルートの <code>.claude/skills</code></div>
+          <div class="modes__c is-ask" data-h="範囲">clone した人全員に自動で行き渡る</div>
+          <div class="modes__c" data-h="入れるもの">チーム標準、会社のブランドガイドライン、Web デザインで使うフォントや色</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="104" data-label="他の仕組みとの違い">
+    <div class="sec__mark"><div><span class="sec__t">1:44</span><span class="sec__kind">違い</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">CLAUDE.md・<br>スラッシュコマンドとの違い</h2>
+      <p>Claude Code には振る舞いをカスタマイズする方法が複数ある。<strong>スキルが独特なのは、自動的であり、かつタスク固有であること。</strong></p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>仕組み</div><div>読み込まれるタイミング</div><div>起動のしかた</div><div>向いているもの</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">CLAUDE.md<small>ALWAYS</small></div>
+          <div class="modes__c" data-h="タイミング">すべての会話に読み込まれる</div>
+          <div class="modes__c" data-h="起動">常時</div>
+          <div class="modes__c" data-h="向くもの">「常に TypeScript の strict モードを使え」のような全体ルール</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">スキル<small>ON DEMAND</small></div>
+          <div class="modes__c is-ask" data-h="タイミング">依頼にマッチしたときだけ</div>
+          <div class="modes__c is-ask" data-h="起動">Claude が状況を認識して自動で</div>
+          <div class="modes__c" data-h="向くもの">特定タスク向けの専門知識</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">スラッシュコマンド<small>MANUAL</small></div>
+          <div class="modes__c" data-h="タイミング">打ったとき</div>
+          <div class="modes__c" data-h="起動">あなたが自分で打つ</div>
+          <div class="modes__c" data-h="向くもの">明示的に呼び出したい定型処理</div>
+        </div>
+      </div>
+
+      <p>コンテキストの観点でも差が出る。スキルは<strong>名前と説明だけが読み込まれる</strong>ので、コンテキストウィンドウを埋めない。動画の例えが的確だ——<strong>デバッグしているときに、PR レビューのチェックリストがコンテキストに居座っている必要はない。</strong>実際にレビューを頼んだときに読み込まれればいい。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="149" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:29</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p>スキルが最も効くのは<strong>特定のタスクに適用される専門的な知識</strong>。挙げられる例は3つ。</p>
+      <ul class="chips">
+        <li>チームが従うコードレビュー基準</li><li>好みのコミットメッセージ形式</li><li>組織のブランドガイドライン</li>
+      </ul>
+      <p class="wrapup">同じことを Claude に<em>繰り返し説明している</em>と気づいたなら——それは、書かれるのを待っているスキルだ。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>claw.md</em> は CLAUDE.md の音声認識ミス。</p>
+    <div class="tr__body">
+      <div><span>0:03</span><p>Every time you explain your team's coding standards to Claude, you're repeating yourself. Every PR review, you redescribe how you want feedback [music] structured. Every commit message, you remind Claude of</p></div>
+      <div><span>0:16</span><p>your preferred format. And skills fix this. A skill is a markdown file that teaches Claude how [music] to do something once, and Claude applies that knowledge automatically whenever it's relevant.</p></div>
+      <div><span>0:32</span><p>Agent skills are folders of instructions, scripts, and resources that agents can discover and use to do things more accurately and efficiently. With Claude Code, we have the skill.md file. The description is how Claude decides</p></div>
+      <div><span>0:47</span><p>whether to use the skill. When you ask Claude to review this PR, it matches your request against available skill descriptions and finds this one. Claude reads your request, compares it to all available skill descriptions, and</p></div>
+      <div><span>1:00</span><p>activates the ones that match. You can store skills in a few places depending on who needs them. Personal skills go in the home directory .claude/skills and follow you across all your project.</p></div>
+      <div><span>1:17</span><p>These are your preferences, your commit message style, your documentation format, how you like code explained. Project skills go in the .claude/skills inside of the root directory of your repository. Anyone who clones the</p></div>
+      <div><span>1:31</span><p>repository gets these skills automatically. This is where team standards live, like your company's brand guidelines, preferred fonts, and colors that you use for web design. Claude Code has several ways to</p></div>
+      <div><span>1:44</span><p>customize behavior. Skills are unique because they're automatic and task-specific. Claude.md files load into every conversation. If you want Claude to always use TypeScript strict mode, that goes in your claw.md file. Skills, on</p></div>
+      <div><span>1:59</span><p>the other hand, load on demand when they match your request. It only loads in the name and description, so it doesn't fill up your entire context window. Your PR review checklist doesn't need to be in</p></div>
+      <div><span>2:11</span><p>the context when you're debugging. It loads when you actually ask for a review. Slash commands require you to type them. Skills don't. Claude applies them when it recognizes the situation. Skills work best for specialized</p></div>
+      <div><span>2:29</span><p>knowledge that applies to specific tasks. Code review standards your team follows, commit message formats that you prefer, brand guidelines of your organization. If you find yourself explaining the same</p></div>
+      <div><span>2:44</span><p>thing [music] to Claude repeatedly, well, that's a skill waiting to be written.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="07-subagents.html"><b>前のレッスン — 07</b><em>サブエージェントとは何か</em></a>
+  <a class="is-next" href="09-mcp.html"><b>次のレッスン — 09</b><em>MCP で外部につなぐ</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「What are skills?」／ claude.com/courses</span>
+  <a href="https://youtu.be/bjdBVZa66oU" target="_blank" rel="noopener">youtu.be/bjdBVZa66oU ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

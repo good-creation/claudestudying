@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 レビューして出荷する — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="サブエージェントによる偏りのないレビュー、/commit-push-pr、そして --from-pr でのセッション再開。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する" aria-current="page">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 11 / 公式コース本文</p>
+    <p class="eyebrow" style="color:var(--signal)">このレッスンに対応する解説動画はありません</p>
+  </div>
+
+  <h1 class="hero__title">レビューして<br><em>出荷する</em></h1>
+
+  <p class="hero__lede">
+    <a href="04-explore-plan-code-commit.html">04</a> のワークフローの最後の段、<strong>コミット</strong>を具体的な操作に落とす回。やることは3つ——<strong>偏りのないレビューを挟む</strong>、<strong>コミットから PR までを一手で済ませる</strong>、<strong>あとで同じ文脈に戻れるようにする</strong>。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>公式コース本文<br><small>claude.com/courses</small></dd></div>
+    <div><dt>Video</dt><dd><small>このレッスン用の解説動画は公開されていません</small></dd></div>
+    <div><dt>Related</dt><dd><a href="#related">Introducing Code Review ↓</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">REVIEW</span><span class="sec__kind">段 1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">サブエージェントに<br>レビューさせる</h2>
+      <p>PR をプッシュする前に、<strong>サブエージェントを使って変更をレビューするよう Claude に依頼する</strong>。理由は <a href="07-subagents.html">07</a> で見た性質そのままだ。</p>
+      <blockquote class="quote">
+        <p>サブエージェントは独自のコンテキストウィンドウで実行されるため、新鮮な視点を持っている。セッション中にコードを書いていたメインエージェントのバイアスを引き継ぐことはない。</p>
+        <cite>— 公式コース本文</cite>
+      </blockquote>
+      <p>書いた本人にレビューをさせない、という当たり前の原則が、ここでは<strong>「別のコンテキストウィンドウ」という形で機械的に保証される</strong>のが要点。</p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01 — Read-only</p>
+          <h3>読み取り専用に限定する</h3>
+          <p>コードレビュー用のサブエージェントを作るときは、<strong>ツールを読み取り専用に制限する</strong>。レビュアーは問題を指摘すべきであって、ファイルを編集すべきではない。</p>
+        </article>
+        <article>
+          <p class="cards__k">02 — Check it in</p>
+          <h3>設定をリポジトリに入れる</h3>
+          <p>サブエージェントの設定はリポジトリにチェックインし、<strong>チーム全体が同じレビュアーを使えるように</strong>する。レビュー基準がコードと一緒に版管理される。</p>
+        </article>
+      </div>
+
+      <figure class="fig">
+        <img src="img/code-reviewer.jpg" alt="ターミナルで「Spawn the code reviewer subagent to review the code we last created」と入力され、code-reviewer サブエージェントが動いている画面。" loading="lazy">
+        <figcaption>公式コース図版 — <code>code-reviewer</code> サブエージェントの起動。走査したファイルや実行したコマンドは折りたたまれ、メインには結果だけが返る。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">SHIP</span><span class="sec__kind">段 2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">/commit-push-pr スキル</h2>
+      <p><code>/commit-push-pr</code> スキルは、<strong>コミット・プッシュ・PR 作成を一つのステップでまとめて処理する</strong>。それぞれを手動で行う代わりに、このスキルを実行するだけでいい。</p>
+      <div class="tip">
+        <b>Slack との連携</b>
+        <p><code>CLAUDE.md</code> にチャンネルが記載された <strong>Slack MCP サーバー</strong>が設定されていれば、<strong>PR のリンクはチームのチャンネルに自動的に投稿される</strong>。<a href="06-claude-md.html">06 CLAUDE.md</a> と <a href="09-mcp.html">09 MCP</a> が、ここで合流する。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">RESUME</span><span class="sec__kind">段 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">--from-pr で<br>セッションに戻る</h2>
+      <p>Claude が <code>gh pr create</code> を通じて PR を作成すると、<strong>そのセッションは自動的にその PR にリンクされる</strong>。</p>
+      <p>あとでその PR に戻る必要があるとき——レビューコメントに対応する、失敗したビルドを修正する——次を実行する。</p>
+
+      <div class="prompt">
+        <b>ターミナル</b>
+        <p>claude --from-pr &lt;PR_NUMBER&gt;</p>
+      </div>
+
+      <p>これで<strong>中断した箇所からすぐに再開できる</strong>。<a href="05-context-management.html">05</a> で見たとおり、<code>/clear</code> すればコンテキストは消える。<code>--from-pr</code> は、消えたはずの文脈を<em>PR という外部の錨</em>から取り戻す手段にあたる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <ul class="acts">
+        <li><h3>プッシュ前にサブエージェント</h3><p>偏りのないコードレビューのために。</p></li>
+        <li><h3>/commit-push-pr</h3><p>コミットから PR までの全フローを一つのステップで。</p></li>
+        <li><h3>--from-pr</h3><p>あとで PR の作業を再開できる。</p></li>
+      </ul>
+      <p class="wrapup">これらは<em>小さな機能</em>だが、日々のワークフローから多くの手間を取り除いてくれる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="related">
+    <div class="sec__mark"><div><span class="sec__t">EXTRA</span><span class="sec__kind">関連</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">関連：Code Review</h2>
+      <div class="warn">
+        <b>この動画について</b>
+        <p>指定された動画 <a href="https://youtu.be/RKsADl0ZC3Y" target="_blank" rel="noopener">youtu.be/RKsADl0ZC3Y</a> は、このレッスンの解説動画ではなく <strong>「Introducing Code Review」という45秒のプロダクト告知</strong>でした。<strong>ナレーションが一切なく（字幕は音楽記号のみ）、書き起こせる内容はありません。</strong>以下は公式の説明文と告知記事から取れる情報です。</p>
+      </div>
+
+      <p>Code Review は、<strong>すべてのプルリクエストにエージェントのチームを派遣し、ざっと目を通すだけでは見逃すバグを捉える</strong>機能。PR が開かれると次が起きる。</p>
+      <ol class="steps">
+        <li><h3>並行してバグを探す</h3><p>複数のエージェントが同時に走査する。</p></li>
+        <li><h3>一つずつ検証する</h3><p>誤検知（false positive）を除外するために、見つけたものを確認する。</p></li>
+        <li><h3>深刻度でランク付けする</h3><p>重要なものから順に提示される。</p></li>
+      </ol>
+
+      <dl class="meta">
+        <div><dt>Title</dt><dd>Introducing Code Review</dd></div>
+        <div><dt>Published</dt><dd><span>2026.03.09</span></dd></div>
+        <div><dt>Runtime</dt><dd><span>0:45</span> <small>/ ナレーションなし</small></dd></div>
+        <div><dt>Views</dt><dd><span>355,825</span></dd></div>
+        <div><dt>Link</dt><dd><a href="https://youtu.be/RKsADl0ZC3Y" target="_blank" rel="noopener">youtu.be/RKsADl0ZC3Y ↗</a></dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="10-hooks.html"><b>前のレッスン — 10</b><em>フックで確実に実行させる</em></a>
+  <a class="is-next" href="index.html"><b>コース</b><em>目次に戻る</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — claude.com/courses ／ Claude 公式チャンネル</span>
+  <a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a>
+</footer>
+
+</body>
+</html>

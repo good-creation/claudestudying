@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 The CLAUDE.md file — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="プロジェクトに永続的な記憶を与える1枚の Markdown。中身、階層、そしてコンパクトに保つコツ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル" aria-current="page">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 06 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">03:01 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title"><em>CLAUDE.md</em></h1>
+
+  <p class="hero__lede">
+    プロジェクトのルートに置く1枚の Markdown が、Claude Code に<strong>永続的な記憶</strong>を与える。動画の言い方を借りれば、それは<strong>コードベースのオンボーディング資料</strong>。フラストレーションの溜まるセッションと生産的なセッションを分けるのは、たいていここ。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.1%"><s>動機</s><i></i><b>0:02</b></div>
+      <div class="tl__tick" style="left:16.6%"><s>導入</s><i></i><b>0:30</b></div>
+      <div class="tl__tick" style="left:28.7%"><s>中身</s><i></i><b>0:52</b></div>
+      <div class="tl__tick" style="left:50.3%"><s>階層</s><i></i><b>1:31</b></div>
+      <div class="tl__tick" style="left:66.3%"><s>ヒント</s><i></i><b>2:00</b></div>
+      <div class="tl__tick" style="left:83.4%"><s>まとめ</s><i></i><b>2:31</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>03:01</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.10</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>3:01</span> <small>/ 181s</small></dd></div>
+    <div><dt>Views</dt><dd><span>502,299</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/O0FGCxkHM-U" target="_blank" rel="noopener">youtu.be/O0FGCxkHM-U ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="181">
+
+  <section class="sec" id="s1" data-start="2" data-label="なぜ必要か">
+    <div class="sec__mark"><div><span class="sec__t">0:02</span><span class="sec__kind">動機</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">毎回ゼロから<br>始めさせないために</h2>
+      <p><code>CLAUDE.md</code> がない状態で Claude Code を開くと、<strong>毎回まっさらから始めることになる</strong>。動画が挙げるのは3つの再発見コスト。</p>
+      <ul class="chips">
+        <li>コードベースを探索し直す</li><li>必要な依存関係を理解し直す</li><li>実装済みの機能を把握し直す</li>
+      </ul>
+      <p>そして最後に、いちばん厄介なものが加わる——<strong>ときには推測をしなければならない。それが、Claude を正しい方向に導くことを難しくする。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="30" data-label="CLAUDE.md とは">
+    <div class="sec__mark"><div><span class="sec__t">0:30</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">オンボーディング資料</h2>
+      <p>正体は素朴だ。<strong>プロジェクトのルートに置く Markdown ファイル</strong>で、Claude Code はセッションを開始するたびに<strong>自動的にそれを読む</strong>。</p>
+      <blockquote class="quote">
+        <p>言ってしまえば、CLAUDE.md の内容はあなた自身のプロンプトに追記される。</p>
+        <cite>— 動画内 / 00:44</cite>
+      </blockquote>
+      <p>この一文が仕組みのすべてで、だからこそ<em>短く保つ</em>ことが効いてくる。書いた分だけ、毎回のプロンプトが長くなる。</p>
+      <p>ゼロから書く必要はない。<code>/init</code> を実行すれば、Claude があなたのコードベースを見て生成してくれる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="52" data-label="中身の例">
+    <div class="sec__mark"><div><span class="sec__t">0:52</span><span class="sec__kind">中身</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">何を書くのか</h2>
+      <p>動画で実際に開かれるファイルの中身がそのまま手本になる。</p>
+      <ul class="acts">
+        <li><h3>スタック</h3><p>「これは App Router、Tailwind、Drizzle ORM を使った Next.js 15 のアプリ」——1行で全体像。</p></li>
+        <li><h3>コマンド</h3><p>開発サーバー、テスト実行、Lint。<em>プロジェクト固有の呼び出し方</em>を書いておく。</p></li>
+        <li><h3>コードスタイル</h3><p>インデントは2スペース、名前付きエクスポートを好む。</p></li>
+        <li><h3>プロジェクトの決めごと</h3><p>API ルートはすべて <code>app/api</code> に置く、可能な限り API ルートではなく Server Actions を使う。</p></li>
+      </ul>
+
+      <figure class="fig">
+        <img src="img/md-hierarchy.jpg" alt="VS Code で開かれた CLAUDE.md。# Project、# Commands（Dev Server: pnpm dev、Run tests: pnpm test、Lint: pnpm lint）、# Code Style（Use 2 space indentation、Prefer named exports、All API routes go in app/api、Use server actions instead of API routes where possible）が並んでいる。" loading="lazy">
+        <figcaption>公式コース図版 — <code>CLAUDE.md</code> の実例。見出しは <code>Project</code> / <code>Commands</code> / <code>Code Style</code> の3つだけ。</figcaption>
+      </figure>
+
+      <p>効果もはっきり述べられる。この状態で React コンポーネントの作成を頼めば、<strong>Claude は最初から Tailwind（あるいはあなたが使っている CSS フレームワーク）でスタイルを当てる方法を知っている</strong>。まず全体を理解しにいく手間がない分、初手から仕事が良くなる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="91" data-label="メモリファイルの階層">
+    <div class="sec__mark"><div><span class="sec__t">1:31</span><span class="sec__kind">階層</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">チームのためのファイル</h2>
+      <p><code>CLAUDE.md</code> は<strong>バージョン管理にコミットできる（し、そうすべき）</strong>。チーム全体がその恩恵を受けられる。ただし、誰のためのものかによってメモリファイルには階層がある。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>階層</div><div>置き場所</div><div>共有範囲</div><div>書くべきこと</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">プロジェクトレベル<small>PROJECT</small></div>
+          <div class="modes__c" data-h="置き場所">プロジェクトのルートディレクトリ</div>
+          <div class="modes__c is-ask" data-h="共有範囲">チームで共有</div>
+          <div class="modes__c" data-h="書くこと">スタック、コマンド、プロジェクトの決めごと</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">ユーザーレベル<small>USER</small></div>
+          <div class="modes__c" data-h="置き場所">設定フォルダ</div>
+          <div class="modes__c" data-h="共有範囲">あなた専用・全プロジェクトに適用</div>
+          <div class="modes__c" data-h="書くこと">個人的な好み（例：コメントの書き方）</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <b>切り分けの基準</b>
+        <p>「<strong>他の人にも当てはまるか</strong>」だけで決まる。プロジェクトの事実はプロジェクトへ、あなたの癖はユーザーへ。ここを混ぜると、チームの誰かにとって邪魔なルールが共有ファイルに紛れ込む。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="120" data-label="3つのヒント">
+    <div class="sec__mark"><div><span class="sec__t">2:00</span><span class="sec__kind">ヒント</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">運用の3つのヒント</h2>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01 — Save to memory</p>
+          <h3>修正内容をメモリに保存する</h3>
+          <p>Claude に同じ修正を繰り返しているなら——たとえば「API ルートではなく常に Server Actions を使え」と毎回言っているなら——<strong>そのルールをメモリに保存するよう明示的に頼む</strong>。次にプロジェクトを開いたときには把握している。</p>
+        </article>
+        <article>
+          <p class="cards__k">02 — @ reference</p>
+          <h3>ドキュメントを参照させる</h3>
+          <p>参照してほしいドキュメントがプロジェクト内にあるなら、<strong><code>@</code> 記号とファイルパス</strong>を使う。中身を丸ごと転記せずに、必要なときだけ読ませられる。</p>
+        </article>
+        <article>
+          <p class="cards__k">03 — Start empty</p>
+          <h3>最初は無しで始める</h3>
+          <p>プロジェクトの開始時は<strong>あえて CLAUDE.md 無しで始める</strong>ことが推奨される。そうすると、<em>どこで常に軌道修正が必要になるか</em>が見えてくる。これがファイルをコンパクトに、必要な情報だけに保つ方法。準備ができたら <code>/init</code>。</p>
+        </article>
+      </div>
+
+      <div class="prompt">
+        <b>@ 参照の書き方</b>
+        <p>## README.md<br><br>Please read if you need more info: @README.md</p>
+      </div>
+
+      <figure class="fig">
+        <img src="img/md-memory.jpg" alt="ターミナルで「Ok, put in the CLAUDE.md file to only use server actions instead of API routes」と依頼している画面。" loading="lazy">
+        <figcaption>公式コース図版 — ヒント01の実演。<em>「API ルートではなく Server Actions だけを使う、と CLAUDE.md に書いておいて」</em>と頼むだけでルールが永続化される。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="151" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:31</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">フラストレーションの溜まるセッションと生産的なセッションの違いは、しばしば<em>コンテキスト</em>にある。CLAUDE.md は、そのコンテキストを渡す手段。</p>
+      <p>始め方も一行で示される——<strong>まずスタック、好み、コマンドから始めて、そこから徐々に育てていく。</strong></p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>claw.md</em> は CLAUDE.md の音声認識ミス。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>One of the most useful parts of Claude Code is the claw.md file. &gt;&gt; [music] &gt;&gt; It gives Claude Code persistent memory about your project. &gt;&gt; [music] &gt;&gt; When you open up Claude Code without a claw.md file, it's like it has to start</p></div>
+      <div><span>0:18</span><p>fresh every single time. It has to re-explore your code base, understand what dependencies are needed, and the features that are already implemented. Sometimes it has to make assumptions, which makes it harder for us to steer</p></div>
+      <div><span>0:30</span><p>Claude in the right direction. But, that's where claw.md comes in. It's a markdown file that you add to the root of your project, and Claude Code reads it automatically every time you start a</p></div>
+      <div><span>0:40</span><p>session. It's like an onboarding script for your code base. Simply put, the contents of claw.md file are appended to your own prompt. You can run the {slash} init command, which will make Claude generate one based off of</p></div>
+      <div><span>0:52</span><p>your code base. So, let's have a look at one. This is a Next.js 15 app using the app router, Tailwind, and Drizzle ORM. Command, dev server, run tests, lint, code style, use two-space indentation,</p></div>
+      <div><span>1:08</span><p>prefer named exports, all API routes go in app/{slash}api, use server actions instead of API routes where possible. And it's pretty straightforward. Now, if I ask Claude Code to create a React</p></div>
+      <div><span>1:20</span><p>component, it knows how to style it with Tailwind or any other CSS framework that I'm using. We can see that Claude does a better job at doing his job right off the bat versus having to understand</p></div>
+      <div><span>1:31</span><p>where everything is at first. And before you ask, the answer is yes. You share this in your version control for your team to use, but there's actually a hierarchy of memory files depending on who it's for. So, first you</p></div>
+      <div><span>1:44</span><p>have your project-level claw.md that lives in the root directory of your project. You have a user-level claw.md that lives in your configuration folder. This one is just for you and goes across</p></div>
+      <div><span>1:55</span><p>all your projects. So, put your preferences here, like how you write code comments. First, if you have to correct Claude to do something like always use server actions instead of API routes, then</p></div>
+      <div><span>2:07</span><p>explicitly ask Claude to save this to memory, so that when you come back to this project, it will know every single time. Second, if you have docs in your project that you want Claude to reference, just</p></div>
+      <div><span>2:18</span><p>use the @ symbol with the file path. And third is we recommend you start off a project without a Claude.md file, you can see where you have to constantly course correct the model. This keeps your Claude.md file compact and contain</p></div>
+      <div><span>2:31</span><p>only the necessary information that Claude can work with. The difference between a frustrating Claude code session and a productive one comes down to the context and the Claude.md file is how you provide that</p></div>
+      <div><span>2:46</span><p>context. Start with your stack, your preferences, and then commands, and &gt;&gt; [music] &gt;&gt; just build from there as you go.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="05-context-management.html"><b>前のレッスン — 05</b><em>コンテキストを管理する</em></a>
+  <a class="is-next" href="07-subagents.html"><b>次のレッスン — 07</b><em>サブエージェントとは何か</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「The CLAUDE.md file」／ claude.com/courses</span>
+  <a href="https://youtu.be/O0FGCxkHM-U" target="_blank" rel="noopener">youtu.be/O0FGCxkHM-U ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

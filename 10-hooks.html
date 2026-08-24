@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 Hooks in Claude Code — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="ライフサイクルの節目でコマンドを必ず実行させる。決定論的な制御を手に入れるための仕組み。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる" aria-current="page">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 10 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">03:21 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title"><em>Hooks</em></h1>
+
+  <p class="hero__lede">
+    このコースで唯一、<strong>「モデルにお願いする」以外の手段</strong>が出てくる回。フックが他のすべてと決定的に違うのは<strong>決定論的（deterministic）</strong>であること——例外なく、必ず走る。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.0%"><s>定義</s><i></i><b>0:02</b></div>
+      <div class="tl__tick" style="left:18.4%"><s>用途</s><i></i><b>0:37</b></div>
+      <div class="tl__tick" style="left:24.4%"><s>設定</s><i></i><b>0:49</b></div>
+      <div class="tl__tick" style="left:38.8%"><s>整形</s><i></i><b>1:18</b></div>
+      <div class="tl__tick" style="left:52.2%"><s>ブロック</s><i></i><b>1:45</b></div>
+      <div class="tl__tick" style="left:70.1%"><s>共有</s><i></i><b>2:21</b></div>
+      <div class="tl__tick" style="left:84.1%"><s>まとめ</s><i></i><b>2:49</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>03:21</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.07</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>3:21</span> <small>/ 201s</small></dd></div>
+    <div><dt>Views</dt><dd><span>328,693</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/IkaPHiMDazM" target="_blank" rel="noopener">youtu.be/IkaPHiMDazM ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="201">
+
+  <section class="sec" id="s1" data-start="2" data-label="なぜフックか">
+    <div class="sec__mark"><div><span class="sec__t">0:02</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">お願いではなく、保証</h2>
+      <p>フックは、Claude Code の<strong>ライフサイクルの様々な地点でコマンドを実行させる</strong>仕組み。そして、ここまで扱ってきたすべてとの違いが一点で語られる。</p>
+      <blockquote class="quote">
+        <p>フックと他のすべての違いは、フックが決定論的であること。必ず走る。</p>
+        <cite>— 動画内 / 00:10</cite>
+      </blockquote>
+      <p>対比として出されるのが <a href="06-claude-md.html">CLAUDE.md</a> だ。そこに「ファイル編集のたびに Prettier を実行して」と書くことはできる。そして<strong>ほとんどの場合そうしてくれる。でも、時々しない。完璧ではない。</strong>フックはそれを、例外なく毎回にする。</p>
+      <div class="tip">
+        <b>この回の位置づけ</b>
+        <p>CLAUDE.md・スキル・プロンプトはすべて<em>モデルの判断</em>を経由する。フックだけがそれを経由しない。<strong>「確率的にやってほしいこと」と「必ず起きてほしいこと」を書き分けるための道具</strong>だと捉えると、使いどころが決まる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="37" data-label="一般的な用途">
+    <div class="sec__mark"><div><span class="sec__t">0:37</span><span class="sec__kind">用途</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">一般的な使用例</h2>
+      <ul class="acts">
+        <li><h3>ファイル編集後の自動フォーマット</h3><p>もっとも定番。編集のたびにフォーマッタを走らせる。</p></li>
+        <li><h3>実行されたすべてのコマンドをログに記録する</h3><p>コンプライアンス目的。何が実行されたかの記録を残す。</p></li>
+        <li><h3>危険な操作をブロックする</h3><p>本番ファイルの変更など、起こってはいけないことを止める。</p></li>
+        <li><h3>タスク完了時に自分に通知を送る</h3><p>Claude が作業を終えたら知らせる。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="49" data-label="設定のしかた">
+    <div class="sec__mark"><div><span class="sec__t">0:49</span><span class="sec__kind">設定</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">3つを決めるだけ</h2>
+      <p>フックは <code>settings.json</code> で設定する。決めることは3つ。</p>
+      <ol class="steps">
+        <li><h3>イベントを選ぶ</h3><p>ライフサイクルのどこで走らせるか。</p></li>
+        <li><h3>マッチャーを設定する（任意）</h3><p>どのツールに適用するか。</p></li>
+        <li><h3>実行するコマンドを指定する</h3><p>実際に走らせるもの。</p></li>
+      </ol>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>イベント</div><div>発火するタイミング</div><div>主な用途</div><div></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">UserPromptSubmit</div>
+          <div class="modes__c" data-h="タイミング">プロンプトを送信したとき、Claude が処理する前</div>
+          <div class="modes__c" data-h="用途">入力の検証・追記</div><div></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">PreToolUse</div>
+          <div class="modes__c is-ask" data-h="タイミング">ツール呼び出しの<strong>前</strong></div>
+          <div class="modes__c" data-h="用途">危険な操作のブロック</div><div></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">PostToolUse</div>
+          <div class="modes__c is-ask" data-h="タイミング">ツール呼び出しが完了した<strong>後</strong></div>
+          <div class="modes__c" data-h="用途">自動フォーマット、ログ記録</div><div></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Notification</div>
+          <div class="modes__c" data-h="タイミング">Claude が通知を送るとき</div>
+          <div class="modes__c" data-h="用途">通知の転送</div><div></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Stop</div>
+          <div class="modes__c" data-h="タイミング">Claude が応答を終えたとき</div>
+          <div class="modes__c" data-h="用途">完了通知</div><div></div>
+        </div>
+      </div>
+
+      <p>これらはフックできるイベントのほんの一部で、Claude Code はさらに多くをサポートしている。設定は Claude Code 内の <code>/hooks</code> コマンドからでも、<code>settings.json</code> を直接編集してでも行える。</p>
+
+      <figure class="fig">
+        <img src="img/hooks-config.jpg" alt="VS Code のエクスプローラーで .claude フォルダに hooks ディレクトリと settings.json が並び、settings.json の中身に hooks / PreToolUse が見えている画面。" loading="lazy">
+        <figcaption>公式コース図版 — プロジェクトの <code>.claude/</code> に <code>hooks/</code> ディレクトリと <code>settings.json</code> が同居している。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="78" data-label="自動フォーマット">
+    <div class="sec__mark"><div><span class="sec__t">1:18</span><span class="sec__kind">整形</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">実践例：編集後の自動整形</h2>
+      <p>もっとも一般的なフック。<strong><code>PostToolUse</code> フックに <code>"Edit|MultiEdit|Write"</code> というマッチャーを設定する</strong>と、Claude がファイルを変更するたびに発火する。</p>
+      <p>コマンド側はファイル拡張子を確認して、適切なフォーマッターを走らせる。</p>
+      <ul class="chips">
+        <li>TypeScript → Prettier</li><li>Go → gofmt</li><li>Python → Ruff</li><li>そのプロジェクトが使っているもの</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="105" data-label="PreToolUse でブロック">
+    <div class="sec__mark"><div><span class="sec__t">1:45</span><span class="sec__kind">ブロック</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">PreToolUse でブロックする</h2>
+      <p><code>PreToolUse</code> フックは、<strong>実行前にツール呼び出しをブロックできる</strong>。フックは<strong>ツール名と入力を JSON 形式で標準入力から受け取る</strong>。そして、動作を決めるのは<strong>終了コード</strong>だ。</p>
+
+      <div class="modes">
+        <div class="modes__row modes__row--head">
+          <div>終了コード</div><div>動作</div><div>Claude への影響</div><div>あなたへの影響</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">0<small>PROCEED</small></div>
+          <div class="modes__c" data-h="動作">通常どおり続行</div>
+          <div class="modes__c" data-h="Claude">なし</div>
+          <div class="modes__c" data-h="あなた">なし</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">2<small>BLOCK</small></div>
+          <div class="modes__c is-ask" data-h="動作">アクションをブロック</div>
+          <div class="modes__c is-ask" data-h="Claude">stderr のメッセージがフィードバックとして返り、理由を理解して調整できる</div>
+          <div class="modes__c" data-h="あなた">操作が止まる</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">その他<small>ERROR</small></div>
+          <div class="modes__c" data-h="動作">ブロックしないエラー</div>
+          <div class="modes__c" data-h="Claude">なし</div>
+          <div class="modes__c" data-h="あなた">表示されるが何も止まらない</div>
+        </div>
+      </div>
+
+      <p>終了コード2の設計が上手いところで、<strong>単に止めるだけでなく、なぜ止められたのかが Claude に伝わる</strong>。だから Claude は別の手段を取り直せる。</p>
+
+      <figure class="fig">
+        <img src="img/hooks-block.jpg" alt="settings.json の中身。hooks の PreToolUse に matcher: Bash と command: $CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh が設定され、続けて PostToolUse に matcher: Edit|Write が書かれている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>PreToolUse</code> で <code>Bash</code> をマッチさせ、<code>$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh</code> を実行している。下に <code>PostToolUse</code> の <code>Edit|Write</code> が続く。</figcaption>
+      </figure>
+
+      <p>これが<strong>厳格なルールを強制する方法</strong>だ、と動画は言う。例として挙がるのは3つ。</p>
+      <ul class="chips">
+        <li>本番設定ディレクトリへの書き込みをブロック</li><li>rm -rf を含む bash コマンドをブロック</li><li>main へのコミットをブロック</li>
+      </ul>
+      <div class="warn">
+        <b>判断基準</b>
+        <p><strong>チームにとって「提案」ではなく「保証」が必要なものなら、何でも。</strong>（whatever your team needs to be <em>guaranteed</em>, not <em>suggested</em>）</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="141" data-label="チームで共有する">
+    <div class="sec__mark"><div><span class="sec__t">2:21</span><span class="sec__kind">共有</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">チームと共有する</h2>
+      <p><code>.claude/settings.json</code> で設定されたフックは<strong>プロジェクトレベル</strong>で、リポジトリにチェックインできる。これでチーム全体が自動的に同じフックを得る。</p>
+      <p>ひとつ実務的な注意がある。コマンド内では <strong><code>CLAUDE_PROJECT_DIR</code> 環境変数</strong>を使ってプロジェクトに保存されたスクリプトを参照する——そうすれば、<strong>Claude の現在の作業ディレクトリがどこであっても動く</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="169" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:49</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p>フックは Claude Code の動作に対する<strong>決定論的な制御</strong>を提供する。</p>
+      <ul class="chips">
+        <li>自動整形とログ記録 → PostToolUse</li><li>危険な操作のブロック → PreToolUse</li><li>設定は /hooks か settings.json</li><li>リポジトリにチェックインして共有</li>
+      </ul>
+      <p class="wrapup">何かが<em>毎回必ず</em>実行される必要があるなら、プロンプトに書くのではなく、フックに入れる。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>Go format</em>（gofmt）、<em>Claude project dir</em>（CLAUDE_PROJECT_DIR）などは音声どおりの表記。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>Hooks let you run commands at different points in Claude code's life cycle. The key difference between hooks and everything else we covered is that hooks are deterministic. They always run. So, put it this way. You can tell Claude</p></div>
+      <div><span>0:23</span><p>in your claude.md file to run prettier after every file edit and most of the time it will do that, but sometimes it won't. It's not perfect. But a hook makes it happen every single time with no exceptions.</p></div>
+      <div><span>0:37</span><p>Common use cases could include auto formatting after file edits, logging all executed commands for compliance, blocking dangerous operations like modifying production files, and sending yourself notifications when Claude</p></div>
+      <div><span>0:49</span><p>finishes a task. Hooks are configured in your settings.json file. You pick an event, optionally set a matcher for which tool it applies to, and provide a command to run. User prompt submit runs when you submit</p></div>
+      <div><span>1:04</span><p>a prompt before Claude processes it. Pre-tool use which runs before a tool call. Post-tool use runs after a tool call completes. Notification runs when Claude sends a notification, and stop runs when Claude</p></div>
+      <div><span>1:18</span><p>finishes responding. The most common hook. Auto formatting after edits. You set a post-tool use hook with a matcher of edit or multi-edit, right? So, it fires whenever Claude modifies a file. The command checks the file</p></div>
+      <div><span>1:36</span><p>extension and runs the appropriate formatter. This could be prettier for TypeScript, Go format for Go, Ruff for Python, whatever your project uses. Pre-tool use hooks can block tool calls before they execute. So, your hook</p></div>
+      <div><span>1:53</span><p>receives a tool name and input as JSON on stdin. If it exits with code two, the action is blocked and the stderr message gets fed back to Claude as feedback so Claude knows why it was blocked and can adjust.</p></div>
+      <div><span>2:08</span><p>Exit code zero means proceed. Exit code two means block. This is how you enforce hard rules. Block writes to a production config directory, block bash commands that contain rm -rf, block commits to main,</p></div>
+      <div><span>2:21</span><p>whatever your team needs to be guaranteed, not suggested. Hooks configured in .Claude/settings.json are project level and can be checked into your repo. This means that your entire team gets the same hooks</p></div>
+      <div><span>2:34</span><p>automatically. Use the Claude project dir environment variable in your commands to reference scripts stored in your project so they work regardless of Claude's current working directory. &gt;&gt; [music]</p></div>
+      <div><span>2:49</span><p>&gt;&gt; Hooks gives you deterministic control over Claude code's behavior. &gt;&gt; [music] &gt;&gt; Use post-tool-use for auto-formatting and logging. Use pre-tool-use to block dangerous operations. Configure them in</p></div>
+      <div><span>3:01</span><p>the /hooks or in settings.json &gt;&gt; [music] &gt;&gt; and check them into your repository so your team gets them, too. If something needs to happen every time without fail, don't put it in a prompt. Put it in a hook.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="09-mcp.html"><b>前のレッスン — 09</b><em>MCP で外部につなぐ</em></a>
+  <a class="is-next" href="11-review-and-ship.html"><b>次のレッスン — 11</b><em>レビューして出荷する</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「Hooks in Claude Code」／ claude.com/courses</span>
+  <a href="https://youtu.be/IkaPHiMDazM" target="_blank" rel="noopener">youtu.be/IkaPHiMDazM ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

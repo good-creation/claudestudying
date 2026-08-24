@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 Explore → Plan → Code → Commit — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="Claude Code を効果的に使うための唯一にして最重要のワークフロー。探索・計画・コード・コミットの4段を分解する。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット" aria-current="page">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 04 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">03:11 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">Explore<br>Plan Code<br><em>Commit</em></h1>
+
+  <p class="hero__lede">
+    「Claude Code から一つだけ持ち帰るなら、これにしてほしい」——動画がそう宣言して始まる、コース中で最も強い言い方をされる回。<strong>これを飛ばして直接コードを書かせにいくから、あとで軌道修正が増える。</strong>
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.6%"><s>全体像</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:9.4%"><s>探索・計画</s><i></i><b>0:18</b></div>
+      <div class="tl__tick" style="left:36.1%"><s>コード</s><i></i><b>1:09</b></div>
+      <div class="tl__tick" style="left:51.3%"><s>精度</s><i></i><b>1:38</b></div>
+      <div class="tl__tick" style="left:75.9%"><s>コミット</s><i></i><b>2:25</b></div>
+      <div class="tl__tick" style="left:86.4%"><s>まとめ</s><i></i><b>2:45</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>03:11</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.17</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>3:11</span> <small>/ 191s</small></dd></div>
+    <div><dt>Views</dt><dd><span>435,940</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/xJQuF02NAK8" target="_blank" rel="noopener">youtu.be/xJQuF02NAK8 ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="191">
+
+  <section class="sec" id="s1" data-start="3" data-label="ワークフロー全体">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">全体像</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">4段のワークフロー</h2>
+      <blockquote class="quote">
+        <p>Claude Code から一つだけ持ち帰るなら、このワークフローにしてほしい——探索、計画、コード、コミット。</p>
+        <cite>— 動画冒頭 / 00:03</cite>
+      </blockquote>
+      <p>そして直後に、これを守らない場合に何が起きるかが名指しされる。<strong>ほとんどの人はこれを飛ばして、いきなり Claude に貼り付けてコードを書かせにいく。その結果、あとから軌道修正が増える。</strong></p>
+      <ul class="chips">
+        <li>1 — Explore / 探索</li><li>2 — Plan / 計画</li><li>3 — Code / コード</li><li>4 — Commit / コミット</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="18" data-label="探索と計画">
+    <div class="sec__mark"><div><span class="sec__t">0:18</span><span class="sec__kind">段 1–2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">探索と計画</h2>
+      <p><strong>最初の2つのステップを処理する最も速い方法はプランモードを使うこと。</strong>プランモードでは Claude はファイルを編集できない。実装にどう取り組むかの情報を集めるために、ファイルを読むだけになる。</p>
+      <p>入り方は、テキスト入力欄の下に <code>plan mode</code> と表示されるまで <kbd>Shift</kbd> + <kbd>Tab</kbd> を押す。</p>
+
+      <figure class="fig">
+        <img src="img/plan-prompt.jpg" alt="ターミナル入力欄の下に plan mode on (shift+tab to cycle) と表示されている拡大画面。" loading="lazy">
+        <figcaption>公式コース図版 — この <code>plan mode on</code> が出ていれば、ファイルは編集されない。</figcaption>
+      </figure>
+
+      <div class="prompt">
+        <b>動画で実際に入力されたプロンプト</b>
+        <p>I need to add WebP conversion to our image upload pipeline. Figure out where in the pipeline it should happen, whether we need new dependencies, and how to approach it.</p>
+        <p>画像アップロードのパイプラインに WebP 変換を追加したい。パイプラインのどこで行うべきか、新しい依存関係が必要か、どう取り組むべきかを調べてほしい。</p>
+      </div>
+
+      <p>Claude は関連するファイルを読み、いくつかの Web 検索を実行し、行動計画を提示する。<strong>それを確認し、自分の基準を満たしているかどうかを判断する。</strong>満たしていなければ、特定の領域の追記や修正を頼めばいい。</p>
+
+      <figure class="fig">
+        <img src="img/plan-review.jpg" alt="Claude が提示した計画の末尾。Verification として6項目の検証手順が並び、その下に「Claude has written up a plan and is ready to execute. Would you like to proceed?」と4つの選択肢が表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — 計画の末尾に <strong>Verification</strong>（検証手順）が並ぶ。承認の選択肢は「コンテキストをクリアして自動承認」「自動承認」「手動承認」、そして4番目は<em>その場で計画に注文をつける</em>（“Can you make the upload limit 10mb?”）。計画は <code>~/.claude/plans/</code> に Markdown で保存され、<code>ctrl-g</code> でエディタを開いて直接編集もできる。</figcaption>
+      </figure>
+
+      <div class="tip">
+        <b>ここが要点</b>
+        <p><strong>ここが軌道修正に最適な場所。なぜなら、まだコードが1行も書かれていないから。</strong>計画の段階での修正は、書かれたコードを直す作業と比べて桁違いに安い。</p>
+      </div>
+
+      <p>なお、変更を加える意図がなくコードベースの概要だけがほしい場合は、プランモードに入らずに<strong>explore サブエージェント</strong>を走らせるという手もある（「このコードベースを探索して」と頼むだけでいい）。サブエージェントの詳細は <a href="07-subagents.html">07 サブエージェント</a> で扱う。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="69" data-label="コード">
+    <div class="sec__mark"><div><span class="sec__t">1:09</span><span class="sec__kind">段 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コード</h2>
+      <p>計画が良さそうなら <strong>approve</strong> を選んで承認し、Claude にリストの項目を進めさせる。このとき、ファイル編集を自動承認させるか毎回確認させるかを選べる（<a href="03-your-first-prompt.html">03</a> の承認モード）。</p>
+      <p>Claude は計画を「完了」と見なす前に、できる限り自分でトラブルシューティングを行う。それでも<strong>時にはあなたの介入が必要になる</strong>。</p>
+      <p>ここでプランモードの利点がもう一つ効いてくる——実行が終わったあとも、<strong>どうやってその結果に至ったかというコンテキストが残っている</strong>。それが Claude の次の判断を導く材料になる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="98" data-label="精度を上げる3つの工夫">
+    <div class="sec__mark"><div><span class="sec__t">1:38</span><span class="sec__kind">精度</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コーディングを<br>スムーズにする3つ</h2>
+      <p>この節の前提はひとつの文に集約されている——<strong>Claude が自分の結果に自信を持つためには、「正しい」とはどういうことかが明確でなければならない。</strong></p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01 — Success criteria</p>
+          <h3>成功基準を定義する</h3>
+          <p>何をもって完了とするかを、<strong>計画を書く段階で明示する</strong>。基準がなければ、Claude は「たぶんできた」以上の判断ができない。</p>
+        </article>
+        <article>
+          <p class="cards__k">02 — Tools</p>
+          <h3>ツールを追加する</h3>
+          <p>目標達成を助けるツールは、多くの往復を省く。例えば Web UI を作っているなら <strong>Claude in Chrome 拡張機能</strong>を入れておけば、Claude Code がブラウザタブを操作して UI を直接テストできる。</p>
+        </article>
+        <article>
+          <p class="cards__k">03 — Test suite</p>
+          <h3>テストスイートを含める</h3>
+          <p>Claude が継続的に検証できるテストを用意する。Claude 自身にテストを書かせることもできるが、<strong>任せる前にそのテストが信頼できる真実の源であることを確認する</strong>——誤検知を避けるために。</p>
+        </article>
+      </div>
+
+      <figure class="fig">
+        <img src="img/claude-in-chrome.jpg" alt="Chrome ウェブストアの Claude 拡張機能のページ。Claude in Chrome (Beta) の説明が表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — Claude in Chrome（Beta）。ブラウザ内で直接動き、ページの操作・フォーム入力・データ抽出・複数ステップの作業を行う。有料プラン向け。</figcaption>
+      </figure>
+
+      <div class="tip">
+        <b>Quick tip</b>
+        <p>Claude が<strong>同じ問題に何度もぶつかっている</strong>のに気づいたら、その解決策を <code>CLAUDE.md</code> に保存するよう頼む。次のセッションからは最初から知っている状態で始まる（→ <a href="06-claude-md.html">06 CLAUDE.md</a>）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="145" data-label="コミット">
+    <div class="sec__mark"><div><span class="sec__t">2:25</span><span class="sec__kind">段 4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コミット</h2>
+      <p>自分でテストして結果に満足したら、プッシュのとき。ただしその前にひとつ挟む——<strong>コミットする前に、サブエージェントのコードレビュアーを走らせて作業内容を見てもらう。</strong></p>
+      <p>理由がはっきり述べられている。<strong>サブエージェントはコードベースに新鮮な視点をもたらす。メインエージェントがセッション中に持っているかもしれない偏りを引き継がない。</strong>書いた本人にレビューさせない、という当たり前の原則を、エージェントの世界でも成立させる仕組み。</p>
+
+      <figure class="fig">
+        <img src="img/code-reviewer.jpg" alt="ターミナルで「Spawn the code reviewer subagent to review the code we last created」と入力され、code-reviewer サブエージェントがファイルを読んでいる画面。" loading="lazy">
+        <figcaption>公式コース図版 — <code>code-reviewer</code> サブエージェントが起動し、独自にファイルを走査している。ツール使用は折りたたまれ、メイン側には結果だけが返る。</figcaption>
+      </figure>
+
+      <p>そのあと、Claude に<strong>自分のスタイルでコミットメッセージを生成させる</strong>。そして、これを繰り返す。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="165" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">2:45</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p>4段がそれぞれ何のためにあるのか、動画は最後に一行ずつ定義し直す。</p>
+      <ul class="acts">
+        <li><h3>探索</h3><p>プロジェクトに必要な<strong>関連コンテキストを Claude に与える</strong>。</p></li>
+        <li><h3>計画</h3><p>Claude が<strong>成功を測るために使う行動計画</strong>を作る。</p></li>
+        <li><h3>コード</h3><p>最終的な結果に落ち着くまでの、<strong>あなたと Claude の間のやり取り</strong>。</p></li>
+        <li><h3>コミット</h3><p>コードをレビューしてプッシュし、<strong>次の機能に取りかかれるようにする</strong>。</p></li>
+      </ul>
+      <p class="wrapup">計画は<em>Claude のため</em>だけにあるのではない。<em>あなたが軌道修正できる場所</em>を、コードが書かれる前に一箇所作るためにある。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。<em>Claude MD</em>（CLAUDE.md）など、音声認識の表記揺れがそのまま残っている。</p>
+    <div class="tr__body">
+      <div><span>0:03</span><p>If you take one thing away from Claude code, let it be this workflow: explore, plan, code, and commit. Without this, most people jump straight to pasting in Claude to write code, which means more course correcting later</p></div>
+      <div><span>0:18</span><p>on. The fastest way to handle step one and two is with plan mode. With plan mode, Claude can't edit files. It just reads files to gather research on how to tackle this implementation. To enter</p></div>
+      <div><span>0:31</span><p>plan mode, hit shift and tab until you see the plan mode under the text input. I need to add WebP conversion to our image upload pipeline. Figure out where in the pipeline it should happen, whether we need new dependencies, and</p></div>
+      <div><span>0:43</span><p>how to approach it. And Claude will read relevant files, do some web searches, and give you a plan of action. Make sure you review it and determine if it meets your criteria. Otherwise, I can ask it to add on or</p></div>
+      <div><span>0:57</span><p>revise some areas. Perfect. And this right here is the best place to course correct because it's before any code is written. You can also use explore without being in plan mode by just asking Claude to explore your</p></div>
+      <div><span>1:09</span><p>code base. Now, once the plan looks good, you can select approve to accept the plan and let Claude toggle all of the list items it provided. You can determine if you want Claude to auto accept the file</p></div>
+      <div><span>1:21</span><p>edits or ask every single time. Claude will do its best to troubleshoot your code base before considering the plan finished. But at times, you'll need to course correct. This is the benefit of</p></div>
+      <div><span>1:31</span><p>working with plan mode because after the plan is finished, we also have the context of how it got to the results to help it guide its next decision. In order for Claude to be confident in its results, it has to be clear on what</p></div>
+      <div><span>1:43</span><p>it deems correct. When writing your plan, make this explicit. Adding tools that will help Claude complete its goals will remove a lot of back and forth. For example, if you're building web UIs,</p></div>
+      <div><span>1:56</span><p>make sure you have the Claude and Chrome extension so that Claude code can control a tab and test out the UI before deeming it finished. In your project, include a test suite that Claude can continuously validate</p></div>
+      <div><span>2:07</span><p>on. Claude can even write tests for you. Before passing this off to Claude, make sure that the tests are a source of truth for you and your team to avoid any false positives. Quick tip, if you find Claude keeps</p></div>
+      <div><span>2:19</span><p>running into the same issues, ask Claude to save the solution to his Claude MD file. Now, once you have tested for yourself and are happy with the results, it's time to push your code. A tip before you</p></div>
+      <div><span>2:30</span><p>commit, run a sub agent code reviewer to look at your code. Then you get Claude to generate a commit message for you in your style. Rinse and repeat. &gt;&gt; [music] &gt;&gt; If you want to be effective with Claude</p></div>
+      <div><span>2:45</span><p>code, follow the explore, plan, code, and commit workflow. Exploration will give the relevant context Claude needs for your project. Plan will create a plan of action that Claude will use to determine if they are successful. Code</p></div>
+      <div><span>2:57</span><p>is the back and forth that you and Claude do before settling on the final outcomes of the plan. Commit helps you review and push your code so you can start on your next feature.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="03-your-first-prompt.html"><b>前のレッスン — 03</b><em>最初のプロンプトを書く</em></a>
+  <a class="is-next" href="05-context-management.html"><b>次のレッスン — 05</b><em>コンテキストを管理する</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「The Explore → Plan → Code → Commit workflow in Claude Code」／ claude.com/courses</span>
+  <a href="https://youtu.be/xJQuF02NAK8" target="_blank" rel="noopener">youtu.be/xJQuF02NAK8 ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

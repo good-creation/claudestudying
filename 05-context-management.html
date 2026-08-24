@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 Context Management — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="/compact と /clear の使い分け、/context での点検、そしてコンテキストを節約する3つのヒント。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<nav class="rail" id="rail" aria-label="動画タイムライン">
+  <div class="rail__line"><div class="rail__prog" id="railProg"></div><div class="rail__head" id="railHead" data-t="0:00"></div></div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する" aria-current="page">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 05 / Anthropic 公式動画</p>
+    <p class="eyebrow" style="color:var(--signal)">03:30 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">Context<br><em>Management</em></h1>
+
+  <p class="hero__lede">
+    コンテキストは Claude の作業メモリ。<strong>読んだファイル、実行したコマンド、送ったメッセージ——すべてが場所を取る。</strong>この回は、その残量をどう見て、いつ圧縮し、いつ捨てるかを扱う。長いセッションが失速するかどうかは、だいたいここで決まる。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.4%"><s>定義</s><i></i><b>0:03</b></div>
+      <div class="tl__tick" style="left:14.8%"><s>圧縮</s><i></i><b>0:31</b></div>
+      <div class="tl__tick" style="left:32.9%"><s>リセット</s><i></i><b>1:09</b></div>
+      <div class="tl__tick" style="left:38.6%"><s>点検</s><i></i><b>1:21</b></div>
+      <div class="tl__tick" style="left:44.3%"><s>使い分け</s><i></i><b>1:33</b></div>
+      <div class="tl__tick" style="left:60.0%"><s>節約</s><i></i><b>2:06</b></div>
+      <div class="tl__tick" style="left:88.6%"><s>まとめ</s><i></i><b>3:06</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>03:30</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2026.05.18</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>3:30</span> <small>/ 210s</small></dd></div>
+    <div><dt>Views</dt><dd><span>354,055</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/eW3oTyfeWZ0" target="_blank" rel="noopener">youtu.be/eW3oTyfeWZ0 ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="210">
+
+  <section class="sec" id="s1" data-start="3" data-label="コンテキストとは">
+    <div class="sec__mark"><div><span class="sec__t">0:03</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">何がコンテキストを<br>消費するのか</h2>
+      <p>コンテキストウィンドウとは、<strong>Claude がメモリに保持できる容量</strong>のこと。そこに入っていくものが具体的に列挙される。</p>
+      <ul class="chips">
+        <li>あなたが入力したプロンプト</li><li>Claude が読んだファイル</li><li>実行したツール呼び出し</li><li>ツール呼び出しの結果</li>
+      </ul>
+      <p>とくに見落とされやすいのが最後の2つ。<strong>ツールを1回呼ぶたびに、呼び出しとその結果の両方が積まれていく</strong>。容量には限りがあるため、その使い方を最適化することが重要になる。</p>
+
+      <figure class="fig">
+        <img src="img/ctx-intro.jpg" alt="「Context Window」と題された図。多数のシリンダー状のアイコンが並び、一部が Taken（使用済み）、残りが Available（利用可能）として色分けされている。" loading="lazy">
+        <figcaption>公式コース図版 — コンテキストウィンドウを容量として描いたもの。<em>Taken</em> が使用済み、<em>Available</em> が残り。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="31" data-label="圧縮 /compact">
+    <div class="sec__mark"><div><span class="sec__t">0:31</span><span class="sec__kind">圧縮</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">満杯になると圧縮される</h2>
+      <p>上限に近づくと、コンテキストウィンドウは<strong>自動的に圧縮（compact）</strong>される。圧縮がやることは2つ。</p>
+      <ul class="acts">
+        <li><h3>重要な詳細を要約する</h3><p>会話の中身を短い形に置き換える。</p></li>
+        <li><h3>不要なツール呼び出しの結果を削除する</h3><p>もう参照しない出力を捨てて空き容量を作る。</p></li>
+      </ul>
+      <div class="warn">
+        <b>注意</b>
+        <p>このプロセスでは<strong>詳細が失われる可能性がある</strong>。以前の会話の細部が、圧縮後には残っていないことがある。</p>
+      </div>
+      <p>手動で走らせることもできる。<code>/compact</code> はその時点までの内容をすべて圧縮する。<strong>コンテキストの空きを確保しつつ、以前やったことの記憶は残しておきたい</strong>場面で便利。</p>
+
+      <figure class="fig">
+        <img src="img/ctx-compact1.jpg" alt="ターミナルに「Compacting conversation…」と表示されている画面。" loading="lazy">
+        <figcaption>公式コース図版 — 圧縮中の表示。<code>Compacting conversation…</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="69" data-label="/clear でリセット">
+    <div class="sec__mark"><div><span class="sec__t">1:09</span><span class="sec__kind">リセット</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">/clear で最初から</h2>
+      <p>前のセッションの記憶を<strong>一切持たずに</strong>完全にやり直したい場合は <code>/clear</code>。これはすべてを削除して、ゼロから始める。</p>
+      <p>圧縮との違いははっきりしている。<code>/compact</code> は<em>残す</em>ための操作、<code>/clear</code> は<em>捨てる</em>ための操作。</p>
+
+      <figure class="fig">
+        <img src="img/ctx-clear.jpg" alt="ターミナルで /clear を実行し、(no content) と表示された画面。" loading="lazy">
+        <figcaption>公式コース図版 — <code>/clear</code> の実行結果。会話が空になる。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="81" data-label="/context で点検">
+    <div class="sec__mark"><div><span class="sec__t">1:21</span><span class="sec__kind">点検</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">/context で残量を見る</h2>
+      <p>コンテキストの状態を確認するには <code>/context</code>。得られるのは3つ——<strong>コンテキストサイズの概要</strong>、<strong>最も容量を占めているカテゴリ</strong>、そして<strong>その内訳を示す視覚的なグラフィック</strong>。</p>
+
+      <figure class="fig">
+        <img src="img/ctx-context.jpg" alt="/context の実行結果。Context Usage として 64k/200k tokens (32%)、System prompt 2.9k、System tools 14.6k、Messages 1.3k、Free space 136k、Autocompact buffer 45.0k という内訳と、格子状のグラフィックが表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>/context</code> の出力例。<code>System tools: 14.6k (7.3%)</code> のように、まだ何もしていない段階でもツール定義が容量を食っていることが見て取れる。<code>Autocompact buffer</code> は自動圧縮のために確保された枠。</figcaption>
+      </figure>
+
+      <div class="tip">
+        <b>読み方のコツ</b>
+        <p>「何が容量を食っているか」がカテゴリ別に出るのがこのコマンドの価値。<strong>System tools が大きければ MCP サーバーの入れすぎ</strong>、Messages が大きければ会話が長すぎる、と原因が切り分けられる（→ <a href="09-mcp.html">09 MCP</a>）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="93" data-label="compact か clear か">
+    <div class="sec__mark"><div><span class="sec__t">1:33</span><span class="sec__kind">使い分け</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">どちらを使うべきか</h2>
+      <p>一般的な目安が明快に示される。判断軸は「<strong>いま取り組んでいるものが同じ機能かどうか</strong>」の一点。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">観点</div><div class="cmp__a">/compact</div><div class="cmp__b">/clear</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">使う場面</div><div class="cmp__a">特定の機能に取り組んでいて、上限に近いが作業を続ける必要がある</div><div class="cmp__b">新しい機能に取りかかり始めたい</div></div>
+        <div class="cmp__row"><div class="cmp__ax">狙い</div><div class="cmp__a">コンテキストを現在の機能に関連する内容に保つ</div><div class="cmp__b">以前の会話が新しい作業にバイアスを持ち込むのを避ける</div></div>
+        <div class="cmp__row"><div class="cmp__ax">失うもの</div><div class="cmp__a">細部（要約に置き換わる）</div><div class="cmp__b">すべて</div></div>
+      </div>
+
+      <p>そして両者に共通する備え。<strong>セッションをまたいで Claude に憶えておいてほしいことは、<code>CLAUDE.md</code> に書いておく。</strong>そうすればゼロから再発見する必要がなくなる。</p>
+
+      <figure class="fig">
+        <img src="img/ctx-claudemd.jpg" alt="CLAUDE.md ファイルの中身。Commands セクションに npm start / npm run seed / npm run dev / npm run build / npm run lint が並び、IMPORTANT として Run the test suite EVERY TIME と書かれている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>CLAUDE.md</code> の例。コマンド一覧に加え、<code>**IMPORTANT** Run the test suite EVERY TIME</code> のような譲れないルールが書かれている。詳しくは <a href="06-claude-md.html">06</a>。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="126" data-label="節約の3つのヒント">
+    <div class="sec__mark"><div><span class="sec__t">2:06</span><span class="sec__kind">節約</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">容量を節約する3つ</h2>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01 — Be specific</p>
+          <h3>具体的に指示する</h3>
+          <p>ここに皮肉がある。<strong>曖昧なプロンプトは一見小さく見えて、長期的にはより多くのコンテキストを消費する。</strong>明確な指示がなければ、Claude はコードベースをより多く探索し、自分で推論しなければならない——それは詳しいプロンプト1〜2文よりはるかに高くつく。</p>
+        </article>
+        <article>
+          <p class="cards__k">02 — Manage MCP servers</p>
+          <h3>MCP サーバーを管理する</h3>
+          <p>MCP サーバーは、<strong>使っていないときでも利用可能なすべてのツール定義をコンテキストに読み込む</strong>。現在のプロジェクトと無関係なサーバーはオフにする。代わりに <strong>Skills</strong> を試す手もある——似た働きをするが、全体を事前にコンテキストへ読み込まない。</p>
+        </article>
+        <article>
+          <p class="cards__k">03 — Use subagents</p>
+          <h3>サブエージェントを使う</h3>
+          <p>サブエージェントはメインと並行して走るが、<strong>完全に独立したコンテキストウィンドウ</strong>を持つ。「認証エンドポイントはどこにあるか？」のように<em>答えだけが必要</em>なタスクでは、サブエージェントが調べて要約だけを返すので、主要なコンテキストがきれいなまま保たれる。</p>
+        </article>
+      </div>
+
+      <div class="tip">
+        <b>この3つの関係</b>
+        <p>並んでいる3つは、いずれも「<strong>コンテキストに入れる前に減らす</strong>」という同じ発想の変奏。入力を絞る（具体的に）、常駐を削る（MCP）、外に出す（サブエージェント）。詳しくは <a href="07-subagents.html">07 サブエージェント</a>、<a href="08-skills.html">08 スキル</a>、<a href="09-mcp.html">09 MCP</a>。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="186" data-label="まとめ">
+    <div class="sec__mark"><div><span class="sec__t">3:06</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">長いセッションを要約するには <em>/compact</em>、最初からやり直すには <em>/clear</em>。</p>
+      <p>コンテキストウィンドウを効果的に使うには、<strong>プロンプトを具体的にすること</strong>、<strong>いま何が容量を消費しているかを確認すること</strong>、そして<strong>結果だけが必要なタスクはサブエージェントに委任すること</strong>。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。スラッシュコマンドは音声で「slash compact」と読まれるため、<em>{slash}</em> と補って表記している。</p>
+    <div class="tr__body">
+      <div><span>0:03</span><p>Context is Claude's working memory. Every file it reads, every command it runs, every message you send, it all takes up space in the context window. Think of the context window as the amount of space that Claude can hold in</p></div>
+      <div><span>0:19</span><p>its memory. Whenever you enter a prompt, Claude reads a file, runs a tool call, gets a tool call result. This is added onto the context window. And since there's only a finite amount you can put in the</p></div>
+      <div><span>0:31</span><p>context window, it becomes extremely important to optimize this as much as possible. Now, when you approach this limit, the context window is automatically compacted. Compaction will summarize important</p></div>
+      <div><span>0:46</span><p>details and remove the unnecessary tool call results and free up a lot of space in your context window. Do note though that this could potentially lose details in your previous conversation. You can run the compaction manually as</p></div>
+      <div><span>0:59</span><p>well with the {slash} compact command. This will compact everything that you've done up to that point, which could be handy if you want to clear up context space, but also have a memory of what</p></div>
+      <div><span>1:09</span><p>you previously worked on. If you want to completely start from scratch without memory of what was previously worked on, you can also run {slash} clear and that will remove everything, starting from scratch.</p></div>
+      <div><span>1:21</span><p>To check the state of your context, run the {slash} context command. Here, you'll get a big picture of how large your context size is, the different categories that are taking up the most context, and a graphic showing you all</p></div>
+      <div><span>1:33</span><p>of this. A general rule of thumb is when you're working on a specific feature and are going over the context window, but need to continue, then compact. Keeping the context relevant for this feature is important when continuing</p></div>
+      <div><span>1:46</span><p>development. If you have finished the plan and want to start on a new feature, then clear. You don't want the previous conversation to present bias in anything new that you want to create. For things that you do</p></div>
+      <div><span>1:58</span><p>want Claude to remember in other sessions, put it in the Claude.md file. That way, it doesn't have to rediscover things from scratch all over again. Be specific. The irony behind writing a smaller prompt is that it in the long</p></div>
+      <div><span>2:12</span><p>run, it will take up more context. Without being explicit, Claude is forced to look around your code base more and do his own thinking, which takes up a lot more context window space than if you were just a little bit more clear</p></div>
+      <div><span>2:24</span><p>with a sentence or two. MCP servers load all of the tools available into context by default. So, if you have a lot of MCP servers for things that are unrelated to the project, it might be worth turning them</p></div>
+      <div><span>2:37</span><p>off. You can also try out skills, which works similarly to MCP servers, but doesn't put the entire thing into context, saving you space. Sub agents run in parallel with your main agent, but has a complete separate</p></div>
+      <div><span>2:50</span><p>context window. So, for tasks that require an answer without the journey, like where is the authentication endpoints located, you can have the sub agent do the work and return just a summary to your main agent.</p></div>
+      <div><span>3:06</span><p>Managing context within Claude code is crucial. Use /compact to summarize long sessions and /clear to start fresh. To use your context window effectively, be specific with what you want. &gt;&gt; [music]</p></div>
+      <div><span>3:18</span><p>&gt;&gt; Check what's using your current context window and use sub agents to delegate tasks you only need the answer for.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="04-explore-plan-code-commit.html"><b>前のレッスン — 04</b><em>探索 → 計画 → コード → コミット</em></a>
+  <a class="is-next" href="06-claude-md.html"><b>次のレッスン — 06</b><em>CLAUDE.md ファイル</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「Context Management in Claude Code」／ claude.com/courses</span>
+  <a href="https://youtu.be/eW3oTyfeWZ0" target="_blank" rel="noopener">youtu.be/eW3oTyfeWZ0 ↗</a>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
