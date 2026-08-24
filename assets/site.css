@@ -379,3 +379,31 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 .q__exp b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink-2);margin-bottom:7px}
 .q.is-done .q__exp{display:block}
+
+/* 出題形式バッジ */
+.q__type{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:3px 8px;color:var(--ink-2);background:var(--paper)}
+.q__type[data-t="choice"]{color:var(--signal);border-color:#B8C4EE}
+.q__type[data-t="truefalse"]{color:var(--caution);border-color:#D9C79A}
+.q__type[data-t="order"]{color:#1F6F5C;border-color:#A9C9BF}
+
+/* ○× は2列 */
+.q__opts--tf{grid-template-columns:1fr 1fr;max-width:30em}
+.q__opts--tf button{text-align:center;font-weight:700}
+.q__opts--tf button::before{content:none}
+
+/* 並べ替え：クリック順に番号が振られる */
+.q__hint{margin:14px 0 0;font-size:13px;color:var(--ink-2)}
+.q__opts--order button.is-picked{border-color:var(--signal);background:#EDF0FB}
+.q__opts--order button.is-picked::before,
+.q__opts--order button.is-correct::before{content:attr(data-pick) ".  ";color:var(--signal);font-weight:700}
+.q__opts--order button.is-wrong::before{content:attr(data-pick) ".  ";color:var(--caution);font-weight:700}
+.q__undo{margin:12px 0 0;font:inherit;font-size:12px;font-family:var(--mono);letter-spacing:.08em;
+  background:none;border:1px solid var(--rule);color:var(--ink-2);padding:5px 12px;cursor:pointer}
+.q__undo:hover{border-color:var(--signal);color:var(--signal)}
+.q.is-done .q__undo{display:none}
+
+/* 形式の凡例 */
+.qlegend{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
+.qlegend li{font-size:12px;color:var(--ink-2);border:1px solid var(--rule);padding:6px 12px;background:var(--paper)}
+.qlegend b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-right:8px}

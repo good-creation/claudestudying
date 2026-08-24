@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>確認問題 20問 — Claude Code 入門コース 学習ノート</title>
-<meta name="description" content="レッスン01〜11の理解度を確認する20問。選択肢を選ぶと正誤と解説が表示されます。">
+<title>確認問題 — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="レッスン01〜11の理解度を確認する全22問。4択・正誤判定・並べ替えの3形式で、出題順はアクセスのたびにランダムに変わります。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -35,323 +35,34 @@
 <header class="hero shell">
   <div class="hero__top">
     <p class="eyebrow">確認問題 / Quiz</p>
-    <p class="eyebrow" style="color:var(--signal)">全20問 · レッスン01〜11</p>
+    <p class="eyebrow" style="color:var(--signal)">全22問 · 3形式 · 出題順ランダム</p>
   </div>
 
   <h1 class="hero__title">確認<em>問題</em></h1>
 
   <p class="hero__lede">
-    レッスン01〜11の理解度を確認する20問。<strong>選択肢を選ぶと、その場で正誤と解説が表示されます。</strong>間違えた問題は、解説の下にある出題範囲のレッスンに戻って読み直してください。付録の Cloudflare からは出題していません。
+    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えると、その場で正誤と解説が表示されます。間違えた問題は、解説の上にある出題範囲のレッスンに戻って読み直してください。付録の Cloudflare からは出題していません。
   </p>
+
+  <ul class="qlegend">
+    <li><b style="color:var(--signal)">4択</b>概念の理解を問う</li>
+    <li><b style="color:var(--caution)">正誤判定</b>誤解しやすい記述の ○ / ×</li>
+    <li><b style="color:#1F6F5C">並べ替え</b>手順を正しい順にクリック</li>
+  </ul>
 </header>
 
 <div class="quizbar">
   <div class="shell quizbar__in">
-    <span>回答 <b id="qDone">0</b> / <span id="qTotal">20</span> &nbsp;·&nbsp; 正解 <b id="qRight">0</b></span>
-    <button type="button" id="qReset">最初からやり直す</button>
+    <span>回答 <b id="qDone">0</b> / <span id="qTotal">22</span> &nbsp;·&nbsp; 正解 <b id="qRight">0</b></span>
+    <button type="button" id="qReset">シャッフルしてやり直す</button>
   </div>
 </div>
 
 <main class="doc shell">
-    <article class="q" data-a="1" id="q01">
-      <div class="q__head">
-        <span class="q__n">Q01</span>
-        <span class="q__src">出題範囲 — <a href="01-what-is-claude-code.html">01 Claude Code とは何か</a></span>
-      </div>
-      <p class="q__t">Claude.ai と Claude Code の、最も本質的な違いはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">応答が速い</button></li>
-        <li><button type="button" data-k="B">ファイル・ターミナル・コードベースに直接アクセスし、AI エージェントとして動く</button></li>
-        <li><button type="button" data-k="C">使えるモデルの種類が多い</button></li>
-        <li><button type="button" data-k="D">日本語の精度が高い</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>コピペの往復が消えるのは結果であって、原因は「環境の中で動く」というアーキテクチャの違い。</p></div>
-    </article>
-
-    <article class="q" data-a="0" id="q02">
-      <div class="q__head">
-        <span class="q__n">Q02</span>
-        <span class="q__src">出題範囲 — <a href="01-what-is-claude-code.html">01 Claude Code とは何か</a></span>
-      </div>
-      <p class="q__t">AI エージェントを実現する、最も基本的な方法はどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">大規模言語モデルをリアルタイムでループさせる</button></li>
-        <li><button type="button" data-k="B">複数のモデルに多数決させる</button></li>
-        <li><button type="button" data-k="C">巨大なプロンプトを一度に渡す</button></li>
-        <li><button type="button" data-k="D">学習データを追加学習させる</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>一問一答ではなく、判断と実行と観測を回し続ける構造のこと。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q03">
-      <div class="q__head">
-        <span class="q__n">Q03</span>
-        <span class="q__src">出題範囲 — <a href="02-how-claude-code-works.html">02 どう動いているのか</a></span>
-      </div>
-      <p class="q__t">エージェンティックループの流れとして正しいものはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">プロンプト → 実行 → コンテキスト収集 → 完了</button></li>
-        <li><button type="button" data-k="B">プロンプト → コンテキストを集める → アクションを実行 → 結果を検証</button></li>
-        <li><button type="button" data-k="C">コンテキスト収集 → プロンプト → 検証 → 実行</button></li>
-        <li><button type="button" data-k="D">プロンプト → 検証 → 実行 → コンテキスト収集</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>検証で意図を満たしていなければループの先頭に戻り、結果が完全で検証可能になるまで繰り返す。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q04">
-      <div class="q__head">
-        <span class="q__n">Q04</span>
-        <span class="q__src">出題範囲 — <a href="02-how-claude-code-works.html">02 どう動いているのか</a></span>
-      </div>
-      <p class="q__t">コンテキストウィンドウが上限に近づくと何が起きるか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">セッションが強制終了する</button></li>
-        <li><button type="button" data-k="B">古い会話が単純に切り捨てられる</button></li>
-        <li><button type="button" data-k="C">自動的に圧縮され、重要な詳細は要約、不要なツール結果は削除される</button></li>
-        <li><button type="button" data-k="D">何も起きず、そのまま入り続ける</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>この過程で細部が失われることがある。残したい前提は会話ではなくファイルに置くほうが安全。</p></div>
-    </article>
-
-    <article class="q" data-a="0" id="q05">
-      <div class="q__head">
-        <span class="q__n">Q05</span>
-        <span class="q__src">出題範囲 — <a href="02-how-claude-code-works.html">02 どう動いているのか</a></span>
-      </div>
-      <p class="q__t">ツールを持たない一般的な AI アシスタントの説明として正しいものはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">テキストを受け取りテキストを返すだけで、その間に何もない</button></li>
-        <li><button type="button" data-k="B">ファイルは読めるがコマンドは実行できない</button></li>
-        <li><button type="button" data-k="C">検索はできるが編集はできない</button></li>
-        <li><button type="button" data-k="D">実行はできるが出力を読めない</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>ツールがあることで「タスク完了に近づくために、いつコードを実行すべきか」を判断できるようになる。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q06">
-      <div class="q__head">
-        <span class="q__n">Q06</span>
-        <span class="q__src">出題範囲 — <a href="03-your-first-prompt.html">03 最初のプロンプトを書く</a></span>
-      </div>
-      <p class="q__t">自動承認（accept edits）モードでも、それでも確認を求められるのはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">ファイルの編集</button></li>
-        <li><button type="button" data-k="B">ファイルの新規作成</button></li>
-        <li><button type="button" data-k="C">コマンドの実行</button></li>
-        <li><button type="button" data-k="D">何も確認されない</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>編集の往復だけが消え、影響の大きいコマンド実行には必ず止まる、という線引きになっている。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q07">
-      <div class="q__head">
-        <span class="q__n">Q07</span>
-        <span class="q__src">出題範囲 — <a href="03-your-first-prompt.html">03 最初のプロンプトを書く</a></span>
-      </div>
-      <p class="q__t">プランモードでできないことはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">コードベースの分析</button></li>
-        <li><button type="button" data-k="B">ファイルの編集</button></li>
-        <li><button type="button" data-k="C">確認のための質問</button></li>
-        <li><button type="button" data-k="D">実行可能な計画の作成</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>読み取り専用ツールだけで調査する。だからこそ安全に方針を固められる。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q08">
-      <div class="q__head">
-        <span class="q__n">Q08</span>
-        <span class="q__src">出題範囲 — <a href="04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a></span>
-      </div>
-      <p class="q__t">「一つだけ持ち帰るなら」と強調されるワークフローの順序はどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">計画 → 探索 → コード → コミット</button></li>
-        <li><button type="button" data-k="B">コード → 探索 → 計画 → コミット</button></li>
-        <li><button type="button" data-k="C">探索 → 計画 → コード → コミット</button></li>
-        <li><button type="button" data-k="D">探索 → コード → 計画 → コミット</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>これを飛ばして直接コードを書かせにいくから、あとで軌道修正が増える。</p></div>
-    </article>
-
-    <article class="q" data-a="0" id="q09">
-      <div class="q__head">
-        <span class="q__n">Q09</span>
-        <span class="q__src">出題範囲 — <a href="04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a></span>
-      </div>
-      <p class="q__t">軌道修正に最も適した場所はどこか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">コードが書かれる前、計画の段階</button></li>
-        <li><button type="button" data-k="B">実装が半分終わったところ</button></li>
-        <li><button type="button" data-k="C">テストが落ちたとき</button></li>
-        <li><button type="button" data-k="D">コミットの直前</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>計画段階での修正は、書かれたコードを直す作業と比べて桁違いに安い。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q10">
-      <div class="q__head">
-        <span class="q__n">Q10</span>
-        <span class="q__src">出題範囲 — <a href="04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a></span>
-      </div>
-      <p class="q__t">Claude が自分の結果に自信を持つために必要なものはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">より長い制限時間</button></li>
-        <li><button type="button" data-k="B">より大きなコンテキストウィンドウ</button></li>
-        <li><button type="button" data-k="C">「正しい」とはどういうことか、つまり成功基準が明確であること</button></li>
-        <li><button type="button" data-k="D">より多くのサブエージェント</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>計画を書く段階で成功基準を明示する。基準がなければ「たぶんできた」以上の判断はできない。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q11">
-      <div class="q__head">
-        <span class="q__n">Q11</span>
-        <span class="q__src">出題範囲 — <a href="04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a> / <a href="11-review-and-ship.html">11 Review &amp; Ship</a></span>
-      </div>
-      <p class="q__t">コミットする前に推奨されることはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">すべてのファイルを自分で読み直す</button></li>
-        <li><button type="button" data-k="B">サブエージェントのコードレビュアーに見てもらう</button></li>
-        <li><button type="button" data-k="C">コンテキストを /clear する</button></li>
-        <li><button type="button" data-k="D">権限を全開にする</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>サブエージェントは別コンテキストで動くので、書いた本人が持っているかもしれない偏りを引き継がない。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q12">
-      <div class="q__head">
-        <span class="q__n">Q12</span>
-        <span class="q__src">出題範囲 — <a href="05-context-management.html">05 コンテキストを管理する</a></span>
-      </div>
-      <p class="q__t">/compact を使うべき場面はどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">新しい機能に取りかかるとき</button></li>
-        <li><button type="button" data-k="B">特定の機能に取り組んでいて上限に近いが、作業を続ける必要があるとき</button></li>
-        <li><button type="button" data-k="C">セッションを終了するとき</button></li>
-        <li><button type="button" data-k="D">MCP サーバーを追加したとき</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>新しい機能に移るなら /clear。以前の会話が新しい作業にバイアスを持ち込むのを避けるため。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q13">
-      <div class="q__head">
-        <span class="q__n">Q13</span>
-        <span class="q__src">出題範囲 — <a href="05-context-management.html">05 コンテキストを管理する</a></span>
-      </div>
-      <p class="q__t">/context を実行すると分かることはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">残りの課金額</button></li>
-        <li><button type="button" data-k="B">接続中の MCP サーバー一覧</button></li>
-        <li><button type="button" data-k="C">何がコンテキストを消費しているかのカテゴリ別内訳</button></li>
-        <li><button type="button" data-k="D">過去のセッション履歴</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>System tools が大きければ MCP の入れすぎ、Messages が大きければ会話が長すぎる、と原因を切り分けられる。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q14">
-      <div class="q__head">
-        <span class="q__n">Q14</span>
-        <span class="q__src">出題範囲 — <a href="05-context-management.html">05 コンテキストを管理する</a></span>
-      </div>
-      <p class="q__t">短く曖昧なプロンプトについて、正しいものはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">常にコンテキストの節約になる</button></li>
-        <li><button type="button" data-k="B">長期的にはより多くのコンテキストを消費する</button></li>
-        <li><button type="button" data-k="C">コンテキスト消費とは無関係</button></li>
-        <li><button type="button" data-k="D">精度は落ちるがコストは必ず下がる</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>明確な指示がなければ、コードベースをより多く探索し、自分で推論する必要が出てくるため。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q15">
-      <div class="q__head">
-        <span class="q__n">Q15</span>
-        <span class="q__src">出題範囲 — <a href="06-claude-md.html">06 CLAUDE.md ファイル</a></span>
-      </div>
-      <p class="q__t">CLAUDE.md の内容はどう扱われるか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">参照用に保存され、必要なときだけ読まれる</button></li>
-        <li><button type="button" data-k="B">セッション開始時に自動で読まれ、内容がプロンプトに追記される</button></li>
-        <li><button type="button" data-k="C">手動で読み込むまで使われない</button></li>
-        <li><button type="button" data-k="D">Claude の学習データに追加される</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>書いた分だけ毎回のプロンプトが長くなる。だから短く保つことが効いてくる。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q16">
-      <div class="q__head">
-        <span class="q__n">Q16</span>
-        <span class="q__src">出題範囲 — <a href="06-claude-md.html">06 CLAUDE.md ファイル</a></span>
-      </div>
-      <p class="q__t">CLAUDE.md の始め方として推奨されるのはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">最初にできるだけ詳しく書ききる</button></li>
-        <li><button type="button" data-k="B">まず無しで始め、繰り返し軌道修正が必要になる箇所を見てから書く</button></li>
-        <li><button type="button" data-k="C">他のプロジェクトからそのままコピーする</button></li>
-        <li><button type="button" data-k="D">作らないほうがよい</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>そうするとファイルがコンパクトに、必要な情報だけに保たれる。準備ができたら /init で生成させる。</p></div>
-    </article>
-
-    <article class="q" data-a="2" id="q17">
-      <div class="q__head">
-        <span class="q__n">Q17</span>
-        <span class="q__src">出題範囲 — <a href="07-subagents.html">07 サブエージェントとは何か</a></span>
-      </div>
-      <p class="q__t">サブエージェントを使うことの代償はどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">実行速度が大幅に落ちる</button></li>
-        <li><button type="button" data-k="B">メインのコンテキストを余計に消費する</button></li>
-        <li><button type="button" data-k="C">どう結論に至ったか、途中で何を発見したかがメイン側から見えなくなる</button></li>
-        <li><button type="button" data-k="D">ファイルを編集できなくなる</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>「旅路なしで答えを得る」の裏返し。要約に含まれなかったものは、メイン側には存在しない。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q18">
-      <div class="q__head">
-        <span class="q__n">Q18</span>
-        <span class="q__src">出題範囲 — <a href="08-skills.html">08 スキルとは何か</a></span>
-      </div>
-      <p class="q__t">Claude がスキルを使うかどうかを決める材料はどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">ファイル名</button></li>
-        <li><button type="button" data-k="B">スキルの description</button></li>
-        <li><button type="button" data-k="C">置かれているディレクトリ</button></li>
-        <li><button type="button" data-k="D">直前に実行したコマンド</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>依頼の内容と、利用可能な全スキルの description を突き合わせてマッチしたものが起動する。だから「いつ使うか」を description に書くのが実質的な仕事になる。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q19">
-      <div class="q__head">
-        <span class="q__n">Q19</span>
-        <span class="q__src">出題範囲 — <a href="09-mcp.html">09 MCP で外部につなぐ</a></span>
-      </div>
-      <p class="q__t">MCP サーバーについて、見落としやすいコストはどれか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">接続のたびに課金される</button></li>
-        <li><button type="button" data-k="B">使っていないときでもツール定義がコンテキストを占める</button></li>
-        <li><button type="button" data-k="C">常にバックグラウンドで CPU を使う</button></li>
-        <li><button type="button" data-k="D">ディスク容量を大量に消費する</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>/mcp で接続中を確認し、使っていないものは無効化する。CLI で代替できるならそちらのほうがコンテキスト効率が高い。</p></div>
-    </article>
-
-    <article class="q" data-a="1" id="q20">
-      <div class="q__head">
-        <span class="q__n">Q20</span>
-        <span class="q__src">出題範囲 — <a href="10-hooks.html">10 フックで確実に実行させる</a></span>
-      </div>
-      <p class="q__t">PreToolUse フックが終了コード 2 を返すとどうなるか。</p>
-      <ul class="q__opts">
-        <li><button type="button" data-k="A">何も起きずそのまま続行する</button></li>
-        <li><button type="button" data-k="B">アクションがブロックされ、stderr のメッセージが Claude にフィードバックされる</button></li>
-        <li><button type="button" data-k="C">セッションが終了する</button></li>
-        <li><button type="button" data-k="D">警告は出るが実行はされる</button></li>
-      </ul>
-      <div class="q__exp"><b>解説</b><p>単に止めるだけでなく理由が伝わるので、Claude は別の手段を取り直せる。0 は続行、その他はブロックしないエラー。</p></div>
-    </article>
+  <div id="quizList"></div>
+  <noscript>
+    <p style="padding:40px 0">この問題集は JavaScript で出題順をシャッフルしています。ブラウザの JavaScript を有効にしてください。</p>
+  </noscript>
 </main>
 
 <div class="pager">
@@ -364,6 +75,7 @@
   <a href="index.html">目次へ</a>
 </footer>
 
+<script src="assets/quiz-data.js"></script>
 <script src="assets/quiz.js"></script>
 </body>
 </html>
