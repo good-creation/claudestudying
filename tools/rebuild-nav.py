@@ -22,6 +22,8 @@ LESSONS = [
 # 公式コース外の付録。番号体系に混ぜず、ナビ上も区切って表示する。
 APPENDIX = [
     ("cloudflare.html", "CF", "付録：Cloudflare × Claude Code"),
+    ("summary.html",    "まとめ", "まとめ：できることと、費用"),
+    ("quiz.html",       "確認問題", "確認問題 20問"),
 ]
 
 def nav_for(current):
