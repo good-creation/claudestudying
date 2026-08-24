@@ -59,7 +59,7 @@
     head.setAttribute('data-t', fmt(t));
     if (fill) fill.style.width = (p * 100) + '%';
     if (topbar) topbar.style.width = (p * 100) + '%';
-    rail.classList.toggle('is-on', scrollY > secs[0].offsetTop - innerHeight * 0.6);
+    rail.classList.add('is-on');   // ページ上部から常に表示する
     var ai = 0;
     for (var i = 0; i < secs.length; i++) if (t >= +secs[i].dataset.start - 0.5) ai = i;
     dots.forEach(function(d,i){ d.classList.toggle('is-here', i === ai); });

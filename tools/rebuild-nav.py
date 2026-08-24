@@ -19,19 +19,28 @@ LESSONS = [
     ("11-review-and-ship.html",          "11", "レビューして出荷する"),
 ]
 
+# 公式コース外の付録。番号体系に混ぜず、ナビ上も区切って表示する。
+APPENDIX = [
+    ("cloudflare.html", "CF", "付録：Cloudflare × Claude Code"),
+]
+
 def nav_for(current):
     rows = ["<nav>"]
     for href, num, ja in LESSONS:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
+    for href, num, ja in APPENDIX:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a class="is-appendix" href="%s" title="%s" aria-label="%s"%s>%s</a>'
+                    % (href, ja, ja, cur, num))
     rows.append("    </nav>")
     return "\n".join(rows)
 
 # ページ内で class を持たない <nav> は上部ナビだけ（レール側は <nav class="rail">）
 pat = re.compile(r"<nav>.*?</nav>", re.S)
 
-for href, num, ja in LESSONS:
+for href, num, ja in LESSONS + APPENDIX:
     if not os.path.exists(href):
         print("  SKIP  %s (not found)" % href); continue
     s = io.open(href, encoding="utf-8").read()

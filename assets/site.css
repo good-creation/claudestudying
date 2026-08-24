@@ -1,3 +1,60 @@
+@font-face{
+  font-family:"Optimistic Display";
+  font-style:normal;
+  font-weight:200;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/yu/r/UwoTM2u9U6b.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Display";
+  font-style:normal;
+  font-weight:300;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/yJ/r/gJ8wmjmQhMa.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Display";
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/yL/r/jfwoHaS3i0K.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Display";
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/yU/r/WXBYOaYZuYu.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Display";
+  font-style:normal;
+  font-weight:800 900;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/yR/r/0wcuDYQ2laN.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Text";
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/y2/r/6YirsaXqsap.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Text";
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/ye/r/ndhgOwkNmDs.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Optimistic Text";
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url("https://static.xx.fbcdn.net/rsrc.php/y8/r/WF8VhTuShVE.woff2") format("woff2");
+}
+
 /* ============================================================
    Claude Code 入門コース — 学習ノート
    製図フィルム調のクールグレー地 / ウルトラマリン / 焦げ金
@@ -13,8 +70,8 @@
   --signal-wash:#CFD7F5;
   --caution:#8C5A0E;
   --caution-bg:#F1EADC;
-  --mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-  --gothic:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --mincho:"Optimistic Display","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  --gothic:"Optimistic Text","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
   --mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
   --gutter:clamp(20px,5vw,64px);
 }
@@ -42,6 +99,9 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .chrome nav{display:flex;gap:20px}
 .chrome nav a{color:var(--ink-2)}
 .chrome nav a:hover,.chrome nav a[aria-current]{color:var(--signal)}
+/* 公式コース外の付録。番号列と視覚的に切り離す */
+.chrome nav a.is-appendix{padding-left:20px;border-left:1px solid var(--rule);color:var(--caution)}
+.chrome nav a.is-appendix:hover,.chrome nav a.is-appendix[aria-current]{color:var(--caution);text-decoration:underline}
 
 /* ---------- hero ---------- */
 .hero{padding:clamp(52px,9vw,110px) 0 clamp(38px,6vw,68px)}
@@ -72,8 +132,8 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .meta dd small{font-size:12px;color:var(--ink-2);font-weight:400}
 
 /* ---------- fixed rail ---------- */
-.rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:20;opacity:0;pointer-events:none;transition:opacity .35s ease}
-.rail.is-on{opacity:1;pointer-events:auto}
+.rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:20;opacity:1;transition:opacity .35s ease}
+.rail.is-on{opacity:1}
 .rail__line{position:relative;width:1px;height:290px;background:var(--rule);margin:0 auto}
 .rail__prog{position:absolute;left:0;top:0;width:1px;background:var(--signal);height:0}
 .rail__head{position:absolute;left:50%;top:0;width:9px;height:9px;margin:-4px 0 0 -4.5px;border-radius:50%;background:var(--signal)}
@@ -83,9 +143,14 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .rail__dot:hover::before,.rail__dot.is-here::before{background:var(--signal);border-color:var(--signal)}
 .rail__dot::after{content:attr(data-l);position:absolute;left:22px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--ink-2);white-space:nowrap;opacity:0;transition:opacity .2s}
 .rail__dot:hover::after{opacity:1}
-@media (max-width:1180px){.rail{display:none}}
+@media (min-width:1081px){
+  /* レールの幅ぶん本文を右に寄せ、タイムコード表示と本文が重ならないようにする */
+  body{padding-left:104px}
+  .rail{left:30px}
+}
+@media (max-width:1080px){.rail{display:none}}
 .topbar{position:fixed;top:0;left:0;height:2px;background:var(--signal);width:0;z-index:30}
-@media (min-width:1181px){.topbar{display:none}}
+@media (min-width:1081px){.topbar{display:none}}
 
 /* ---------- sections ---------- */
 .doc{padding-bottom:clamp(50px,7vw,90px)}
@@ -252,7 +317,15 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 .modes__n small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;color:var(--ink-2);margin-top:3px}
 .modes__c{font-size:14px;line-height:1.7;color:var(--ink-2)}
 .modes__c.is-ask{color:var(--ink);font-weight:500}
+/* 2列版（項目 / 説明）。列数だけ変えて .modes の見た目を流用する */
+.modes--2col .modes__row{grid-template-columns:1fr 1.7fr}
+/* ページ内目次。.chips をリンクとして使う */
+.chips a{color:inherit;text-decoration:none}
+.chips li:has(a):hover{border-color:var(--signal)}
+.chips li:has(a):hover a{color:var(--signal)}
+
 @media (max-width:760px){
+  .modes--2col .modes__row{grid-template-columns:1fr}
   .modes__row{grid-template-columns:1fr 1fr;gap:6px 16px;padding:18px 0}
   .modes__row--head{display:none}
   .modes__n{grid-column:1/-1}

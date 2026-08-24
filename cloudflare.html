@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>付録 Cloudflare × Claude Code — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="MCP Server、Code Mode、Skills、AI Gateway、Access。導入コマンド、Max Plan と別課金になる範囲、安全な権限の広げ方まで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="01-what-is-claude-code.html" title="Claude Code とは何か" aria-label="01 Claude Code とは何か">01</a>
+      <a href="02-how-claude-code-works.html" title="どう動いているのか" aria-label="02 どう動いているのか">02</a>
+      <a href="03-your-first-prompt.html" title="最初のプロンプトを書く" aria-label="03 最初のプロンプトを書く">03</a>
+      <a href="04-explore-plan-code-commit.html" title="探索 → 計画 → コード → コミット" aria-label="04 探索 → 計画 → コード → コミット">04</a>
+      <a href="05-context-management.html" title="コンテキストを管理する" aria-label="05 コンテキストを管理する">05</a>
+      <a href="06-claude-md.html" title="CLAUDE.md ファイル" aria-label="06 CLAUDE.md ファイル">06</a>
+      <a href="07-subagents.html" title="サブエージェントとは何か" aria-label="07 サブエージェントとは何か">07</a>
+      <a href="08-skills.html" title="スキルとは何か" aria-label="08 スキルとは何か">08</a>
+      <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
+      <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
+      <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
+      <a class="is-appendix" href="cloudflare.html" title="付録：Cloudflare × Claude Code" aria-label="付録：Cloudflare × Claude Code" aria-current="page">CF</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">付録 / Appendix</p>
+    <p class="eyebrow" style="color:var(--caution)">公式コース外 — 出典は本ページ末尾</p>
+  </div>
+
+  <h1 class="hero__title">Cloudflare<br><em>× Claude&nbsp;Code</em></h1>
+
+  <p class="hero__lede">
+    Cloudflare と Claude Code の組み合わせが注目される理由は一つに集約できる——<strong>AI コーディングエージェントを使って、Cloudflare 上の開発・運用・AI 利用管理をまとめて効率化できる</strong>から。ここまでのレッスンで出てきた MCP・スキル・権限が、実際のプラットフォームでどう噛み合うかの具体例にあたる。
+  </p>
+
+  <ul class="chips" style="margin-top:30px">
+    <li><a href="#stack">要点 — 5つの構成要素</a></li>
+    <li><a href="#arch">構成</a></li>
+    <li><a href="#setup">導入コマンド</a></li>
+    <li><a href="#build">最初に作るもの</a></li>
+    <li><a href="#use">依頼のしかた</a></li>
+    <li><a href="#cost">費用の区別</a></li>
+    <li><a href="#risk">注意点</a></li>
+    <li><a href="#path">導入順</a></li>
+  </ul>
+
+  <dl class="meta">
+    <div><dt>Type</dt><dd>付録<br><small>公式コースには含まれません</small></dd></div>
+    <div><dt>Topic</dt><dd>Cloudflare 連携</dd></div>
+    <div><dt>関連レッスン</dt><dd><a href="09-mcp.html">09 MCP</a> / <a href="08-skills.html">08 スキル</a></dd></div>
+    <div><dt>Docs</dt><dd><a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">developers.cloudflare.com ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="stack">
+    <div class="sec__mark"><div><span class="sec__t">STACK</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">5つの構成要素</h2>
+      <p>組み合わせは大きく2層に分かれる。<strong>Claude Code に Cloudflare を触らせる仕組み</strong>（MCP Server / Code Mode / Skills）と、<strong>AI の使われ方そのものを管理する仕組み</strong>（AI Gateway / Access）。</p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01 — Connect</p>
+          <h3>Cloudflare MCP Server</h3>
+          <p>Claude Code を Cloudflare の外部機能につなぐ仕組み。<strong>Workers、DNS、R2、D1、ログ、分析、監査ログ</strong>などを Claude Code が参照・操作できるようになる。</p>
+        </article>
+        <article>
+          <p class="cards__k">02 — Context</p>
+          <h3>Code Mode</h3>
+          <p>Cloudflare API は非常に多いため、<strong>必要な API をその都度検索して実行する</strong>設計。Claude Code のコンテキスト消費を抑えつつ、広範な Cloudflare 機能を扱える。</p>
+        </article>
+        <article>
+          <p class="cards__k">03 — Knowledge</p>
+          <h3>Cloudflare Skills</h3>
+          <p>Claude Code に <strong>Workers、Wrangler、D1、R2、KV</strong> など Cloudflare 向け開発の知識を与える。一般的なコードではなく、<em>Cloudflare 環境に適した実装</em>を提案させやすくなる。</p>
+        </article>
+        <article>
+          <p class="cards__k">04 — Govern</p>
+          <h3>AI Gateway</h3>
+          <p>Claude Code、Codex、GitHub Copilot などの AI 利用をゲートウェイ経由にし、<strong>利用量・コスト・プロンプト／応答ログ・エラー・異常な利用</strong>を一元管理できる。<br><a href="#cost" style="font-size:13px">※ Max Plan の通信をそのまま経由させる用途とは別物 →</a></p>
+        </article>
+        <article>
+          <p class="cards__k">05 — Identity</p>
+          <h3>Cloudflare Access</h3>
+          <p>組織の認証と組み合わせ、<strong>誰がどの AI エージェントを使ったか</strong>を追跡・制御できる。チーム利用での費用管理や監査に有用。</p>
+        </article>
+      </div>
+
+      <div class="tip">
+        <b>コース本編との対応</b>
+        <p>01 と 02 は <a href="09-mcp.html">09 MCP</a> そのもの。とくに Code Mode は、あのレッスンで扱った<strong>「MCP サーバーは使っていなくてもツール定義がコンテキストを食う」</strong>という問題への回答になっている。03 は <a href="08-skills.html">08 スキル</a>の「専門知識を特定タスクに」の実例。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="arch">
+    <div class="sec__mark"><div><span class="sec__t">ARCH</span><span class="sec__kind">構成</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">できる構成</h2>
+
+      <div class="prompt">
+        <b>Claude Code 側</b>
+        <p>Claude Code Max Plan<br>
+&nbsp;&nbsp;├─ Cloudflare Skills<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─ Workers / D1 / R2 / KV / Wrangler 向け実装を支援<br>
+&nbsp;&nbsp;├─ Cloudflare MCP<br>
+&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─ Cloudflare 設定・ドキュメント・ログ・分析を参照<br>
+&nbsp;&nbsp;└─ ローカル開発<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Git / Wrangler / テスト / デプロイ</p>
+      </div>
+
+      <div class="prompt">
+        <b>Cloudflare 側</b>
+        <p>Cloudflare<br>
+&nbsp;&nbsp;├─ Workers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;バックエンド・API<br>
+&nbsp;&nbsp;├─ Pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フロントエンド公開<br>
+&nbsp;&nbsp;├─ D1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQLite 系データベース<br>
+&nbsp;&nbsp;├─ R2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PDF・画像・添付ファイル<br>
+&nbsp;&nbsp;└─ Analytics / Logs&nbsp;&nbsp;運用・障害調査</p>
+      </div>
+
+      <p>この形なら、Claude Code は「コードを書く人」だけでなく、<strong>Cloudflare の公式ドキュメントを参照し、環境設定を確認し、ログからエラー原因を調べる開発エージェント</strong>として機能する。</p>
+
+      <p>Cloudflare の MCP は<strong>2系統</strong>が提供されている——広範な Cloudflare API をカバーする <strong>Code Mode</strong> と、ドキュメント・監視・DNS 分析などに<strong>絞った専用サーバー</strong>。用途が限られているなら後者のほうがコンテキストを食わない。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="setup">
+    <div class="sec__mark"><div><span class="sec__t">SETUP</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まず行う設定</h2>
+      <p>Claude Code のプロジェクトルートで、Cloudflare 公式プラグインを導入する。</p>
+
+      <div class="prompt">
+        <b>bash</b>
+        <p>claude plugin marketplace add cloudflare/skills<br>claude plugin install cloudflare@cloudflare</p>
+      </div>
+
+      <p>これで <strong>Cloudflare Skills が入り、Cloudflare MCP サーバーも登録される</strong>。最初に Cloudflare の機能を呼んだとき、ブラウザで <strong>OAuth 認可</strong>が始まる。認可後、次で MCP 接続を確認できる。</p>
+
+      <div class="prompt">
+        <b>bash</b>
+        <p>claude mcp list</p>
+      </div>
+
+      <div class="tip">
+        <b>起動ディレクトリに注意</b>
+        <p>Cloudflare の <code>wrangler.jsonc</code> が既にあるプロジェクトでは、<strong>そのファイルがあるディレクトリから Claude Code を起動する</strong>のが推奨されている。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="build">
+    <div class="sec__mark"><div><span class="sec__t">BUILD</span><span class="sec__kind">実装</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">最初に作るとよいもの</h2>
+      <p><strong>テキストと添付ファイルを貯めていく用途</strong>は、この構成の練習題材として相性がいい。規模が小さいわりに、Workers・Pages・D1・R2・ログの5つを一通り触れる。</p>
+
+      <ul class="acts">
+        <li><h3>ノート管理</h3><p>本文、タグ、メモ、更新日などの構造化データを <strong>D1</strong> へ保存。</p></li>
+        <li><h3>資料管理</h3><p>PDF や画像を <strong>R2</strong> に保存。</p></li>
+        <li><h3>検索・タグ付け API</h3><p><strong>Workers</strong> で実装。</p></li>
+        <li><h3>Web 画面</h3><p><strong>Pages</strong> で公開。</p></li>
+        <li><h3>障害調査</h3><p>Claude Code が Cloudflare の<strong>ログ</strong>を確認。</p></li>
+      </ul>
+
+      <div class="prompt">
+        <b>Claude Code への最初の依頼例</b>
+        <p>Cloudflare Workers でノート管理アプリを作りたい。<br>
+フロントエンドは Pages、API は Workers、データは D1、<br>
+PDF などの添付は R2 を使う。<br><br>
+まず、構成案、wrangler.jsonc、D1 のスキーマ、<br>
+ローカル開発手順を提案して。<br>
+本番環境への変更・デプロイは私の確認後に行って。</p>
+      </div>
+
+      <p>この依頼なら、<strong>いきなり本番を操作させず、まず設計とローカル環境を固められる</strong>。</p>
+
+      <div class="tip">
+        <b>プロンプトの作り</b>
+        <p>最後の1文「本番環境への変更・デプロイは私の確認後に行って」が効いている。<a href="04-explore-plan-code-commit.html">04</a> の<em>「軌道修正はコードが書かれる前にやる」</em>と、<a href="03-your-first-prompt.html">03</a> のプランモードを、依頼文の中で先に宣言している形。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="use">
+    <div class="sec__mark"><div><span class="sec__t">USE</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ほかの依頼のしかた</h2>
+
+      <div class="prompt">
+        <b>ログ調査</b>
+        <p>Cloudflare Workers のエラーログを調べて原因を整理して。<br>変更が必要なら、実施前に差分とリスクを示して。</p>
+      </div>
+
+      <div class="prompt">
+        <b>構成の作成</b>
+        <p>このアプリを Cloudflare Workers にデプロイできる構成にして。<br>データは D1、ファイルは R2 を使いたい。</p>
+      </div>
+
+      <div class="prompt">
+        <b>設定の点検</b>
+        <p>Cloudflare の DNS 設定を確認して、HTTPS やリダイレクトの問題を調べて。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="cost">
+    <div class="sec__mark"><div><span class="sec__t">COST</span><span class="sec__kind">費用</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要な区別</h2>
+      <p><strong>Max Plan で代替できるものと、別途コストが出るものは分けて考える必要がある。</strong>ここを混同すると、想定外の請求につながる。</p>
+
+      <div class="modes modes--2col">
+        <div class="modes__row modes__row--head">
+          <div>項目</div><div>Max Plan との関係</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Claude Code での対話・コード生成</div>
+          <div class="modes__c" data-h="関係">Max Plan の範囲で利用</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Cloudflare Skills・MCP 接続</div>
+          <div class="modes__c" data-h="関係">Cloudflare 側は基本的に無料で開始可能</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Workers / Pages / D1 / R2</div>
+          <div class="modes__c" data-h="関係">Cloudflare 無料枠内なら追加費用なし</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Anthropic API を AI Gateway 経由で呼ぶ</div>
+          <div class="modes__c is-ask" data-h="関係"><strong>Max Plan とは別。</strong>API 料金が発生し得る</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">Cloudflare Workers AI</div>
+          <div class="modes__c is-ask" data-h="関係"><strong>Max Plan とは別。</strong>無料枠超過後は Cloudflare 側の課金対象</div>
+        </div>
+      </div>
+
+      <div class="warn">
+        <b>AI Gateway の位置づけ</b>
+        <p><strong>AI Gateway は、Claude Code Max Plan の通信をそのまま経由させる用途とは別物。</strong>AI Gateway を使う場合は、通常 <strong>Anthropic API キーなどで API を呼び出す構成</strong>になり、Max Plan の利用枠とは別に API 課金が発生し得る。Cloudflare の公式手順でも、AI Gateway 連携では Gateway の Anthropic エンドポイントと認証トークンを Claude Code に設定する。</p>
+      </div>
+
+      <p>したがって、上の <a href="#stack">要点 04（AI Gateway）</a>にある「利用量・コストの一元管理」は、<strong>API 課金でチームが AI を使う構成に切り替えたうえでの話</strong>と読むのが正確。Max Plan の定額利用を続けたまま Gateway で可視化する、という理解にはならない。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="risk">
+    <div class="sec__mark"><div><span class="sec__t">RISK</span><span class="sec__kind">注意点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">本番環境を触らせる前に</h2>
+
+      <div class="warn">
+        <b>Caution</b>
+        <p>Claude Code に<strong>本番環境の変更権限を渡す場合は慎重さが必要</strong>。DNS や WAF の設定変更は、間違えたときの影響範囲がコードの比ではない。</p>
+      </div>
+
+      <ul class="acts">
+        <li>
+          <h3>まずは読み取り専用権限で接続する</h3>
+          <p>ログ確認や設定の点検から始める。書き込みは後から足せる。</p>
+        </li>
+        <li>
+          <h3>変更権限を必要最小限にする</h3>
+          <p>とくに <strong>DNS、WAF、Zero Trust、本番 Worker</strong> の変更権限。</p>
+        </li>
+        <li>
+          <h3>「変更前に差分・影響・ロールバック案を出す」と指示する</h3>
+          <p>プロンプトに書くだけでなく、繰り返すなら <a href="06-claude-md.html">CLAUDE.md</a> に、絶対に守らせたいなら <a href="10-hooks.html">フック</a>に。</p>
+        </li>
+        <li>
+          <h3>本番変更は必ず人間が確認する</h3>
+          <p>ここは自動承認モードにしない。<a href="03-your-first-prompt.html">03</a> の手動モードを維持する場面。</p>
+        </li>
+      </ul>
+
+      <div class="tip">
+        <b>フックで保証に変える</b>
+        <p>上の3番目は「お願い」なので、モデルが従わないことがある。<a href="10-hooks.html">10 フック</a>の言い方を借りれば——<strong>毎回必ず起きてほしいなら、プロンプトではなくフックに入れる。</strong><code>PreToolUse</code> で本番 Worker への書き込みをブロックすれば、権限設定と二重の防御になる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="path">
+    <div class="sec__mark"><div><span class="sec__t">PATH</span><span class="sec__kind">導入順</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">安全な導入順</h2>
+      <p>Web 開発で Claude Code を使うなら、Cloudflare はかなり相性が良い。とくに<strong>Workers でアプリを作り、D1 にデータ、R2 にファイルを置き、Claude Code で実装・デプロイ・ログ調査を行う</strong>流れが便利。ただし全部を一度に入れる必要はない。</p>
+
+      <ol class="steps">
+        <li><h3>Cloudflare 無料アカウントと wrangler を準備する</h3><p>まだ Claude Code は関係しない段階。</p></li>
+        <li><h3>Cloudflare Skills プラグインを Claude Code へ導入する</h3><p>知識を与えるだけ。何も操作させないのでリスクはない。</p></li>
+        <li><h3>OAuth では、最初は閲覧・調査中心の権限で接続する</h3><p>認可画面で渡す範囲を絞る。</p></li>
+        <li><h3>Workers + D1 の小規模なローカルアプリを作る</h3><p>本番に触れずに一通りの流れを体験する。</p></li>
+        <li><h3>「デプロイ前に変更内容を提示し、承認を取る」と毎回守らせる</h3><p>依頼文・<a href="06-claude-md.html">CLAUDE.md</a>・<a href="10-hooks.html">フック</a>の順に強制力が上がる。</p></li>
+        <li><h3>ログ調査や DNS 確認など、MCP の読み取り用途を試す</h3><p>ここではじめて MCP を実運用に入れる。</p></li>
+        <li><h3>本番の書き込み操作は、必要になったサービスだけ最小権限で許可する</h3><p>「全部開ける」ではなく「必要になったものだけ開ける」。</p></li>
+      </ol>
+
+      <p class="wrapup">最初から全権限を渡すより、<em>Skills → 読み取り MCP → 開発用環境へのデプロイ → 本番</em>の順に広げるのが安全。</p>
+
+      <div class="tip">
+        <b>Cloudflare 自身の推奨</b>
+        <p>認可範囲に慣れるまでは、<strong>デモ用アカウントから始める</strong>ことが勧められている。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="source">
+    <div class="sec__mark"><div><span class="sec__t">SOURCE</span><span class="sec__kind">出典</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このページについて</h2>
+      <div class="warn">
+        <b>公式コース外</b>
+        <p>このページは <strong>Anthropic 公式コース（01〜11）には含まれません</strong>。内容はサイト作成者から提供された Cloudflare × Claude Code のまとめ2本を、本サイトの構成に合わせて統合・再構成したものです。<strong>公式動画の書き起こしに基づく他ページとは出典が異なります。</strong></p>
+      </div>
+      <p>本文中の「コース本編との対応」「フックで保証に変える」「プロンプトの作り」などの注釈は、レッスン01〜11の内容と突き合わせて加えた補足です。</p>
+      <p>コマンド・料金・権限まわりは変化が速い領域です。実行前に <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare 公式ドキュメント</a> と <a href="https://code.claude.com/docs" target="_blank" rel="noopener">Claude Code のドキュメント</a>で最新の情報を確認してください。</p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="11-review-and-ship.html"><b>前 — レッスン 11</b><em>Review &amp; Ship</em></a>
+  <a class="is-next" href="index.html"><b>コース</b><em>目次に戻る</em></a>
+</div>
+
+<footer class="foot shell">
+  <span>付録 — 公式コース外の補足ページ</span>
+  <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">developers.cloudflare.com ↗</a>
+</footer>
+
+</body>
+</html>
