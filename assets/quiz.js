@@ -29,8 +29,9 @@
   var elNeed  = document.getElementById('qNeed');
   var elVerd  = document.getElementById('qVerdict');
   var elReset = document.getElementById('qReset');
+  var elQuit  = document.getElementById('qQuit');
   var result  = document.getElementById('quizResult');
-  var answered = 0, correct = 0, total = 0, need = 0, missed = [];
+  var answered = 0, correct = 0, total = 0, need = 0, missed = [], finished = false;
   var smooth = !matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   function shuffle(a){
@@ -59,22 +60,29 @@
 
     // 合否が確定した時点でバーに反映する（残り全問正解でも届かない／すでに到達した）
     var wrong = answered - correct;
-    if (correct >= need)                 setVerdict(true);
-    else if (wrong > total - need)       setVerdict(false);
+    if (correct >= need)                 setVerdict('pass');
+    else if (wrong > total - need)       setVerdict('fail');
 
-    if (answered === total) showResult();
+    if (answered === total) showResult(false);
   }
 
-  function setVerdict(pass){
+  function setVerdict(state){          // 'pass' | 'fail' | 'abort'
     bar.classList.remove('is-pass','is-fail');
-    bar.classList.add(pass ? 'is-pass' : 'is-fail');
-    elVerd.textContent = pass ? '合格' : '不合格';
+    if (state === 'pass') bar.classList.add('is-pass');
+    if (state === 'fail') bar.classList.add('is-fail');
+    elVerd.textContent = {pass:'合格', fail:'不合格', abort:'中断'}[state];
   }
 
-  function showResult(){
-    var pct  = Math.round(correct / total * 100);
-    var pass = correct >= need;
-    setVerdict(pass);
+  function showResult(aborted){
+    if (finished) return;
+    finished = true;
+    bar.classList.add('is-over');
+
+    var pct   = Math.round(correct / total * 100);
+    var pass  = correct >= need;
+    var state = pass ? 'pass' : (aborted ? 'abort' : 'fail');
+    var label = {pass:'合格', fail:'不合格', abort:'中断'}[state];
+    setVerdict(state);
 
     // 間違えた問題の出題範囲レッスンを重複なく集める
     var seen = {}, weak = [];
@@ -85,25 +93,33 @@
     });
     weak.sort();
 
-    result.className = 'qresult is-on ' + (pass ? 'is-pass' : 'is-fail');
+    result.className = 'qresult is-on is-' + state;
     result.innerHTML =
       '<p class="qresult__k">Result — 合格ライン ' + Math.round(PASS * 100) + '%</p>' +
-      '<p class="qresult__v">' + (pass ? '合格' : '不合格') + '</p>' +
+      '<p class="qresult__v">' + label + '</p>' +
       '<p class="qresult__s">正解 <b>' + correct + '</b> / ' + total + '　（' + pct + '%）　' +
-        '合格に必要 ' + need + '問</p>' +
+        '合格に必要 ' + need + '問' +
+        (aborted ? '　·　未回答 ' + (total - answered) + '問' : '') + '</p>' +
       '<div class="qresult__bar">' +
         '<div class="qresult__fill" style="width:' + pct + '%"></div>' +
         '<div class="qresult__mark"><span>合格ライン ' + Math.round(PASS * 100) + '%</span></div>' +
       '</div>' +
-      '<p class="qresult__msg">' + (pass
-        ? '合格ラインを超えています。取りこぼした問題があれば、下のレッスンだけ読み直しておくと確実です。'
-        : 'あと <strong>' + (need - correct) + '問</strong>で合格ラインです。下のレッスンを読み直してから、もう一度挑戦してください。') + '</p>' +
+      '<p class="qresult__msg">' + (
+        state === 'pass'  ? '合格ラインを超えています。取りこぼした問題があれば、下のレッスンだけ読み直しておくと確実です。' :
+        state === 'abort' ? '途中で終了しました。合格には残り <strong>' + Math.max(0, need - correct) + '問</strong>の正解が必要でした。続きから再開する機能はないため、やり直す場合は最初からになります。' :
+                            'あと <strong>' + (need - correct) + '問</strong>で合格ラインでした。下のレッスンを読み直してから、もう一度挑戦してください。') + '</p>' +
       (weak.length
         ? '<ul class="qresult__weak">' + weak.map(function(k){
             return '<li>復習 → <a href="' + LESSON[k][0] + '">' + k + ' ' + esc(LESSON[k][1]) + '</a></li>';
           }).join('') + '</ul>'
-        : '<ul class="qresult__weak"><li>全問正解です。復習の必要はありません。</li></ul>') +
-      '<button type="button" class="qresult__again">シャッフルしてもう一度</button>';
+        : '<ul class="qresult__weak"><li>' +
+            (answered === 0 ? '1問も回答していません。' : '全問正解です。復習の必要はありません。') +
+          '</li></ul>') +
+      '<div class="qresult__acts">' +
+        '<button type="button" class="qresult__again">シャッフルしてもう一度</button>' +
+        '<a class="qresult__link" href="index.html">目次に戻る</a>' +
+        '<a class="qresult__link" href="summary.html">まとめを読む</a>' +
+      '</div>';
 
     if (window.EXAM && window.EXAM.isActive()) {
       var lv = window.EXAM.leaves();
@@ -217,8 +233,8 @@
     host.innerHTML = '';
     result.className = 'qresult';
     result.innerHTML = '';
-    answered = 0; correct = 0; missed = [];
-    bar.classList.remove('is-pass','is-fail');
+    answered = 0; correct = 0; missed = []; finished = false;
+    bar.classList.remove('is-pass','is-fail','is-over');
     elVerd.textContent = '判定前';
     elDone.textContent = 0; elRight.textContent = 0;
 
@@ -237,6 +253,16 @@
     render();
     host.scrollIntoView({behavior: smooth ? 'smooth' : 'auto', block:'start'});
   }
+
+  elQuit.addEventListener('click', function(){
+    if (finished) return;
+    var left = total - answered;
+    var msg = left
+      ? '未回答が ' + left + '問あります。ここで採点して終了しますか。\n（未回答は不正解として扱われます）'
+      : '採点して終了しますか。';
+    if (!confirm(msg)) return;
+    showResult(true);
+  });
 
   elReset.addEventListener('click', restart);
 

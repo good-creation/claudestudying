@@ -487,3 +487,17 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 /* 離席カウンタ */
 .quizbar__leave{color:var(--ink-2)}
 .quizbar__leave b{color:var(--caution)}
+
+/* ---------- 結果パネルの導線 / 途中終了 ---------- */
+.qresult__acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 0}
+.qresult__acts .qresult__again{margin:0}
+.qresult__link{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-decoration:none;
+  border:1px solid var(--rule);color:var(--ink-2);padding:13px 22px;background:var(--ground)}
+.qresult__link:hover{border-color:var(--signal);color:var(--signal)}
+.qresult.is-abort{border-color:var(--ink-2)}
+.qresult.is-abort .qresult__v{color:var(--ink)}
+.qresult.is-abort .qresult__fill{background:var(--ink-2)}
+
+#qQuit{border-color:var(--rule)}
+#qQuit:hover{border-color:var(--caution);color:var(--caution)}
+.quizbar.is-over #qQuit{display:none}
