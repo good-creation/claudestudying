@@ -513,9 +513,14 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 .clawd--md{width:104px}
 .clawd--lg{width:clamp(110px,16vw,168px)}
 
-/* ヒーローの中央に置く */
-.hero__clawd{display:block;margin:clamp(28px,4vw,44px) auto 0;
-  width:clamp(84px,9vw,124px);pointer-events:none}
+/* ヒーローの右側・上下中央に置く */
+.hero{position:relative}
+.hero__clawd{position:absolute;right:var(--gutter);top:50%;transform:translateY(-50%);
+  width:clamp(88px,8.5vw,128px);pointer-events:none;z-index:1}
+/* 幅が足りないと本文に重なるので、狭い画面では流し込みに戻して右寄せする */
+@media (max-width:1000px){
+  .hero__clawd{position:static;transform:none;margin:26px 0 0 auto;width:84px}
+}
 
 /* ページ末尾の区切り */
 .endmark{display:flex;justify-content:center;padding:38px 0 6px}
