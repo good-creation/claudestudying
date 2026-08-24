@@ -407,3 +407,83 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 .qlegend{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
 .qlegend li{font-size:12px;color:var(--ink-2);border:1px solid var(--rule);padding:6px 12px;background:var(--paper)}
 .qlegend b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
+
+/* ---------- 合否判定 ---------- */
+.quizbar__line{color:var(--ink-2)}
+.quizbar__verdict{font-weight:700;letter-spacing:.1em}
+.quizbar.is-pass{border-bottom-color:var(--signal);box-shadow:inset 0 -2px 0 var(--signal)}
+.quizbar.is-pass .quizbar__verdict{color:var(--signal)}
+.quizbar.is-fail{border-bottom-color:var(--caution);box-shadow:inset 0 -2px 0 var(--caution)}
+.quizbar.is-fail .quizbar__verdict{color:var(--caution)}
+
+.qresult{display:none;margin:clamp(36px,5vw,60px) 0 0;border:1px solid var(--rule);background:var(--paper);
+  padding:clamp(26px,4vw,42px)}
+.qresult.is-on{display:block}
+.qresult.is-pass{border-color:var(--signal)}
+.qresult.is-fail{border-color:var(--caution);background:var(--caution-bg)}
+.qresult__k{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.qresult__v{font-family:var(--sans,inherit);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(34px,6vw,60px);line-height:1.05;margin:10px 0 0}
+.qresult.is-pass .qresult__v{color:var(--signal)}
+.qresult.is-fail .qresult__v{color:var(--caution)}
+.qresult__s{font-family:var(--mono);font-size:15px;letter-spacing:.06em;color:var(--ink-2);margin:14px 0 0}
+.qresult__s b{color:var(--ink);font-size:19px}
+.qresult__msg{margin:18px 0 0;font-size:15px;line-height:1.9;max-width:40em}
+.qresult__bar{position:relative;height:6px;background:var(--rule-soft);margin:22px 0 0;max-width:44em}
+.qresult__fill{position:absolute;inset:0 auto 0 0;background:var(--signal)}
+.qresult.is-fail .qresult__fill{background:var(--caution)}
+.qresult__mark{position:absolute;top:-7px;bottom:-7px;left:80%;width:1px;background:var(--ink)}
+.qresult__mark span{position:absolute;left:6px;top:-19px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.08em;color:var(--ink);white-space:nowrap}
+.qresult__weak{margin:26px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.qresult__weak li{font-size:12.5px;border:1px solid var(--rule);background:var(--ground);padding:7px 13px}
+.qresult__weak a{text-decoration:none}
+.qresult__again{margin:26px 0 0;font:inherit;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
+  background:var(--ink);color:var(--ground);border:0;padding:13px 26px;cursor:pointer}
+.qresult__again:hover{background:var(--signal)}
+
+/* ---------- 試験モード ---------- */
+/* 開始ゲート */
+.examgate{border-top:1px solid var(--ink);padding:clamp(34px,5vw,56px) 0}
+.examgate h2{font-family:var(--sans,inherit);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(22px,3vw,32px);line-height:1.4;margin:12px 0 0}
+.examgate__rules{margin:22px 0 0;padding:0;list-style:none;max-width:44em;border-top:1px solid var(--rule-soft)}
+.examgate__rules li{padding:13px 0 13px 26px;border-bottom:1px solid var(--rule-soft);position:relative;
+  font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.examgate__rules li::before{content:"—";position:absolute;left:0;color:var(--signal)}
+.examgate__rules b{color:var(--ink)}
+.examgate__btns{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0}
+.examgate__btns button{font:inherit;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;cursor:pointer;
+  padding:14px 26px;border:1px solid var(--ink)}
+#examStart{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+#examStart:hover{background:var(--signal);border-color:var(--signal)}
+#examPractice{background:none;color:var(--ink-2);border-color:var(--rule)}
+#examPractice:hover{border-color:var(--signal);color:var(--signal)}
+.examgate__note{margin:20px 0 0;font-size:13px;line-height:1.85;color:var(--ink-2);max-width:44em}
+
+/* 試験中はサイト内の移動導線を隠す */
+body.exam .chrome nav,
+body.exam .pager,
+body.exam .foot a{display:none}
+body.exam .chrome__home{pointer-events:none;color:var(--ink-2)}
+body.exam .hero__lede,
+body.exam .qlegend{display:none}
+body.exam #quizList{-webkit-user-select:none;user-select:none}
+
+/* 離席時の目隠し */
+.examlock{position:fixed;inset:0;z-index:9999;background:var(--ink);color:var(--ground);
+  display:none;align-items:center;justify-content:center;padding:var(--gutter);text-align:center}
+.examlock.is-on{display:flex}
+.examlock__k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:#8C9AA6;margin:0}
+.examlock h2{font-family:var(--sans,inherit);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(24px,4vw,40px);line-height:1.35;margin:16px 0 0;color:var(--ground)}
+.examlock p{margin:16px auto 0;max-width:32em;font-size:15px;line-height:1.9;color:#C2CCD3}
+.examlock button{margin-top:30px;font:inherit;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
+  background:var(--ground);color:var(--ink);border:0;padding:14px 30px;cursor:pointer}
+.examlock button:hover{background:var(--signal);color:var(--ground)}
+.examlock__count{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#8C9AA6}
+
+/* 離席カウンタ */
+.quizbar__leave{color:var(--ink-2)}
+.quizbar__leave b{color:var(--caution)}

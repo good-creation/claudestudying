@@ -20,11 +20,17 @@
   var TYPE = {choice:"4択", truefalse:"正誤判定", order:"並べ替え"};
   var KEYS = "ABCDEFGH";
 
+  var PASS = 0.8;                       // 合格ライン 80%
+
+  var bar     = document.querySelector('.quizbar');
   var elDone  = document.getElementById('qDone');
   var elRight = document.getElementById('qRight');
   var elTotal = document.getElementById('qTotal');
+  var elNeed  = document.getElementById('qNeed');
+  var elVerd  = document.getElementById('qVerdict');
   var elReset = document.getElementById('qReset');
-  var answered = 0, correct = 0;
+  var result  = document.getElementById('quizResult');
+  var answered = 0, correct = 0, total = 0, need = 0, missed = [];
   var smooth = !matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   function shuffle(a){
@@ -45,10 +51,69 @@
       return '<a href="' + LESSON[k][0] + '">' + k + ' ' + esc(LESSON[k][1]) + '</a>';
     }).join(' / ');
   }
-  function score(ok){
-    answered++; if (ok) correct++;
+  function score(ok, q, n){
+    answered++;
+    if (ok) correct++; else missed.push({n:n, q:q});
     elDone.textContent = answered;
     elRight.textContent = correct;
+
+    // 合否が確定した時点でバーに反映する（残り全問正解でも届かない／すでに到達した）
+    var wrong = answered - correct;
+    if (correct >= need)                 setVerdict(true);
+    else if (wrong > total - need)       setVerdict(false);
+
+    if (answered === total) showResult();
+  }
+
+  function setVerdict(pass){
+    bar.classList.remove('is-pass','is-fail');
+    bar.classList.add(pass ? 'is-pass' : 'is-fail');
+    elVerd.textContent = pass ? '合格' : '不合格';
+  }
+
+  function showResult(){
+    var pct  = Math.round(correct / total * 100);
+    var pass = correct >= need;
+    setVerdict(pass);
+
+    // 間違えた問題の出題範囲レッスンを重複なく集める
+    var seen = {}, weak = [];
+    missed.forEach(function(m){
+      m.q.src.forEach(function(k){
+        if (!seen[k]) { seen[k] = 1; weak.push(k); }
+      });
+    });
+    weak.sort();
+
+    result.className = 'qresult is-on ' + (pass ? 'is-pass' : 'is-fail');
+    result.innerHTML =
+      '<p class="qresult__k">Result — 合格ライン ' + Math.round(PASS * 100) + '%</p>' +
+      '<p class="qresult__v">' + (pass ? '合格' : '不合格') + '</p>' +
+      '<p class="qresult__s">正解 <b>' + correct + '</b> / ' + total + '　（' + pct + '%）　' +
+        '合格に必要 ' + need + '問</p>' +
+      '<div class="qresult__bar">' +
+        '<div class="qresult__fill" style="width:' + pct + '%"></div>' +
+        '<div class="qresult__mark"><span>合格ライン ' + Math.round(PASS * 100) + '%</span></div>' +
+      '</div>' +
+      '<p class="qresult__msg">' + (pass
+        ? '合格ラインを超えています。取りこぼした問題があれば、下のレッスンだけ読み直しておくと確実です。'
+        : 'あと <strong>' + (need - correct) + '問</strong>で合格ラインです。下のレッスンを読み直してから、もう一度挑戦してください。') + '</p>' +
+      (weak.length
+        ? '<ul class="qresult__weak">' + weak.map(function(k){
+            return '<li>復習 → <a href="' + LESSON[k][0] + '">' + k + ' ' + esc(LESSON[k][1]) + '</a></li>';
+          }).join('') + '</ul>'
+        : '<ul class="qresult__weak"><li>全問正解です。復習の必要はありません。</li></ul>') +
+      '<button type="button" class="qresult__again">シャッフルしてもう一度</button>';
+
+    if (window.EXAM && window.EXAM.isActive()) {
+      var lv = window.EXAM.leaves();
+      result.querySelector('.qresult__s').insertAdjacentHTML('beforeend',
+        '　·　離席 ' + lv + '回');
+      window.EXAM.finish();
+    }
+
+    result.querySelector('.qresult__again').addEventListener('click', restart);
+    result.scrollIntoView({behavior: smooth ? 'smooth' : 'auto', block:'center'});
   }
 
   function frame(q, n, bodyHtml){
@@ -90,7 +155,7 @@
           if (opts[j].ok) other.classList.add('is-correct');
           else if (j === i) other.classList.add('is-wrong');
         });
-        score(opts[i].ok);
+        score(opts[i].ok, q, n);
       });
     });
     return el;
@@ -142,7 +207,7 @@
           el.querySelector('.q__exp p').insertAdjacentHTML('beforebegin',
             '<p style="margin:0 0 10px;font-size:14px;color:var(--caution);font-weight:700">正しい順序 — ' + esc(right) + '</p>');
         }
-        score(ok);
+        score(ok, q, n);
       });
     });
     return el;
@@ -150,19 +215,30 @@
 
   function render(){
     host.innerHTML = '';
-    answered = 0; correct = 0;
+    result.className = 'qresult';
+    result.innerHTML = '';
+    answered = 0; correct = 0; missed = [];
+    bar.classList.remove('is-pass','is-fail');
+    elVerd.textContent = '判定前';
     elDone.textContent = 0; elRight.textContent = 0;
+
     var qs = shuffle(window.QUIZ);
-    elTotal.textContent = qs.length;
+    total = qs.length;
+    need  = Math.ceil(total * PASS);
+    elTotal.textContent = total;
+    elNeed.textContent  = need;
+
     qs.forEach(function(q, i){
       host.appendChild(q.type === 'order' ? buildOrder(q, i + 1) : buildPick(q, i + 1));
     });
   }
 
-  elReset.addEventListener('click', function(){
+  function restart(){
     render();
     host.scrollIntoView({behavior: smooth ? 'smooth' : 'auto', block:'start'});
-  });
+  }
+
+  elReset.addEventListener('click', restart);
 
   render();
 })();

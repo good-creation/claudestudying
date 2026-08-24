@@ -4,13 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>確認問題 — Claude Code 入門コース 学習ノート</title>
-<meta name="description" content="レッスン01〜11の理解度を確認する全22問。4択・正誤判定・並べ替えの3形式で、出題順はアクセスのたびにランダムに変わります。">
+<meta name="description" content="レッスン01〜11の理解度を確認する全22問。4択・正誤判定・並べ替えの3形式、出題順ランダム、合格ライン80%。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+
+<div class="examlock" id="examLock">
+  <div>
+    <p class="examlock__k">Exam mode — content hidden</p>
+    <h2>問題を隠しました</h2>
+    <p>試験中に他の画面へ切り替えたため、内容を非表示にしました。戻って続けるには下のボタンを押してください。<strong>離席は記録され、採点結果に表示されます。</strong></p>
+    <button type="button">試験に戻る</button>
+    <p class="examlock__count">離席 <span id="examLockCount">0</span> 回</p>
+  </div>
+</div>
 
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">Claude Code 入門コース / 学習ノート</a>
@@ -35,13 +45,13 @@
 <header class="hero shell">
   <div class="hero__top">
     <p class="eyebrow">確認問題 / Quiz</p>
-    <p class="eyebrow" style="color:var(--signal)">全22問 · 3形式 · 出題順ランダム</p>
+    <p class="eyebrow" style="color:var(--signal)">全22問 · 3形式 · 出題順ランダム · 合格ライン80%</p>
   </div>
 
   <h1 class="hero__title">確認<em>問題</em></h1>
 
   <p class="hero__lede">
-    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えると、その場で正誤と解説が表示されます。間違えた問題は、解説の上にある出題範囲のレッスンに戻って読み直してください。付録の Cloudflare からは出題していません。
+    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えるとその場で正誤と解説が表示されます。付録の Cloudflare からは出題していません。
   </p>
 
   <ul class="qlegend">
@@ -51,19 +61,49 @@
   </ul>
 </header>
 
-<div class="quizbar">
-  <div class="shell quizbar__in">
-    <span>回答 <b id="qDone">0</b> / <span id="qTotal">22</span> &nbsp;·&nbsp; 正解 <b id="qRight">0</b></span>
-    <button type="button" id="qReset">シャッフルしてやり直す</button>
+<section class="examgate shell" id="examGate">
+  <p class="eyebrow">開始方法を選ぶ</p>
+  <h2>試験モードで解きますか、練習として解きますか。</h2>
+
+  <ul class="examgate__rules">
+    <li><b>合格ラインは 80%</b>。全22問中 <b>18問以上</b>の正解で合格です。</li>
+    <li>試験モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
+    <li>他のタブやアプリに切り替えると、<b>その瞬間に問題文を隠します</b>。戻れば続きから再開できます。</li>
+    <li>離席した回数は記録され、<b>採点結果に表示されます</b>。</li>
+    <li>ページを閉じたり再読み込みしようとすると確認が出ます。<b>再読み込みすると解答は失われます。</b></li>
+  </ul>
+
+  <div class="examgate__btns">
+    <button type="button" id="examStart">試験モードで開始する</button>
+    <button type="button" id="examPractice">練習として解く</button>
   </div>
+
+  <p class="examgate__note">
+    <strong>技術的な限界について。</strong>Web ページは、他のタブやアプリを開くこと自体を禁止できません。ブラウザがページにその権限を与えていないためです。試験モードができるのは「<strong>離れたことを検知して、即座に内容を隠し、記録する</strong>」ところまでです。カンニングを物理的に不可能にする仕組みではなく、集中を保つための補助として使ってください。
+  </p>
+</section>
+
+<div id="quizMain" hidden>
+  <div class="quizbar">
+    <div class="shell quizbar__in">
+      <span class="quizbar__line">回答 <b id="qDone">0</b> / <span id="qTotal">22</span>
+        &nbsp;·&nbsp; 正解 <b id="qRight">0</b>
+        &nbsp;·&nbsp; 合格に必要 <span id="qNeed">18</span>問
+        &nbsp;·&nbsp; <span class="quizbar__verdict" id="qVerdict">判定前</span></span>
+      <span class="quizbar__leave">離席 <b id="qLeave">0</b>回</span>
+      <button type="button" id="qReset">シャッフルしてやり直す</button>
+    </div>
+  </div>
+
+  <main class="doc shell">
+    <div id="quizList"></div>
+    <div class="qresult" id="quizResult"></div>
+  </main>
 </div>
 
-<main class="doc shell">
-  <div id="quizList"></div>
-  <noscript>
-    <p style="padding:40px 0">この問題集は JavaScript で出題順をシャッフルしています。ブラウザの JavaScript を有効にしてください。</p>
-  </noscript>
-</main>
+<noscript>
+  <p class="shell" style="padding:40px 0">この問題集は JavaScript で出題順のシャッフルと採点を行っています。ブラウザの JavaScript を有効にしてください。</p>
+</noscript>
 
 <div class="pager">
   <a href="summary.html"><b>前 — まとめ</b><em>できることと、費用</em></a>
@@ -75,6 +115,7 @@
   <a href="index.html">目次へ</a>
 </footer>
 
+<script src="assets/exam.js"></script>
 <script src="assets/quiz-data.js"></script>
 <script src="assets/quiz.js"></script>
 </body>
