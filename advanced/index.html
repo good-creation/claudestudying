@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アドバンス — 学習ノート</title>
+<meta name="description" content="Claude 公式チャンネルの動画を日本語で再構成した学習ノート。Claude Code 入門コース・AI活用力とは別系統。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次" aria-current="page">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">アドバンス / Advanced</p>
+    <p class="eyebrow" style="color:var(--caution)">Claude 公式チャンネル — Claude Code 入門コース・AI活用力とは別系統</p>
+  </div>
+
+  <h1 class="hero__title">アドバンス<br><em>Advanced</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    Claude 公式チャンネル（YouTube）の単発動画を、時間軸に沿って日本語の学習ノートに再構成するコース。「AIとどう関わるか」の実践的なフレームワークを扱う AI活用力コースとは違い、こちらは<strong>AIモデルそのものの仕組み</strong>——予測、学習、限界——を短い動画1本ずつから掘り下げる。現時点では動画1本のみ収録しており、今後増える予定。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Claude<br><small>Anthropic 公式チャンネル</small></dd></div>
+    <div><dt>Topic</dt><dd><small>AI の仕組みを理解して使う</small></dd></div>
+    <div><dt>Lessons</dt><dd><span>1</span> <small>収録済み</small></dd></div>
+    <div><dt>Related</dt><dd><a href="../claude-code.html">Claude Code 入門コース ↗</a><br><a href="../ai-fluency/index.html">AI活用力（AI Fluency） ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="shell">
+
+  <div class="lessons">
+
+    <a class="lsn" href="01-what-happens-when-you-talk-to-ai.html">
+      <div class="lsn__n">01</div>
+      <div>
+        <h2 class="lsn__ja">AIに話しかけると何が起きているのか</h2>
+        <p class="lsn__sum">原題 <em>What happens when you talk to AI?</em>。AIが「予測」で動くしくみを、スマホの予測変換との違い、事前学習とファインチューニングという2段階の学習、トレーニングカットオフ、そして自信満々に間違えることがある理由まで解きほぐす。結果を良くする4つの習慣つき。</p>
+        <ul class="lsn__tags"><li>予測というしくみ</li><li>学習の2段階</li><li>トレーニングカットオフ</li></ul>
+      </div>
+      <div class="lsn__side"><span>4:47</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="02-tokens-and-embeddings.html">
+      <div class="lsn__n">02</div>
+      <div>
+        <h2 class="lsn__ja">トークンと埋め込み</h2>
+        <p class="lsn__sum">なぜ多くのLLMが「strawberry」の r の数を数えられなかったのか。テキストが数字の列になるまでを、トークン・語彙・バイトペアエンコーディングでたどり、意味を捉える埋め込み（数千次元のスコア）まで進む。</p>
+        <ul class="lsn__tags"><li>トークン</li><li>サブワード分割</li><li>BPE</li><li>埋め込み</li></ul>
+      </div>
+      <div class="lsn__side"><span>テキスト教材</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="03-parametric-memory-and-context.html">
+      <div class="lsn__n">03</div>
+      <div>
+        <h2 class="lsn__ja">パラメトリックメモリとコンテキスト</h2>
+        <p class="lsn__sum">モデルの答えは「重みの中」と「ウィンドウの中」のどちらから来るのか。100万トークンのウィンドウが埋まっていく内訳、限界を超えて会話を続けるコンパクション、セッションをまたぐ書き込みメモリまで。</p>
+        <ul class="lsn__tags"><li>パラメトリックメモリ</li><li>コンテキストウィンドウ</li><li>コンパクション</li><li>書き込みメモリ</li></ul>
+      </div>
+      <div class="lsn__side"><span>テキスト教材</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="04-can-you-trust-ai.html">
+      <div class="lsn__n">04</div>
+      <div>
+        <h2 class="lsn__ja">AIの答えは信じられるのか</h2>
+        <p class="lsn__sum">原題 <em>Can you trust what AI tells you?</em>。信頼はオン/オフのスイッチではなくダイヤルである、という捉え方。間違い方には幻覚と追従の2種類があること、そして確認のための4つの習慣。</p>
+        <ul class="lsn__tags"><li>信頼はダイヤル</li><li>幻覚と追従</li><li>確認の習慣</li></ul>
+      </div>
+      <div class="lsn__side"><span>5:03</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="05-why-do-models-hallucinate.html">
+      <div class="lsn__n">05</div>
+      <div>
+        <h2 class="lsn__ja">なぜAIは幻覚を起こすのか</h2>
+        <p class="lsn__sum">原題 <em>Why do AI models hallucinate?</em>。存在しない論文を作り出す実例から出発し、次に来る語を学ぶという性質上、情報が足りないところで推測が起きることを示す。「わからない」と言えるよう訓練する話まで。</p>
+        <ul class="lsn__tags"><li>ハルシネーション</li><li>推測が起きる場面</li><li>正直さの訓練</li></ul>
+      </div>
+      <div class="lsn__side"><span>5:13</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="06-what-is-sycophancy.html">
+      <div class="lsn__n">06</div>
+      <div>
+        <h2 class="lsn__ja">追従性 (sycophancy) とは何か</h2>
+        <p class="lsn__sum">原題 <em>What is sycophancy in AI models?</em>。「本当のこと」より「聞きたいこと」を返してしまう傾向。学習データに含まれる人当たりの良さが原因であること、適応と迎合の境界、そして事実に引き戻す手立て。</p>
+        <ul class="lsn__tags"><li>追従性</li><li>適応と迎合</li><li>立て直す手立て</li></ul>
+      </div>
+      <div class="lsn__side"><span>6:08</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="07-why-does-bias-exist.html">
+      <div class="lsn__n">07</div>
+      <div>
+        <h2 class="lsn__ja">なぜAIにバイアスが存在するのか</h2>
+        <p class="lsn__sum">原題 <em>Why does bias exist in AI models?</em>。分かりやすいバイアスと気づきにくいバイアス。大量のインターネットのテキストという出どころと、中立に訓練し対で検証するという取り組み。政治的な話題で使うときのコツつき。</p>
+        <ul class="lsn__tags"><li>バイアスの現れ方</li><li>学習データ</li><li>中立性の検証</li></ul>
+      </div>
+      <div class="lsn__side"><span>4:17</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="08-what-does-ai-know-about-you.html">
+      <div class="lsn__n">08</div>
+      <div>
+        <h2 class="lsn__ja">AIは自分について何を知っているのか</h2>
+        <p class="lsn__sum">原題 <em>What does AI actually know about you?</em>。共有した1つの情報を追いかけ、データの4つの行き先（会話そのもの／プロダクトの記憶／提供者のシステム／将来モデルの学習）をたどる。コントロールを保つ習慣つき。</p>
+        <ul class="lsn__tags"><li>データの行き先</li><li>プロダクトの記憶</li><li>コントロールを保つ</li></ul>
+      </div>
+      <div class="lsn__side"><span>4:50</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="09-diligence-statement.html">
+      <div class="lsn__n">09</div>
+      <div>
+        <h2 class="lsn__ja">AIデューデリジェンス声明の書き方</h2>
+        <p class="lsn__sum">AIの利用を透明に開示し、成果物に責任を負うための声明の書き方。含めるべき5つの要素、AIを使って書く4ステップ（プロンプト例つき）、そして開示が安心してできる組織文化の作り方まで。</p>
+        <ul class="lsn__tags"><li>開示と責任</li><li>5つの要素</li><li>プロンプト例</li></ul>
+      </div>
+      <div class="lsn__side"><span>テキスト教材</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+      <div class="lsn__side"><span>4:47</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+  <section class="gloss" style="border-top:0">
+    <h2 id="source">出典</h2>
+    <div class="warn">
+      <b>出典 — Claude Code 入門コース・AI活用力コースとは別コース</b>
+      <p>このセクション（<code>advanced/</code>）は<strong>Claude 公式チャンネル（YouTube）</strong>の単発動画を出典とする、<strong>Claude Code 入門コース・AI活用力（AI Fluency）コースとは別系統</strong>の学習ノートです。本サイトの他の2コースが「複数動画からなる公式コース」を出典とするのに対し、こちらは公式コースに属さない単発の解説動画を1本ずつ扱います。本文は YouTube 字幕から取得したトランスクリプトをもとに再構成しています。今後、収録本数を増やしていく見込みです。</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル（YouTube）</span>
+  <a href="https://youtu.be/j1Vk6Y-23CY" target="_blank" rel="noopener">youtu.be/j1Vk6Y-23CY ↗</a>
+</footer>
+
+<script src="../assets/terms.js"></script>
+</body>
+</html>

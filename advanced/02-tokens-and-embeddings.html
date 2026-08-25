@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 トークンと埋め込み — アドバンス 学習ノート</title>
+<meta name="description" content="Anthropic のインタラクティブ教材『Tokens & embeddings』の内容を再構成した日本語の学習ノート。テキストが数字になり、数字が意味を持つまで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み" aria-current="page">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 02 / Advanced</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式インタラクティブ教材 — 動画ではなくテキスト教材</p>
+  </div>
+
+  <h1 class="hero__title">トークンと<br><em>埋め込み</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    原題 <em>Tokens &amp; embeddings</em>。多くのLLMが「strawberry」に含まれる r の数を答えられなかった時代があった。なぜそんなことが起こるのか——その答えは、言語モデルが何を得意とし、何を苦手とし、どのようにして数学でテキストを生成するのかを驚くほど多く説明してくれる。以下は原文の説明部分を日本語で再構成したもの。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式<br><small>インタラクティブ教材</small></dd></div>
+    <div><dt>Topic</dt><dd><small>トークン化と埋め込みの仕組み</small></dd></div>
+    <div><dt>Format</dt><dd><small>テキスト教材（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">TOKEN</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">モデルに届くのは文字ではなく数字</h2>
+      <p>「Hello Claude」と入力して送信すると、モデルには何が届くのか。<a href="01-what-happens-when-you-talk-to-ai.html">01 AIに話しかけると何が起きているのか</a>で見た「予測」というしくみは、実際には数字の上で行われている。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Quick check</b>
+        <p>「Hello Claude」と入力して送信すると、モデルには何が届くと思うか、という4択のクイズが原文冒頭にある。選択肢は「『Hello』という単語と『Claude』という単語」「文字のリスト：H, e, l, l, o, ␣, C, l, a, u, d, e」「数字のリスト」「各単語の小さな画像」。原文はこの後の説明で答えを明かしていく構成になっている。</p>
+      </div>
+
+      <p>この3文字の文字列について考えてみる。<strong>"Hi!"</strong>。この情報を言語モデルに渡す方法はいくつか考えられる。</p>
+      <ol class="steps">
+        <li><h3>① 見たままの方法</h3><p>文字列："Hi!"。</p></li>
+        <li><h3>② 文字のリストとして</h3><p>['H', 'i', '!']。角括弧 [ ] はリストを意味し、この特定のリストには3つの項目が含まれる。</p></li>
+        <li><h3>③ 数字のリストとして</h3><p>すべての文字は標準的な数字に対応させることができる。'H' は72、'i' は105、'!' は33。</p></li>
+      </ol>
+
+      <div class="prompt">
+        <b>"Hi!" を3つの方法で表す</b>
+        <pre class="tree">string:      "Hi!"
+characters:  [ 'H', 'i', '!' ]
+numbers:     [ 72,  105, 33  ]</pre>
+      </div>
+
+      <p>これら3つのアプローチはすべてコードにおいて用途があるが、言語モデルは<strong>4つ目</strong>のことを行う。届くのは依然として数字のリストだが、固定された表から文字ごとに1つの数字が割り当てられるのではなく、モデルが学習した語彙から、<strong>テキストのチャンクごとに1つの数字</strong>が割り当てられる。数値IDを持つテキストのチャンクは<strong>トークン</strong>と呼ばれる。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Text → tokens</b>
+        <p>原文には、次の例をクリックしてトークン化を確認できるウィジェットがある：<code>Hello, are you there?</code> / <code>numbers</code> / <code>a long word</code> / <code>strawberry</code> / <code>emoji</code> / <code>a name</code> / <code>a typo</code> / <code>Japanese</code> / <code>apostrophes</code> / <code>Python</code>。「strawberry」の分割を見ると、r が複数のトークンにまたがって分割されうることが分かる仕掛けになっている。</p>
+      </div>
+
+      <div class="warn">
+        <b>原文の断り書き</b>
+        <p>これらの例における分割とID番号は、<strong>説明用のトークナイザーによるものであり、Claudeのものではない</strong>。Claudeのトークナイザーは単語を異なる方法で分割し、異なるIDを使う場合があるが、パターンはおおむね同じ。</p>
+      </div>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Over / Under クイズ</b>
+        <p>次の文字列をトークン化すると何個のトークンが生成されるかを予測するクイズ。原文はこの説明用トークナイザーによるカウントであり、特定のClaudeトークナイザーを正確に表すものではないが、概念はほとんどの実運用モデルで似ていると断っている。</p>
+        <ul class="acts">
+          <li><h3>“The quick brown fox.”</h3><p>Under 6 tokens / Over 6 tokens</p></li>
+          <li><h3>“supercalifragilisticexpialidocious”</h3><p>Under 4 tokens / Over 4 tokens</p></li>
+          <li><h3>“https://www.example.com/about”</h3><p>Under 5 tokens / Over 5 tokens</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">VOCAB</span><span class="sec__kind">語彙</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">なぜサブワードなのか</h2>
+      <p>なぜ文字ごとに1つのトークン、あるいは単語ごとに1つのトークンにしないのか、と疑問に思うかもしれない。トークナイザーが生成できる一意のトークンIDの集合は<strong>語彙</strong>と呼ばれる。ちょうど良いトークンサイズと語彙サイズを決めることは、今なお探求と研究の対象だが、ほとんどの公開トークナイザーはちょうど良い落としどころを目指している。</p>
+
+      <p><code>"The tokenizer rocks."</code> という文が、3つの異なるトークナイザーによって3つの異なる方法で分割される様子。</p>
+
+      <div class="prompt">
+        <b>極小トークン（文字ごとに1つ）— 20トークン</b>
+        <pre class="tree">[T] [h] [e] [ ] [t] [o] [k] [e] [n] [i] [z] [e] [r] [ ] [r] [o] [c] [k] [s] [.]</pre>
+        <p>これでは処理が遅く、コストもかかる。</p>
+      </div>
+
+      <div class="prompt">
+        <b>大きなトークン（単語ごとに1つ）— 4トークン</b>
+        <pre class="tree">[The] [ tokenizer???] [ rocks] [.]</pre>
+        <p>わずか4トークンで済むが、モデルは「tokenizer」のようなニッチな単語を知るために膨大な語彙を学習しなければならない。</p>
+      </div>
+
+      <div class="prompt">
+        <b>中間的な方法（単語またはサブワードごとに1つ）— 5トークン</b>
+        <pre class="tree">[The] [ token] [izer] [ rocks] [.]</pre>
+        <p>語彙にそれほど多くの専門的な単語を含める必要もない。</p>
+      </div>
+
+      <p>トークナイザーの語彙は<strong>モデルに組み込まれており、訓練後に変更することはできない</strong>。モデルが「トークナイザーに固定されている」のは、"quick" が何を意味するかではなく、<strong>token 4062 が何を意味するか</strong>を学習したからだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">BPE</span><span class="sec__kind">分割の仕組み</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">分割はどのように行われるのか（バイトペアエンコーディング）</h2>
+      <p>このような語彙は通常、手作業で選ばれるのではなく<strong>育てられる</strong>。最も一般的な手法は<strong>バイトペアエンコーディング（BPE）</strong>と呼ばれるアルゴリズムだ。これは可能な限り最小のトークン（個々のバイト）から始まるため、あらゆる可能な文字（そしてあらゆる絵文字の断片）がすでにカバーされている。次に、膨大な量のテキストをスキャンして最も頻繁に出現する隣接ペアを見つけ、そのペアを1つの新しい単位に結合して語彙に追加する。これを、語彙が研究者の目標サイズに達するまで繰り返す。一般的な単語は早い段階で出現し、最終的に単一のトークンになる。一方、まれな単語がそうなることはほとんどない。</p>
+
+      <div class="prompt">
+        <b>Claudeに可視化ツールを作ってもらうプロンプト — BPE</b>
+        <p>トークナイザーの仕組みを学んでいて、テキストが数値IDを持つトークンになることは理解しています。インタラクティブな可視化を作ることで、バイトペアエンコーディングを教えてください。まず、マージテーブルがどのように構築されるかを見せてください：いくつかの文から始めて、マージを1つずつ段階的に進められるようにし、一般的な単語が単一のトークンになっていく様子を観察できるようにしてください。それが理解できたら、完成したマージテーブルが新しいテキストにどのように適用されるかを見せてください。トークナイザーが見たことのない単語をどう扱うかも含めてです。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">DECODE</span><span class="sec__kind">出力の復元</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">出力のデコード</h2>
+      <p>モデルに送信するテキストは、処理される前にトークンIDのリストになる。モデルの出力も同様にトークンIDのリストだ。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Decode Claude's reply</b>
+        <p>プロンプト <code>Write me a tiny poem about how you process text.</code> に対する返信のトークンID列を、1つずつ単語に戻していくパズル。ヒントとして「句読点やより一般的な単語はIDが低く、大きな単語はIDが高い傾向がある」と示される。</p>
+      </div>
+
+      <div class="prompt">
+        <b>17個のトークンID</b>
+        <pre class="tree">[ 49019, 527, 2579, 11, 80135, 527, 6437, 11, 358, 1518, 5219, 11, 323, 779, 656, 499, 13 ]</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">EMBED</span><span class="sec__kind">意味の座標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">トークンから意味へ</h2>
+      <p>トークン化はすべてのテキストのチャンクに数字を割り当てるが、<strong>9906と9907は関連しているわけではない</strong>。単にリストの中で隣り合っているだけだ。モデルには、cat と kitten が意味的に近いことを知る方法が必要になる。たとえそれらのIDが語彙の中で大きく離れていたとしても。モデルはこれを、<strong>各トークンに多次元のスコアを割り当てる</strong>ことで実現している。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Score these words</b>
+        <p>cat / kitten / tiger / skyscraper の4語を、<strong>Cute（かわいさ）</strong>と<strong>Big（大きさ）</strong>の2軸のスライダーで採点し、「Find closest pair」で近い語の組を見つけるウィジェット。</p>
+      </div>
+
+      <p>LLMの<strong>埋め込み</strong>は、この採点と同じように機能する。各単語（正確には各トークン）が1つの点になり、似た単語（トークン）は互いに近くに配置される。実際の埋め込みは、2つの点でより複雑になる。</p>
+
+      <ul class="acts">
+        <li><h3>① 数千の次元がある</h3><p>2つだけでなく数千の次元がある。「危険」という軸も含めることができ、それがトラと子猫を区別するのに役立つかもしれないと想像できる。</p></li>
+        <li><h3>② 次元にラベルは付いていない</h3><p>単一の次元に捉えられた意味にはラベルが付いていない。人間にとって適切な言葉すら存在しないような何かを意味している場合もある。「かわいさ」はどこかに存在しているが、「かわいさ」と明示的に名付けられた軸はない。モデルは訓練中に次元を発明または発見し、それらが何を意味するかを解読するプロセスは<strong>解釈可能性研究</strong>の焦点の1つ。</p></li>
+      </ul>
+
+      <div class="prompt">
+        <b>次元数が増えるほど（"cat" の例）</b>
+        <pre class="tree">2 dimensions       "cat" = [ 8.0,  3.5 ]                          cute, big
+3 dimensions       "cat" = [ 8.0,  3.5,  1.0 ]                    cute, big, dangerous
+4,096 dimensions   "cat" = [ 0.031, -0.184, 0.772, ..., -0.094 ]  (no labels)</pre>
+        <p>正確な次元数はモデルによって異なる。4,096 はオープンウェイトモデルでよく見られる幅。</p>
+      </div>
+
+      <div class="prompt">
+        <b>Claudeに可視化ツールを作ってもらうプロンプト — 埋め込み</b>
+        <p>埋め込みについて学んでいます。トークンが多次元空間の中の1つの点になること、似たトークンは互いに近くに配置されること、そして次元には人間の言葉でラベルが付けられていないことは理解しています。インタラクティブな可視化を作ることで直感を養う手助けをしてください：数十個の日常的な単語を小さな埋め込み空間に配置し、任意の単語を選んでその最も近い隣人を見られるようにし、自分で単語を追加してそれがどこに配置されるか、なぜそうなるのかを見られるようにしてください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">WRAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p>LLMに送信するテキストは一連のトークンになり、トークンは埋め込みになる。</p>
+
+      <div class="prompt">
+        <b>text → token → embedding</b>
+        <pre class="tree">text:        "Hi"
+token:       [ 13347 ]
+embedding:   [ 0.12, -0.48, 0.91, ..., 0.07 ]</pre>
+      </div>
+
+      <p>次の4つの文が正しいと感じられるなら、このレッスンが教えようとしていたことを習得できている。</p>
+      <ul class="acts">
+        <li><h3>100文字のURLが100文字の文よりも多くのトークンを消費する理由を説明できる</h3></li>
+        <li><h3>テキストのチャンクがおおよそ何トークンになるか予測できる</h3></li>
+        <li><h3>モデルがなぜトークナイザーに固定されているのか、そしてなぜまれな単語が細かく分割されるのかを理解している</h3></li>
+        <li><h3>「スコア」「次元」「近い」という言葉を使って、埋め込みとは何か、そしてなぜそれが重要なのかを説明できる</h3></li>
+      </ul>
+
+      <div class="tip">
+        <b>01 との関連</b>
+        <p><a href="01-what-happens-when-you-talk-to-ai.html">01 AIに話しかけると何が起きているのか</a>で見た「strawberry の r の数を数えられない」という話は、ここで見たトークン化のしくみが理由になっている——モデルが見ているのは文字ではなく、しばしば複数文字をまとめたトークンだからだ。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="01-what-happens-when-you-talk-to-ai.html"><b>前のレッスン — 01</b><em>AIに話しかけると何が起きているのか</em></a>
+  <a class="is-next" href="03-parametric-memory-and-context.html"><b>次のレッスン — 03</b><em>パラメトリックメモリとコンテキスト</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式インタラクティブ教材「Tokens &amp; embeddings」</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 なぜAIは幻覚を起こすのか — アドバンス 学習ノート</title>
+<meta name="description" content="Claude 公式チャンネル動画『Why do AI models hallucinate?』の内容を再構成した日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか" aria-current="page">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 05 / Advanced</p>
+    <p class="eyebrow" style="color:var(--signal)">5:13 · 全文書き起こしより再構成</p>
+  </div>
+
+  <h1 class="hero__title">なぜAIは<br><em>幻覚を起こすのか</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    原題 <em>Why do AI models hallucinate?</em>。そこまで高度なはずの AI が、なぜ時どき事実でないことを作り話してしまうのか。存在しない論文を挙げてしまった実例から出発し、その裏にあるしくみ、Anthropic 側の対策、そして自分で見抜くための手がかりまでを、話の流れに沿って日本語で再構成したもの。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:0%"><s>なぜ作り話をしてしまうのか</s><i></i><b>0:00</b></div>
+      <div class="tl__tick" style="left:16.29%"><s>実例：存在しない論文</s><i></i><b>0:51</b></div>
+      <div class="tl__tick" style="left:30.67%"><s>AIはどう学習しているか</s><i></i><b>1:36</b></div>
+      <div class="tl__tick" style="left:35.46%"><s>情報が足りないと推測する</s><i></i><b>1:51</b></div>
+      <div class="tl__tick" style="left:46.33%"><s>正直であるよう訓練する</s><i></i><b>2:25</b></div>
+      <div class="tl__tick" style="left:66.45%"><s>幻覚が起きやすい場面</s><i></i><b>3:28</b></div>
+      <div class="tl__tick" style="left:71.25%"><s>幻覚を減らす実践のコツ</s><i></i><b>3:43</b></div>
+      <div class="tl__tick" style="left:91.37%"><s>終わらない課題</s><i></i><b>4:46</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>05:13</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式チャンネル</small></dd></div>
+    <div><dt>Runtime</dt><dd><span>5:13</span> <small>/ 313s</small></dd></div>
+    <div><dt>Views</dt><dd><span>381,798</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/005JLRt3gXI" target="_blank" rel="noopener">youtu.be/005JLRt3gXI ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="313">
+
+  <section class="sec" id="s1" data-start="0" data-label="なぜ作り話をしてしまうのか">
+    <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">これだけ高度なのに、なぜ作り話をしてしまうのか</h2>
+      <p>Claude を作る Anthropic では、正確な情報を返せるよう多くの取り組みをしている。それでも AI は時どき物事をでっち上げてしまう。この誤りは<strong>ハルシネーション（幻覚）</strong>と呼ばれ、単なる間違いより厄介なことが多い。AI がとても自信ありげに振る舞ったり、自分が正しいと相手を説得しようとしたりするからだ。</p>
+      <p>ハルシネーションの現れ方はさまざまだ。存在しない研究論文を引用する、統計をでっち上げる、実在の人物や出来事について事実を誤って伝える、といった形で出てくる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="51" data-label="実例：存在しない論文">
+    <div class="sec__mark"><div><span class="sec__t">0:51</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">実例：Jared Kaplan の論文を尋ねると</h2>
+      <p>Jared Kaplan による論文について Claude に尋ねると、自信たっぷりに答えが返ってくるが、挙げられたタイトルはどれも実在しない。Claude は1年前と比べてもハルシネーションがずっと減っており、こうした例をわざわざ探すのにも骨が折れたほどだ。ハルシネーションを減らすことに多くの労力が注がれてきた成果でもある。</p>
+      <p>ただし、それこそが厄介な点でもある。ハルシネーションは予測しにくく、見つけにくく、間違った答えがまさに正しい答えのように見えてしまう。しかも起こる頻度が下がってきているぶん、人は AI の仕事をわざわざ確認しなくなりがちだ。ここからは、なぜこれが起きるのか、Anthropic は何をしているのか、使う側はどう見抜けるのかを見ていく。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="96" data-label="AIはどう学習しているか">
+    <div class="sec__mark"><div><span class="sec__t">1:36</span><span class="sec__kind">しくみ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">インターネットの文章から「次に来る語」を学ぶ</h2>
+      <p>Claude のような AI アシスタントは、インターネット上の膨大な文章を読むことで学習し、次にどんな語やアイデアが続きやすいかを見抜くのがうまくなる。スマホが入力中に次の語を提案してくるのと似た仕組みで、たいていはこれでうまくいく。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="111" data-label="情報が足りないと推測する">
+    <div class="sec__mark"><div><span class="sec__t">1:51</span><span class="sec__kind">原因</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">情報が足りないところでは、AI は推測する</h2>
+      <p>あまり知られていない研究者による特定の論文のような、マニアックな話題を聞かれたときには、AI が拠り所にできる情報が十分に無い。それでも役に立とうとして、当て推量をしてしまい、その推測が外れることがある。</p>
+      <p>これは、人気のある本を片っ端から読んでいて雑学に自信のある友人に似ている。専門家らしく見せたい気持ちから、「わからない」と認める代わりに、自信満々に間違ったことを言ってしまうことがある——AI も役に立つよう訓練されているぶん、自信が無いときでも何かしらの答えを返したがる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="145" data-label="正直であるよう訓練する">
+    <div class="sec__mark"><div><span class="sec__t">2:25</span><span class="sec__kind">対策</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">「わからない」と言えるよう、正直さを訓練する</h2>
+      <p>これを和らげる手立てはある。訓練の過程で、Claude が正直であること、確信が持てないときは「わからない」と言うことを教えている。正直であることは正しい行いであると同時に、より役に立つことの一部でもあると位置づけている。</p>
+      <p>Claude をわざと躓かせるために設計された、マニアックな事実・ニッチな話題・正直な答えが「わからない」であるはずの質問を何千も使い、定期的にテストしている。Claude が自信の無さを正しく示せているか、出典や統計をでっち上げていないか、間違いを自信満々に言い切るのではなく適切に留保できているかといった点を測り、問題を見つけて進捗を追っている。</p>
+      <p>Claude の新しいバージョンが出るたびに改善は見られているが、業界全体にとって今も続く課題であり、解決済みの問題ではないことも認めている。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="208" data-label="幻覚が起きやすい場面">
+    <div class="sec__mark"><div><span class="sec__t">3:28</span><span class="sec__kind">傾向</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ハルシネーションが起きやすい場面の見分け方</h2>
+      <p>ハルシネーションが起きやすいのは、具体的な事実・統計・引用を求めているとき、話題がマニアックかニッチかごく最近のものであるとき、あまり広くは知られていない実在の人物や場所について尋ねているとき、日付・名前・数値のような正確な細部が必要なときだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="223" data-label="幻覚を減らす実践のコツ">
+    <div class="sec__mark"><div><span class="sec__t">3:43</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ハルシネーションを減らすための実践のコツ</h2>
+      <ol class="steps">
+        <li><h3>① 主張の裏付けとなる出典を求める</h3><p>すでに出典が示されている場合も、その出典が実際に主張を裏付けているかどうかを確認するよう、あらためて頼む。</p></li>
+        <li><h3>② 「わからなくてもいい」と先に伝える</h3><p>不確かなときは、AI にどれくらい自信があるか、何かおかしいところが無いかを尋ねる。AI 自身は間違いに気づいていながら、自信ありげに振る舞いたがるだけのことも多い。</p></li>
+        <li><h3>③ 不安な答えは新しい会話で検証する</h3><p>ある答えに確信が持てないときは、新しいチャットを開き、その答えの誤りを見つけて、出典が主張を裏付けているかを確認するよう頼む。</p></li>
+        <li><h3>④ 重要な作業では信頼できる情報源と突き合わせる</h3><p>疑ってかかり、具体的な数値・日付・引用は必ず二重に確認する。何かがおかしいと感じたら、追加の質問を重ねる。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="286" data-label="終わらない課題">
+    <div class="sec__mark"><div><span class="sec__t">4:46</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ハルシネーションを減らすことは、これからも続く目標</h2>
+      <p>ハルシネーションを減らすことは、AI をあらゆる人にとってより信頼でき、より役立つものにするための重要な目標であり、この分野での進捗は今後もブログで共有されていく。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の字幕データから取得したもの。原文はそのまま残してある。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>[music] &gt;&gt; If AI is so advanced, why does it sometimes make stuff up? My name is Jordan and I work at Anthropic. We make Claude, an AI assistant, and we do a lot to make sure</p></div>
+      <div><span>0:18</span><p>it gives you accurate information. But sometimes AI still make things up. We call these errors hallucinations, and they're often worse than just making a mistake, because the AI will appear very confident, or even try to convince you that it's right.</p></div>
+      <div><span>0:36</span><p>Hallucinations can show up in a lot of ways. The AI might cite a research paper that doesn't exist, make up fake statistics, or get facts wrong about real people or real events. Here's what it looks like. You ask Claude to tell you about some papers</p></div>
+      <div><span>0:51</span><p>written by Jared Kaplan. It confidently gives you answers. None of those titles actually exist. Claude hallucinates much less than even a year ago. Honestly, it took us a while to find an example like this, because we've put a lot of work into reducing</p></div>
+      <div><span>1:06</span><p>hallucinations in Claude. But that's kind of the point. Hallucinations are hard to anticipate, hard to catch, and the wrong answer often looks exactly like it could be the right one. And since hallucinations are becoming more rare, people often don't bother to</p></div>
+      <div><span>1:22</span><p>check the AI's work. So let's talk about why this happens, what we're doing about it, and how you can catch hallucinations when you use AI. AI assistants like Claude learn by</p></div>
+      <div><span>1:36</span><p>reading huge amounts of text from the internet. They get really good at figuring out what words or ideas typically come next. Kind of like how your phone suggests the next word as you type. This works well most of the time. But when you ask about something</p></div>
+      <div><span>1:51</span><p>obscure, like specific research papers from a relatively unknown researcher, there just isn't enough information for the AI to draw from. So, it tries to be helpful and takes a guess. And sometimes that guess is wrong.</p></div>
+      <div><span>2:06</span><p>It's a bit like asking a friend who's read every popular book and takes a lot of pride in knowing all of the random facts about them. But, because they want to seem like the expert, they sometimes say something confidently wrong instead of admitting, "I don't know."</p></div>
+      <div><span>2:25</span><p>AIs are trained to be helpful. So, they want to give you some answer even when they're not sure. But, we have ways to mitigate this. During training, we teach Claude to be honest and to say, "I don't know." when it's not sure.</p></div>
+      <div><span>2:40</span><p>We try to teach Claude that being honest is both the right thing to do and also part of how to be more helpful. We regularly test Claude with thousands of questions specifically designed to trip it up. Obscure facts, niche topics, questions where the truthful answer is,</p></div>
+      <div><span>2:57</span><p>"I don't know." We measure things like how often does Claude correctly say it's unsure? Does it make up citations or statistics? How often does it hedge appropriately versus stating something false with confidence? These tests help us catch problems and</p></div>
+      <div><span>3:11</span><p>track our progress. With each new version of Claude, we've seen improvements. But, we're honest that this is an ongoing challenge for the entire AI field. Not at all a solved problem. If you're wondering how to spot when</p></div>
+      <div><span>3:28</span><p>this happens, hallucinations are most likely to happen in a few types of situations. For example, if you're asking for specific facts, statistics, or citations. Or if the topic is obscure, niche, or very recent.</p></div>
+      <div><span>3:43</span><p>If you're asking about real but not widely known people or places, or when you need exact details like dates, names, or numbers. Here some tips you can use to reduce hallucinations. First, ask the AI to find sources to back up its claims. And</p></div>
+      <div><span>4:00</span><p>if it already gave sources, ask it to check that those sources actually support what it's saying. Try telling the AI up front, "It's okay if you don't know." And if you're unsure about an answer, ask the AI how confident it is and</p></div>
+      <div><span>4:15</span><p>whether anything might be wrong. Often the AI knows it's wrong, but just wanted to sound confident. If you have an answer you're unsure about, start a new chat and ask the AI to find errors in the answer and to confirm that the sources support the</p></div>
+      <div><span>4:31</span><p>statements. For critical work, you should cross-reference with trusted sources. Be skeptical and double-check specific numbers, dates, and citations. If something sounds off, ask follow-up questions.</p></div>
+      <div><span>4:46</span><p>Reducing hallucinations is an important goal to make AIs more trustworthy and useful to everyone. We'll continue to share our progress in this area on our blog. You can learn about other tools and frameworks for working with AI in the Anthropic Academy.</p></div>
+      <div><span>5:06</span><p>&gt;&gt; [music]</p></div>
+    </div>
+  </details>
+
+  <div class="tip">
+    <b>前のレッスンとのつながり</b>
+    <p>AI が自信ありげに間違えることがある理由は <a href="04-can-you-trust-ai.html">04 AIの答えは信じられるのか</a> でも触れている。あわせて読むと、確認のダイヤルをどこまで上げるべきかがつかみやすい。</p>
+  </div>
+
+  <div class="tip">
+    <b>AI活用力コースとの関連（推測）</b>
+    <p>この回の内容は、本サイト AI活用力コースの <a href="../ai-fluency/05-capabilities-limits.html">05 生成 AI の能力と限界</a> と重なる部分が多い。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。学習の仕組みや情報不足時の推測という説明は、05 の能力と限界の技術的な整理と近い。</p>
+  </div>
+
+</main>
+
+<div class="pager">
+  <a href="04-can-you-trust-ai.html"><b>前のレッスン — 04</b><em>AIの答えは信じられるのか</em></a>
+  <a class="is-next" href="06-what-is-sycophancy.html"><b>次のレッスン — 06</b><em>追従性 (sycophancy) とは何か</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「Why do AI models hallucinate?」</span>
+  <a href="https://youtu.be/005JLRt3gXI" target="_blank" rel="noopener">youtu.be/005JLRt3gXI ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

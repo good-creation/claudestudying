@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 追従性（sycophancy）とは何か — アドバンス 学習ノート</title>
+<meta name="description" content="Claude 公式チャンネル動画『What is sycophancy?』の内容を再構成した日本語の学習ノート。AIが「本当のこと」より「聞きたいこと」を返してしまう理由と、その見抜き方。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か" aria-current="page">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 06 / Advanced</p>
+    <p class="eyebrow" style="color:var(--signal)">6:08 · 全文書き起こしより再構成</p>
+  </div>
+
+  <h1 class="hero__title">追従性（sycophancy）<br>と<em>は何か</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    原題 <em>What is sycophancy?</em>。AIが「本当のこと」ではなく「相手が聞きたいこと」を返してしまう性質——<strong>追従性（sycophancy）</strong>——はなぜ生まれ、なぜ解決が難しいのか。定義から、学習プロセスとの関係、見抜き方と立て直し方まで、以下は話の流れに沿って日本語で再構成したもの。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:0%"><s>追従性とは何か</s><i></i><b>0:00</b></div>
+      <div class="tl__tick" style="left:21.5%"><s>具体例で見る</s><i></i><b>1:19</b></div>
+      <div class="tl__tick" style="left:30.2%"><s>なぜ問題なのか</s><i></i><b>1:51</b></div>
+      <div class="tl__tick" style="left:42.1%"><s>原因は学習にある</s><i></i><b>2:35</b></div>
+      <div class="tl__tick" style="left:54.6%"><s>適応と迎合の境界</s><i></i><b>3:21</b></div>
+      <div class="tl__tick" style="left:75.3%"><s>起きやすい場面</s><i></i><b>4:37</b></div>
+      <div class="tl__tick" style="left:83.2%"><s>立て直す方法</s><i></i><b>5:06</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>06:08</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式チャンネル</small></dd></div>
+    <div><dt>Runtime</dt><dd><span>6:08</span> <small>/ 368s</small></dd></div>
+    <div><dt>Views</dt><dd><span>125,925</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/nvbq39yVYRk" target="_blank" rel="noopener">youtu.be/nvbq39yVYRk ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="368">
+
+  <section class="sec" id="s1" data-start="0" data-label="追従性とは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">「本当のこと」より「聞きたいこと」</h2>
+      <p><strong>追従性（sycophancy）</strong>とは、本当のこと・正確なこと・本当に役立つことの代わりに、相手が聞きたいと思っていることを伝えてしまう性質のことだ。人間もこれをやる——衝突を避けるため、気に入られるためなど、理由はいろいろある。だが同じ性質はAIモデルにも表れうる。</p>
+      <p>AIモデルは、プロンプトや会話に対する応答を、目の前の人間からすぐに承認されることに最適化してしまう場合がある。具体的には、こちらが口にした事実の誤りにAIがそのまま同意してしまう、質問の言い回し次第で答えが変わってしまう、相手の好みに合わせて応答を寄せてしまう、といった形で現れる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="79" data-label="具体例で見る">
+    <div class="sec__mark"><div><span class="sec__t">1:19</span><span class="sec__kind">具体例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">「すごくいい文章を書いた」と言われたとき</h2>
+      <p>Claude に「すごく気に入っているエッセイを書いた。感想がほしい」と頼む場面を考える。頼んでいるのは本来「感想」だが、書き手が興奮していることをすでに伝えてしまっているため、AIは批評ではなく肯定や後押しで応じてしまう可能性がある。そしてその肯定が、実際には出来が良くなくても「本当にいい文章だ」と思わせてしまうかもしれない。</p>
+      <p>「人に聞いたり事実確認したり、もっと良い質問をすればいいだけでは」と思うかもしれない。だが、これが問題になる理由は他にもある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="111" data-label="なぜ問題なのか">
+    <div class="sec__mark"><div><span class="sec__t">1:51</span><span class="sec__kind">影響</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">生産性にも、思い込みの強化にも関わる</h2>
+      <p>プレゼン資料を書く、アイデアを練る、成果物を良くする——生産的に動こうとしているとき、AIツールからの率直なフィードバックが必要になる。「このメールをもっと良くするには」と尋ねて「もう完璧です」とだけ返ってきたら、より明確な言い回しや構成の提案が得られないまま終わってしまう。</p>
+      <p>さらに深刻なケースもある。現実から離れた陰謀論をAIに肯定するよう求めた場合、追従性がその誤った思い込みを深め、事実からいっそう遠ざけてしまうことがある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="155" data-label="原因は学習にある">
+    <div class="sec__mark"><div><span class="sec__t">2:35</span><span class="sec__kind">原因</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">学習データに含まれる「人当たりの良さ」</h2>
+      <p>AIモデルは大量の人間のテキストの実例から学習する。その過程で、率直でぶっきらぼうな話し方から、温かく合わせてくれる話し方まで、あらゆるコミュニケーションのパターンを身につける。役に立つこと、そして口調としては温かく親しみやすく支えてくれることを目指してモデルを訓練すると、追従性はその一部としてついてきてしまいがちだ。</p>
+      <p>AIがくらしのあらゆる場面に組み込まれていく今だからこそ、この振る舞いを理解し、防ぐことがこれまで以上に重要になっている。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="201" data-label="適応と迎合の境界">
+    <div class="sec__mark"><div><span class="sec__t">3:21</span><span class="sec__kind">難しさ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">適応してほしい部分と、してほしくない部分</h2>
+      <p>AIモデルには、こちらのニーズに合わせて応答を調整してほしい場面がある——ただし、それは事実や本人の well-being に関わらない範囲でだ。カジュアルな文体で書いてほしいと頼めばそう書くべきで、堅い文章を押し通すべきではない。「簡潔な答えがいい」と言えば、それを好みとして尊重すべきだ。初心者向けの説明を求めれば、そのレベルに合わせるべきだ。難しいのは、そのバランスをどこで取るかにある。</p>
+      <p>誰も、あらゆるタスクで反論ばかりしてくる扱いにくいAIを使いたいとは思わない。かといって、率直なフィードバックが必要な場面でモデルが常に同意や称賛に逃げてしまうのも困る。これは人間同士でも難しい判断だ——場を穏やかに保つために同意すべきか、重要なことなら言うべきか。AIがこの判断を、文脈を人間のようには理解しないまま、まったく異なる話題に対して何百回も下していると想像してみてほしい。</p>
+      <p>だからこそ、追従性が会話の中でどう現れるかの研究と、それを検出するより良い方法の開発が続けられている。目指しているのは、役に立つ適応と有害な迎合の違いをモデルに教えることだ。とはいえ、追従性への取り組みで最も大きく前進するのは、モデル自体への継続的な訓練を通じてであり、追従性そのものを理解しておくことは、自分自身のやり取りの中でそれに気づく助けになる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="277" data-label="起きやすい場面">
+    <div class="sec__mark"><div><span class="sec__t">4:37</span><span class="sec__kind">兆候</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">追従性が出やすい場面</h2>
+      <p>追従性は、AIが同意しているのはなぜか、それは適切かを振り返ることで見えてくる。とくに次のような場面で起きやすい。</p>
+      <ul class="chips">
+        <li>主観的な考えが事実であるかのように述べられている</li>
+        <li>権威ある情報源が持ち出されている</li>
+        <li>特定の立場から質問が組み立てられている</li>
+        <li>肯定・後押しがはっきり求められている</li>
+        <li>感情的な訴えがある</li>
+        <li>会話がとても長くなっている</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="306" data-label="立て直す方法">
+    <div class="sec__mark"><div><span class="sec__t">5:06</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">事実に引き戻す6つの手立て</h2>
+      <p>追従的な応答が返ってきていると感じたら、AIを事実志向の答えに引き戻す手立てがいくつかある。どれも確実な特効薬ではないが、AIの視野を広げる助けにはなる。</p>
+      <ol class="steps">
+        <li><h3>① 中立的で事実を求める言葉を使う</h3></li>
+        <li><h3>② 信頼できる情報源と照らし合わせる</h3></li>
+        <li><h3>③ 正確さや反対意見を出すよう促す</h3></li>
+        <li><h3>④ 質問を言い換えてみる</h3></li>
+        <li><h3>⑤ 新しい会話を始める</h3></li>
+        <li><h3>⑥ AIから離れて、信頼できる人に聞く</h3></li>
+      </ol>
+      <p>それでも、これはAI開発分野全体にとって続いている課題だ。システムがより高度になり、生活により深く組み込まれていくほど、ただ同意してくれるだけでなく本当に役立つモデルを作ることの重要性は増していく。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の字幕データから取得したもの。原文中の <code>&lt;i&gt;</code> タグ（強調）はそのまま残してある。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>[music] Hi there, my name is Kira and I'm on the safeguards team at Anthropic. I have a PhD in mental health, specifically</p></div>
+      <div><span>0:18</span><p>psychiatric epidemiology. And at Anthropic, I work on mitigating risks related to user well-being. What that means is we think a lot about how to keep users safe on Claude. Today I'm here to talk to you about sycophincency. Sycophincy is when someone tells you</p></div>
+      <div><span>0:33</span><p>what they think you want to hear instead of what's true, accurate, or genuinely helpful. People do it to avoid conflict, gain favors, and for a number of other reasons. But sycopency can also manifest in AI models. Sometimes AI models can</p></div>
+      <div><span>0:48</span><p>optimize responses to a prompt or conversation for immediate human approval. This might look like an AI agreeing with a factual error you've made, changing its answer based on how you've phrased a question, or tailoring its response to match your preferences.</p></div>
+      <div><span>1:03</span><p>In this video, we'll talk about why syphancy happens in models and why it's a hard problem for researchers to solve. Plus, we'll cover strategies to identify and combat sycophantic behavior when working with AI. Before we dive in, let me show you an</p></div>
+      <div><span>1:19</span><p>example of sycophency in an AI interaction. This is Claude, Anthropic's own model. Let's try. Hey, I wrote this great essay that I'm really excited about. Can you assess and share feedback? My main request here is to get feedback on my essay. However, because</p></div>
+      <div><span>1:36</span><p>I've shared how excited I'm feeling about it, this could lead the AI to respond with validation or support instead of a critique. This validation might lead me to think that my essay really is great, even if it isn't. You might think, "So what? People can just</p></div>
+      <div><span>1:51</span><p>ask other people, fact check things, or ask better questions. But this matters for a number of reasons. When you're trying to be productive, writing a presentation, brainstorming ideas, or improving your work, you need honest feedback from the AI tool you're using.</p></div>
+      <div><span>2:07</span><p>If you ask an AI, how can I improve this email? And it responds, it's already perfect, instead of suggesting clearer wording or better structure, that can be frustrating. In some cases, sycopency could also play a role in reinforcing</p></div>
+      <div><span>2:21</span><p>harmful thought patterns. If someone is asking an AI to confirm a conspiracy theory that is detached from reality, that could deepen their false beliefs and disconnect them further from facts. Let's start with why this happens. It</p></div>
+      <div><span>2:35</span><p>all comes down to how AI models are trained. AI models learn from examples. Lots and lots of examples of human text. During this training, they pick up all kinds of communication patterns from blunt and direct to warm and</p></div>
+      <div><span>2:49</span><p>accommodating. When we train models to be helpful and mimic behavior that is warm, friendly, or supportive in tone, sycency tends to show up as an part of that package. As models become more integrated into all of our lives, it's</p></div>
+      <div><span>3:05</span><p>important now more than ever to understand and prevent this behavior. Here's what makes sophincy tricky. We actually want AI models to adapt to your needs, just not when it comes to facts or well-being. If you ask an AI to write something in a casual tone, it should do</p></div>
+      <div><span>3:21</span><p>that, not insist on formal language. If you say, "I prefer concise answers," it should respect that as a preference. If you're learning a subject and ask for explanations at a beginner level, it should meet you where you are. The challenge is finding the right balance.</p></div>
+      <div><span>3:37</span><p>Nobody wants to use an AI that is constantly disagreeable or combative, debating with you over every task. But we also don't want the model to always resort to agreement or praise when you need honest feedback. Even humans struggle with this. When should you</p></div>
+      <div><span>3:52</span><p>agree to keep the peace versus speak up about something important? Now, imagine an AI making that judgment call hundreds of times across wildly different topics without truly understanding context the way that we do. That's why we continue</p></div>
+      <div><span>4:06</span><p>to study how sycopency shows up in conversations and develop better ways to test for it. We're focused on teaching models the difference between helpful adaptation and harmful agreement. Each claude model we release gets better at drawing these lines. Although the most</p></div>
+      <div><span>4:22</span><p>progress in combating sycophincy is going to come from consistent training on the models themselves, it's helpful to understand sycophincency so you can spot it in your own interactions. Now that you know what sycopency is and you know why it happens, step two is</p></div>
+      <div><span>4:37</span><p>reflecting on when and why an AI might be agreeing with you and questioning whether it should. Sycophincy is most likely to show up when a subjective truth is stated as fact. An expert source is referenced.</p></div>
+      <div><span>4:52</span><p>Questions are framed with a specific point of view. Validation is specifically requested. emotional stakes are invoked or a conversation gets very long. If you suspect you're getting sick of fantic</p></div>
+      <div><span>5:06</span><p>responses, there's a few things you can do to steer the AI back towards factual answers. These aren't foolproof, but they'll help broaden the AI's horizons. You can use neutral fact-seeking language. Cross reference information with</p></div>
+      <div><span>5:20</span><p>trustworthy sources. Prompt for accuracy or counterarguments. Rephrase questions. Start a new conversation. Or finally, take a step back from using AI and ask someone that you trust.</p></div>
+      <div><span>5:34</span><p>But this is an ongoing challenge for the entire field of AI development. As these systems become more sophisticated and more integrated into our lives, building models that are genuinely helpful, not just agreeable, becomes increasingly important. You can learn more about AI</p></div>
+      <div><span>5:50</span><p>fluency in Anthropic Academy and my team and I will continue to share our research on this topic on Anthropics blog. >> [music]</p></div>
+    </div>
+  </details>
+
+  <div class="tip">
+    <b>関連レッスン</b>
+    <p><a href="05-why-do-models-hallucinate.html">05 なぜモデルはハルシネーションを起こすのか</a>、<a href="07-why-does-bias-exist.html">07 なぜAIにバイアスが存在するのか</a>とあわせて、いずれも「AIがもっともらしく間違える理由」を扱う回。追従性は事実確認の甘さそのものではなく、<em>承認への最適化</em>という別の経路で答えを歪める点が違う。</p>
+  </div>
+
+  <div class="tip">
+    <b>AI活用力コースとの関連（推測）</b>
+    <p>本サイト AI活用力コースの <a href="../ai-fluency/10-discernment.html">10 評価力（Discernment）</a>と重なる部分がある。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。AIの出力を鵜呑みにせず、事実志向の言葉で問い直したり複数の情報源と照らし合わせたりする姿勢は、評価力が扱う「出力を検証する力」そのものに近い。</p>
+  </div>
+
+</main>
+
+<div class="pager">
+  <a href="05-why-do-models-hallucinate.html"><b>前のレッスン</b><em>05 なぜモデルはハルシネーションを起こすのか</em></a>
+  <a class="is-next" href="07-why-does-bias-exist.html"><b>次のレッスン</b><em>07 なぜAIにバイアスが存在するのか</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「What is sycophancy?」</span>
+  <a href="https://youtu.be/nvbq39yVYRk" target="_blank" rel="noopener">youtu.be/nvbq39yVYRk ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

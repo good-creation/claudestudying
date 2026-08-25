@@ -148,3 +148,43 @@ if os.path.exists("cloudflare.html"):
     print("  ok    cloudflare.html")
 else:
     print("  SKIP  cloudflare.html (not found)")
+
+
+# --- 別コース advanced/ の nav ----------------------------------------------
+# アドバンスコース。ai-fluency/ と同じく専用の nav を持つ。
+# 動画由来のレッスンとテキスト教材由来のレッスンが混在するが、nav 上は区別しない。
+
+ADV_LESSONS = [
+    ("01-what-happens-when-you-talk-to-ai.html", "01", "AIに話しかけると何が起きているのか"),
+    ("02-tokens-and-embeddings.html",            "02", "トークンと埋め込み"),
+    ("03-parametric-memory-and-context.html",    "03", "パラメトリックメモリとコンテキスト"),
+    ("04-can-you-trust-ai.html",                 "04", "AIの答えは信じられるのか"),
+    ("05-why-do-models-hallucinate.html",        "05", "なぜAIは幻覚を起こすのか"),
+    ("06-what-is-sycophancy.html",               "06", "追従性 (sycophancy) とは何か"),
+    ("07-why-does-bias-exist.html",              "07", "なぜAIにバイアスが存在するのか"),
+    ("08-what-does-ai-know-about-you.html",      "08", "AIは自分について何を知っているのか"),
+    ("09-diligence-statement.html",              "09", "AIデューデリジェンス声明の書き方"),
+]
+
+def adv_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次"%s>目次</a>'
+                % (' aria-current="page"' if current == "index.html" else ""))
+    for href, num, ja in ADV_LESSONS:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
+                    % (href, ja, num, ja, cur, num))
+    rows.append('      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>')
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+for href, num, ja in [("index.html", "目次", "アドバンスコース 目次")] + ADV_LESSONS:
+    path = os.path.join("advanced", href)
+    if not os.path.exists(path):
+        print("  SKIP  %s (not found)" % path); continue
+    s_page = io.open(path, encoding="utf-8").read()
+    new, n = pat.subn(adv_nav_for(href), s_page, count=1)
+    if n != 1:
+        print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
+    io.open(path, "w", encoding="utf-8").write(new)
+    print("  ok    %s" % path)

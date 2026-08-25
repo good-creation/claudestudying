@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 パラメトリックメモリとコンテキスト — アドバンス 学習ノート</title>
+<meta name="description" content="Anthropic のインタラクティブ教材『Parametric memory & context』の内容を再構成した日本語の学習ノート。AIの答えはどこから来るのか。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト" aria-current="page">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 03 / Advanced</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式インタラクティブ教材 — 動画ではなくテキスト教材</p>
+  </div>
+
+  <h1 class="hero__title">パラメトリックメモリと<br><em>コンテキスト</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    原題 <em>Parametric memory &amp; context</em>。多くの人がAIチャットを検索の代替として使っている。これを安全に行うには、LLMがどこから情報を得ているかを理解することが重要だ。LLMが誤った情報を生成する場合、それは通常、欠落した、誤った、または低品質なコンテキストの副作用となる。以下は原文の説明部分を日本語で再構成したもの。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式<br><small>インタラクティブ教材</small></dd></div>
+    <div><dt>Topic</dt><dd><small>モデルの知識の出どころとコンテキストの管理</small></dd></div>
+    <div><dt>Format</dt><dd><small>テキスト教材（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">MEMORY</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">回答はどこから来るのか</h2>
+      <p>なぜそれが起こるのかを知らなければ、モデルが情報をでっち上げてあなたを欺こうとしていると感じやすくなる。しかし、モデルの知識がどこから来るのかを理解すれば、モデルがどこで間違いを犯す可能性があるかをより明確に予測できるようになる。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Quick check</b>
+        <p>AIチャットモデルがあなたの質問に答えるとき、その回答はどこから来るのか、という4択のクイズが原文冒頭にある。選択肢は「毎回ウェブで調べる」「訓練中に記憶していた」「会話の中にある内容を読む」「質問によって異なる組み合わせ」。</p>
+      </div>
+
+      <p><strong>3つすべてが起こる。</strong>このレッスンではその順序で説明していく——訓練から得た知識、会話に入力した内容、そしてモデルが自ら調べる内容。</p>
+
+      <h2 class="sec__h">パラメトリックメモリ</h2>
+      <p>モデルは時に、ただ…物事を知っている。この組み込まれた知識は<strong>パラメトリックメモリ</strong>と呼ばれる。なぜなら、それはモデルの重み、すなわちパラメータに焼き込まれているからだ。誰も百科事典を作ろうとしたわけではないが、LLMが記憶から暗唱できる事実は、<strong>テキストを予測することを学習した副作用</strong>として生まれた。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Token prediction</b>
+        <p>分野を選び（history / science / cinema / programming / policy / creative）、モデルが次の数語を生成するのをクリックで表示し、正しい情報かどうかを自分で判断するウィジェット。例として <code>Who was the first president of the United States?</code> → <code>The first president of the United States of America was …</code> のような続きが示される。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">CONTEXT</span><span class="sec__kind">補う</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コンテキストの追加</h2>
+      <p>Claudeが訓練だけでは答えられない質問がある。追加のコンテキストを提供して質問を調整すると、モデルにとってタスクが明らかに簡単になる。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — Predict the reply</b>
+        <p><strong>Without context / Contrived context / Authentic context</strong> の3条件で、<code>What's the guest wifi password at our Lakeside office?</code> にモデルが正しく答えられるかを予測するウィジェット。</p>
+      </div>
+
+      <p>モデルが必要とする可能性のあるすべてを与えるアプローチは<strong>コンテキストスタッフィング</strong>と呼ばれる。コンテキストスタッフィングは一般的にうまくいくが、いくつかの制約に直面する。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">WINDOW</span><span class="sec__kind">上限</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コンテキストウィンドウ</h2>
+      <p>言語モデルのコンテキストには最大サイズがある。本稿執筆時点で、現在のフラッグシップClaudeモデルは<strong>最大100万トークン</strong>を保持できる。これは<strong>白鯨（Moby Dick）約3冊分</strong>に相当する。</p>
+
+      <p>では、どうして誰もが容量不足に陥るのか。AIチャットの初期の頃、制限に達することは最初からやり直すことを意味していた。2024年や2025年にチャットインターフェースでこの制限に自分自身が達したことがあるかもしれない。それでも、それが起こったとき、あなたは小説3冊分よりもはるかに少ない量しか書いていないことを知っている。ほとんどの人はそれほどおしゃべりではない。では、あなたの100万トークンはどこへ行ったのか。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — ウィンドウを埋める</b>
+        <p><strong>1,000トークン</strong>というはるかに小さいコンテキストウィンドウを持つモデルを想定し、通常のチャットのやり取りでウィンドウが埋まっていく様子を見るウィジェット。初期状態は system prompt + preloaded context = <strong>345 tokens</strong>（345/1,000、655 free）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">COMPACT</span><span class="sec__kind">要約で続ける</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コンパクション</h2>
+      <p><strong>コンパクション</strong>：コンテキストウィンドウが限界に近づくと、アプリはClaudeにこれまでの会話全体を要約するよう依頼し、その要約がそれまでのコンテキストを置き換える。コンパクションにより、新しい会話を始める代わりに会話を続けることができる。</p>
+
+      <ol class="steps">
+        <li><h3>① まず、アプリが気づく</h3><p>コンテキストウィンドウに過負荷をかける可能性のあるリクエストを送信する代わりに、アプリはあなたの次のターンを保留し、コンパクションを開始する。</p></li>
+        <li><h3>② 次に、Claudeが要約する</h3><p>これまでの会話は、「添付されているのは人間とモデルの間の会話です。これまでに起こったことすべての要約を作成してください」といったプロンプトとともにClaudeに渡される。</p></li>
+        <li><h3>③ 最後に、会話はその要約から続く</h3><p>要約が会話履歴を置き換え、その後、①で保留されていたあなたのクエリが応答のためにClaudeに渡される。</p></li>
+      </ol>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — 試してみる: コンパクション</b>
+        <p>同じ1,000トークンのウィンドウが埋まっていく実例（トマト栽培の相談）が示される。</p>
+      </div>
+
+      <div class="prompt">
+        <b>1,000トークンウィンドウの内訳（トマト栽培の相談）</b>
+        <pre class="tree">system prompt + preloaded context   345
+you（ユーザーの発言 合計）            80
+Claude（応答 合計）                 251
+tool call                            12
+tool result                         184
+--------------------------------------
+合計                        872 / 1,000（full、128 free）</pre>
+        <p>Claude's calendar reply needs about 140 tokens, but only 128 remain. The context window is full.</p>
+      </div>
+
+      <h2 class="sec__h">コンパクションはどれほどうまく機能するのか</h2>
+      <p>初期のコンパクション実装は明らかに情報が失われやすく、要約の前に与えられた指示が要約を経て残っていないことが分かる場合があった。コンパクションのプロンプトとモデルはその後どちらも改善されたが、<strong>それでも要約であることに変わりはない</strong>。</p>
+
+      <div class="tip">
+        <b>Claude Code 入門コースとの関連（推測）</b>
+        <p>コンパクションが指すしくみは、本サイト Claude Code 入門コースの<a href="../05-context-management.html">05 コンテキストを管理する</a>で扱われている内容と同じものを指していると考えられる。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">WRITE</span><span class="sec__kind">書き込み</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">書き込みメモリ</h2>
+      <p><strong>メモリ</strong>とは、厳密に制限されたウィンドウが無限に感じられる仕組みだ。Claudeはある会話でメモを書き、そのメモは次の会話の開始時に再び追加される。</p>
+
+      <p>メモリを、Claudeが<strong>メメント</strong>のように物事を書き留め、後でそれを読み返すものと考えるとよい。Claudeは昼寝の後にすっかりリフレッシュして目覚め、以前自分自身のために書いたメモリファイルを見回すことができる。これをパラメトリックメモリと混同しないように、<strong>書き込みメモリ</strong>と呼ぶことにする。</p>
+
+      <ul class="acts">
+        <li><h3>コンパクション</h3><p>Claudeが<strong>単一の会話</strong>をコンテキストの限界を超えて続けられる仕組み。</p></li>
+        <li><h3>書き込みメモリ</h3><p>Claudeが<strong>複数の会話にわたって</strong>重要な詳細をコンテキストに保持する仕組み。</p></li>
+      </ul>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — 書き込みメモリの例</b>
+        <p><strong>火曜日の会話</strong>：「Keep updates to my team short and bulleted, please.」→ Claude「Done. That sounds like a standing preference, so I'm writing it down.」→ memory file に <code>"Prefers short, bulleted team updates."</code> を保存。<strong>木曜日の会話</strong>（新しいセッション）：memory file がコンテキストに静かに挿入される → 「Email this week's update to my team.」→「Sent - short and bulleted, the way you like it.」そのメモリは、火曜日の完全なコンテキストがない全く新しいセッションであっても、将来の会話に引き継がれる。</p>
+      </div>
+
+      <p>Claudeの各製品はメモリを異なる方法で実装している。<strong>Claude Codeはコードベース全体の CLAUDE.md ファイルを読み込むが、claude.ai は設定内にメモリを保持する。</strong>しかし、場所が異なっていても、プロセスは同じだ。Claudeは重要な情報を書き留め、後のインスタンスのClaudeが次の会話の開始時にそれを読み返す。</p>
+
+      <div class="tip">
+        <b>Claude Code 入門コースとの関連（推測）</b>
+        <p>ここで言う CLAUDE.md への書き込みメモリは、本サイト Claude Code 入門コースの<a href="../06-claude-md.html">06 CLAUDE.md ファイル</a>で扱われている内容と同じ仕組みを指していると考えられる。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。</p>
+      </div>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — メモリの1週間</b>
+        <p>同じアシスタントと過ごす5日間（Mon 1 line → Tue 2 → Wed 2 → Thu 3 → Fri 3）。月曜の例：「I'm coordinating the November leadership summit - about 250 people, working back from a Nov 12 date.」→ memory file に <code>- Coordinating the November leadership summit (~250 attendees, working back from Nov 12)</code> を追記。</p>
+      </div>
+
+      <p><strong>何を覚えておく価値があるのか。</strong>あなたのプロジェクト、好み、仕事上の関係は残されたが、出欠確認の人数やケータリングの見積もりといった、より一時的で細かい詳細は残されなかった。Claudeは、それらを書き留めて変わっていないことを期待するのではなく、次にそれらが話題になったときに調べることができるし、そうすべきだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">AGENTIC</span><span class="sec__kind">自ら調べる</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">前置きされたコンテキスト</h2>
+      <p>視野を広げると、Claudeがあなたの最初のトークンを目にする前に、非常に多くのものがコンテキストに追加されている。Coworkのようなツールでは、Claudeとの会話に追加される可能性のある前置きコンテキストは<strong>約19,000トークン</strong>。</p>
+
+      <div class="prompt">
+        <b>System Prompt — 約9,000トークン（written by Anthropic）</b>
+        <p>Instructions that define Claude's role, tone, and guardrails inside Cowork.<br>"You are Claude, operating inside a product called Cowork. Your goal is to help the user accomplish work tasks. You have access to the user's connected tools, memory, and skills. When the user asks you to take an action, prefer using a tool over describing what you would do …"</p>
+      </div>
+
+      <div class="warn">
+        <b>原文の断り書き</b>
+        <p>これは、あなたの最初のメッセージが届く前にClaudeが目にするものを示す例示的なモックアップ。この図の内容とトークン数は代表例であり、特定のClaude製品の現在の状態をバイト単位で正確に表すものではない。</p>
+      </div>
+
+      <p><strong>実物を読んでみたいか。</strong>Anthropicは、Claudeアプリのシステムプロンプトを公開しており、モデルが変わるたびに更新している。それを読むことは、<strong>製品の動作のどれだけがモデルに訓練されているのではなくプロンプトに書き込まれているか</strong>を知る素晴らしい方法だ。</p>
+
+      <h2 class="sec__h">エージェント的コンテキスト</h2>
+      <p><strong>エージェント的コンテキスト</strong>とは、Claudeが回答する前により多くのコンテキストを取得することを決定する場合だ。トマトの植物の例では、Claudeはパラメトリックメモリやすでに持っているコンテキストから回答するのではなく、検索ツールを使用した。</p>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — "You are the model"</b>
+        <p>あなたがClaudeで、サイドバーがあなたのコンテキスト。各プロンプトについて、<strong>Answer directly（すでに知っていることから答える）</strong>か<strong>Call a tool（自分の外に手を伸ばす）</strong>かを決める。利用できるツールとして <code>web_search</code>（Search the web and return result snippets.）、<code>calendar_list_events</code>（List events on the user's calendar.）、<code>messages_read</code>（Read recent messages from a team channel.）が示され、例題として <code>What's on my calendar tomorrow?</code> が挙げられている。</p>
+      </div>
+
+      <div class="tip">
+        <b>原文のインタラクティブ要素 — コンテキストをたどる</b>
+        <p>Coworkの返信例の中でハイライトされた6つの語句が、前置きされたコンテキストのどこから来たかを当てるウィジェット。</p>
+      </div>
+
+      <div class="quote">
+        <p>Short version: the venue walkthrough is Thursday at 2:00 pm (Pacific), and Dana has already accepted.<br>I can email the team to say you'll be joining remotely - I'd copy Dana, since she gets your Friday recaps, unless you'd rather choose the recipients yourself. Want me to go ahead?</p>
+        <cite>Cowork · replying to: "When's the venue walkthrough for the summit? And can you let the team know I'll be joining remotely?"</cite>
+      </div>
+
+      <div class="tip">
+        <b>05 との関連</b>
+        <p>ここで見た「幻覚は欠落した・誤った・低品質なコンテキストの副作用」という整理は、<a href="05-why-do-models-hallucinate.html">05 なぜAIは幻覚を起こすのか</a>に繋がる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">今できるようになったこと</h2>
+      <ul class="acts">
+        <li><h3>重みの中にあるもの（パラメトリックメモリ）とウィンドウの中にあるもの（コンテキスト）の違いを名指しできる</h3></li>
+        <li><h3>ウィンドウには上限があり、それを埋めているのはあなただけではないことを知っている</h3></li>
+        <li><h3>コンパクションが、ウィンドウを無限に感じさせることができる要約技術であるが、詳細を失う可能性があることを理解している</h3></li>
+        <li><h3>書き込みメモリがセッション間でどのように存続するかを説明できる</h3></li>
+        <li><h3>Claudeの返信を見て、前置きされたコンテキストがそれをどのように形作った可能性があるかについて推測できる</h3></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="02-tokens-and-embeddings.html"><b>前のレッスン — 02</b><em>トークンと埋め込み</em></a>
+  <a class="is-next" href="04-can-you-trust-ai.html"><b>次のレッスン — 04</b><em>AIの答えは信じられるのか</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式インタラクティブ教材「Parametric memory &amp; context」</span>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

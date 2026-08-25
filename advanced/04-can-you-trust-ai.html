@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 AIの答えは信じられるのか — アドバンス 学習ノート</title>
+<meta name="description" content="Claude 公式チャンネル動画『Can you trust what AI tells you?』の内容を再構成した日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">アドバンス / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="アドバンスコース 目次" aria-label="アドバンスコース 目次">目次</a>
+      <a href="01-what-happens-when-you-talk-to-ai.html" title="AIに話しかけると何が起きているのか" aria-label="01 AIに話しかけると何が起きているのか">01</a>
+      <a href="02-tokens-and-embeddings.html" title="トークンと埋め込み" aria-label="02 トークンと埋め込み">02</a>
+      <a href="03-parametric-memory-and-context.html" title="パラメトリックメモリとコンテキスト" aria-label="03 パラメトリックメモリとコンテキスト">03</a>
+      <a href="04-can-you-trust-ai.html" title="AIの答えは信じられるのか" aria-label="04 AIの答えは信じられるのか" aria-current="page">04</a>
+      <a href="05-why-do-models-hallucinate.html" title="なぜAIは幻覚を起こすのか" aria-label="05 なぜAIは幻覚を起こすのか">05</a>
+      <a href="06-what-is-sycophancy.html" title="追従性 (sycophancy) とは何か" aria-label="06 追従性 (sycophancy) とは何か">06</a>
+      <a href="07-why-does-bias-exist.html" title="なぜAIにバイアスが存在するのか" aria-label="07 なぜAIにバイアスが存在するのか">07</a>
+      <a href="08-what-does-ai-know-about-you.html" title="AIは自分について何を知っているのか" aria-label="08 AIは自分について何を知っているのか">08</a>
+      <a href="09-diligence-statement.html" title="AIデューデリジェンス声明の書き方" aria-label="09 AIデューデリジェンス声明の書き方">09</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 04 / Advanced</p>
+    <p class="eyebrow" style="color:var(--signal)">5:03 · 全文書き起こしより再構成</p>
+  </div>
+
+  <h1 class="hero__title">AIの答えは<br><em>信じられるのか</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    原題 <em>Can you trust what AI tells you?</em>。自信たっぷりに、整った文章で、出典まで添えて返ってきた答え——それをそのまま信じてよいのか。答えは単純な YES/NO ではない。どんな話題を聞いているか、どれだけ確認する価値があるかによって、こちらの構え方を変える必要がある。以下は話の流れに沿って日本語で再構成したもの。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:0%"><s>信じられるかは話題次第</s><i></i><b>0:00</b></div>
+      <div class="tl__tick" style="left:11.55%"><s>得意な話題と苦手な話題</s><i></i><b>0:35</b></div>
+      <div class="tl__tick" style="left:18.48%"><s>人への信頼の物差しを持ち込む</s><i></i><b>0:56</b></div>
+      <div class="tl__tick" style="left:32.67%"><s>ハルシネーションとおもねり</s><i></i><b>1:39</b></div>
+      <div class="tl__tick" style="left:51.49%"><s>Anthropic での取り組み</s><i></i><b>2:36</b></div>
+      <div class="tl__tick" style="left:60.73%"><s>信頼はダイヤル、スイッチではない</s><i></i><b>3:04</b></div>
+      <div class="tl__tick" style="left:71.29%"><s>確認のための4つの習慣</s><i></i><b>3:36</b></div>
+      <div class="tl__tick" style="left:92.74%"><s>判断は自分次第</s><i></i><b>4:41</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>05:03</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Claude<br><small>Anthropic 公式チャンネル</small></dd></div>
+    <div><dt>Runtime</dt><dd><span>5:03</span> <small>/ 303s</small></dd></div>
+    <div><dt>Views</dt><dd><span>1,605,585</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/cIMlBw2nqfA" target="_blank" rel="noopener">youtu.be/cIMlBw2nqfA ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="303">
+
+  <section class="sec" id="s1" data-start="0" data-label="信じられるかは話題次第">
+    <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">信じられるかどうかは、聞いている話題次第</h2>
+      <p>AI に何かを尋ね、確信ありげで、きれいに整理され、出典まで示された答えが返ってくる場面を思い浮かべてほしい。それを信じられるのか、信じるべきなのか——答えは単純な YES/NO ではない。</p>
+      <p>どれだけ答えを信頼できるかは、何を聞いているかで変わる。AI は膨大な学習データからパターンを学んでおり、ある話題について見てきた量が多いほど、答えは信頼できる傾向がある。よく知られていて情報量の多い話題なら、たいてい高い精度が出る。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="35" data-label="得意な話題と苦手な話題">
+    <div class="sec__mark"><div><span class="sec__t">0:35</span><span class="sec__kind">傾向</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ニッチな話題・最近の出来事・非公開情報は間違えやすい</h2>
+      <p>逆に、マニアックな細部、ごく最近の出来事、学習時に一度も見せられていない非公開情報のような話題では、間違えやすくなり、事実をでっち上げてしまうことさえある。厄介なのは、AI が間違っているときも合っているときと同じくらい自信たっぷりに聞こえてしまう点だ。</p>
+      <p>AI は自分の弱点を確実に申告してくれるわけではない。その見極めはこちらの役目になる。とはいえ、これは日常でも無意識にやっていることでもある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="56" data-label="人への信頼の物差しを持ち込む">
+    <div class="sec__mark"><div><span class="sec__t">0:56</span><span class="sec__kind">類推</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">人を信頼するときの感覚を、そのまま持ち込む</h2>
+      <p>身の回りの人への信頼を思い出すとわかりやすい。かかりつけ医が「もっとにんじんを食べましょう」と言えば、わざわざ疑わないだろう。だが同じ医師が手術を勧めてきたら、セカンドオピニオンを考えるはずだ。信頼していることに変わりはないが、賭かっているものが大きくなれば、確かめる手間をかける価値が出てくる。AI にも同じ感覚を持ち込むのがよい。</p>
+      <p>人の脳は、整った段落や美しいグラフのような磨き上げられた見た目を見ると「よく出来ている、正しいに違いない」と感じやすく、疑う気持ちが弱まってしまう。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="99" data-label="ハルシネーションとおもねり">
+    <div class="sec__mark"><div><span class="sec__t">1:39</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">間違い方には2種類ある：ハルシネーションとおもねり</h2>
+      <p>モデルが的外れな答えを出す典型的な経路は2つあり、原因が異なる。1つ目は、もっともらしいが事実ではないことを生成してしまう<strong>ハルシネーション（幻覚）</strong>。有名な名言を別の人物の発言だと誤って紹介するような分かりやすいものもあれば、製品に無い機能を説明文に書いてしまうような気づきにくいものもある。</p>
+      <p>2つ目は、こちらが聞きたそうな答えをそのまま返してしまう<strong>おもねり（sycophancy）</strong>。AI モデルは役に立つよう訓練されているため、その副作用として同意しがちな傾向が入り込むことがある。「このプランで良いと思うんだけど、そうだよね？」のように、望んでいる答えが質問ににじみ出ていると、押し返した方が本当は役に立つ場面でも、モデルはただ同意してしまうことがある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="156" data-label="Anthropic での取り組み">
+    <div class="sec__mark"><div><span class="sec__t">2:36</span><span class="sec__kind">対策</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ハルシネーションとおもねりは、Anthropic が直接取り組んでいる課題</h2>
+      <p>ハルシネーションについては、Claude の内部でそれがどう起きるか——実際には知らないことに「確信している」と感じてしまう瞬間まで——を追跡している。おもねりについては、特定の種類の会話で Claude が安易に同意してしまうケースを見つけ、そこから学んだことを次のモデルの訓練に反映し、より正直に答えられるようにしている。完璧なモデルは無いが、それぞれの世代でより良くなるよう訓練を重ねている。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="184" data-label="信頼はダイヤル、スイッチではない">
+    <div class="sec__mark"><div><span class="sec__t">3:04</span><span class="sec__kind">考え方</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">信頼はダイヤル、オン/オフのスイッチではない</h2>
+      <p>ここまでを日々の使い方に落とし込むと、信頼は「切る/入れる」のスイッチではなく、状況に応じて回す<strong>ダイヤル</strong>として扱うのがよい。ブレインストーミングや下書き、言い回しを変えるといった、正解の無い低リスク・創作寄りのタスクなら、ダイヤルはゆるめでよい。細部が多少ズレていてもコストは低い。</p>
+      <p>一方、数値・引用・健康・法律・お金が絡む質問のように、事実性が問われ結果が重い話題では、ダイヤルを上げる。行動に移す前に、既に信頼している情報源と照らし合わせて必ず確認する。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="216" data-label="確認のための4つの習慣">
+    <div class="sec__mark"><div><span class="sec__t">3:36</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">確認のための4つの習慣</h2>
+      <p>これを楽にする習慣がいくつかある。</p>
+      <ol class="steps">
+        <li><h3>① 賭け金に合わせて確認する</h3><p>「これが間違っていたら何が起きるか」を自問する。パーティーのテーマ案のブレストまで裏取りする必要は無いが、上司が見るスライドに載せる統計の引用は裏取りが要る。</p></li>
+        <li><h3>② 出典を求め、実際に開く</h3><p>モデルは実在する出典を挙げることもできるが、いかにもそれらしい架空の出典を作ってしまうこともある。リンク先を実際に開いて、モデルの主張どおりのことが書かれているか確かめると、自分の仕事の信頼性も守れる。</p></li>
+        <li><h3>③ 誘導尋問をしない</h3><p>状況の詳細を伝えるのは助けになるが、望む答えを先に伝えてしまうと結果が歪む。「この判断が正しい理由は？」より、「賛成・反対それぞれの最も強い論拠は？」と聞く方が、より正直な結果が返ってくる。</p></li>
+        <li><h3>④ 「わからない」と言ってよいと伝える</h3><p>自信ありげな当て推量より、正直な「自信がない」の方が欲しいと事前に伝えておくと、応答の仕方が実際に変わり、そうでなければ流されてしまう不確実性が表に出てくる。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="281" data-label="判断は自分次第">
+    <div class="sec__mark"><div><span class="sec__t">4:41</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">判断は、いまのところ自分次第</h2>
+      <p>AI の言うことを信じられるのか——最初から信じられると決めてかからない方がよい。AI をうまく使うということの一部は、何を聞いているか、間違っていた場合のコストがどれくらいかに応じて、自分自身の確認レベルを設定し、ダイヤルを上げ下げすることだ。これはすぐに身につく習慣でもある。そして、AI システム自身が自分の不確かさをうまく申告できるようになるまでは、その判断はこちらの役目であり続ける。</p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の字幕データから取得したもの。原文はそのまま残してある。</p>
+    <div class="tr__body">
+      <div><span>0:00</span><p>Let's say you ask an AI a question, and the answer comes back confident, well-organized, and maybe even cites a source. Can you trust it? Should you trust it? The answer is more nuanced than a simple yes or no. I'm Kyra, and I work on the education team here at Anthropic,</p></div>
+      <div><span>0:17</span><p>the company that makes Claude. Here are some general guidelines around how and when to trust an AI's responses. How much you can trust an answer depends on what you're asking about. AI learns patterns from a huge amount of training data, and the more it has seen on a topic, the more reliable it tends to be.</p></div>
+      <div><span>0:35</span><p>So on common, well-covered subjects, it's usually pretty accurate. On things that are a bit more obscure like niche details, very recent events, or private information it was never shown– it's more likely to get things wrong, or even make them up. The catch, is that it can sound equally sure of itself either way.</p></div>
+      <div><span>0:56</span><p>AI won't reliably flag its own weak spots. That part's on you, and the good news is you already do a version of this every day. Think about how trust works with the people in your life. If your doctor suggested you eat more carrots, you probably wouldn't argue.</p></div>
+      <div><span>1:12</span><p>But if that same doctor suggested you get surgery, you might consider getting a second opinion. You still trust them, but now there's a lot more on the line– and it's worth the extra effort to make sure they're right. AI works best when you bring that same instinct. Our brains tend to see polished outputs</p></div>
+      <div><span>1:30</span><p>like clean paragraphs and beautiful graphics, and think "this looks great, it must be correct!" which can make you less likely to question it. So why do the models sometimes get things wrong? There are two common ways it goes sideways,</p></div>
+      <div><span>1:44</span><p>and they have different causes. The first is that the model can generate something plausible that isn't true– this is what's called hallucination. Sometimes it's obvious, like a famous quote, attributed to the wrong author.</p></div>
+      <div><span>2:01</span><p>Sometimes it's subtle, like a product description that lists a feature the product doesn't actually have. The second is that the models can sometimes tell you what you seem to want to hear– this is called sycophancy. AI models are trained to be helpful,</p></div>
+      <div><span>2:18</span><p>and a tendency to go along with you can slip in as a side effect. If your question signals the answer you're hoping for– like "I think this plan is solid, don't you?" The model might just agree, even when pushing back would actually be more useful to you.</p></div>
+      <div><span>2:36</span><p>Hallucinations and sycophancy are both problems we work on directly at Anthropic. Our researchers study when and why they happen. With hallucination, we've traced how it happens inside Claude– down to the moment it feels sure of something it doesn't actually know. And with sycophancy, we found Claude agreeing too readily</p></div>
+      <div><span>2:54</span><p>in certain kinds of conversations– and used what we learn to train the next model to answer more honestly. No model is perfect, but we train each one to do better. So what does this actually mean for you, day to day? Mostly it means that trust should work like a dial, not an on/off switch.</p></div>
+      <div><span>3:12</span><p>For low-stakes or creative tasks without "right" answers, like brainstorming, or drafting, or rewording something, you can run fairly loose. Even if the detail is off, the cost is low. For anything factual or consequential, like numbers; citations; or health, legal or money questions, turn the dial up.</p></div>
+      <div><span>3:31</span><p>Always check the AI's claims against a source you already trust before you act on them. A few habits can make this easier. One: Match your checking to the stakes. Ask yourself, "what happens if this turns out to be wrong?" You don't need to verify a brainstormed list of party themes.</p></div>
+      <div><span>3:48</span><p>You do need to verify a quoted statistic before it goes in a slide your boss will see. Two: Ask for sources, and then actually open them. Models can cite real sources, but they can also generate convincing ones that don't exist. Clicking through to confirm the source says what the model claims</p></div>
+      <div><span>4:06</span><p>protects you and the reputation of your work. Three: Don't lead the witness. Giving the model details about your situation helps, but telling it the answer you want skews the result. Asking, "What are the strongest arguments for and against this?" will give you more honest results than, "Why is this the right call?".</p></div>
+      <div><span>4:24</span><p>Four: Give it permission to say, "I don't know." Saying upfront that you'd rather receive an honest, "I'm not sure" than a confident guess actually shifts how it responds, and surfaces uncertainty it would otherwise gloss over. So, can you trust what AI tells you?</p></div>
+      <div><span>4:41</span><p>It's best not to just assume you can. Part of using AI well is setting your own level of scrutiny– and turning that dial up based on what you're asking and what it would cost to be wrong. It's a habit that builds quickly. And until these systems get better at flagging their own uncertainty,</p></div>
+      <div><span>4:58</span><p>that judgment call is yours.</p></div>
+    </div>
+  </details>
+
+  <div class="tip">
+    <b>次のレッスンとのつながり</b>
+    <p>ここで出てきた「ハルシネーション」は、なぜ起きるのかをさらに深掘りする <a href="05-why-do-models-hallucinate.html">05 なぜAIは幻覚を起こすのか</a> で続けて扱う。</p>
+  </div>
+
+  <div class="tip">
+    <b>AI活用力コースとの関連（推測）</b>
+    <p>この回の内容は、本サイト AI活用力コースの <a href="../ai-fluency/05-capabilities-limits.html">05 生成 AI の能力と限界</a> と <a href="../ai-fluency/10-discernment.html">10 評価力</a> と重なる部分が多い。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。話題ごとに信頼度が変わるという整理は 05 の能力と限界の話と、確認の4つの習慣は 10 の評価力の実践と近い。</p>
+  </div>
+
+</main>
+
+<div class="pager">
+  <a href="03-parametric-memory-and-context.html"><b>前のレッスン — 03</b><em>パラメトリックメモリとコンテキスト</em></a>
+  <a class="is-next" href="05-why-do-models-hallucinate.html"><b>次のレッスン — 05</b><em>なぜAIは幻覚を起こすのか</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル「Can you trust what AI tells you?」</span>
+  <a href="https://youtu.be/cIMlBw2nqfA" target="_blank" rel="noopener">youtu.be/cIMlBw2nqfA ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>
