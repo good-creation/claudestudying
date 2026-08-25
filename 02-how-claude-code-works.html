@@ -188,6 +188,39 @@
         <b>Caution</b>
         <p>権限のスキップには注意。<strong>Claude Code にコマンドを自由に実行させることは、問題が発生する前にミスを発見するのがより難しくなることを意味する</strong>。速さと引き換えに失うのは、介入できる時間そのもの。</p>
       </div>
+
+      <div class="warn">
+        <b>現行版との差分</b>
+        <p>ここまでは<strong>動画公開時点</strong>の説明。現在の Claude Code は権限モードが6つに増え、<strong>自動承認（ACCEPT EDITS）はファイル編集だけでなく <code>mkdir</code> <code>touch</code> <code>rm</code> <code>rmdir</code> <code>mv</code> <code>cp</code> <code>sed</code> といったファイル操作コマンドも自動で通す</strong>。通るのは作業ディレクトリ（と <code>additionalDirectories</code>）の内側だけで、<code>.git</code> などの保護パスへの書き込みと、致命的なパスを狙う <code>rm</code> / <code>rmdir</code> は従来どおり止まる。それでも「編集は自動、コマンドは必ず止まる」という線引きは、今はそのまま当てはまらない。以下は動画の内容ではなく、<a href="https://code.claude.com/docs/en/permission-modes">公式ドキュメント</a>に基づく補足（2026年8月時点）。</p>
+      </div>
+
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head">
+          <div>動画にない3モード</div><div>入り方</div><div>確認なしで通るもの</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">オート<small>AUTO</small></div>
+          <div class="modes__c" data-h="入り方">条件を満たすアカウントなら <kbd>Shift</kbd>+<kbd>Tab</kbd> の巡回に出る。Pro / Max / Team の対話セッションでは<strong>起動時の既定がこれ</strong>——ただし <code>claude -p</code> や Agent SDK、設定で無効にした場合は手動で始まる</div>
+          <div class="modes__c" data-h="確認なしで通るもの">ほぼすべて。人間の代わりに<strong>分類器モデルが背後で審査する</strong></div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">確認しない<small>DONT ASK</small></div>
+          <div class="modes__c is-ask" data-h="入り方"><code>--permission-mode dontAsk</code> か設定の <code>defaultMode</code> で指定する。巡回には出ない</div>
+          <div class="modes__c" data-h="確認なしで通るもの">allow ルール・読み取り専用コマンド・PreToolUse フックが許可したものだけ。ほかは<strong>たずねずに拒否する</strong>。CI やスクリプト向け</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">権限スキップ<small>BYPASS PERMISSIONS</small></div>
+          <div class="modes__c is-ask" data-h="入り方"><code>--dangerously-skip-permissions</code> などで<strong>起動した時だけ</strong>巡回に加わる。走っているセッションからは入れない</div>
+          <div class="modes__c" data-h="確認なしで通るもの">すべて。<code>.git</code> などの保護パスへの書き込みも通る</div>
+        </div>
+      </div>
+
+      <p>権限スキップモードでも<strong>消えない確認</strong>はある——明示的な <code>ask</code> ルール、組織が <code>ask</code> に設定したコネクタツール、<code>AskUserQuestion</code> や承認を要する MCP ツール、<code>rm -rf ~</code> のような<em>致命的なパス</em>への削除、そしてセッション間メッセージングの安全弁。逆に、<strong>権限スキップが使えるセッションでは、プランモードの「編集させない」という縛りのほうが効かなくなる</strong>——計画するようにとは指示されるが、その最中に試みた編集やコマンドは確認なしで走る。</p>
+
+      <div class="tip">
+        <b>モードより強いもの</b>
+        <p><a href="https://code.claude.com/docs/en/permissions">公式ドキュメント</a>いわく、ルールの評価順は <strong>deny → ask → allow</strong> で、先に一致したものが勝つ。ルールの具体性は順序を変えない。だから <code>deny</code> は<strong>すべてのモードで効く</strong>——権限スキップモードでも、PreToolUse フックが「許可」を返しても、deny が勝つ。逆に <code>allow</code> は権限スキップ下では意味を持たない。触らせたくないものは、モードではなく deny で止めるのが確実——これは <a href="10-hooks.html">10 フック</a> の「お願いではなく、保証」と同じ考え方。</p>
+      </div>
     </div>
   </section>
 

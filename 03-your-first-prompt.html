@@ -113,6 +113,11 @@
 
       <p><strong>どちらが正しいというわけではない。自分が快適に感じる方を選べばいい。</strong>編集は自動でも、コマンドの実行だけは必ず止まる、という線引きがデフォルトで引かれているのがポイント。</p>
 
+      <div class="warn">
+        <b>現行版との差分</b>
+        <p>「コマンドの実行だけは必ず止まる」は<strong>動画公開時点</strong>の挙動。現行版の自動承認モードは <code>mkdir</code> <code>touch</code> <code>rm</code> <code>mv</code> <code>cp</code> <code>sed</code> などのファイル操作コマンドも、作業ディレクトリ内なら自動で通す（<code>.git</code> などの保護パスと、致命的なパスへの <code>rm</code> / <code>rmdir</code> は除く）。<strong><code>rm</code> が黙って走る</strong>点は覚えておきたい。モードの全体像は <a href="02-how-claude-code-works.html#s4">02 の権限モード</a>に補足した。</p>
+      </div>
+
       <figure class="fig">
         <img src="img/modes.jpg" alt="Claude Code のターミナル画面。下部に accept edits on (shift+tab to cycle) と表示されている。" loading="lazy">
         <figcaption>公式コース図版 — 入力欄の下に現在のモードが出る。<code>accept edits on (shift+tab to cycle)</code> が自動承認モードの表示。</figcaption>
