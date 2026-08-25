@@ -40,7 +40,7 @@
       <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
       <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
-      <a class="is-appendix" href="quiz.html" title="試験" aria-label="試験" aria-current="page">試験</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — レベル1〜3とランク判定" aria-label="試験 — レベル1〜3とランク判定" aria-current="page">試験</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
       <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
@@ -48,16 +48,16 @@
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">確認問題 / Quiz</p>
+    <p class="eyebrow">試験 / Exam</p>
     <p class="eyebrow" style="color:var(--signal)">全22問 · 3形式 · 出題順ランダム · 合格ライン80%</p>
   </div>
 
-  <h1 class="hero__title">確認<em>問題</em></h1>
+  <h1 class="hero__title"><em>試験</em></h1>
 
   <img class="hero__clawd" src="img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えるとその場で正誤と解説が表示されます。<strong>解く前に、下の「おさらい」でレッスン01〜11の要点を一枚で確認できます。</strong>
+    レッスン01〜11の理解度を確認する試験。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong><strong>解答中は正誤・得点を一切表示しません。</strong>全問（または途中で）採点すると、正解と解説をまとめて振り返れます。<strong>解く前に、下の「おさらい」でレッスン01〜11の要点を一枚で確認できます。</strong>
   </p>
 
   <ul class="qlegend">
@@ -151,38 +151,62 @@
 
 <section class="examgate shell" id="bankGate">
   <p class="eyebrow">出題範囲を選ぶ</p>
-  <h2>どの問題に挑戦しますか。</h2>
-  <p class="recap__lede" style="margin-top:10px">既定は「確認問題」（全23問）です。何も選ばなければこのまま始まります。レベル別チャレンジは任意で挑戦できます。</p>
+  <h2>どの試験に挑戦しますか。</h2>
+  <p class="recap__lede" style="margin-top:10px">既定は「標準」（全22問）です。何も選ばなければこのまま始まります。レベル別チャレンジは任意で挑戦できます。</p>
 
   <div class="cards bankcards" id="bankCards" role="radiogroup" aria-label="出題範囲を選ぶ">
     <article class="bankcard is-selected" data-bank="" tabindex="0" role="radio" aria-checked="true">
-      <p class="cards__k">確認問題</p>
+      <p class="cards__k">標準試験</p>
       <h3>全問</h3>
-      <p>レッスン01〜11の理解度を確認する、これまでどおりの問題集。</p>
-      <p class="bankcard__n">23問</p>
+      <p>レッスン01〜11の理解度を確認する、これまでどおりの試験。</p>
+      <p class="bankcard__n">22問</p>
     </article>
   </div>
 </section>
 
 <section class="examgate shell" id="examGate">
   <p class="eyebrow">開始方法を選ぶ</p>
-  <h2>試験モードで解きますか、練習として解きますか。</h2>
+  <h2>本番モードで受けますか、練習モードで解きますか。</h2>
 
   <ul class="examgate__rules">
-    <li><b>合格ラインは 80%</b>。全22問中 <b>18問以上</b>の正解で合格です。</li>
-    <li>試験モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
+    <li><b>合格ラインは 80%</b>。全22問中 <b>18問以上</b>の正解で合格です（出題数はバンクにより変わります）。</li>
+    <li>解答中は<b>正誤・得点を表示しません</b>。採点すると、全問の正解・解説がまとめて表示されます。</li>
+    <li>本番モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
     <li>他のタブやアプリに切り替えると、<b>その瞬間に問題文を隠します</b>。戻れば続きから再開できます。</li>
     <li>離席した回数は記録され、<b>採点結果に表示されます</b>。</li>
     <li>ページを閉じたり再読み込みしようとすると確認が出ます。<b>再読み込みすると解答は失われます。</b></li>
   </ul>
 
+  <div class="quizid" id="quizId">
+    <p class="quizid__k">修了証の送り先</p>
+    <div class="quizid__row">
+      <label class="quizid__f">
+        <span>メールアドレス <em>結果の送付先</em></span>
+        <input type="email" id="qEmail" name="email" autocomplete="email" inputmode="email"
+               placeholder="you@example.com" maxlength="120" spellcheck="false">
+      </label>
+      <label class="quizid__f">
+        <span>氏名 <em>修了証に印字・任意</em></span>
+        <input type="text" id="qName" name="name" autocomplete="name"
+               placeholder="山田 太郎" maxlength="40">
+      </label>
+    </div>
+    <p class="quizid__err" id="qIdErr" hidden></p>
+    <p class="quizid__note">
+      採点が終わると、点数・合否・復習すべきレッスンを記した<strong>修了証をこのアドレスへ送ります</strong>。
+      本番モードでは入力が必須、練習モードでは空のままでも解けます（その場合メールは送りません）。
+      入力内容はこの端末のブラウザにだけ保存され、送信時以外どこにも送られません。
+    </p>
+    <p class="quizid__off">送信先が未設定のため、いまはメールを送りません（<code>assets/result-mail.js</code> の ENDPOINT が空です）。</p>
+  </div>
+
   <div class="examgate__btns">
-    <button type="button" id="examStart">試験モードで開始する</button>
-    <button type="button" id="examPractice">練習として解く</button>
+    <button type="button" id="examStart">本番モードで開始する</button>
+    <button type="button" id="examPractice">練習モードで解く</button>
   </div>
 
   <p class="examgate__note">
-    <strong>技術的な限界について。</strong>Web ページは、他のタブやアプリを開くこと自体を禁止できません。ブラウザがページにその権限を与えていないためです。試験モードができるのは「<strong>離れたことを検知して、即座に内容を隠し、記録する</strong>」ところまでです。カンニングを物理的に不可能にする仕組みではなく、集中を保つための補助として使ってください。
+    <strong>技術的な限界について。</strong>Web ページは、他のタブやアプリを開くこと自体を禁止できません。ブラウザがページにその権限を与えていないためです。本番モードができるのは「<strong>離れたことを検知して、即座に内容を隠し、記録する</strong>」ところまでです。カンニングを物理的に不可能にする仕組みではなく、集中を保つための補助として使ってください。
   </p>
 </section>
 
@@ -190,23 +214,27 @@
   <div class="quizbar">
     <div class="shell quizbar__in">
       <span class="quizbar__line">回答 <b id="qDone">0</b> / <span id="qTotal">22</span>
-        &nbsp;·&nbsp; 正解 <b id="qRight">0</b>
+        <span class="quizbar__bank" id="qBankLabel"></span></span>
+      <span class="quizbar__score" id="qScoreLine" hidden>
+        正解 <b id="qRight">0</b>
         &nbsp;·&nbsp; 合格に必要 <span id="qNeed">18</span>問
         &nbsp;·&nbsp; <span class="quizbar__verdict" id="qVerdict">判定前</span></span>
       <span class="quizbar__leave">離席 <b id="qLeave">0</b>回</span>
-      <button type="button" id="qQuit">中断して採点する</button>
+      <button type="button" id="qSubmit" disabled>採点する</button>
+      <button type="button" id="qQuit">ここまでで採点する</button>
       <button type="button" id="qReset">シャッフルしてやり直す</button>
     </div>
   </div>
 
   <main class="doc shell">
+    <p class="q__hint" id="qAnswerNote">選んだ回答はあとから選び直せます。全問答え終えると「採点する」が押せます。採点するまで正誤・得点は表示されません。</p>
     <div id="quizList"></div>
     <div class="qresult" id="quizResult"></div>
   </main>
 </div>
 
 <noscript>
-  <p class="shell" style="padding:40px 0">この問題集は JavaScript で出題順のシャッフルと採点を行っています。ブラウザの JavaScript を有効にしてください。</p>
+  <p class="shell" style="padding:40px 0">この試験は JavaScript で出題順のシャッフルと採点を行っています。ブラウザの JavaScript を有効にしてください。</p>
 </noscript>
 
 <div class="pager">
@@ -217,12 +245,14 @@
 <div class="endmark"><img src="img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>確認問題 — 出典はレッスン01〜11</span>
+  <span>試験 — 出典はレッスン01〜11</span>
   <a href="claude-code.html">目次へ</a>
 </footer>
 
+<script src="assets/result-mail.js"></script>
 <script src="assets/exam.js"></script>
 <script src="assets/quiz-data.js"></script>
+<script src="assets/quiz-levels.js"></script>
 <script src="assets/quiz.js"></script>
 <script src="assets/terms.js"></script>
 </body>

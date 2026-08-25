@@ -75,8 +75,13 @@ window.EXAM = (function(){
     main.scrollIntoView({block:'start'});
   }
 
-  document.getElementById('examStart').addEventListener('click', function(){ start(true); });
-  document.getElementById('examPractice').addEventListener('click', function(){ start(false); });
+  /* 開始前に修了証の送り先を確かめる（本番モードは必須、練習モードは任意） */
+  function begin(exam){
+    if (window.RESULTMAIL && !window.RESULTMAIL.gate(exam)) return;
+    start(exam);
+  }
+  document.getElementById('examStart').addEventListener('click', function(){ begin(true); });
+  document.getElementById('examPractice').addEventListener('click', function(){ begin(false); });
 
   return {
     isActive: function(){ return active; },

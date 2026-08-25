@@ -464,6 +464,43 @@ body.exam .chk{display:none}
 .qlegend li{font-size:12px;color:var(--ink-2);border:1px solid var(--rule);padding:6px 12px;background:var(--paper)}
 .qlegend b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
 
+/* ---------- レベル別チャレンジ：バンク選択カード ----------
+   .cards の枠組み（外周線グリッド）をそのまま流用し、選択操作の分だけ足す。 */
+.bankcards{margin-top:22px}
+.bankcard{cursor:pointer;outline-offset:-2px}
+.bankcard:hover{box-shadow:0 0 0 1px var(--signal)}
+.bankcard:focus-visible{outline:2px solid var(--signal)}
+.bankcard.is-selected{background:var(--signal-wash);box-shadow:0 0 0 2px var(--signal)}
+.bankcard.is-selected .cards__k{color:var(--signal)}
+.bankcard.is-empty{cursor:default;opacity:.55}
+.bankcard.is-empty:hover{box-shadow:0 0 0 1px var(--rule)}
+.bankcard__badge{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.08em;color:var(--ink-2);border:1px solid var(--rule);padding:2px 8px;vertical-align:1px}
+.bankcard__n{margin:14px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-2)}
+
+/* 出題中のバンク名（.quizbar 内） */
+.quizbar__bank{margin-left:6px;color:var(--ink-2)}
+
+/* ---------- 採点前は隠す得点表示、採点する ボタン ---------- */
+.quizbar__score{color:var(--ink-2)}
+#qSubmit{border-color:var(--ink);color:var(--ink)}
+#qSubmit:not(:disabled):hover{border-color:var(--signal);color:var(--signal)}
+#qSubmit:disabled{opacity:.4;cursor:not-allowed}
+.quizbar.is-over #qSubmit{display:none}
+#qAnswerNote{margin:20px 0 0;color:var(--ink-2)}
+
+/* ---------- 結果パネル：レベル称号・得点ランク ---------- */
+.qresult__level{margin:0 0 4px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--signal)}
+.qresult__rank{display:inline-block;margin-left:16px;vertical-align:middle;
+  font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;color:var(--ink-2);
+  border:1px solid var(--rule);padding:5px 14px}
+.qresult__rank[data-r="S"],.qresult__rank[data-r="A"]{color:var(--signal);border-color:var(--signal)}
+.qresult__rank[data-r="C"]{color:var(--caution);border-color:var(--caution)}
+
+/* 試験開始前は出題範囲の選択を出す。本番モード中は答えの手がかりになるため隠す */
+body.exam #bankGate{display:none}
+
 /* ---------- 合否判定 ---------- */
 .quizbar__line{color:var(--ink-2)}
 .quizbar__verdict{font-weight:700;letter-spacing:.1em}
@@ -526,6 +563,39 @@ body.exam .chk{display:none}
 .recap__list > li > h3 a:hover{color:var(--signal);border-bottom-color:var(--signal)}
 /* 試験中は答えそのものになるので隠す。採点が終われば body.exam が外れて戻る */
 body.exam .recap{display:none}
+
+/* ---------- 修了証の送り先（開始前）と送信結果（採点後） ---------- */
+.quizid{margin:30px 0 0;border-top:1px solid var(--rule-soft);padding-top:24px;max-width:44em}
+.quizid__k{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+.quizid__row{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+.quizid__f{flex:1 1 240px;min-width:0;display:block}
+.quizid__f span{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.quizid__f em{font-style:normal;font-weight:400;font-size:11.5px;color:var(--ink-2);margin-left:8px}
+.quizid__f input{
+  width:100%;font:inherit;font-size:15px;font-family:var(--mono);
+  padding:12px 13px;background:var(--paper);color:var(--ink);
+  border:1px solid var(--rule);border-radius:0;
+}
+.quizid__f input:focus{outline:2px solid var(--signal);outline-offset:-1px;border-color:var(--signal)}
+.quizid__f input[aria-invalid]{border-color:var(--caution);background:var(--caution-bg)}
+.quizid__err{margin:12px 0 0;font-size:13.5px;font-weight:700;color:var(--caution)}
+.quizid__note{margin:14px 0 0;font-size:13px;line-height:1.85;color:var(--ink-2)}
+.quizid__note strong{color:var(--ink)}
+.quizid__off{display:none;margin:12px 0 0;font-size:12.5px;line-height:1.8;color:var(--caution)}
+.quizid.is-off .quizid__off{display:block}
+
+.qmail{margin:26px 0 0;padding:18px 20px;border:1px solid var(--rule);background:var(--paper);text-align:left}
+.qmail b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
+.qmail p{margin:0;font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.qmail strong{color:var(--ink);font-weight:700}
+.qmail.is-sending b{color:var(--signal)}
+.qmail.is-done{border-color:var(--signal)}
+.qmail.is-done b{color:var(--signal)}
+.qmail.is-fail{border-color:var(--caution);background:var(--caution-bg)}
+.qmail.is-fail b{color:var(--caution)}
+.qmail__retry{margin-top:12px;font:inherit;font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  cursor:pointer;padding:9px 18px;background:none;color:var(--ink);border:1px solid var(--ink)}
+.qmail__retry:hover{border-color:var(--signal);color:var(--signal)}
 
 /* 試験中はサイト内の移動導線を隠す */
 body.exam .chrome nav,
