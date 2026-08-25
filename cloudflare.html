@@ -116,23 +116,23 @@
 
       <div class="prompt">
         <b>Claude Code 側</b>
-        <p>Claude Code Max Plan<br>
-&nbsp;&nbsp;├─ Cloudflare Skills<br>
-&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─ Workers / D1 / R2 / KV / Wrangler 向け実装を支援<br>
-&nbsp;&nbsp;├─ Cloudflare MCP<br>
-&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─ Cloudflare 設定・ドキュメント・ログ・分析を参照<br>
-&nbsp;&nbsp;└─ ローカル開発<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Git / Wrangler / テスト / デプロイ</p>
+        <pre class="tree">Claude Code Max Plan
+  ├─ Cloudflare Skills
+  │   └─ Workers / D1 / R2 / KV / Wrangler 向け実装を支援
+  ├─ Cloudflare MCP
+  │   └─ Cloudflare 設定・ドキュメント・ログ・分析を参照
+  └─ ローカル開発
+      └─ Git / Wrangler / テスト / デプロイ</pre>
       </div>
 
       <div class="prompt">
         <b>Cloudflare 側</b>
-        <p>Cloudflare<br>
-&nbsp;&nbsp;├─ Workers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;バックエンド・API<br>
-&nbsp;&nbsp;├─ Pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フロントエンド公開<br>
-&nbsp;&nbsp;├─ D1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQLite 系データベース<br>
-&nbsp;&nbsp;├─ R2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PDF・画像・添付ファイル<br>
-&nbsp;&nbsp;└─ Analytics / Logs&nbsp;&nbsp;運用・障害調査</p>
+        <pre class="tree">Cloudflare
+  ├─ Workers     バックエンド・API
+  ├─ Pages       フロントエンド公開
+  ├─ D1          SQLite 系データベース
+  ├─ R2          PDF・画像・添付ファイル
+  └─ Analytics / Logs  運用・障害調査</pre>
       </div>
 
       <p>この形なら、Claude Code は「コードを書く人」だけでなく、<strong>Cloudflare の公式ドキュメントを参照し、環境設定を確認し、ログからエラー原因を調べる開発エージェント</strong>として機能する。</p>
@@ -183,10 +183,8 @@
       <div class="prompt">
         <b>Claude Code への最初の依頼例</b>
         <p>Cloudflare Workers でノート管理アプリを作りたい。<br>
-フロントエンドは Pages、API は Workers、データは D1、<br>
-PDF などの添付は R2 を使う。<br><br>
-まず、構成案、wrangler.jsonc、D1 のスキーマ、<br>
-ローカル開発手順を提案して。<br>
+フロントエンドは Pages、API は Workers、データは D1、PDF などの添付は R2 を使う。<br><br>
+まず、構成案、wrangler.jsonc、D1 のスキーマ、ローカル開発手順を提案して。<br>
 本番環境への変更・デプロイは私の確認後に行って。</p>
       </div>
 
@@ -349,5 +347,6 @@ PDF などの添付は R2 を使う。<br><br>
   <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">developers.cloudflare.com ↗</a>
 </footer>
 
+<script src="assets/terms.js"></script>
 </body>
 </html>

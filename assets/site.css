@@ -162,7 +162,11 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .sec__mark > div{position:sticky;top:96px}
 .sec__t{display:block;font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--signal)}
 .sec__kind{display:block;margin-top:7px;font-size:11px;letter-spacing:.18em;color:var(--ink-2)}
-.sec__h{font-family:var(--mincho);font-weight:700;letter-spacing:-.01em;font-size:clamp(26px,3.9vw,44px);line-height:1.34;margin:-6px 0 0;max-width:20em}
+.sec__h{font-family:var(--mincho);font-weight:700;letter-spacing:-.01em;font-size:clamp(26px,3.9vw,44px);line-height:1.34;margin:-6px 0 0;max-width:18em}
+/* 見出しの折り返し: 文節単位で折り、行長を均す。auto-phrase 非対応ブラウザでは
+   line-break:strict の禁則だけが効く（従来どおりの折り返しに劣化するだけ） */
+.sec__h,.cards h3,.steps h3,.acts h3{word-break:auto-phrase;line-break:strict;text-wrap:balance}
+.nw{white-space:nowrap}  /* ハイフンを含む識別子が途中で折れるのを防ぐ */
 .sec__body{max-width:44em}
 .sec__body > p{margin:1.35em 0 0;font-size:clamp(15px,1.45vw,16.5px)}
 .sec__body > p:first-of-type{margin-top:1.6em}
@@ -348,7 +352,9 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 /* ---------- prompt sample ---------- */
 .prompt{margin:clamp(26px,3.5vw,36px) 0 0;background:#14181B;color:#D7DDE0;padding:clamp(18px,2.6vw,26px);font-family:var(--mono);font-size:13px;line-height:1.85}
 .prompt b{display:block;color:#D9A277;font-weight:500;margin-bottom:10px;font-size:11px;letter-spacing:.1em}
-.prompt p{margin:0}
+.prompt p{margin:0;word-break:auto-phrase}
+/* ツリー図など桁を揃えたい塊は折り返さず、狭い画面では横スクロールさせる */
+.prompt .tree{margin:0;font:inherit;white-space:pre;overflow-x:auto}
 .prompt p + p{margin-top:14px;padding-top:14px;border-top:1px solid #2B3238;color:#9AA6AD}
 
 /* ---------- 確認問題 ---------- */
@@ -525,3 +531,34 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 /* ページ末尾の区切り */
 .endmark{display:flex;justify-content:center;padding:38px 0 6px}
 .endmark img{width:56px;opacity:.85}
+
+/* ---------- 用語ツールチップ ---------- */
+/* 本文中の専門用語。読みの邪魔をしないよう、点線の下線だけで示す */
+.term{
+  cursor:help;
+  text-decoration:underline dotted var(--signal);
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+  text-decoration-skip-ink:none;
+}
+.term:hover,.term.is-open{color:var(--signal);background:var(--signal-wash)}
+.term:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+
+.termtip{
+  position:fixed;z-index:60;max-width:min(340px,calc(100vw - 20px));
+  background:var(--paper);color:var(--ink);
+  border:1px solid var(--ink);box-shadow:4px 4px 0 rgba(23,26,23,.12);
+  padding:14px 16px 15px;
+  font-family:var(--gothic);
+}
+.termtip[hidden]{display:none}
+.termtip__w{display:block;font-size:14.5px;font-weight:700;line-height:1.5}
+.termtip__en{
+  display:block;margin-top:3px;
+  font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--signal);
+}
+.termtip__d{margin:9px 0 0;font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+@media (hover:none){
+  .term{background:var(--signal-wash)}   /* タップでしか開けない端末では、押せることを地色で示す */
+}
