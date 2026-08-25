@@ -26,12 +26,13 @@ python3 tools/validate.py
 # Structure
 
 ```
-index.html                  目次 + 用語インデックス
+index.html                  コース選択の玄関（3コースのカードのみ）
 NN-<slug>.html              レッスンページ（01〜11・公式コース由来）
 cloudflare.html             付録（公式コース外・タイムラインなし）
+claude-code.html            Claude Code 入門コースの目次 + 用語インデックス
 ai-fluency/                 別コース「AI活用力（AI Fluency）」— 独立セクション
   index.html                コース概要 + レッスン目次 + 4D 用語
-  NN-<slug>.html            レッスンページ（01〜13・タイムラインなし）
+  NN-<slug>.html            レッスンページ（01〜13）
 assets/site.css             全ページ共通のスタイル（ここ以外に CSS を書かない）
 assets/site.js              タイムライン再生ヘッドのスクロール追従
 assets/terms.js             用語ツールチップ（辞書＋本文への自動下線）
@@ -95,11 +96,32 @@ tools/validate.py           リンク・画像・タイムライン整合性チ�
 - **`<course>/` 配下のページは専用の `<nav>` を手書きで持つ**（そのコースの 01〜NN ＋ 親コースへ戻る `.is-appendix` リンク）。
   ルートの nav をコピーしてはいけない
 - 相対パスは全部 `../` 前置になる（`../assets/site.css` `../img/clawd.png` `../NN-*.html`）。
-  ルートのページからコピーしたら必ず直すこと
+  ルートのページからコピーしたら必ず直すこと。`assets/site.js` も `../` を付けて読み込む
+- ルート直下のページからコース目次に戻るリンクは `index.html` ではなく **`claude-code.html`**。
+  `index.html` はコースを選ぶ玄関であって、入門コースの目次ではない
 - ルート側からの導線は2箇所: `tools/rebuild-nav.py` の `AI_FLUENCY` 相当のリスト（nav の「AI」ボタン）と、
   `index.html` 末尾の独立した `.lessons` ブロック
 - **原文に無い事実を書かない**。尺・公開日・再生数が未入手なら空欄にする（`—`）。
   本文が学習目標しか無いレッスンは `.warn` で「原文入手後に追記」と明記して、埋めずに残す
+
+### 動画のメタデータとトランスクリプトの取り方
+
+コースページの本文だけでは、動画が実際に喋っている内容は入らない。尺が無いと
+タイムラインも組めない。YouTube から実データを取る手順は次のとおり（2026-08 時点で有効）。
+
+1. **メタデータ**（尺・公開日・再生数・チャンネル・説明文）: 視聴ページを取得し、
+   HTML に埋まっている `"lengthSeconds"` `"publishDate"` `"viewCount"` `"shortDescription"` を拾う
+2. **トランスクリプト**: `timedtext` を直接叩いても**空レスポンスが返る**（PoToken を要求される）。
+   InnerTube の player API を **`clientName: "IOS"`** で叩くと `captionTracks[].baseUrl` が取れ、
+   そこに `&fmt=json3` を付けると字幕が JSON で取れる。`ANDROID` クライアントだと XML が返るので
+   パーサを分けること
+3. **動画とレッスンの対応は必ず実タイトルで検証する**。YouTube の検索APIレスポンスを
+   雑な正規表現で舐めると videoId とタイトルの対応がずれる。`videoId` と `title` を
+   **同一オブジェクト内で対にして**取り出すこと
+
+**公式コースは全11レッスン、本サイトは13ページに分割している**（公式 2A/2B → 本サイト 02/03、
+公式 3A/3B → 本サイト 04/05）。公式 Lesson 5 と 9 は演習回で動画が無い。
+各ページには公式レッスン番号を併記して、読者が公式コースと突き合わせられるようにする。
 
 ### `tools/` の前提（壊しやすいので注意）
 
@@ -131,6 +153,20 @@ tools/validate.py           リンク・画像・タイムライン整合性チ�
 
 書体は3役 — 見出し=Zen Old Mincho / 本文=Zen Kaku Gothic New / タイムコード・端末=JetBrains Mono。
 いずれも macOS のヒラギノ等にフォールバックするので**オフラインでも崩れない**。
+
+## 版面と余白の決まり（後戻りしやすい）
+
+- **段は2段組みの幅で使う。** `.sec__body` 自体には幅を掛けず、読む文章（`p` / `.quote` / `.tip` /
+  `.warn` / 素の `ul`・`ol`）だけを 44em に抑える。図版・表（`.cmp` `.modes`）・端末画面（`.prompt`）・
+  カード（`.cards`）・`.fig` は段いっぱい（約900px）まで使う。
+  本文ごと 44em にすると、どのセクションも右 1/4 が空いたままになる
+- **グリッドの隙間を地色で塗る作り方（`background:var(--rule)` + `gap:1px`）は使わない。**
+  要素数が列数の倍数でないとき、空セルが灰色の四角として残る。
+  `.cards` `.gloss dl` `.meta` は flex + `box-shadow:0 0 0 1px var(--rule)` で格子を描いている
+  （最終行の要素が伸びて埋まるので、枚数が何枚でも穴が空かない）
+- **狭い画面で横スクロールを作らない。** 折り返せない `pre` を含む段は `minmax(0,1fr)`、
+  ナビは `flex-wrap:wrap`、長い URL を置くセルは `overflow-wrap:anywhere`。
+  変更したら 390px 幅で `document.documentElement.scrollWidth === innerWidth` を確認する
 
 # 新しいレッスンを追加するとき
 

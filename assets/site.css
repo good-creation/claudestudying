@@ -100,7 +100,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .chrome a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-decoration:none}
 .chrome__home{color:var(--ink);font-weight:700}
 .chrome__home:hover{color:var(--signal)}
-.chrome nav{display:flex;gap:20px}
+.chrome nav{display:flex;flex-wrap:wrap;gap:8px 20px}   /* 折り返さないと、狭い画面でページ全体が横スクロールした */
 .chrome nav a{color:var(--ink-2)}
 .chrome nav a:hover,.chrome nav a[aria-current]{color:var(--signal)}
 /* 公式コース外の付録。番号列と視覚的に切り離す */
@@ -111,7 +111,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .hero{padding:clamp(52px,9vw,110px) 0 clamp(38px,6vw,68px)}
 .hero__top{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid var(--rule)}
 .hero__top p{margin:0}
-.hero__title{font-family:var(--mincho);font-weight:900;font-size:clamp(42px,9.6vw,108px);line-height:.96;letter-spacing:-.02em;margin:clamp(26px,5vw,48px) 0 0}
+.hero__title{font-family:var(--mincho);font-weight:900;font-size:clamp(42px,8vw,108px);line-height:.96;letter-spacing:-.02em;margin:clamp(26px,5vw,48px) 0 0;text-wrap:balance;word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
 .hero__title em{font-style:normal;color:var(--signal-bright)}
 .hero__lede{max-width:34em;margin:clamp(22px,3vw,34px) 0 0;font-size:clamp(15px,1.55vw,18px);line-height:2;color:var(--ink-2)}
 .hero__lede strong{color:var(--ink);font-weight:700}
@@ -128,10 +128,10 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 @media (max-width:660px){.tl__tick b,.tl__tick s{display:none}}
 
 /* ---------- meta strip ---------- */
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:clamp(38px,6vw,60px)}
-.meta > div{background:var(--ground);padding:16px 18px}
+.meta{display:flex;flex-wrap:wrap;gap:1px;margin-top:clamp(38px,6vw,60px)}
+.meta > div{flex:1 1 140px;min-width:0;background:var(--ground);padding:16px 18px;box-shadow:0 0 0 1px var(--rule)}
 .meta dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0}
-.meta dd{margin:6px 0 0;font-size:15px;line-height:1.5;font-weight:500}
+.meta dd{margin:6px 0 0;font-size:15px;line-height:1.5;font-weight:500;overflow-wrap:anywhere}  /* 長い URL が狭い画面でセルからはみ出していた */
 .meta dd span{font-family:var(--mono);font-weight:500}
 .meta dd small{font-size:12px;color:var(--ink-2);font-weight:400}
 
@@ -167,12 +167,24 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
    line-break:strict の禁則だけが効く（従来どおりの折り返しに劣化するだけ） */
 .sec__h,.cards h3,.steps h3,.acts h3{word-break:auto-phrase;line-break:strict;text-wrap:balance}
 .nw{white-space:nowrap}  /* ハイフンを含む識別子が途中で折れるのを防ぐ */
-.sec__body{max-width:44em}
+/* 版面は2段。読む文章は 44em に抑え、図版・表・端末画面・カードは段いっぱい（約900px）まで使う。
+   本文ごと 44em にしていたときは、段の右 1/4 がどのセクションでも空いていた。 */
+.sec__body{max-width:none;min-width:0}
+.sec__body > p:not(.wrapup),
+.sec__body > .quote,
+.sec__body > .tip,
+.sec__body > .warn,
+.sec__body > .tr__note,
+.sec__body > ul:not(.chips):not(.acts),
+.sec__body > ol:not(.steps){max-width:44em}
+/* 段いっぱいの要素の中の説明文は、行が長くなりすぎないところで止める */
+.acts p,.steps p,.acts h3,.steps h3{max-width:46em}
 .sec__body > p{margin:1.35em 0 0;font-size:clamp(15px,1.45vw,16.5px)}
 .sec__body > p:first-of-type{margin-top:1.6em}
 .sec__body strong{font-weight:700;background:linear-gradient(transparent 62%,var(--signal-wash) 62%)}
 @media (max-width:760px){
-  .sec{grid-template-columns:1fr;gap:0}
+  /* minmax(0,1fr) にしないと、折り返せない pre（.tree など）が段を押し広げてページごと横スクロールする */
+  .sec{grid-template-columns:minmax(0,1fr);gap:0}
   .sec__mark > div{position:static;display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
   .sec__kind{margin-top:0}
 }
@@ -217,16 +229,21 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 
 /* ---------- ordered process steps ---------- */
 .steps{margin:clamp(28px,4vw,40px) 0 0;padding:0;list-style:none;counter-reset:st}
-.steps li{position:relative;padding:0 0 24px 54px;counter-increment:st}
-.steps li::before{
+.steps > li{position:relative;padding:0 0 24px 54px;counter-increment:st}
+.steps > li::before{
   content:counter(st,decimal-leading-zero);position:absolute;left:0;top:2px;
   font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--signal);
 }
-.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--rule)}
-.steps li:last-child{padding-bottom:0}
-.steps li:last-child::after{display:none}
-.steps h3{font-family:var(--gothic);font-size:16px;font-weight:700;margin:0}
-.steps p{margin:6px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.steps > li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--rule)}
+.steps > li:last-child{padding-bottom:0}
+.steps > li:last-child::after{display:none}
+/* 手順の中に置いた箇条書きは、番号バッジではなく通常のリストとして見せる */
+.steps > li ul,.steps > li ol{margin:8px 0 0;padding-left:20px}
+.steps > li ul{list-style:disc}
+.steps > li ol{list-style:decimal}
+.steps > li li{font-size:14.5px;line-height:1.8;color:var(--ink-2);margin-top:5px}
+.steps > li > h3{font-family:var(--gothic);font-size:16px;font-weight:700;margin:0}
+.steps > li > p{margin:6px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.8}
 
 /* ---------- plain list of capabilities ---------- */
 .acts{margin:clamp(28px,4vw,40px) 0 0;padding:0;list-style:none;border-top:1px solid var(--rule-soft)}
@@ -236,8 +253,10 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 .acts p{margin:7px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.8}
 
 /* ---------- concept cards ---------- */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:clamp(28px,4vw,40px) 0 0}
-.cards article{background:var(--paper);padding:26px 24px 28px}
+/* 枚数が列数の倍数でなくても穴が空かないよう、格子は各カードの外周線で描く。
+   gap:1px に隣り合う線が重なって1本に見える（グリッドの地色で塗っていた頃は空セルが灰色に残った） */
+.cards{display:flex;flex-wrap:wrap;gap:1px;margin:clamp(28px,4vw,40px) 0 0}
+.cards article{flex:1 1 258px;min-width:0;background:var(--paper);padding:26px 24px 28px;box-shadow:0 0 0 1px var(--rule)}
 .cards article.is-caution{background:var(--caution-bg)}
 .cards__k{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
 .cards article.is-caution .cards__k{color:var(--caution)}
@@ -294,7 +313,7 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 .lsn__en{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 .lsn__ja{font-family:var(--mincho);font-weight:700;font-size:clamp(23px,3.2vw,34px);line-height:1.34;margin:9px 0 0;letter-spacing:-.01em}
 .lsn:hover .lsn__ja{color:var(--signal)}
-.lsn__sum{margin:12px 0 0;font-size:14.5px;line-height:1.85;color:var(--ink-2);max-width:38em}
+.lsn__sum{margin:12px 0 0;font-size:14.5px;line-height:1.85;color:var(--ink-2);max-width:46em}
 .lsn__tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0;padding:0;list-style:none}
 .lsn__tags li{font-size:11.5px;letter-spacing:.06em;color:var(--ink-2);border:1px solid var(--rule);padding:4px 9px}
 .lsn__side{padding-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-2);text-align:right}
@@ -308,8 +327,8 @@ kbd{font-family:var(--mono);font-size:11.5px;border:1px solid var(--ink-2);borde
 /* ---------- index: glossary ---------- */
 .gloss{border-top:1px solid var(--ink);padding:clamp(40px,6vw,72px) 0 clamp(50px,7vw,90px)}
 .gloss h2{font-family:var(--mincho);font-weight:700;font-size:clamp(22px,3vw,32px);margin:0}
-.gloss dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:clamp(26px,3.5vw,38px) 0 0}
-.gloss dl > div{background:var(--paper);padding:22px 22px 24px}
+.gloss dl{display:flex;flex-wrap:wrap;gap:1px;margin:clamp(26px,3.5vw,38px) 0 0}
+.gloss dl > div{flex:1 1 268px;min-width:0;background:var(--paper);padding:22px 22px 24px;box-shadow:0 0 0 1px var(--rule)}
 .gloss dt{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--signal)}
 .gloss dt b{display:block;font-family:var(--gothic);font-size:16px;letter-spacing:0;color:var(--ink);margin-top:7px}
 .gloss dd{margin:10px 0 0;font-size:14px;line-height:1.82;color:var(--ink-2)}
@@ -519,13 +538,26 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 .clawd--md{width:104px}
 .clawd--lg{width:clamp(110px,16vw,168px)}
 
-/* ヒーローの右側・上下中央に置く */
+/* デスクトップでは専用列を確保し、タイトルやタイムラインと重ならないようにする */
 .hero{position:relative}
-.hero__clawd{position:absolute;right:var(--gutter);top:50%;transform:translateY(-50%);
-  width:clamp(88px,8.5vw,128px);pointer-events:none;z-index:1}
-/* 幅が足りないと本文に重なるので、狭い画面では流し込みに戻して右寄せする */
-@media (max-width:1000px){
-  .hero__clawd{position:static;transform:none;margin:26px 0 0 auto;width:84px}
+.hero__clawd{display:block;width:84px;height:auto;aspect-ratio:600 / 487;margin:26px 0 0 auto;pointer-events:none}
+@media (min-width:1001px){
+  .hero{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) clamp(112px,10vw,144px);
+    column-gap:clamp(24px,4vw,56px);
+  }
+  .hero > *{grid-column:1 / -1}
+  .hero__title{grid-column:1;grid-row:2}
+  .hero__clawd{
+    grid-column:2;
+    grid-row:2 / 4;
+    align-self:center;
+    justify-self:end;
+    width:clamp(88px,8.5vw,128px);
+    margin:0;
+  }
+  .hero__lede{grid-column:1;grid-row:3}
 }
 
 /* ページ末尾の区切り */
@@ -545,20 +577,25 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 .term:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
 
 .termtip{
-  position:fixed;z-index:60;max-width:min(340px,calc(100vw - 20px));
+  position:fixed;z-index:60;width:max-content;max-width:min(300px,calc(100vw - 20px));
   background:var(--paper);color:var(--ink);
   border:1px solid var(--ink);box-shadow:4px 4px 0 rgba(23,26,23,.12);
-  padding:14px 16px 15px;
+  padding:13px 15px 14px;
   font-family:var(--gothic);
 }
 .termtip[hidden]{display:none}
-.termtip__w{display:block;font-size:14.5px;font-weight:700;line-height:1.5}
+.termtip__w{display:block;font-size:14.5px;font-weight:700;line-height:1.45}
 .termtip__en{
-  display:block;margin-top:3px;
-  font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.1em;
+  display:block;margin-top:2px;
+  font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--signal);
 }
-.termtip__d{margin:9px 0 0;font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.termtip__en.is-ja{font-family:var(--gothic);font-size:11.5px;letter-spacing:.02em;text-transform:none}
+.termtip__d{
+  margin:8px 0 0;font-size:13.5px;line-height:1.75;color:var(--ink-2);
+  /* 「る。」だけの行が残らないよう行長をそろえ、日本語は文節で折る */
+  text-wrap:balance;word-break:auto-phrase;
+}
 @media (hover:none){
   .term{background:var(--signal-wash)}   /* タップでしか開けない端末では、押せることを地色で示す */
 }

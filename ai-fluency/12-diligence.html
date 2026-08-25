@@ -12,6 +12,15 @@
 </head>
 <body>
 
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
   <nav>
@@ -29,14 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る" aria-current="page">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">12 / AI Fluency</p>
-    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow">12 / AI Fluency（公式 Lesson 10）</p>
+    <p class="eyebrow" style="color:var(--signal)">6:51 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
   <h1 class="hero__title">倫理的責任<br><em>(Diligence) を詳しく見る</em></h1>
@@ -44,42 +54,134 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    様々な文脈によって責任に対する期待は異なるが、<strong>その期待を理解し応える責任</strong>が私たち一人一人にある。倫理的責任とは、AI 協働に対して責任を持つことだ。
+    倫理的責任（Diligence）は、他の3つの能力——委任力・記述力・評価力——とは違い、<strong>倫理と安全の側面</strong>を扱う。動画は<strong>作成 (Creation) / 透明性 (Transparency) / 展開 (Deployment)</strong> という3つの側面から、AI協働に対する責任のあり方を説明する。以下はその全内容を、話の流れに沿って日本語で再構成したもの。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2.68%"><s>位置づけ</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:10.22%"><s>定義</s><i></i><b>0:42</b></div>
+      <div class="tl__tick" style="left:20.93%"><s>例え</s><i></i><b>1:26</b></div>
+      <div class="tl__tick" style="left:28.47%"><s>作成</s><i></i><b>1:57</b></div>
+      <div class="tl__tick" style="left:43.55%"><s>透明性</s><i></i><b>2:59</b></div>
+      <div class="tl__tick" style="left:58.64%"><s>展開</s><i></i><b>4:01</b></div>
+      <div class="tl__tick" style="left:74.21%"><s>実践</s><i></i><b>5:06</b></div>
+      <div class="tl__tick" style="left:84.91%"><s>まとめ</s><i></i><b>5:50</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>06:51</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Topic</dt><dd><small>倫理的責任 — 作成・透明性・展開</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>6:51</span> <small>/ 411s</small></dd></div>
+    <div><dt>Views</dt><dd><span>370,187</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/QbLf2zb3oPc" target="_blank" rel="noopener">youtu.be/QbLf2zb3oPc ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="411">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="11" data-label="4能力の中での位置づけ">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">位置づけ</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <h2 class="sec__h">4つの能力の中での位置づけ</h2>
+      <p>この動画では、AI活用力フレームワークにおける<strong>倫理的責任 (Diligence)</strong> の能力を見ていく。AI活用力とは、AIと<em>効果的に・効率的に・倫理的に・安全に</em>働くことを指す。他の3つの能力——委任力・記述力・評価力——が主に効果性と効率性に関わるのに対し、倫理的責任は<strong>倫理と安全の側面</strong>を中心に扱う。それでいて、AIとの協働を成功させるうえで欠かせない能力であることに変わりはない。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="42" data-label="AI協働への責任を持つ">
+    <div class="sec__mark"><div><span class="sec__t">0:42</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任とは、AI協働に対して責任を持つこと</h2>
+      <p>倫理的責任の核心は、<strong>自分のAIとのやり取りに対して責任を持つ</strong>ことにある。AIの活用が生産的であるだけでなく、<strong>厳密で・透明で・説明責任を果たせる</strong>ものであることを確かなものにする、それが倫理的責任という次元の役割だ。</p>
+      <p>他の能力が主に「成果を出すこと」に焦点を当てるのに対し、倫理的責任は、それでもなお重要な、より広い問いを考えることを求める。特に仕事の現場では、次のような問いが浮かぶ。</p>
       <ul class="acts">
-        <li><h3>AI との協働における倫理的意味合いを理解する</h3></li>
-        <li><h3>AI との作業における透明性の重要性を理解する</h3></li>
-        <li><h3>自分の責任を認識する</h3><p>AI との対話と出力における。</p></li>
+        <li><h3>このAIと働くことにはどんな意味合いがあるか</h3></li>
+        <li><h3>誰が影響を受けうるか</h3><p>作成されたものによって、協働そのものによって、あるいは見落とされた不正確さによって。</p></li>
+        <li><h3>出力を生み出すために使われたデータに、誰がアクセスできるか</h3></li>
+        <li><h3>自分のやり取りと結果を、倫理的な基準や価値観に沿わせるにはどうすればよいか</h3></li>
       </ul>
     </div>
   </section>
 
-  <section class="sec" id="s2">
-    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+  <section class="sec" id="s3" data-start="86" data-label="運転にたとえる">
+    <div class="sec__mark"><div><span class="sec__t">1:26</span><span class="sec__kind">たとえ</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">重要なポイント</h2>
-      <p>倫理的責任とは、<strong>AI 協働に対して責任を持つ</strong>ことである。利用場面（個人目的、学術目的、ビジネス目的）によって、開示と検証に対する期待は異なる場合がある。倫理的責任を果たすことで、AI協働が効果的で効率的であるだけでなく、<strong>倫理的で安全である</strong>ことを確保するのに役立つ。</p>
+      <h2 class="sec__h">車の運転にたとえると</h2>
+      <p>これを車の運転にたとえてみるとわかりやすい。運転するとき、私たちはA地点からB地点に効率よく到達することだけを考えているわけではない。安全にも気を配り、交通ルールに従い、自分の運転が道路上の他者にどう影響するかにも意識を向けている。</p>
+      <p>同じように、倫理的責任は<strong>AIシステムやAIとのやり取りが、真空の中に存在しているわけではない</strong>ということを認識させてくれる。AIと責任を持って働くには、より広い文脈とその影響への意識が必要になる。</p>
     </div>
   </section>
 
-  <section class="sec" id="s3">
-    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">3つの側面</span></div></div>
+  <section class="sec" id="s4" data-start="117" data-label="作成における倫理的責任">
+    <div class="sec__mark"><div><span class="sec__t">1:57</span><span class="sec__kind">作成</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">倫理的責任の3つの側面</h2>
+      <h2 class="sec__h">作成における倫理的責任</h2>
+      <p>倫理的責任は、まず<strong>どのAIシステムと働くか、どう働くか、そしてその協働から生まれる影響</strong>について、より批判的に考えることから始まる。次のような問いへの答えを探すべきだ、と動画は述べる。</p>
+      <ul class="acts">
+        <li><h3>このシステムはどう訓練され、どう構築されているか</h3><p>どんなデータが使われたか。</p></li>
+        <li><h3>今入力しているデータの所有者は誰か</h3><p>共有された後、誰がアクセスしうるか。</p></li>
+        <li><h3>自分と他者のプライバシーとセキュリティを、どう守るか</h3></li>
+        <li><h3>このシステムには他にどんな影響があるか</h3><p>このやり取りは、自分の個人的・職業的な価値観や、所属組織のポリシーとどう整合するか。</p></li>
+      </ul>
+      <p>たとえば、機密性の高い会社の情報をAIアシスタントと共有する前に、そのサービスが適切なデータ保護ポリシーを備えているか、あるいは自分の組織がそうした共有を許可しているかを、まず確認することが重要になる。</p>
+      <p>これを<strong>作成における倫理的責任 (creation diligence)</strong> と呼ぶ。どのAIシステムを選んで働くか、どう働くかについて、批判的かつ意図的であれる能力のことだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="179" data-label="透明性における倫理的責任">
+    <div class="sec__mark"><div><span class="sec__t">2:59</span><span class="sec__kind">透明性</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">透明性における倫理的責任</h2>
+      <p>個人・学術・創作・仕事といった場面ごとに、AIとのやり取りについて何をどこまで開示すべきかの期待は異なりうる。しかし、その期待を理解し、応える責任は私たち一人一人にある。次のように自問してみるとよい。</p>
+      <ul class="acts">
+        <li><h3>この作業におけるAIの役割を、誰が知る必要があるか</h3></li>
+        <li><h3>どのように、いつ伝えるべきか</h3></li>
+        <li><h3>どの程度の詳しさで共有するのが適切か</h3></li>
+      </ul>
+      <p>透明性——つまり率直で正直であること——への期待に応えるのは、単に規則や規制に従うためだけではない。それは、関係における信頼と敬意を保つことでもある。AIが、コンテンツの作成や、人に影響を与える意思決定において重要な役割を果たしたとき、<strong>人にはそれを知る権利がある</strong>ということを認めることでもある。</p>
+      <p>たとえば、チームの企画書の下書きにAIを使ったなら、どの部分がAI支援によるものかを同僚に伝えることで、より正直な協働が可能になり、全員が同じ認識を共有できる。</p>
+      <p>これを<strong>透明性における倫理的責任 (transparency diligence)</strong> と呼ぶ。知る必要のあるすべての人に対して、AIとのやり取りについてオープンで正確であれる能力のことだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="241" data-label="展開における倫理的責任">
+    <div class="sec__mark"><div><span class="sec__t">4:01</span><span class="sec__kind">展開</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">展開における倫理的責任</h2>
+      <p>すでに触れたとおり、AIシステムは間違いを起こしうる。AIが生成したコンテンツを世に共有するとき、その正確さと適切さについて最終的に責任を負うのは、<strong>AIではなくあなた自身</strong>だ。これは、事実確認をし、偏りをチェックし、正確さと利用権限を確認するなど、<strong>自分がその内容を保証できる</strong>ようにするために必要な確認作業を意味する。</p>
+      <p>たとえば、記事の下書きにAIを使うジャーナリストを考えてみる。公開する前に、すべての事実と情報源を検証し、最終的な原稿がすべてのジャーナリズム基準——自分がすべて一人で書いた場合と同じ基準——を満たしていることを確かめる必要がある。</p>
+      <p>これを<strong>展開における倫理的責任 (deployment diligence)</strong> と呼ぶ。AIの支援を得て作成された後の出力を、自分が使う・共有するにあたって、その責任を引き受ける能力のことだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="305" data-label="実践のためのガイドライン">
+    <div class="sec__mark"><div><span class="sec__t">5:06</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">こうした配慮を実践するには</h2>
+      <p>これらの倫理的責任への配慮は、常に一筋縄ではいかない。文脈や関係者が違えば、期待や基準も違ってくる。だからこそ、<strong>自分自身の倫理観・価値観に沿った、AIと働くための個人的なガイドライン</strong>を育てておくことが助けになる。仕事の場面では、自分が属する組織のポリシーや業界標準にも通じておくとよい。</p>
+      <p>そして、AIをめぐる法的・規制的な枠組みは、まだ発展途上であり今後も変化し続ける。情報を追い続けることも、倫理的責任の重要な一部だ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="349" data-label="動画のまとめ">
+    <div class="sec__mark"><div><span class="sec__t">5:50</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">動画のまとめ</h2>
+      <p class="wrapup">作成・透明性・展開における倫理的責任は、互いに組み合わさって、倫理的責任という能力全体を形づくる。倫理的責任の力を育てることは、AIの利用が効果的・効率的であるだけでなく、<em>倫理的で安全である</em>ことを確かなものにする。</p>
+      <p>倫理的責任は、AIとの協働には責任が伴うことを思い出させてくれる——どのシステムを選び、どう働くかについて思慮深くあること、AIの役割について正直であること、そして最終的に、AIと働いて生み出したものについて説明責任を果たすこと。私たちは皆、公正で安全で、社会の利益になるAIを望んでいる。そこに至る道のりで、自分自身のふるまいが重要な役割を果たす。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-label="重要なポイント（コース本文）">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p class="tr__note" style="margin-bottom:16px">ここからは公式コース本文（claude.com/courses）が出典。動画の書き起こしとは節を分けている。</p>
+      <p>倫理的責任とは、<strong>AI 協働に対して責任を持つ</strong>ことである。利用場面（個人目的、学術目的、ビジネス目的）によって、開示と検証に対する期待は異なる場合がある。倫理的責任を果たすことで、AI協働が効果的で効率的であるだけでなく、<strong>倫理的で安全である</strong>ことを確保するのに役立つ。</p>
+
       <div class="modes modes--2col">
         <div class="modes__row modes__row--head">
           <div>側面</div><div>内容</div>
@@ -100,7 +202,7 @@
     </div>
   </section>
 
-  <section class="sec" id="ex">
+  <section class="sec" id="ex" data-label="演習：倫理的責任声明の作成">
     <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">AI 利用における倫理的責任声明の作成</h2>
@@ -164,7 +266,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s10" data-label="振り返り（コース本文）">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">振り返り</h2>
@@ -179,7 +281,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s5">
+  <section class="sec" id="s11" data-label="次のステップ（コース本文）">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">次のステップ</h2>
@@ -187,6 +289,39 @@
       <p><a href="13-conclusion.html">13 まとめ →</a></p>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。言い直しやフィラーもそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>In this video, we'll examine the diligence competency from the AI fluency framework. Remember that AI fluency means working with AI effectively, efficiently, ethically, and safely. While the other three competencies</p></div>
+      <div><span>0:26</span><p>primarily address effectiveness and efficiency, diligence focuses mostly on the ethical and safety aspects that are just as crucial for successful AI collaboration. At its heart, diligence is about taking responsibility for your</p></div>
+      <div><span>0:42</span><p>AI interactions. It's the dimension of AI fluency that ensures your use of AI systems is not only productive but also rigorous, transparent, and accountable. Unlike the other competencies that</p></div>
+      <div><span>0:57</span><p>primarily focus on getting results, diligence asks us to consider broader questions that are nevertheless critical to AI collaboration, particularly in professional environments, such as what are the implications of working with</p></div>
+      <div><span>1:12</span><p>this AI? Who might be affected by what is created or by the collaboration itself or by any missed inaccuracies? Who has access to the data used to produce this output? How do I ensure that my interaction and the</p></div>
+      <div><span>1:26</span><p>outcome aligns with ethical standards and values? Think about it like driving a car. We don't just focus on getting from point A to point B efficiently. We also consider safety, follow traffic rules, and remain aware of how our driving</p></div>
+      <div><span>1:42</span><p>affects others on the road. Similarly, diligence recognizes that AI systems and our interactions with them don't exist in a vacuum. Working with AI responsibly requires awareness of broader contexts</p></div>
+      <div><span>1:57</span><p>and their implications. Diligence begins with becoming more critically thoughtful about which AI systems we work with, how we work with them, and the impacts that come from those collaborations. We should seek answers to questions like,</p></div>
+      <div><span>2:13</span><p>how is this system trained and built? What data was used? Who owns the data I'm inputting right now? Who may have access to it once it's shared? How am I protecting the privacy and security of myself and others? What other impacts</p></div>
+      <div><span>2:28</span><p>does this system have? How does this interaction align with my personal and professional values or with my organization's policies? For example, before sharing sensitive company information with an AI</p></div>
+      <div><span>2:42</span><p>assistant, it's important to first check whether the service has appropriate data protection policies in place or if your organization permits such sharing. We call this type of diligence creation diligence. It is your ability to be critical and intentional about</p></div>
+      <div><span>2:59</span><p>which AI systems you choose to work with and how you work with them. Different settings, personal, academic, creative, and professional may have different expectations of disclosure about AI interaction. However, the responsibility</p></div>
+      <div><span>3:15</span><p>is on each of us to understand and meet these expectations. Ask yourself, who needs to know about AI's role in this work? How and when should I communicate this? What level of detail makes sense to share? Meeting expectations for</p></div>
+      <div><span>3:31</span><p>transparency, in other words, being forthright and honest, isn't just about following rules and regulations. It's about maintaining trust and respect in your relationships. It acknowledges that people have the right to know when AI</p></div>
+      <div><span>3:46</span><p>has played a significant role in content creation or in decisions that affect them. For instance, if you used AI to help draft a team proposal, letting your colleagues know which parts were AI assisted allows for a more honest</p></div>
+      <div><span>4:01</span><p>collaboration and keeps everyone on the same page. We call this transparency diligence. It's the ability to be open and accurate about AI interaction with everyone who needs to know. As we discussed before, AI systems can make</p></div>
+      <div><span>4:18</span><p>mistakes. When you share AI generated content with the world, you not the AI are ultimately responsible for its accuracy and appropriateness. This means verifying facts, checking for biases, ensuring</p></div>
+      <div><span>4:34</span><p>accuracy and usage rights, and other checks needed so that you can stand behind what you share. Consider a journalist who uses AI to help draft an article. Before publishing, they would need to verify</p></div>
+      <div><span>4:49</span><p>every fact and source. Ensure that the final piece meets every journalistic standard, the same standards that would apply had they written it entirely themselves. We call this deployment diligence. It's the ability to take informed responsibility for the outputs</p></div>
+      <div><span>5:06</span><p>that you use or share after they've been created with AI assistance. Navigating these diligence considerations isn't always straightforward. Different contexts and stakeholders may have different expectations and</p></div>
+      <div><span>5:21</span><p>standards. So it helps to develop personal guidelines for working with AI that align with your own ethics and values. And in professional contexts, familiarize yourself with organizational policies and industry</p></div>
+      <div><span>5:36</span><p>standards. And remember that the legal and regulatory frameworks around AI are still emerging and will continue to evolve. Staying informed is an important part of diligence. To</p></div>
+      <div><span>5:50</span><p>recap, creation, transparency, and deployment diligence work together to form the complete diligence competency. By developing your capacity for diligence, you ensure that your AI use is not only effective and efficient, but</p></div>
+      <div><span>6:06</span><p>also ethical and safe. Diligence reminds us that our interaction with AI comes with responsibilities. To be thoughtful about the systems we choose and about how we work with them, to be honest about AI's</p></div>
+      <div><span>6:22</span><p>role in our work, and ultimately to be accountable for what we create when working with AI. We all want AI that is fair and safe and of benefit to our society. Our own behaviors play a key role in making this</p></div>
+      <div><span>6:39</span><p>happen.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -197,9 +332,11 @@
 <div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <span>出典 — Anthropic 公式チャンネル「Lesson 10: A closer look at Diligence」／ claude.com/courses</span>
+  <a href="https://youtu.be/QbLf2zb3oPc" target="_blank" rel="noopener">youtu.be/QbLf2zb3oPc ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

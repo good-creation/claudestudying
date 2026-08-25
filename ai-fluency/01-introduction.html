@@ -4,13 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>01 AI活用力入門 — AI活用力（AI Fluency）学習ノート</title>
-<meta name="description" content="コースの目的と構成、4D フレームワークの紹介。人間と AI の協働に焦点を当てるコースの導入回。">
+<meta name="description" content="Anthropic 公式 AI Fluency コース動画『Introduction』の内容を再構成した日本語の学習ノート。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
 
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
@@ -29,14 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">01 / AI Fluency</p>
-    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow">Lesson 01 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--signal)">4:22 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
   <h1 class="hero__title">AI活用力<br><em>入門</em></h1>
@@ -44,83 +54,147 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    本コースは、AI を技術として理解するだけでなく、<strong>人間と AI の協働</strong>に焦点を当てる。中心にあるのは「4D」——<strong>委任力・記述力・評価力・倫理的責任</strong>——という、AI 技術が進化しても有用であり続ける持続的な能力。
+    コースの1本目。Joe Feller、Drew Bent、Rick Dakan、Maggie Vo が登壇し、<strong>「なぜこの講座を作ったのか」「AI活用力とは何を指すのか」「この先どんな旅になるのか」</strong>を語る。以下はその全内容を、話の流れに沿って日本語で再構成したもの。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:0%"><s>自己紹介</s><i></i><b>0:00</b></div>
+      <div class="tl__tick" style="left:12.2%"><s>コースの主眼</s><i></i><b>0:32</b></div>
+      <div class="tl__tick" style="left:24%"><s>必要性</s><i></i><b>1:03</b></div>
+      <div class="tl__tick" style="left:30.2%"><s>定義</s><i></i><b>1:19</b></div>
+      <div class="tl__tick" style="left:42.7%"><s>機会と不安</s><i></i><b>1:52</b></div>
+      <div class="tl__tick" style="left:55.3%"><s>4つのD</s><i></i><b>2:25</b></div>
+      <div class="tl__tick" style="left:72.9%"><s>構成</s><i></i><b>3:11</b></div>
+      <div class="tl__tick" style="left:84.7%"><s>核心能力へ</s><i></i><b>3:42</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>04:22</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/JpGtOfSgR-c" target="_blank" rel="noopener">youtu.be/JpGtOfSgR-c ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>コースの目的と構成</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic</dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>4:22</span> <small>/ 262s</small></dd></div>
+    <div><dt>Views</dt><dd><span>924,490</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/JpGtOfSgR-c" target="_blank" rel="noopener">youtu.be/JpGtOfSgR-c ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="262">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="0" data-label="自己紹介">
+    <div class="sec__mark"><div><span class="sec__t">0:00</span><span class="sec__kind">自己紹介</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
-      <ul class="acts">
-        <li><h3>コースの目的と構成を理解する</h3></li>
-        <li><h3>AI活用力の重要性を認識する</h3><p>現代社会における位置づけとして。</p></li>
-        <li><h3>主要な構成要素を把握する</h3><p>これから始まる学習の。</p></li>
-        <li><h3>明確な期待を持つ</h3><p>このコースから得られるものについて。</p></li>
-      </ul>
+      <h2 class="sec__h">登壇者による自己紹介</h2>
+      <p>動画は4人の自己紹介から始まる。Joe Feller（Cork University Business School 教授）、Drew Bent（Anthropic の教員・プログラマー・技術スタッフ）、Rick Dakan（Ringling College of Art and Design）、Maggie Vo（Anthropic の教育リサーチチーム）。四人が順に名乗ったあと、「AI活用力（AI fluency）フレームワークの探求を始めよう」という一言でコースが幕を開ける。</p>
     </div>
   </section>
 
-  <section class="sec" id="s2">
-    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+  <section class="sec" id="s2" data-start="32" data-label="コースの主眼">
+    <div class="sec__mark"><div><span class="sec__t">0:32</span><span class="sec__kind">主眼</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">重要なポイント</h2>
-      <p>本コースは、AI を技術として理解するだけでなく、<strong>人間と AI の協働</strong>に焦点を当てている。</p>
-      <blockquote class="quote">
-        <p>AI活用力とは、AI システムと効果的、効率的、倫理的かつ安全に関わることを意味する。</p>
-        <cite>— Anthropic 公式 AI Fluency コース</cite>
-      </blockquote>
-      <p>AI活用力フレームワークは、<strong>委任力（Delegation）、記述力（Description）、評価力（Discernment）、倫理的責任（Diligence）</strong>の「4D」能力を中心に据えている。目標は、AI 技術が進化しても有用であり続ける、<strong>持続的な能力</strong>を身につけること。</p>
-      <p>効果的な AI 協働には、<strong>実践的な能力</strong>と、<strong>AI との協働に対する根本的な考え方の転換</strong>の両方が必要になる。</p>
-
-      <div class="tip">
-        <b>Claude Code 入門コースとの対応（推測）</b>
-        <p>4D の各能力は、本サイトの Claude Code 入門コースの内容と近い場面で登場する。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。<strong>委任力</strong> → <a href="../07-subagents.html">07 サブエージェント</a>（作業を任せる判断）、<strong>記述力</strong> → <a href="../03-your-first-prompt.html">03 最初のプロンプトを書く</a>（意図を正確に伝える）、<strong>評価力</strong> → <a href="../11-review-and-ship.html">11 Review &amp; Ship</a>（出力を見極める）。</p>
-      </div>
+      <h2 class="sec__h">このコースが扱うもの</h2>
+      <p>このコースの焦点は、AI という技術そのものではない。むしろ<strong>私たち人間が、AIシステムとどう関わり、どう協働するか</strong>にある。AIを「次世代のスペルチェッカー」のような存在として扱うのではなく、創造的で革新的な問題解決に取り組む<strong>信頼できるパートナー</strong>として捉え直す——そういう可能性を思い描くことが目的だと語られる。そして、そうした可能性に自信を持って、有能に取り組めるようになることも合わせて目指される。</p>
     </div>
   </section>
 
-  <section class="sec" id="s3">
-    <div class="sec__mark"><div><span class="sec__t">4D</span><span class="sec__kind">フレームワーク</span></div></div>
+  <section class="sec" id="s3" data-start="63" data-label="この講座が必要な理由">
+    <div class="sec__mark"><div><span class="sec__t">1:03</span><span class="sec__kind">必要性</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">4つの能力</h2>
+      <h2 class="sec__h">なぜ今、この講座が必要か</h2>
+      <p>AIの世界は極めて速く動く。土台となる基本的なフレームワークを持っていなければ、どこから手をつければいいのか、どうやって追い付き続ければいいのかが分からず、次々に現れては消えていく「プロンプトエンジニアリングの流行」に振り回されてしまう。だからこそ、このコースを公開する——という動機が語られる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="79" data-label="AI活用力の定義">
+    <div class="sec__mark"><div><span class="sec__t">1:19</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">AI活用力（AI fluency）の定義</h2>
+      <p>このコースで探求するのは「AI活用力」——<strong>効果的、効率的、倫理的、安全</strong>にAIシステムと関わる能力のことだと定義される。実践的なスキルは数多く学べるが、来月には古くなっているかもしれない技術用語の寄せ集めや、プロンプト集ではない。</p>
+      <p>このコースは、AIへの向き合い方そのものを根本から変えることが目的だと語られる。<strong>「AIについて考える」のではなく、「AIと共に考える」ことを学ぶ</strong>——この視点の転換が繰り返し強調される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="112" data-label="機会と不安">
+    <div class="sec__mark"><div><span class="sec__t">1:52</span><span class="sec__kind">背景</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">急速な普及がもたらす機会と不安</h2>
+      <p>この数年でAIは、専門家向けの特殊な技術から、学校でも職場でも家庭でも何百万人もが日常的に使う対話型システムへと変貌した。この変化は<strong>機会と不確実性の両方</strong>を生んでいる。明確な戦略のないままAIを導入する組織があり、仕組みを十分に理解しないままシステムに苛立つ人々がいる。そして、AIに「できること」と、それを「心地よく直感的に使えると感じること」との間には、広がり続けるギャップがある。このコースは、そのギャップを埋める手助けをするために存在する、と説明される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="145" data-label="コースの旅：4つのD">
+    <div class="sec__mark"><div><span class="sec__t">2:25</span><span class="sec__kind">全体像</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コースの旅：4つの「D」の紹介</h2>
+      <p>ここでコース全体の道筋が示される。まずAI活用力フレームワークの全体像——人間とAIの関わり方をめぐる、有用だと分かったモデル——を概観する。そのうえで、AIとの関わりをより豊かで実りあるものに変える<strong>4つの中核的能力（four Ds）</strong>を扱っていく。動画で示された定義は次の通り。</p>
       <div class="cards">
         <article>
           <p class="cards__k">D — 1</p>
           <h3>委任力 / Delegation</h3>
+          <p>人がいつ作業を担い、いつAIに任せるべきかを問う。</p>
         </article>
         <article>
           <p class="cards__k">D — 2</p>
           <h3>記述力 / Description</h3>
+          <p>AIシステムとどう明確にコミュニケーションするかを問う。</p>
         </article>
         <article>
           <p class="cards__k">D — 3</p>
           <h3>評価力 / Discernment</h3>
+          <p>AIが出してきたものをどう評価するかを問う。</p>
         </article>
         <article>
           <p class="cards__k">D — 4</p>
           <h3>倫理的責任 / Diligence</h3>
+          <p>AIとの関わりが責任ある、透明で説明可能なものであることを、どう確保するかを問う。</p>
         </article>
-      </div>
-      <div class="warn">
-        <b>未確認</b>
-        <p>各能力の詳細な定義は本レッスンの原文には含まれていない。名称のみ収録し、詳細は原文入手後に追記する。</p>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="ex">
+  <section class="sec" id="s7" data-start="191" data-label="コースの構成">
+    <div class="sec__mark"><div><span class="sec__t">3:11</span><span class="sec__kind">構成</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コースの構成</h2>
+      <p>各セクションは、演習や教材と組み合わされた集中的な動画で構成されており、学んだことを実際に試す時間を多く取ることが推奨される。さらに、Anthropicのメンバー自身の声として、今日のAIが以前の技術と何が違うのか、システムの実際の能力と限界、そして4Dを適用する実践的な手法についても語られる予定だと紹介される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="222" data-label="核心能力へ">
+    <div class="sec__mark"><div><span class="sec__t">3:42</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">戦術ではなく、核心能力へ</h2>
+      <p>多くのAIトレーニングは、特定のプロンプトや設定の調整、使うシステムの選び方といった<strong>戦術的なスキル</strong>だけに焦点を当てがちだと指摘される。それらは役に立つが、すぐに古くなってしまう。このコースはあえて異なるアプローチを取り、<strong>核心的な能力と深い理解</strong>に焦点を当てる——今日のAIのためだけでなく、これから訪れる変化に備えるために。</p>
+      <p>講座を終える頃には、次の4つが手元に残ると締めくくられる。自分自身のAIとの関わり方を導く<strong>フレームワーク</strong>、いつどうAIに関わるかを判断する<strong>自信</strong>、より思慮深く柔軟な人間とAIの協働のための<strong>実践的スキル</strong>、そして協働の成果を評価し責任を持つ<strong>能力</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-label="要点整理（公式コース本文より）">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">要点整理（公式コース本文より）</h2>
+      <div class="tip">
+        <b>ここからは出典が変わる</b>
+        <p>ここまでのセクションは動画のトランスクリプトに基づく。以下は公式コースページの本文（学習目標・重要なポイント）に基づく整理で、動画そのものの発言ではない。</p>
+      </div>
+      <blockquote class="quote">
+        <p>AI活用力とは、AI システムと効果的、効率的、倫理的かつ安全に関わることを意味する。</p>
+        <cite>— Anthropic 公式 AI Fluency コース</cite>
+      </blockquote>
+      <p>AI活用力フレームワークは、<strong>委任力（Delegation）、記述力（Description）、評価力（Discernment）、倫理的責任（Diligence）</strong>の「4D」能力を中心に据えている。目標は、AI技術が進化しても有用であり続ける、<strong>持続的な能力</strong>を身につけること。効果的なAI協働には、<strong>実践的な能力</strong>と、<strong>AIとの協働に対する根本的な考え方の転換</strong>の両方が必要になる。各Dの詳しい内容は <a href="03-4d-framework.html">03 4D フレームワーク</a> でまとまって示される。</p>
+      <div class="tip">
+        <b>Claude Code 入門コースとの対応（推測）</b>
+        <p>4Dの各能力は、本サイトの Claude Code 入門コースの内容と近い場面で登場する。以下は原文が明示した対応ではなく、こちらの推測による対応づけ。<strong>委任力</strong> → <a href="../07-subagents.html">07 サブエージェント</a>（作業を任せる判断）、<strong>記述力</strong> → <a href="../03-your-first-prompt.html">03 最初のプロンプトを書く</a>（意図を正確に伝える）、<strong>評価力</strong> → <a href="../11-review-and-ship.html">11 Review &amp; Ship</a>（出力を見極める）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ex" data-label="演習">
     <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
     <div class="sec__body">
+      <p class="tr__note">ここから先は動画ではなく、Anthropic 公式コースページの演習が出典。</p>
       <h2 class="sec__h">実践してみましょう</h2>
       <p>このコース全体を通じて、言語モデルを直接使用しながら学んだことを実践します。例では Claude（Anthropic の AI アシスタント）を使用していますが、お好みの言語モデルをご自由にお使いください。これから学習する原則とスキルは、さまざまな AI システムに適用できます。</p>
 
@@ -132,18 +206,18 @@
       <p>始めるのは簡単で無料です。</p>
       <ul class="acts">
         <li><h3>Claude</h3><p><a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> にアクセスして無料アカウントを作成してください。</p></li>
-        <li><h3>有料プランへの登録は不要</h3><p>コースのアクティビティを完了するために。</p></li>
-        <li><h3>他の AI チャットボットも使用可能</h3><p>お好みでご使用いただけます。</p></li>
+        <li><h3>コースのアクティビティを完了するために有料プランへの登録は不要です</h3></li>
+        <li><h3>他の AI チャットボットもお好みでご使用いただけます</h3></li>
       </ul>
 
       <p>Claude を初めて使う場合もご心配なく。各演習で、始めるための分かりやすいガイダンスを提供します。</p>
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s10" data-label="振り返り">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">振り返り</h2>
+      <h2 class="sec__h">振り返り（公式コース本文より）</h2>
       <p>次に進む前に、ご自身の AI 体験について少し考えてみる。</p>
       <ol class="steps">
         <li><h3>どのような課題に遭遇したか</h3><p>AI を使って特定の成果を達成しようとしたとき。</p></li>
@@ -153,14 +227,37 @@
     </div>
   </section>
 
-  <section class="sec" id="s5">
+  <section class="sec" id="s11" data-label="次のステップ">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">次のステップ</h2>
+      <h2 class="sec__h">次のステップ（公式コース本文より）</h2>
       <p>次の講座では、急速に進化する現代の技術環境において<strong>AI活用力がなぜ重要なのか</strong>を探求する。人々が AI と協働する3つの主要な方法——<strong>自動化、拡張、自律</strong>——と、AI活用力・フレームワークのコア能力である「4D」を紹介する。</p>
       <p><a href="02-why-ai-fluency.html">02 なぜAI活用力が必要なのか？ →</a></p>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。言い直しや認識ミス（Enthropic、Rick Dacon など）もそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:00</span><p>I'm Joe Feller. I'm a professor at the Cork University Business School. My name is Drew Bent and I'm a teacher, programmer, and a member of technical staff at Enthropic. My name is Rick Dacon from the Ringling College of Art and Design. I'm Maggie Vo and I work on the education research team at</p></div>
+      <div><span>0:15</span><p>Enthropic. Let's begin our exploration of the AI fluency framework. The focus of this course is not really</p></div>
+      <div><span>0:32</span><p>about AI as a technology. Instead, it's mostly about you and I, us humans, and how we interact and collaborate with AI systems. It's about imagining possibilities that don't treat AI as some sort of next level spellch checker,</p></div>
+      <div><span>0:47</span><p>but instead as a trusted partner for doing creative and innovative problems solving work. And it's about approaching these possibilities confidently and capably. Let's face it, the AI world moves extremely quickly. And it's very</p></div>
+      <div><span>1:03</span><p>hard to know where to start or how to keep up unless you have a grounding fundamental framework to guide you and get you past that next prompt engineering fad. That's why we're publishing this course. In this course, we explore AI fluency, our ability to</p></div>
+      <div><span>1:19</span><p>engage with AI systems in ways that are effective, efficient, ethical, and safe. You'll learn plenty of practical skills, but it isn't just another collection of technical definitions or prompting tips that may be outdated next month. This</p></div>
+      <div><span>1:35</span><p>course is about fundamentally shifting how we approach AI. We want to change how we think about AI so that we can learn how to think with AI. Over the last few years, AI has transformed from specialized</p></div>
+      <div><span>1:52</span><p>technologies to interactive systems that millions use daily at school, at work, and at home. This transformation creates both opportunities and uncertainty. We see organizations adopting AI without clear strategies. We</p></div>
+      <div><span>2:09</span><p>watch people growing frustrated with systems that they don't fully understand. And we're all experiencing a widening gap between what's possible and what feels comfortable and intuitive. This course exists to help us</p></div>
+      <div><span>2:25</span><p>bridge this gap together. Here's the journey we'll take across this course. First, we'll give an overview of the AI fluency framework, a model for human AI interaction that we have found useful and powerful. We'll discuss the ways we interact with AI</p></div>
+      <div><span>2:40</span><p>systems and four core competencies which we call the four Ds that transform those interactions into something richer and much more rewarding. Then we'll look at each competency more closely. In brief, these are delegation which asks when should humans do work and when should AI</p></div>
+      <div><span>2:56</span><p>description which asks how do we communicate clearly with AI systems? Discernment which asks how do we evaluate what AI gives us? and diligence, which asks, "How do we ensure our interaction with AI is responsible, transparent, and accountable?" Each</p></div>
+      <div><span>3:11</span><p>section includes focused videos paired with exercises and materials to build practical understanding. We hope you'll spend much of your time during this course trying what you're learning. You'll also hear directly from a few of us at Anthropic about what makes today's AI different from previous technologies,</p></div>
+      <div><span>3:26</span><p>the real capabilities and limitations of these systems, and practical techniques that apply the 4Ds. Most AI training focuses solely on tactical skills like specific prompts, which settings to adjust or which systems to use. While useful, these skills can quickly become</p></div>
+      <div><span>3:42</span><p>outdated. We're taking a different approach and focusing on core competencies and deep understanding so that you're prepared not just for today's AI, but for the changes to come. By the end of our time together, you'll have a framework to guide your own interactions with AI, confidence in</p></div>
+      <div><span>3:58</span><p>deciding when and how to engage AI effectively, practical skills for more thoughtful and fluid human AI collaboration, and the ability to evaluate and take responsibility for the outcomes of these collaborations. Thank you for joining us.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -171,10 +268,11 @@
 <div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <span>出典 — Anthropic 公式 AI Fluency コース「Introduction」／ CC BY-NC-SA 4.0</span>
   <a href="https://youtu.be/JpGtOfSgR-c" target="_blank" rel="noopener">youtu.be/JpGtOfSgR-c ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

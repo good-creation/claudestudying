@@ -4,13 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>06 委任力 (Delegation) を詳しく見る — AI活用力（AI Fluency）学習ノート</title>
-<meta name="description" content="委任力の3つの構成要素——問題認識、プラットフォーム理解、タスク委任——と、AIにタスクを効果的に委任するタイミング・方法。">
+<meta name="description" content="委任力の3つの構成要素——問題認識、プラットフォーム理解、タスク委任——と、AIにタスクを効果的に委任するタイミング・方法を動画本編から日本語で再構成。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
 
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
@@ -29,14 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">06 / AI Fluency</p>
-    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow">Lesson 06 / AI活用力（AI Fluency）</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式コース — Claude Code 入門コースとは別系統 · 5:49</p>
   </div>
 
   <h1 class="hero__title">委任力<br><em>(Delegation) を詳しく見る</em></h1>
@@ -44,36 +54,88 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    4Dの1番目、<strong>委任力（Delegation）</strong>を詳しく見る回。その3つの構成要素——問題認識、プラットフォーム理解、タスク委任——を理解し、AIにタスクを効果的に委任するタイミングと方法を学ぶ。
+    4Dの1番目、<strong>委任力（Delegation）</strong>を詳しく見る回。その出発点は実は<strong>AIそのものではなく自分自身の専門知識</strong>にある、という切り口から、<strong>問題認識・プラットフォーム理解・タスク委任</strong>という3つの構成要素を動画本編から日本語で再構成。末尾には公式コース本文由来の要点・演習・振り返り・次のステップを収録。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:3.2%"><s>委任とは</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:20.6%"><s>問題認識</s><i></i><b>1:12</b></div>
+      <div class="tl__tick" style="left:42.1%"><s>ﾌﾟﾗｯﾄﾌｫｰﾑ理解</s><i></i><b>2:27</b></div>
+      <div class="tl__tick" style="left:65.3%"><s>タスク委任</s><i></i><b>3:48</b></div>
+      <div class="tl__tick" style="left:83.1%"><s>まとめ</s><i></i><b>4:50</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>05:49</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/EljzyfdYkrc" target="_blank" rel="noopener">youtu.be/EljzyfdYkrc ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>委任力の3つの構成要素</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>AI Fluency</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>5:49</span> <small>/ 349s</small></dd></div>
+    <div><dt>Views</dt><dd><span>530,342</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/EljzyfdYkrc" target="_blank" rel="noopener">youtu.be/EljzyfdYkrc ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="349">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="11" data-label="委任力とは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
-      <ul class="acts">
-        <li><h3>委任力とその3つの構成要素を理解する</h3><p>問題認識、プラットフォーム理解、タスク委任。</p></li>
-        <li><h3>AIにタスクを効果的に委任するタイミングと方法を理解する</h3></li>
-        <li><h3>タスク・プラットフォーム・モードに関する考慮事項の認識を身につける</h3><p>AIと作業する際の。</p></li>
-      </ul>
-      <p>効果的な委任（Delegation）は、AIシステムと効果的かつ効率的に協働するうえで不可欠であり、そのために<strong>自分の専門知識とAIの能力への理解の両方</strong>が必要になる。</p>
+      <h2 class="sec__h">委任力とは何か</h2>
+      <p>この動画では、委任力（delegation）という能力を詳しく見ていく。AI活用力とは、効果的（effective）・効率的（efficient）・倫理的（ethical）・安全（safe）にAIと働くことだが、委任力はこのうち主に<strong>最初の2つ</strong>——効果的かつ効率的にAIアシスタンスと働くこと——に焦点を当てる。</p>
+      <p>委任の核心は、どの作業をやるべきか、どれを自分でやるべきか、どれをAIに任せたほうが良いかを<strong>決めること</strong>。シンプルに聞こえるが、実際には驚くほど繊細な判断が必要になる。効果的な委任には、達成しようとしていることと、自分とAIそれぞれが現実的にできることの両方を理解する必要がある。複雑な作業を管理しやすい単位に分解し、自動化（automation）・拡張（augmentation）・エージェンシー（agency）のどれで、誰がどの部分を担当するかを戦略的に決めることでもある。</p>
     </div>
   </section>
 
-  <section class="sec" id="s2">
+  <section class="sec" id="s2" data-start="72" data-label="問題認識">
+    <div class="sec__mark"><div><span class="sec__t">1:12</span><span class="sec__kind">要素1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">委任の出発点は、AIではなく自分の専門知識</h2>
+      <p>意外に思うかもしれないが、良い委任の礎（cornerstone）は、実はAIについてのことではまったくない。<strong>自分自身の専門知識と、達成しようとしていることへの自分自身の理解</strong>についてのことだ。AIをどんなプロジェクトに関わらせる前にも、次のような重要な問いに答える時間を取る。</p>
+      <p>何を達成しようとしているのか。何を作りたい、あるいは解決したいのか。ビジョンや主要なプロジェクト目標は何か。自分にとって成功とはどのようなものか。そして、そこに到達するにはどのような思考と作業が必要かを自問する——単純だが時間のかかる領域はどこか、信頼できる思考パートナーが役立つ不確実な領域はどこか、より多くのデータが必要な無知の領域はどこか、批判的な判断が求められる領域はどこか。</p>
+      <p>プロジェクトや分野はそれぞれ違うので、動画はその分野の専門家にはなれないと断ったうえで、それでも<strong>自分の目標と必要な作業を明確に理解していなければ、どれほど高度なAIでも目的地には連れて行ってくれない</strong>と述べる。AIアシスタントと効果的に働いたり、その出力を評価したり、いつ人間の介入が必要かを判断したりすることに苦労することになる。最も効果的なAI協働者は、まず自分の分野の専門家であり、AIへの委任者であるのはその次だ。これを<strong>問題認識（problem awareness）</strong>——AIを関わらせる前に、目標を明確に定義し、必要な作業を理解する力——と呼ぶ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="147" data-label="プラットフォーム理解">
+    <div class="sec__mark"><div><span class="sec__t">2:27</span><span class="sec__kind">要素2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">プラットフォーム理解——AIの世界を知る</h2>
+      <p>自分の問題を理解したうえで、次に必要なのは<strong>AIの世界についての実践的な知識</strong>。異なるAIシステムはまったく異なる能力を提供しており、この分野はほぼ毎日のように進化している。効果的な委任とは、唯一の完璧なシステムを見つけることではなく、手元にあるさまざまな選択肢それぞれの、独自の強みと限界を理解することだ。自分がやりたい種類の作業にどのモデルが最も適しているか調べたことはあるか。どのAIシステムが速度を深さより優先し、どれが正確さより創造性を優先するか知っているか、と動画は問いかける。</p>
+      <p>このコースにはこの知識を身につけるための技術的なセクションが複数含まれているが、この分野の動きは速い。最善のアプローチは実践的であること——できる限り頻繁にさまざまなAIシステムを試し、自分自身の経験にもとづいた洞察を育てること。これを<strong>プラットフォーム理解（platform awareness）</strong>——利用可能なAIシステムと、その具体的な能力・限界についての実践的な知識——と呼ぶ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="228" data-label="タスク委任">
+    <div class="sec__mark"><div><span class="sec__t">3:48</span><span class="sec__kind">要素3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">タスク委任——作業をどう配分するか</h2>
+      <p>自分の問題と、利用可能なAIアシスタンスの両方を理解したところで、委任の本当の技（art）が姿を現す。人間と人工知能それぞれの独自の強みを活かすように、<strong>思慮深く作業を配分すること</strong>だ。ワークフローのどの部分が自動化から恩恵を受けるか、単独で作業するより拡張（augmentation）アプローチのほうが価値を生む場面はどこか、完全に人間だけに残すべき批判的判断の領域はあるか、AIエージェントに代行させられる定型的なやり取りは何かを自問する。</p>
+      <p>自分の問題と利用可能なAIシステムの両方を明確に理解していれば、作業のどの部分をAIによって自動化するか、人間とAIの協働を通じて仕上げるか、人間の実行のためだけに取っておくか、あるいは自分に代わって行動するAIエージェントに任せるかについて、十分な情報にもとづいた判断ができる。これを<strong>タスク委任（task delegation）</strong>——人間とAIの間で作業を戦略的に配分するプロセス——と呼ぶ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="290" data-label="3要素のまとめ">
+    <div class="sec__mark"><div><span class="sec__t">4:50</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">委任力を構成する3つの要素</h2>
+      <p class="wrapup">動画は、委任力を構成する3つの要素として次のようにまとめる。</p>
+      <ul class="acts">
+        <li><h3>問題認識</h3><p>自分の目標と、解くべき問題を理解すること。</p></li>
+        <li><h3>プラットフォーム理解</h3><p>AIの能力と限界を理解すること。</p></li>
+        <li><h3>タスク委任</h3><p>作業を戦略的に配分すること。</p></li>
+      </ul>
+      <p>この能力が示す重要な点は、効果的なAI協働とは<strong>ハンドルを渡してそれで終わりにすることではない</strong>ということ。人間と人工知能、それぞれの独自の強みを活かす作業を委任するために、思慮深い選択を重ねていくことだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-label="重要なポイント（公式コース本文より）">
     <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">重要なポイント</h2>
+      <p class="tr__note">以下は公式コース本文が出典。動画本編の内容と重なる部分も多いが、本文側の要約としてそのまま残す。</p>
       <p>委任とは、自分で行う作業、AIと一緒に行う作業、AIに独立して任せる作業、そしてそれらのタスクをどのように分配するかについて、<strong>思慮深い決定を下すこと</strong>である。</p>
 
       <div class="cards">
@@ -108,9 +170,10 @@
     </div>
   </section>
 
-  <section class="sec" id="ex">
+  <section class="sec" id="ex" data-label="演習：AIアシスタントを使いタスクを分析する">
     <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
     <div class="sec__body">
+      <p class="tr__note">ここから先は動画ではなく、Anthropic 公式コースページの演習が出典。</p>
       <h2 class="sec__h">AIアシスタントを使いタスクを分析する</h2>
 
       <ol class="steps">
@@ -128,21 +191,21 @@
             <li>そこに到達するために必要な作業は何ですか。</li>
             <li>これらの作業のうち、人間の専門知識、創造性、判断力が必要なものはどれですか。</li>
           </ul>
+          <div class="tip">
+            <b>注意</b>
+            <p>これらの質問について話し合う際は、実際にClaudeと会話をしましょう！ 単に述べたり答えをリストアップしたりするだけでなく、実際にやり取りをしてください。お互いに相手が気づかないことに気づくかもしれません。</p>
+          </div>
         </li>
         <li><h3>あなたとAIそれぞれの強みを活かした委任計画を一緒に作成しましょう</h3></li>
       </ol>
-
-      <div class="tip">
-        <b>注意</b>
-        <p>これらの質問について話し合う際は、実際にClaudeと会話をしましょう！ 単に述べたり答えをリストアップしたりするだけでなく、実際にやり取りをしてください。お互いに相手が気づかないことに気づくかもしれません。</p>
-      </div>
     </div>
   </section>
 
-  <section class="sec" id="s3">
+  <section class="sec" id="s7" data-label="振り返り">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">振り返り</h2>
+      <p class="tr__note">以下は公式コース本文が出典。</p>
       <p>次に進む前に、考えてみる。</p>
       <ol class="steps">
         <li><h3>この委任フレームワークがあったら、アプローチはどう変わっていたか</h3><p>AIと一緒に作業した最近のプロジェクトについて。この委任フレームワークを念頭に置いていたら、アプローチはどのように変わっていたか。</p></li>
@@ -151,14 +214,43 @@
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s8" data-label="次のステップ">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">次のステップ</h2>
+      <p class="tr__note">以下は公式コース本文が出典。</p>
       <p>次のレッスンでは、委任力について学んだことを、コースを通じて取り組む多段階プロジェクトに適用する。興味のあるプロジェクトを選び、そのビジョンを定義し、タスクに分解し、自分とAIの間で戦略的に作業を分担する委任計画を作成する（このレッスンで練習したのと同様に）。このプロジェクトは、コース全体を通じてAI活用力を実践する場となる。</p>
       <p><a href="07-project-delegation.html">07 プロジェクト計画と委任力 →</a></p>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミスもそのまま残してある。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>In this video, we're going to take a closer look at the delegation competency. Remember that AI fluency is about working with AI in ways that are effective, efficient, ethical, and safe. Delegation is primarily focused on the</p></div>
+      <div><span>0:27</span><p>first two of these. Helping you work effectively and efficiently with AI assistance. At its core, delegation is about deciding what work is to be done, what work you should do yourself, and what work might be better suited to AI.</p></div>
+      <div><span>0:43</span><p>That might sound simple, but it's surprisingly nuanced. Effective delegation requires understanding both what you're trying to accomplish and what you and AI can each realistically do. It's about breaking down complex</p></div>
+      <div><span>0:58</span><p>work into manageable pieces and making strategic decisions about who handles which part, whether through automation, augmentation, or agency. Here's something that might surprise you.</p></div>
+      <div><span>1:12</span><p>The cornerstone of good delegation isn't actually about AI at all. It's about your own expertise and your own understanding of what you're trying to accomplish. Before involving AI in any project, take a moment to answer some important</p></div>
+      <div><span>1:28</span><p>questions. What exactly are you trying to accomplish? What are you trying to create or solve? What is your vision or key project goals? What does success look like to you? and ask yourself what kind of thinking</p></div>
+      <div><span>1:42</span><p>and work is needed to get there. Are there areas that are simple but timeconuming? Areas of uncertainty where you could use a trusted thinking partner? Areas of ignorance where what you need is more data or areas requiring</p></div>
+      <div><span>1:57</span><p>critical judgment. Every project and every domain is different. We can't make you an expert in your problem space. But we can say that without a clear understanding of your goals and the work involved, even the most advanced AI</p></div>
+      <div><span>2:13</span><p>won't get you where you need to go. You'll struggle to effectively work with AI assistants, evaluate their outputs, or know when human intervention is necessary. The most effective AI collaborators are experts in their</p></div>
+      <div><span>2:27</span><p>fields first and AI delegators second. We call this first concept problem awareness. the ability to clearly define your goals and understand what work is needed before bringing AI into the</p></div>
+      <div><span>2:42</span><p>picture. Beyond understanding your problem, you also need a working knowledge of the AI landscape. Different AI systems offer vastly different capabilities and this field evolves almost daily. Effective delegation isn't about finding one</p></div>
+      <div><span>2:59</span><p>perfect system. It's about understanding the unique strengths and limitations of the various options available to you. Have you investigated which models perform best for the kind of work you have in mind? Do you know which AI systems prioritize speed over depth or</p></div>
+      <div><span>3:16</span><p>accuracy over creativity? This course includes several technical sections that will help you build this knowledge, but the landscape moves quickly. The best approach is hands-on. Experiment with different AI systems as often as you can and develop</p></div>
+      <div><span>3:32</span><p>your own insights based on personal experience. We call this second concept platform awareness. A working knowledge of available AI systems and their specific capabilities and limitations. Once you understand both</p></div>
+      <div><span>3:48</span><p>your problem and the available AI assistance, the real art of delegation emerges. thoughtfully distributing work between human and artificial intelligence to leverage the unique strengths of each. Ask</p></div>
+      <div><span>4:03</span><p>yourself which specific parts of your workflow would benefit from automation or where would an augmentation approach create more value than either working alone or fully automating? Are there critical judgment</p></div>
+      <div><span>4:18</span><p>areas that should remain exclusively human and shouldn't be delegated at all? What routine interactions can AI agents handle on your behalf? With a clear understanding of both your problem and available AI systems, you can make</p></div>
+      <div><span>4:34</span><p>informed decisions about which aspects of work should be automated by AI or completed through human AI collaboration or reserved exclusively for human execution or handled by AI agents acting on your behalf. We call</p></div>
+      <div><span>4:50</span><p>this third concept task delegation. The strategic process of dividing work between humans and AI. To recap, delegation involves three key elements. Problem awareness, understanding your goals and the problem</p></div>
+      <div><span>5:07</span><p>to be solved. Platform awareness, understanding AI capabilities and limitations. And task delegation, strategically dividing the work. This competency highlights something important. Effective AI collaboration</p></div>
+      <div><span>5:24</span><p>isn't about handing over the wheel and calling it a day. It's about making thoughtful choices and delegating work that leverages the unique strengths of both human and artificial intelligence.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -173,6 +265,7 @@
   <a href="https://youtu.be/EljzyfdYkrc" target="_blank" rel="noopener">youtu.be/EljzyfdYkrc ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

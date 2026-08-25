@@ -12,6 +12,15 @@
 </head>
 <body>
 
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
   <nav>
@@ -29,13 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">08 / AI Fluency</p>
+    <p class="eyebrow">Lesson 08 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--signal)">4:21 · 全文書き起こし＋公式コース本文より</p>
     <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
   </div>
 
@@ -44,43 +55,118 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    AI は対話相手の考えを読むことはできない。あなたのニーズ、好ましいアプローチ、望ましい協働スタイルを<strong>どれだけ明確に伝えるか</strong>によって、成果の質が決まる。
+    AI は対話相手の考えを読むことはできない。<strong>成果物・プロセス・パフォーマンス</strong>という3つの側面から、AI に意図をどれだけ明確に伝えるかによって、返ってくる結果の質が決まる。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:4.21%"><s>定義</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:21.46%"><s>比喩</s><i></i><b>0:56</b></div>
+      <div class="tl__tick" style="left:38.31%"><s>成果物</s><i></i><b>1:40</b></div>
+      <div class="tl__tick" style="left:43.68%"><s>プロセス</s><i></i><b>1:54</b></div>
+      <div class="tl__tick" style="left:67.43%"><s>橋渡し</s><i></i><b>2:56</b></div>
+      <div class="tl__tick" style="left:90.42%"><s>統合</s><i></i><b>3:56</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>04:21</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/DmgujoZ1mmk" target="_blank" rel="noopener">youtu.be/DmgujoZ1mmk ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>記述力 — 成果物・プロセス・パフォーマンス</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>AI Fluency 公式コース</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>4:21</span> <small>/ 261s</small></dd></div>
+    <div><dt>Views</dt><dd><span>454,081</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/DmgujoZ1mmk" target="_blank" rel="noopener">youtu.be/DmgujoZ1mmk ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="261">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="11" data-label="記述力とは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">定義</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
-      <ul class="acts">
-        <li><h3>AIシステムに意図を効果的に伝える方法を理解する</h3></li>
-        <li><h3>明確で目的のあるコミュニケーションの重要性を認識する</h3></li>
-        <li><h3>3種類の記述能力を身につける</h3><p>成果物、プロセス、パフォーマンスの。</p></li>
-      </ul>
+      <h2 class="sec__h">記述力とは何か</h2>
+      <p>記述力（Description）は、AI Fluency を構成する4つの能力のひとつで、<strong>AI とどうコミュニケーションするか</strong>に関わる力である。動画はまず、これが単に気の利いたプロンプトを書くことではないと釘を刺す。</p>
+      <p>記述力に含まれるのは、タスクを説明すること、質問をすること、文脈を提供すること、そして対話そのものを導くこと。うまくいっていない会話の方向を立て直したり、AI の思考プロセスや論理的な推論を導いたり、<strong>自分と AI の双方が最も力を発揮できる「思考の環境」を作る</strong>ことまでを含む。</p>
+      <p>動画はこれを<strong>「意図と AI の能力の間に橋を架けること」</strong>という比喩で言い表している。</p>
     </div>
   </section>
 
-  <section class="sec" id="s2">
+  <section class="sec" id="s2" data-start="56" data-label="橋渡しとしての記述">
+    <div class="sec__mark"><div><span class="sec__t">0:56</span><span class="sec__kind">比喩</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">橋渡しとしての記述——AI は考えを読めない</h2>
+      <p>AI の出力の質は、<strong>要求をどれだけ明確に記述するか</strong>にかなりの部分左右される、と動画は説明する。ここで使われる例えが分かりやすい——誰かに「夕食を作って」とだけ頼むのと、材料と手順を書いた<strong>詳細なレシピ</strong>を渡すのとの違いだ。</p>
+      <p>AI は相手の考えを読むことができない。「AI はきっと分かってくれるだろう」と想定するのではなく、関連する詳細をすべて説明する必要がある。動画が挙げる問いは次の4つ。</p>
+      <ul class="acts">
+        <li><h3>文脈</h3><p>この作業の背景は何か。</p></li>
+        <li><h3>内容</h3><p>AI に具体的に何をしてほしいのか。</p></li>
+        <li><h3>形式</h3><p>出力はどのような形式であるべきか。</p></li>
+        <li><h3>読み手とスタイル</h3><p>想定読者は誰で、どのようなスタイルが適切か。</p></li>
+      </ul>
+      <p>AI に推測させてはいけない。明示的な要件を設定し、AI が本当に求められているものを届けるために必要な情報を与える——これが記述力の出発点になる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="100" data-label="成果物の記述">
+    <div class="sec__mark"><div><span class="sec__t">1:40</span><span class="sec__kind">概念1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">第一の概念：成果物の記述</h2>
+      <p>動画はここで最初の概念を名づける。<strong>成果物の記述（product description）</strong>——AI に作成・提供してほしいものを明確に定義する能力。</p>
+      <p>続けて、ゴール（何を作るか）の指定と同じくらい、あるいはそれ以上に、<strong>AI がどのように仕事に取り組むべきか</strong>を指定することが重要な場合がある、と話が展開する。同僚に特定のやり方で問題に取り組んでほしいと思うのと同じように、AI が依頼をどう進めるかを導くこともできるし、そうすべきだと動画は言う。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="114" data-label="アプローチを導く">
+    <div class="sec__mark"><div><span class="sec__t">1:54</span><span class="sec__kind">概念2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">アプローチを導く——第二の概念、プロセスの記述</h2>
+      <p>AI の取り組み方を導く方法として、動画は3通りを挙げる。</p>
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head"><div class="cmp__ax">やり方</div><div class="cmp__a">例え</div><div class="cmp__b">内容</div></div>
+        <div class="cmp__row"><div class="cmp__ax">一般的なガイダンス</div><div class="cmp__a">マニュアルのように</div><div class="cmp__b">大まかな方針を示す</div></div>
+        <div class="cmp__row"><div class="cmp__ax">段階的な指示</div><div class="cmp__a">レシピ本のように</div><div class="cmp__b">手順を順に示す</div></div>
+        <div class="cmp__row"><div class="cmp__ax">実例による提示</div><div class="cmp__a">「私ならこうする」</div><div class="cmp__b">デモンストレーションで示す</div></div>
+      </div>
+      <p>AI はすでに豊富な訓練を受けているが、<strong>あなたの状況に固有の文脈</strong>を追加で提供することに意味がある、と動画は続ける。参照してほしい具体的なデータはあるか。取り組むべき具体的な論点や順序はあるか。求める分析のスタイルや、使ってほしい特定のワークフロー・技法はあるか——こうした要素を説明する時間をかけることが、大きな違いを生む。</p>
+      <p>これが<strong>プロセスの記述（process description）</strong>——AI アシスタントがリクエストにどうアプローチするかを導く能力、と名づけられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="176" data-label="パフォーマンスの記述">
+    <div class="sec__mark"><div><span class="sec__t">2:56</span><span class="sec__kind">概念3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">AI は自動販売機ではない——第三の概念、パフォーマンスの記述</h2>
+      <p>ここで動画は「このコースから一つだけ持ち帰るとしたら」と前置きしたうえで、こう強調する。</p>
+      <blockquote class="quote">
+        <p>AI ツールはデータベースでも自動販売機でもない。人間と同じように、文脈によって振る舞いが変わりうる相互作用型のシステムだ。</p>
+        <cite>— 動画 2:56 付近</cite>
+      </blockquote>
+      <p>だからこそ、最良の結果を得るには<strong>AI にどう振る舞ってほしいかを説明する</strong>必要がある。AI と向き合う前にまず考えるべきは、「自分は今どんな思考パートナーを必要としているか」。動画が挙げる問いは次の通り。</p>
+      <ul class="acts">
+        <li><h3>収束か探索か</h3><p>特定の答えに絞り込みたいのか、複数の可能性を広げたいのか。</p></li>
+        <li><h3>反論か追従か</h3><p>AI に前提を疑ってほしいのか、自分の方針にそのまま従ってほしいのか。</p></li>
+        <li><h3>詳細か簡潔か</h3><p>手厚い説明がほしいのか、要点だけでよいのか。</p></li>
+        <li><h3>理由の説明か即答か</h3><p>なぜその答えなのかを説明してほしいのか、結論だけでよいのか。</p></li>
+      </ul>
+      <p>これが<strong>パフォーマンスの記述（performance description）</strong>——AI とのやり取りにおける行動的な側面を定義する能力、と名づけられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="236" data-label="3つの記述の統合">
+    <div class="sec__mark"><div><span class="sec__t">3:56</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">3つの記述の統合</h2>
+      <p class="wrapup">成果物の記述、プロセスの記述、パフォーマンスの記述が組み合わさって、記述力という能力を形づくる。記述する力を伸ばすことで、AI を<em>汎用のアシスタントから、きめ細かく調整された思考パートナーへ</em>変えることができる——動画はそう締めくくる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-label="重要なポイント">
     <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
     <div class="sec__body">
+      <p class="tr__note">ここから先（重要なポイント・演習・振り返り・次のステップ）は、動画ではなく Anthropic 公式コースページの本文が出典。</p>
       <h2 class="sec__h">重要なポイント</h2>
       <p>記述とは、<strong>生産的な協働環境を作り出す方法で AI と対話する</strong>ことである。AIシステムはデータベースや自動販売機ではなく、<strong>双方向のパートナー</strong>だ。最初の段階で AI に明確に伝えることで、時間を節約し、より良い結果につながる。</p>
-    </div>
-  </section>
-
-  <section class="sec" id="s3">
-    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">3つの記述</span></div></div>
-    <div class="sec__body">
-      <h2 class="sec__h">記述の3つの種類</h2>
       <div class="modes modes--2col">
         <div class="modes__row modes__row--head">
           <div>種類</div><div>内容</div>
@@ -106,7 +192,7 @@
     </div>
   </section>
 
-  <section class="sec" id="ex">
+  <section class="sec" id="ex" data-label="不十分なプロンプトの改善">
     <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">不十分なプロンプトの改善</h2>
@@ -125,7 +211,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s8" data-label="振り返り">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">振り返り</h2>
@@ -137,7 +223,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s5">
+  <section class="sec" id="s9" data-label="次のステップ">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">次のステップ</h2>
@@ -145,6 +231,29 @@
       <p><a href="09-prompting-techniques.html">09 効果的なプロンプト技法 →</a></p>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミスや言い直しはそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>In this video, we'll dig deeper into the AI fluency competency of description. AI fluency means working with an AI effectively, efficiently, ethically, and safely. Description is about communicating with AI, which is</p></div>
+      <div><span>0:26</span><p>the core of most human AI interaction. Description goes far beyond just writing clever prompts. It's about communicating with the AI to explain tasks, ask questions, provide context, and otherwise guide the interaction. It's about being able to steer a conversation</p></div>
+      <div><span>0:41</span><p>that is going wrong. It's about guiding an AI's thought process or logical reasoning. And it's about building a kind of thinking environment where both you and the AI can each do your best work. Think of it as building a bridge between</p></div>
+      <div><span>0:56</span><p>your intentions and the AI's capabilities. The quality of AI outputs often depend on how clearly you describe what you want. It's like the difference between asking someone to make dinner versus providing a detailed recipe with</p></div>
+      <div><span>1:11</span><p>ingredients and cooking instructions. AI can't read your mind. Instead of assuming the AI knows what you're looking for, you need to explain every relevant detail. What is the context for this work? What exactly are you looking</p></div>
+      <div><span>1:25</span><p>for the AI to do? What format should the output take? Who is the audience and what style is appropriate? Don't make AI guess what you're thinking. Set explicit requirements and give the AI the information it needs to deliver what</p></div>
+      <div><span>1:40</span><p>you're actually looking for. We call this first concept product description. The ability to clearly define what you want the AI to create or provide. Sometimes specifying how an AI should</p></div>
+      <div><span>1:54</span><p>tackle a job is as or even more important than specifying the end goal. Just as you might prefer that a colleague tackle a problem using your specific method, you can guide how an AI works through your request. You can and should give the AI helpful guidance to</p></div>
+      <div><span>2:10</span><p>help it accomplish your desired goal. There are different ways to approach this. You might provide general guidance like a manual, step-by-step instructions like a cookbook, or even a demonstration through examples. Here's how I'd do it.</p></div>
+      <div><span>2:25</span><p>Think about it this way. The AI already has extensive training, but you're providing additional context specific to your unique situation. Are there specific data you want the AI to draw on? Are there specific issues it should be addressing</p></div>
+      <div><span>2:41</span><p>or in a particular order? Is there a particular style of analysis you need or maybe a specific workflow or technique you wanted to use? Taking time to explain these elements makes a tremendous difference. We call this second concept</p></div>
+      <div><span>2:56</span><p>process description. The ability to guide how the AI assistant approaches your request. If you take one thing from this course, it should be this. AI tools are not databases or vending machines. They</p></div>
+      <div><span>3:11</span><p>are interactive systems that can behave differently in different contexts much like people might. You need to explain how you want the AI to behave to get the best results. When you next sit down with AI, think first, what kind of thinking</p></div>
+      <div><span>3:25</span><p>partner do you need right now? Are you narrowing down towards a specific answer or trying to explore multiple possibilities? Do you want the AI to challenge your assumptions or simply follow your lead? to provide expensive detail or keep things concise to explain why it's answering in a certain way or</p></div>
+      <div><span>3:42</span><p>just give you the answer. We call this third concept performance description. The ability to define the behavioral aspects of an AI interaction. You should now have a better sense of how product description, process description, and performance</p></div>
+      <div><span>3:56</span><p>description combine to form the description competency. When you develop your capacity for description, you transform AI from generic assistants into finely tuned thinking partners that can truly meet your needs.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -159,6 +268,7 @@
   <a href="https://youtu.be/DmgujoZ1mmk" target="_blank" rel="noopener">youtu.be/DmgujoZ1mmk ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

@@ -12,6 +12,15 @@
 </head>
 <body>
 
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
   <nav>
@@ -29,14 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">02 / AI Fluency</p>
-    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow">Lesson 02 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--signal)">6:22 · 全文書き起こしより</p>
   </div>
 
   <h1 class="hero__title">なぜAI活用力が<br><em>必要なのか？</em></h1>
@@ -44,63 +54,156 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    急速に進化する現代の技術環境で、AI活用力がなぜ重要かを扱う回。人が AI と協働する<strong>3つの新しい方法</strong>——自動化・拡張・自律——を認識する。
+    「AIに堪能であるとはどういうことか、なぜそれが重要なのか」を掘り下げる回。AIを単なる道具として自動的に使いこなせるわけではないという気づきから出発し、人が AI と協働する<strong>3つの方法</strong>——自動化・拡張・自律——を一つずつ具体例とともに見ていく。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2.9%"><s>導入</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:11.3%"><s>足りないもの</s><i></i><b>0:43</b></div>
+      <div class="tl__tick" style="left:23.6%"><s>定義</s><i></i><b>1:30</b></div>
+      <div class="tl__tick" style="left:36.6%"><s>3つの方法</s><i></i><b>2:20</b></div>
+      <div class="tl__tick" style="left:40.1%"><s>自動化</s><i></i><b>2:33</b></div>
+      <div class="tl__tick" style="left:48.4%"><s>拡張</s><i></i><b>3:05</b></div>
+      <div class="tl__tick" style="left:64.7%"><s>自律</s><i></i><b>4:07</b></div>
+      <div class="tl__tick" style="left:77.7%"><s>使い分け</s><i></i><b>4:57</b></div>
+      <div class="tl__tick" style="left:86.4%"><s>協働者へ</s><i></i><b>5:30</b></div>
+      <div class="tl__tick" style="left:94.5%"><s>4つの能力へ</s><i></i><b>6:01</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>06:22</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/4szRHy_CT7s" target="_blank" rel="noopener">youtu.be/4szRHy_CT7s ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>AI活用力の重要性と3つの協働方法</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic</dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>6:22</span> <small>/ 382s</small></dd></div>
+    <div><dt>Views</dt><dd><span>794,755</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/4szRHy_CT7s" target="_blank" rel="noopener">youtu.be/4szRHy_CT7s ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="382">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="11" data-label="導入">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
-      <ul class="acts">
-        <li><h3>AI活用力の意味と重要性を理解する</h3><p>急速に進化する現代の技術環境において、それがなぜ重要かを含めて。</p></li>
-        <li><h3>AI と協働する3つの新しい方法を認識する</h3><p>自動化（Automation）、拡張（Augmentation）、自律（Agency）。</p></li>
-      </ul>
+      <h2 class="sec__h">AI活用力とは何か、なぜ重要か</h2>
+      <p>「このコース全体の学びの中心となる、AI活用力フレームワークの探求を始めよう」という一言から始まる。<strong>「AIに堪能であるとは本当のところどういうことか。なぜそれが重要なのか」</strong>——この問いが投げかけられる。私たちは、興奮と不確実性の両方をもたらす、技術変化の目まぐるしい瞬間を生きている。AIは仕事でも私生活でも、コミュニケーション、創造、学習、問題解決のあり方を変えつつある。多くの人が今、執筆・ブレインストーミング・リサーチ・意思決定などを助けてくれる、多才なアシスタントや仮想の協働者を手元に持っている。</p>
     </div>
   </section>
 
-  <section class="sec" id="s2">
-    <div class="sec__mark"><div><span class="sec__t">3</span><span class="sec__kind">協働の方法</span></div></div>
+  <section class="sec" id="s2" data-start="43" data-label="持っているだけでは足りない">
+    <div class="sec__mark"><div><span class="sec__t">0:43</span><span class="sec__kind">課題</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">AI と協働する3つの方法</h2>
-      <div class="cards">
-        <article>
-          <p class="cards__k">01</p>
-          <h3>自動化 / Automation</h3>
-        </article>
-        <article>
-          <p class="cards__k">02</p>
-          <h3>拡張 / Augmentation</h3>
-        </article>
-        <article>
-          <p class="cards__k">03</p>
-          <h3>自律 / Agency</h3>
-        </article>
-      </div>
-      <p>各方法の具体的な内容は、本レッスンの学習目標としてのみ提示されており、詳細な説明は未収録。<a href="01-introduction.html">01 AI活用力入門</a>で紹介された「4D」フレームワークと合わせて理解する。</p>
+      <h2 class="sec__h">持っているだけでは足りない</h2>
+      <p>しかし、こうした強力なシステムを手にしているからといって、それを最大限に活かす方法や、責任を持って関わる方法を自動的に知っているわけではない。AIから予想外の応答が返ってきてどう進めればいいか分からなかった経験、必要なことをうまく説明できずフラストレーションを感じた経験、共有している情報がきちんと保護されているか気になった経験——こうした瞬間はすべて、AIに単に<strong>「アクセスできること」</strong>と、真に<strong>「堪能であること」</strong>の間にあるギャップを浮き彫りにする。では、その場限りのプロンプトの小技を知っているだけの状態を超えて、AIが進化し続けても通用する、思慮深く責任あるアプローチをどう身につければいいのか。</p>
     </div>
   </section>
 
-  <section class="sec" id="s3">
-    <div class="sec__mark"><div><span class="sec__t">PREV</span><span class="sec__kind">前へ</span></div></div>
+  <section class="sec" id="s3" data-start="90" data-label="AI活用力の定義">
+    <div class="sec__mark"><div><span class="sec__t">1:30</span><span class="sec__kind">定義</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">前のレッスン</h2>
-      <p><a href="01-introduction.html">← 01 AI活用力入門</a></p>
-      <div class="warn">
-        <b>本レッスンは学習目標のみ収録</b>
-        <p>本レッスンは、ユーザーから提供された原文が「このレッスンを終えると、次のことができるようになる」という学習目標2点のみで、重要なポイント・振り返り・次のステップの本文は含まれていない。推測で内容を補うことはせず、原文入手後に追記する。</p>
-      </div>
+      <h2 class="sec__h">AI活用力の定義</h2>
+      <p>AI活用力は、単に技術に精通していることや、今月たまたま流行しているタスクのための「ベストプロンプト10選」を暗記していることではない。それは、互いに補強し合い、技術の変化に応じて適応していく、<strong>実践的なスキル・知識・洞察・価値観の集合体</strong>を育てることだ。その核心は、<strong>効果的、効率的、倫理的、安全</strong>な方法でAIシステムと関わること。言い換えれば、時間とエネルギーを無駄にせずAIとのやり取りから最大限のものを引き出しつつ、自分自身や他者のプライバシーとセキュリティを守る、誠実で責任ある形で行うことだと説明される。</p>
     </div>
   </section>
+
+  <section class="sec" id="s4" data-start="140" data-label="AIと協働する3つの方法">
+    <div class="sec__mark"><div><span class="sec__t">2:20</span><span class="sec__kind">全体像</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">AIと協働する3つの方法</h2>
+      <p>講師陣自身の研究と個人的な体験を通じて、人がAIと関わる主な方法は3つあることが分かった、と紹介される。これらのモードを理解することで、AI活用力が単純なプロンプトエンジニアリングを超えたところにある理由が見えてくる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="153" data-label="自動化">
+    <div class="sec__mark"><div><span class="sec__t">2:33</span><span class="sec__kind">方法 1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">自動化（Automation）</h2>
+      <p>1つ目は自動化——AIアシスタントが、指示に基づいて特定のタスクを完了する形。文書の要約を頼む、メールの下書きを頼む、画像を作らせる、旅程を計画させる、などが例に挙げられる。何をすべきかを自分で定義し、AIがそれを実行する。<strong>求める成果がはっきりしているときにはうまく機能する</strong>が、自分でも何を探しているのかまだよく分かっていないときには難しい、と説明される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="185" data-label="拡張">
+    <div class="sec__mark"><div><span class="sec__t">3:05</span><span class="sec__kind">方法 2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">拡張（Augmentation）</h2>
+      <p>2つ目は拡張——自分とAIアシスタントが協力してタスクを一緒に完成させる形。AIはタスクを自動化する機械としてではなく、<strong>創造的思考と問題解決のパートナー</strong>として扱われる。たとえば物語のキャラクターを作ろうとして行き詰まっているとき、AIアシスタントと対話を重ね、アイデアをやり取りしながら背景設定を練り上げ、セリフを試し、キャラクターを磨き上げていくことができる。構築中のアプリの難しいアーキテクチャの問題に取り組んでいるとき、あるいは複雑なリサーチのテーマについて考えをまとめようとしているときにも当てはまる。こうした瞬間、AIはあなたの創造性と思考を拡張する。<strong>あなたの代わりに作業をするのではなく、あなたがより良く作業できるよう助ける。</strong>解決策が一直線には見えず、探索と実験の余地が必要なときに、このアプローチは最も力を発揮する。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="247" data-label="自律">
+    <div class="sec__mark"><div><span class="sec__t">4:07</span><span class="sec__kind">方法 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">自律（Agency）</h2>
+      <p>3つ目は自律——AIがあなたに代わって<strong>独立して</strong>働く形。受信メールをトピックや緊急度で分類し、最も緊急なものについては返信の下書きまで始めるようAIアシスタントを設定する、といった例が挙げられる。あるいは、ウェブサイトの訪問者向けに常に変化するインタラクティブな体験を作ったり、ゲームの中で動的に反応するキャラクターを動かしたりすることもできる。鍵となる考え方は、具体的なアクションを一つひとつ指定するのではなく、<strong>AIの知識と振る舞いのパターンを確立する</strong>ということ。台本を渡す脚本家というより、方向性を示す監督のような立場に近くなる、と表現される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="297" data-label="3つの方法の使い分け">
+    <div class="sec__mark"><div><span class="sec__t">4:57</span><span class="sec__kind">使い分け</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">3つの方法の使い分け</h2>
+      <p>3つのモードのうち、どれかが本質的に優れているということはない。それぞれ異なる目的に応え、異なる状況で力を発揮する。実際、1つのプロジェクトの中で3つすべてを使うこともある。多くの人はまず自動化から始めるが、<strong>拡張と自律こそがAIならではの能力を本当に活かすアプローチ</strong>であり、しばしば最も創造的で効果的な解決策につながることが分かっている、と語られる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-start="330" data-label="ツールから協働者へ">
+    <div class="sec__mark"><div><span class="sec__t">5:30</span><span class="sec__kind">視点転換</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ツールから協働者へ</h2>
+      <p>これらの違いを理解すると、AIが単なる「道具」ではないと分かってくる。それは道具として機能することもできる技術だが、同時に媒体にも、パートナーにも、共同創作者にもなり得る——時にはそのすべてを同時に果たすこともある。この、単なる道具から強力な協働者への移行が、テクノロジーに新しい役割を与える。つまり私たち自身にも新しい役割があり、新しいスキルを身につけて適応していく必要がある。それを描き出すのが、AI活用力フレームワークである、とまとめられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s10" data-start="361" data-label="4つの能力へ">
+    <div class="sec__mark"><div><span class="sec__t">6:01</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">4つの能力へ</h2>
+      <p>AIとどう関わるにせよ——自動化であれ、拡張であれ、自律であれ——身につけて磨くべき<strong>4つの核心的な能力領域</strong>がある。これらがAI活用力フレームワークの中核を成しており、このコースの残りで詳しく探っていく、と締めくくられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s11" data-label="次のステップ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <p class="tr__note">ここから先は動画ではなく、Anthropic 公式コースページの本文が出典。</p>
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次の講座では、この回で予告された「4つの核心的な能力領域」——<strong>4D（委任力・記述力・評価力・倫理的責任）</strong>——を一つずつ紹介する。自動化・拡張・自律のどのモードで関わっていても、この4つはすべてに共通して働く能力として位置づけられる。</p>
+      <p><a href="03-4d-framework.html">03 4D フレームワーク →</a></p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。言い直しや途切れ（decision-m など）もそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>Let's begin our exploration of the AI fluency framework that is central to our learning over the rest of this course. What does it really mean to be fluent with AI? Why does it matter? We're living in a fascinating moment of technological change, one that brings</p></div>
+      <div><span>0:27</span><p>both excitement and uncertainty. AI is reshaping how we communicate, create, learn, and solve problems in both our work and personal lives. Many of us now have versatile assistants and virtual collaborators at our fingertips</p></div>
+      <div><span>0:43</span><p>that can help with writing, brainstorming, researching, decision-m, and much more. But here's the thing. Having these powerful systems doesn't automatically mean we know how to make the most of them or to engage with them responsibly. Think about a time when you got an</p></div>
+      <div><span>1:00</span><p>unexpected response from an AI and you weren't sure how to proceed. Or when you struggled to explain exactly what you needed and left the interaction feeling frustrated. Or perhaps you've wondered if the information you're sharing is being properly</p></div>
+      <div><span>1:15</span><p>protected. All of these moments highlight the gaps between simply having access to AI and truly being fluent with it. So, how do we move beyond just knowing a few prompt tricks to developing a thoughtful and responsible</p></div>
+      <div><span>1:30</span><p>approach that will continue to serve us well as AI keeps evolving? What exactly does AI fluency look like? AI fluency isn't just about being a technical expert or or memorizing the the 10 best prompts for whatever</p></div>
+      <div><span>1:46</span><p>trending task is popular this month. It's about developing a collection of practical skills, knowledge, insights, and values that reinforce each other and adapt as the technology changes. At its heart, AI fluency means interacting with</p></div>
+      <div><span>2:04</span><p>AI systems in ways that are effective, efficient, ethical, and safe. In other words, really maximizing what you get out of your interactions with AI without wasting time and energy and in an honest</p></div>
+      <div><span>2:20</span><p>and responsible way that protects the privacy and security of yourself and others. Through our research and personal experiences, we found that there are three main ways people engage with</p></div>
+      <div><span>2:33</span><p>AI. Understanding these modes helps us to see why AI fluency needs to go beyond simple prompt engineering. The first way we interact with AI is through automation, where an AI assistant completes a specific task</p></div>
+      <div><span>2:48</span><p>based on your instructions. For example, you might ask an AI to summarize a document for you or draft an email or create an image or plan a trip itinerary. You define what needs to be done and the AI executes it. And it works well when you have a clear outcome</p></div>
+      <div><span>3:05</span><p>in mind. But it can be challenging when you're not quite sure yet what you're actually looking for. The second approach is augmentation where you and the AI assistant collaborate and complete a task together. The AI isn't treated as a</p></div>
+      <div><span>3:22</span><p>machine to automate a task. Instead, it becomes a creative thinking and problem-solving partner. For example, imagine you're developing a character for a story and you're feeling stuck. You might explore this through a</p></div>
+      <div><span>3:37</span><p>conversation with the AI assistant, bouncing ideas back and forth, elaborating on backstories, experimenting with dialogue, and otherwise refining that character. Or perhaps you're working through a difficult architectural problem with an app that you're building. Or maybe</p></div>
+      <div><span>3:52</span><p>you're trying to formulate your thoughts on a complex research topic. In these moments, the AI augments your creativity and thinking. It doesn't do work for you, but helps you do your work better. This approach works best when</p></div>
+      <div><span>4:07</span><p>solutions aren't straightforward and you need space to explore and experiment. The third mode is agency, where AI works independently on your behalf. For instance, you might set up an AI assistant to categorize incoming</p></div>
+      <div><span>4:24</span><p>emails by topic or urgency and maybe even begin drafting responses to the most urgent ones. Or you might create an everchanging interactive experience for visitors to your website or power a dynamically interactive character in a</p></div>
+      <div><span>4:39</span><p>game. The key idea is that rather than defining specific actions, you're establishing the AI's knowledge and behavior patterns. You become less like a script writer giving exact directions and more like a director setting a vision. None of these</p></div>
+      <div><span>4:57</span><p>approaches are inherently better than the others. They serve different purposes and excel in different situations. In fact, you might even use all three in a single project. While many start with automation, we found that augmentation and agency are</p></div>
+      <div><span>5:13</span><p>approaches that really take advantage of the unique capabilities of AI and that these modes often lead to the most creative and effective solutions. Understanding these differences helps us recognize that AI isn't just a tool.</p></div>
+      <div><span>5:30</span><p>It's a technology that can act as a tool, but also as a medium or as a partner or co-creator. and sometimes all of these at once. And this shift from mere tool to powerful collaborator gives technology a new role</p></div>
+      <div><span>5:46</span><p>to play in our creative and problem solving work. Which means we also have new roles and need to adapt and develop new skills. These skills are what we describe in the AI fluency framework. Whichever way you engage with AI, there</p></div>
+      <div><span>6:01</span><p>are four key areas of competence to develop and master. They form the core of the AI fluency framework which we'll explore over the rest of this Of course.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -111,10 +214,11 @@
 <div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <span>出典 — Anthropic 公式 AI Fluency コース「Why AI Fluency」／ CC BY-NC-SA 4.0</span>
   <a href="https://youtu.be/4szRHy_CT7s" target="_blank" rel="noopener">youtu.be/4szRHy_CT7s ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

@@ -12,6 +12,15 @@
 </head>
 <body>
 
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
   <nav>
@@ -29,13 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ" aria-current="page">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">13 / AI Fluency</p>
+    <p class="eyebrow">Lesson 13 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--signal)">5:51 · 全文書き起こし＋公式コース本文より</p>
     <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
   </div>
 
@@ -44,33 +55,144 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    コース最終回。<strong>委任力・記述力・評価力・倫理的責任</strong>という4つのコア能力を1画面で振り返り、AI 技術が進化し続ける中でも指針となる<strong>持続的なフレームワーク</strong>として携えていく。
+    コース最終回。講師 Rick Dakan 教授が、<strong>委任力・記述力・評価力・倫理的責任</strong>という4つのコア能力を振り返り、AI 技術が進化し続ける中でも指針となる<strong>持続的なフレームワーク</strong>として携えていくよう語りかける。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:3.13%"><s>導入</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:11.97%"><s>委任力</s><i></i><b>0:42</b></div>
+      <div class="tl__tick" style="left:15.95%"><s>記述力</s><i></i><b>0:56</b></div>
+      <div class="tl__tick" style="left:25.07%"><s>評価力</s><i></i><b>1:28</b></div>
+      <div class="tl__tick" style="left:29.34%"><s>倫理的責任</s><i></i><b>1:43</b></div>
+      <div class="tl__tick" style="left:33.33%"><s>3つの関わり方</s><i></i><b>1:57</b></div>
+      <div class="tl__tick" style="left:42.45%"><s>心得</s><i></i><b>2:29</b></div>
+      <div class="tl__tick" style="left:69.51%"><s>実践</s><i></i><b>4:04</b></div>
+      <div class="tl__tick" style="left:78.92%"><s>結び</s><i></i><b>4:37</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>05:51</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/ytEN_iAk09c" target="_blank" rel="noopener">youtu.be/ytEN_iAk09c ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>4D の統合と継続的な実践</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>AI Fluency 公式コース</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>5:51</span> <small>/ 351s</small></dd></div>
+    <div><dt>Views</dt><dd><span>341,381</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/ytEN_iAk09c" target="_blank" rel="noopener">youtu.be/ytEN_iAk09c ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="351">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="11" data-label="最終回にあたって">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <h2 class="sec__h">最終回にあたって</h2>
+      <p>コース最終回。講師は<strong>Rick Dakan 教授（Ringling College of Art and Design）</strong>。短い期間で AI Fluency フレームワークをたどり、日々の AI との協働にどう活きるかを見てきた、とこれまでの歩みを振り返るところから始まる。</p>
+      <p>この回で行うのは、学んだことを振り返り、重要な要点を確認し、この先どこに向かえばよいかを見渡すこと。まず立ち返るのは、フレームワークの核となる<strong>「4つのD」</strong>——委任力・記述力・評価力・倫理的責任。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="42" data-label="委任力の定義">
+    <div class="sec__mark"><div><span class="sec__t">0:42</span><span class="sec__kind">D-1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">委任力（Delegation）の定義</h2>
+      <p><strong>委任力（Delegation）</strong>は、どの作業を AI にやらせる・AI と一緒に行うべきで、どの作業は人間だけで担うべきかを見極める能力。問題そのものへの理解、AI にできることへの把握、そして人間と AI の間で作業を効果的に分配するスキルを組み合わせたもの、と定義される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="56" data-label="記述力の定義">
+    <div class="sec__mark"><div><span class="sec__t">0:56</span><span class="sec__kind">D-2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">記述力（Description）の定義</h2>
+      <p><strong>記述力（Description）</strong>は、AI システムとどうコミュニケーションするかを扱う。何を求めているか、どう取り組んでほしいか、どんなやり取りが助けになるかを明確に言語化すること——すなわち<strong>成果物・プロセス・パフォーマンスの記述</strong>を通じて、AI を求める成果へ導き、より効果的な協働者・アシスタントへと変えていく。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="88" data-label="評価力の定義">
+    <div class="sec__mark"><div><span class="sec__t">1:28</span><span class="sec__kind">D-3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">評価力（Discernment）の定義</h2>
+      <p><strong>評価力（Discernment）</strong>は、AI の成果物と振る舞いを批判的に評価すること。成果物・プロセス・パフォーマンスを評価する能力を養うことで、AI が関わったすべての成果物の<strong>品質と適切さ</strong>を担保できる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="103" data-label="倫理的責任の定義">
+    <div class="sec__mark"><div><span class="sec__t">1:43</span><span class="sec__kind">D-4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任（Diligence）の定義</h2>
+      <p><strong>倫理的責任（Diligence）</strong>は、AI とのやり取りを責任あるものにする。使う AI システムを思慮深く選ぶこと、AI が果たした役割について透明性を保つこと、最終的な成果物への説明責任を引き受けること——すなわち<strong>創造・透明性・展開の倫理的責任</strong>を通じて、倫理的かつ安全に AI と協働できる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="117" data-label="AIとの3つの関わり方">
+    <div class="sec__mark"><div><span class="sec__t">1:57</span><span class="sec__kind">枠組み</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">AI との3つの関わり方</h2>
+      <p>これら4つの能力は、AI との<strong>3つの関わり方</strong>すべてに当てはまる、と動画は続ける。</p>
       <ul class="acts">
-        <li><h3>コースからの主要な学習内容を統合する</h3></li>
-        <li><h3>AI活用力を継続的な成長と結びつける</h3></li>
+        <li><h3>自動化（Automation）</h3><p>AI が指示に従って特定のタスクを実行する。</p></li>
+        <li><h3>拡張（Augmentation）</h3><p>人間と AI が思考のパートナーとして協働する。</p></li>
+        <li><h3>エージェンシー（Agency）</h3><p>AI が自律的に行動するよう設定されている。</p></li>
       </ul>
     </div>
   </section>
 
-  <section class="sec" id="s2">
+  <section class="sec" id="s7" data-start="149" data-label="この先への4つの心得">
+    <div class="sec__mark"><div><span class="sec__t">2:29</span><span class="sec__kind">実践指針</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この先への4つの心得</h2>
+      <p>これからの AI との歩みにおいて、心に留めておきたい要点を動画は4Dごとに示す。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">Delegation</p>
+          <h3>委任力</h3>
+          <p>あなたの専門知識と判断力が、効果的な AI 活用の土台であり続ける。あなたと AI がそれぞれの強みを重ね合わせられる機会を見つけたとき、どちらか一方だけでは到達できない成果が生まれる。</p>
+        </article>
+        <article>
+          <p class="cards__k">Description</p>
+          <h3>記述力</h3>
+          <p>明確なコミュニケーションが、意図と AI の能力を橋渡しする。最も効果的な指示は、凝ったプロンプトではなく、文脈・例・フィードバックを伴う<strong>思慮深い対話</strong>であることが多い。</p>
+        </article>
+        <article>
+          <p class="cards__k">Discernment</p>
+          <h3>評価力</h3>
+          <p>AI の成果物を批判的に評価することは、譲れない責任。評価力は AI の限界から身を守り、人間と AI のどちらだけでも作れなかった成果を実現させてくれる。</p>
+        </article>
+        <article>
+          <p class="cards__k">Diligence</p>
+          <h3>倫理的責任</h3>
+          <p>AI で行ったことと、それが他者に与える影響について、責任を持ち続けるのはあなた自身。AI の役割について透明であることが、信頼と誠実さを築く。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="244" data-label="実践を通じて育つ">
+    <div class="sec__mark"><div><span class="sec__t">4:04</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">熟達は実践を通じて——そしてフレームワークの汎用性</h2>
+      <p>これらの能力は一夜にして身につくものではなく、<strong>実践を通じて発展する</strong>、と動画は強調する。作業を委任し、ニーズを記述し、成果物の質を見極め、プロセスに倫理的責任を適用する——それを重ねるうちに、AI Fluency は自然と育っていく。目指すのは完璧さではなく、<strong>意識・関与・意図性を継続的に発展させていくこと</strong>。</p>
+      <p>このフレームワークは、生成 AI アシスタントの幅広い種類に適用できるよう設計されており、AI システムが進化し続けても有効であり続けることを意図している。ただし、学び続けることを怠らないのは、私たち自身の役目だ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-start="277" data-label="コースの終わりに">
+    <div class="sec__mark"><div><span class="sec__t">4:37</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コースの終わりに</h2>
+      <p>AI Fluency Foundations コースを締めくくるにあたり、学んだことを実践するためのフォローアップ活動と、さらに学びを深めるためのリソースが用意されている、と動画は案内する。</p>
+      <p>このコースは、AI について、そして AI との関わり方について<strong>違う考え方をしてもらう</strong>ことを目標に始まった。AI は強力なシステムだが、あらゆる問題を解決する銀の弾丸でも魔法の解決策でもない——<strong>私たちがそれをどう使いこなせるようにするか次第</strong>で、有用さと安全さが決まる。だからこそ、自分自身の専門性に投資し、技術の変化を意識し続けることで、適切に委任できるようになってほしい。</p>
+      <p>記述と評価という「対話の技法」を実践すること——それは AI を単なる自動化の機械から、本物の思考パートナーへと変える、思慮深い往復のやり取りだ。そして何より、<strong>AI とどう働き、何を一緒に作り出すか</strong>について責任を持つこと。効果的かつ効率的に、倫理的かつ安全に。</p>
+      <p class="wrapup">人間と AI の協働の未来は明るく、あなたはもう、それを思慮深く形づくる準備ができている——動画はそう締めくくる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s10" data-label="重要なポイント">
     <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
     <div class="sec__body">
+      <p class="tr__note">ここから先（重要なポイント・演習・振り返り・次のステップ）は、動画ではなく Anthropic 公式コースページの本文が出典。</p>
       <h2 class="sec__h">重要なポイント</h2>
       <p>AI活用力は、4つのコア能力の<strong>意図的な実践</strong>を通じて発展する。</p>
       <div class="cards">
@@ -99,7 +221,7 @@
     </div>
   </section>
 
-  <section class="sec" id="ex">
+  <section class="sec" id="ex" data-label="演習">
     <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">演習</h2>
@@ -110,9 +232,14 @@
       <div class="prompt">
         <b>会話の始め方の提案</b>
         <p>「委任力 (Delegation)、記述力 (Description)、評価力 (Discernment)、倫理的責任 (Diligence) で構成された AI活用力に関するコースを修了しました。これらの能力が [私の学位プログラムや仕事など] にどのように適用できるかについて話し合いましょう。」</p>
-        <p>「AI の能力が進歩するにつれて、AI活用力フレームワークがどのように進化するかを探求しましょう。どのような新しい能力が重要になるでしょうか。」この会話を試したら、ぜひ何を発見したか教えてください。</p>
+        <p>「AI の能力が進歩するにつれて、AI活用力フレームワークがどのように進化するかを探求しましょう。どのような新しい能力が重要になるでしょうか。」</p>
         <p>「私たちの会話に基づいて、4D の能力のうち、どれをよく理解しているように見え、どれをさらに発展させる必要があるかを特定するのを手伝ってください。」</p>
         <p>「こちらが [このコースで行った演習] です。能力向上のために分析しましょう。」</p>
+      </div>
+
+      <div class="tip">
+        <b>2つめの提案について</b>
+        <p>この会話を試したら、ぜひ何を発見したか教えてください。</p>
       </div>
 
       <p><strong>演習2：個人の AI活用ポリシーを構築する</strong></p>
@@ -132,7 +259,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s3">
+  <section class="sec" id="s11" data-label="振り返り">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">振り返り</h2>
@@ -140,7 +267,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s12" data-label="次のステップ">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">次のステップ</h2>
@@ -159,10 +286,38 @@
 
       <ul class="chips">
         <li><a href="index.html">AI活用力コース 目次へ</a></li>
-        <li><a href="../index.html">Claude Code 入門コースへ</a></li>
+        <li><a href="../claude-code.html">Claude Code 入門コースへ</a></li>
       </ul>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミスや言い直しはそのまま残してある（講師名 "Rick Dacen" は "Rick Dakan" の聞き取りミスと見られる）。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>Hello and welcome to our final session covering the foundations of AI fluency. I'm Professor Rick Dacen from the Ringling College of Art and Design. Over a short period, we've covered quite a lot of ground together exploring the AI fluency framework and seeing how it</p></div>
+      <div><span>0:26</span><p>applies to everyday collaboration with AI. Let's take a moment to reflect on what we've learned, highlight some key takeaways, and look ahead to where you might go next. Let's begin by revisiting the four core competencies, also known as the</p></div>
+      <div><span>0:42</span><p>four Ds, that make up the AI fluency framework. Delegation focuses on deciding what work should be done by and with AI versus what's best handled by humans alone. It combines your understanding of the problem, awareness</p></div>
+      <div><span>0:56</span><p>of AI capabilities, and skill in distributing work effectively between you and your AI assistants. Description addresses how we communicate with AI systems. Through clear articulation of what we want, how</p></div>
+      <div><span>1:12</span><p>we want it approached, and what kind of interaction is most helpful to us, also known as product, process, and performance description, we guide AI to produce the outputs we need and become more effective collaborators and assistants.</p></div>
+      <div><span>1:28</span><p>Discernment involves critically evaluating AI outputs and behaviors. By developing your ability to assess outputs, processes, and interactions, also known as product, process, and performance discernment, you ensure quality and appropriateness in all your</p></div>
+      <div><span>1:43</span><p>AIdriven outputs. And finally, diligence ensures our AI interactions are responsible. Through thoughtful selection of AI systems, transparency about AI's role in taking accountability for the final product,</p></div>
+      <div><span>1:57</span><p>also known as creation, transparency, and deployment diligence, we can work with AI ethically and safely. Remember that these competencies apply across all three ways we interact with AI. Automation, where AI performs specific</p></div>
+      <div><span>2:14</span><p>tasks following your instructions. Augmentation, where you and AI collaborate as thinking partners, and agency, where AI is configured to act independently on your behalf. As you move forward in your AI</p></div>
+      <div><span>2:29</span><p>journey, keep these essential insights in mind. For delegation, your expertise and judgment remain the foundation of effective AI use. The most powerful outcomes often emerge when you can identify opportunities where you and AI</p></div>
+      <div><span>2:46</span><p>can build on each other's strengths through iterative collaboration, creating outcomes neither could achieve alone. For description, clear communication bridges your intentions and AI capabilities.</p></div>
+      <div><span>3:01</span><p>Sometimes the most effective instructions aren't elaborate prompts, but thoughtful conversations that provide context, examples, and feedback for discernment. Critical evaluation of AI outputs is a</p></div>
+      <div><span>3:15</span><p>non-negotiable responsibility. Your discernment skills protect against AI limitations and once again enable you to achieve results neither you nor the AI could easily create alone. For diligence, you remain accountable for what you do with AI and</p></div>
+      <div><span>3:33</span><p>its impact on others. Being transparent about AI's role in your work builds trust and integrity. These competencies aren't mastered overnight. They develop through practice. As you delegate work, describe your needs, discern the quality of</p></div>
+      <div><span>3:48</span><p>outputs, and apply diligence to your process. Your AI fluency will grow naturally. The goal isn't perfection. It's about continually developing awareness, commitment, and intentional approach to working with AI. The fluency framework is designed to be widely</p></div>
+      <div><span>4:04</span><p>applicable to the broad range of generative AI assistants and remain relevant even as AI systems continue to evolve, but it is up to us to make sure we continue to apply our learning as well. We hope this course is just the beginning of your AI fluency journey. To</p></div>
+      <div><span>4:20</span><p>close out the AI Fluency Foundations course, you'll find some follow-on activities designed to help you apply what you've learned, along with resources for continued exploration. We began this course with the goal of helping you think differently about AI</p></div>
+      <div><span>4:37</span><p>and the ways we work with it. These are powerful systems, but they're not silver bullets or magical solutions to every problem. They're only as useful and safe as we enable them to be. So invest in your own expertise and stay aware of</p></div>
+      <div><span>4:51</span><p>technological change so that you can delegate appropriately. Practice art of description and discernment. That thoughtful back and forth conversation that transforms AI from simple automation machines into genuine thinking partners. And above all, take</p></div>
+      <div><span>5:07</span><p>responsibility for the way you work with AI and what do you create together. Be effective and efficient. Be ethical and safe. We're all learning together how to navigate this rapidly evolving landscape. Thank you for joining us on this journey toward greater AI fluency.</p></div>
+      <div><span>5:23</span><p>The future of human AI collaboration is bright and you're now better equipped to shape it thoughtfully.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -177,6 +332,7 @@
   <a href="https://youtu.be/ytEN_iAk09c" target="_blank" rel="noopener">youtu.be/ytEN_iAk09c ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

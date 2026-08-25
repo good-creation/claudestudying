@@ -4,13 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>09 効果的なプロンプト技法 — AI活用力（AI Fluency）学習ノート</title>
-<meta name="description" content="プロンプトエンジニアリングとは何か。AI からより良い結果を得るための6つの基礎的なプロンプト技法。">
+<meta name="description" content="プロンプトエンジニアリングとは何か。AI からより良い結果を得るための6つの基礎的なプロンプト技法と、秘密兵器としての「AIにプロンプト改善を頼む」やり方。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
 
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
@@ -29,14 +38,16 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">09 / AI Fluency</p>
+    <p class="eyebrow">Lesson 09 / AI Fluency</p>
     <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow" style="color:var(--signal)">11:54 · 全文書き起こし＋公式コース本文より</p>
   </div>
 
   <h1 class="hero__title">効果的な<br><em>プロンプト技法</em></h1>
@@ -44,58 +55,251 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    効果的なプロンプトは、<strong>明確なコミュニケーション原則</strong>と<strong>AI特有の技法</strong>を組み合わせる。6つの基礎的な技法を身につける。
+    プロンプトを書くことは、<strong>記述力 (Description) コンピテンシーの実践形</strong>そのもの——何が欲しいか、どうやってほしいか、対話をどう進めたいかを明確に伝えること。この回では、それを支える<strong>6つの基礎的なプロンプト技法</strong>と、もっとも強力かもしれない「秘密兵器」を、動画の説明に沿って日本語で再構成する。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.68%"><s>イントロ</s><i></i><b>0:12</b></div>
+      <div class="tl__tick" style="left:7.84%"><s>定義</s><i></i><b>0:56</b></div>
+      <div class="tl__tick" style="left:18.21%"><s>技法1</s><i></i><b>2:10</b></div>
+      <div class="tl__tick" style="left:29.13%"><s>技法2</s><i></i><b>3:28</b></div>
+      <div class="tl__tick" style="left:39.64%"><s>技法3</s><i></i><b>4:43</b></div>
+      <div class="tl__tick" style="left:46.22%"><s>技法4</s><i></i><b>5:30</b></div>
+      <div class="tl__tick" style="left:56.72%"><s>技法5</s><i></i><b>6:45</b></div>
+      <div class="tl__tick" style="left:65.13%"><s>技法6</s><i></i><b>7:45</b></div>
+      <div class="tl__tick" style="left:73.53%"><s>秘密兵器</s><i></i><b>8:45</b></div>
+      <div class="tl__tick" style="left:88.38%"><s>パターン</s><i></i><b>10:31</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>11:54</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/2YCaBqP8muw" target="_blank" rel="noopener">youtu.be/2YCaBqP8muw ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>6つの基礎的なプロンプト技法</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>公式</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>11:54</span> <small>/ 714s</small></dd></div>
+    <div><dt>Views</dt><dd><span>486,655</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/2YCaBqP8muw" target="_blank" rel="noopener">youtu.be/2YCaBqP8muw ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="714">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="12" data-label="プロンプトとは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:12</span><span class="sec__kind">イントロ</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
-      <ul class="acts">
-        <li><h3>プロンプト技法とは何かを理解する</h3><p>そしてそれが生産的なAI協働になぜ重要なのか。</p></li>
-        <li><h3>6つの基礎的なプロンプト技法を適用する</h3><p>AI との対話を改善するための。</p></li>
-        <li><h3>効果的な対話につながる一般的なパターンを特定する</h3></li>
-        <li><h3>プロンプトを見直し改善する</h3><p>AI の応答がニーズを満たさない場合に。</p></li>
+      <h2 class="sec__h">プロンプトとは何か</h2>
+      <p>AI と働くうえで、もっとも実践的なスキルの一つが<strong>効果的なプロンプトを組み立てること</strong>。技術的で難しそうに聞こえるし、そう見せる解説も多いが、本質は驚くほどシンプルだと切り出される。</p>
+      <p>プロンプトを書くという行為は、<strong>このコースが扱う「記述力 (Description)」というコンピテンシーを実践に移したもの</strong>にすぎない。何が欲しいか、どうやってほしいか、そしてプロセス全体を通じて AI アシスタントとどう対話したいかを、はっきり伝えることだ。</p>
+      <p>例えとして挙げられるのが、<strong>意欲はあるが的確な指示と期待値のすり合わせを必要としている、入ったばかりの同僚に仕事を説明する場面</strong>。このレッスンでは Claude を例に進めるが、ここで扱うコツの多くは他の AI システムにも持ち越せる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s1b" data-start="56" data-label="プロンプトエンジニアリングの位置づけ">
+    <div class="sec__mark"><div><span class="sec__t">0:56</span><span class="sec__kind">定義</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">プロンプトエンジニアリングとは何か</h2>
+      <p><strong>プロンプトエンジニアリング</strong>という言葉を耳にしたことがあるかもしれないが、これは単に<strong>Claude のような AI システムに向けて効果的な指示を設計する実践</strong>のこと。質問の組み立て方や文脈の与え方を工夫して、AI アシスタントが「こちらが正確に何を求めているか」を理解できるようにする作業だ。</p>
+      <p>興味深いのは、効果的なプロンプトが<strong>人間同士のコミュニケーションで馴染みのあるスキル</strong>と、<strong>AI 特有のいくつかの配慮</strong>を組み合わせたものになっている点。明確であること、関連する文脈を与えること、具体例を示すこと——こうした「良い人間の会話」の原則の多くは AI 相手でもそのまま通用する。</p>
+      <p>一方で違いもある。<strong>人間なら自然に推測してくれることまで、より明示的に言葉にする必要がある</strong>こと、AI の<strong>コンテキストウィンドウの制限</strong>を考慮に入れること、そして相手によっては<strong>機械が処理しやすい特定のフォーマット</strong>を使うことが有効な場合があること。AI アシスタントが進化し続けるのと同様に、プロンプトのベストプラクティスも進化していく。今日効くやり方が明日も同じとは限らないので、<strong>実験こそが、自分のニーズに最適な方法を見つける鍵</strong>になる。</p>
+      <p>この動画では、そのうえで押さえておきたい<strong>6つの基礎的なプロンプト技法</strong>を扱う。</p>
+      <ul class="chips">
+        <li>1. コンテキストを与える</li><li>2. 良い例を示す</li><li>3. 出力の制約を指定する</li><li>4. 複雑なタスクをステップに分割する</li><li>5. まず考えさせる</li><li>6. 役割・スタイル・トーンを定義する</li>
       </ul>
     </div>
   </section>
 
-  <section class="sec" id="s2">
-    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">6つの技法</span></div></div>
+  <section class="sec" id="s2" data-start="130" data-label="技法1: コンテキストを与える">
+    <div class="sec__mark"><div><span class="sec__t">2:10</span><span class="sec__kind">技法1</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">6つの基礎的なプロンプト技法</h2>
-      <p>効果的なプロンプトは、明確なコミュニケーション原則とAI特有の技法を組み合わせる。</p>
-      <ol class="steps">
-        <li><h3>コンテキストを提供する</h3><p>何が欲しいか、なぜ欲しいか、関連する背景を具体的に伝える。</p></li>
-        <li><h3>例を示す</h3><p>求めている成果物のスタイルや形式を具体的に示す。</p></li>
-        <li><h3>制約条件を指定する</h3><p>形式、長さ、その他の成果物の要件を明確に定義する。</p></li>
-        <li><h3>複雑なタスクをステップに分割する</h3><p>AIを多段階の推論に導く。</p></li>
-        <li><h3>AIにまず考えさせる</h3><p>AIが自身のプロセスを経る余地を与える。</p></li>
-        <li><h3>AIの役割やトーンを定義する</h3><p>AIにどのようにコミュニケーションしてほしいかを指定する。</p></li>
-      </ol>
+      <h2 class="sec__h">技法1 — コンテキストを与える</h2>
+      <p>最初の原則はシンプルだが強力だと語られる。<strong>何が欲しいか、なぜそれが欲しいか、そしてもっとも見落とされがちなのが「自分が何者か」</strong>——この3つについて、具体的かつ明確であること。</p>
+
+      <div class="prompt">
+        <b>ベースラインのプロンプト（曖昧）</b>
+        <p>Tell me about climate change.</p>
+        <p>気候変動について教えて。</p>
+      </div>
+      <p>このプロンプトは曖昧で、Claude はこちらの関心、知識レベル、求めている詳しさ——地域や時間の幅も含めて——を推測するしかない。</p>
+
+      <div class="prompt">
+        <b>文脈を足したプロンプト</b>
+        <p>Explain three major impacts of climate change on agriculture in tropical regions with examples from the past decade.</p>
+        <p>熱帯地域の農業における気候変動の主要な影響を3つ、過去10年の事例とともに説明して。</p>
+      </div>
+
+      <p>さらに、<strong>「何を求めているか」だけでなく「なぜそれを求めているか」「その情報をどう使うか」</strong>という文脈も加えられる。</p>
+
+      <div class="prompt">
+        <b>背景情報まで足したプロンプト</b>
+        <p>Explain three major impacts of climate change on agriculture in tropical regions with examples from the past decade. I'm preparing for a job interview at an agricultural research lab in Indonesia. I have a degree in ecology, but no specific knowledge on climate change. Write a summary of key concepts that would help me speak intelligently in the interview.</p>
+        <p>熱帯地域の農業における気候変動の主要な影響を3つ、過去10年の事例とともに説明して。インドネシアの農業研究機関の面接に備えている。生態学の学位はあるが、気候変動については専門知識がない。面接で的確に話せるように、重要な概念をまとめてほしい。</p>
+      </div>
+
+      <p>こうして付け加えた文脈は、Claude の応答を<strong>自分の状況と知識レベルに合わせて調整</strong>する助けになる。この種の背景情報は、人間同士の会話では自然に添えているのに、AI 相手だと省いてしまいがちなものだ、と念押しされる。</p>
     </div>
   </section>
 
-  <section class="sec" id="s3">
+  <section class="sec" id="s3" data-start="208" data-label="技法2: 例を示す">
+    <div class="sec__mark"><div><span class="sec__t">3:28</span><span class="sec__kind">技法2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">技法2 — 例を示す</h2>
+      <p>時には、説明するより<strong>見せる</strong>ほうが効果的。求めている出力の例を示すこと自体が、非常に強力な手段になる。技術的には<strong>few-shot prompting</strong>や<strong>n-shot prompting</strong>と呼ばれる（<em>n</em> は与える例の数）が、要するに AI に真似てほしいお手本を見せているだけのこと。</p>
+
+      <div class="prompt">
+        <b>例なしのプロンプト</b>
+        <p>Please convert this technical statement to plain language. The platform implements end-to-end encryption protocols to safeguard data integrity.</p>
+        <p>この技術的な文をやさしい言葉に変換して。「このプラットフォームはデータの完全性を守るためにエンドツーエンドの暗号化プロトコルを実装している。」</p>
+      </div>
+
+      <p>Claude はすでにこの程度なら例なしで十分こなせることが多いので、<strong>まずは例を付けずに試して、様子を見ることを勧める</strong>。とはいえ、目指すスタイルがとても具体的で、説明するより見せるほうが早い場合もある。そうしたときのプロンプトはこうなる。</p>
+
+      <div class="prompt">
+        <b>例を2つ添えたプロンプト</b>
+        <p>Here are two examples of how to convert technical jargon into plain language. Original: "The quantum algorithm exhibits quadratic speedup." Plain: "The new method solves problems roughly twice as fast as previous methods." Original: "The interface leverages intuitive design paradigms." Plain: "The design is easy to understand and use." Now, please convert this complex technical manual to plain language.</p>
+        <p>専門用語をやさしい言葉に変換する例を2つ示す。原文「量子アルゴリズムは二次的な高速化を示す」→やさしく「新しい手法は従来の方法よりおおよそ2倍速く問題を解く」。原文「インターフェースは直感的なデザインパラダイムを活用している」→やさしく「デザインは理解しやすく使いやすい」。では、この複雑な技術マニュアルをやさしい言葉に変換して。</p>
+      </div>
+
+      <p>例を示すときは、<strong>起こりうるプロンプトの全体像をできるだけ幅広くカバーする</strong>ことを意識するとよい。異なるケースやスタイルを含む例のほうが、Claude が従うべきパターンの範囲を正しく理解しやすくなる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="283" data-label="技法3: 出力の制約を指定する">
+    <div class="sec__mark"><div><span class="sec__t">4:43</span><span class="sec__kind">技法3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">技法3 — 出力の制約を指定する</h2>
+      <p>望む<strong>形式・長さ</strong>、コードなら<strong>言語</strong>、Web ページのデザインなら<strong>ボタンの色</strong>まで——出力の制約をはっきりさせることも、欲しいものを正確に得る助けになる。</p>
+
+      <div class="prompt">
+        <b>制約を細かく指定したプロンプト</b>
+        <p>Create a clean, modern, single-page art portfolio website. Include these main sections: hero, about me, skills, portfolio, projects, experience, and contact. Make the navigation menu sticky and responsive with a hamburger menu on mobile. Use a sunset color palette and add a dark/light mode toggle in the navigation.</p>
+        <p>クリーンでモダンな、1ページ構成のアートポートフォリオサイトを作って。含めるセクションは hero・about me・skills・portfolio・projects・experience・contact。ナビゲーションメニューはスティッキーかつレスポンシブにし、モバイルではハンバーガーメニューにして。カラーパレットはサンセット調にし、ナビゲーションにダーク/ライトモードの切り替えを追加して。</p>
+      </div>
+
+      <p>こうした具体的な指示によって、<strong>Claude が応答をこちらの期待どおりの形に構造化しやすくなる</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="330" data-label="技法4: ステップに分割する">
+    <div class="sec__mark"><div><span class="sec__t">5:30</span><span class="sec__kind">技法4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">技法4 — 複雑なタスクをステップに分割する</h2>
+      <p>込み入った依頼をするときは、<strong>小さなステップに分解する</strong>ことで、Claude がこちらの思考をたどりやすくなり、結果もよくなる。友人に「どうやるか」を指定せずに何かを頼むと、意図どおりにやってもらえないことがある——それと同じことだと説明される。<strong>タスクの手順を書き出すことで、望むプロセスに沿って進めてもらいやすくなる</strong>。これは<strong>chain of thought prompting（思考の連鎖プロンプト）</strong>と呼ばれることもある。</p>
+
+      <div class="prompt">
+        <b>ステップを明示したプロンプト</b>
+        <p>I'd like to analyze this quarterly sales data. Please approach this by looking through our sales records to identify the top performing products, comparing current quarter results to the previous quarter, highlighting any unusual trends or patterns, and then suggesting possible reasons for these trends.</p>
+        <p>この四半期の売上データを分析してほしい。まず販売記録に目を通して最も好調な製品を特定し、今四半期の結果を前四半期と比較し、目立つ傾向やパターンを洗い出したうえで、その傾向が起きている理由の候補を提案する、という手順で進めて。</p>
+      </div>
+
+      <p>比較的シンプルなタスクでは、ここまでする必要はないことも多い。加えて、現在の推論モデルや拡張思考モデルはステップバイステップの推論を自力でこなせる場合が増えているが、それでも<strong>プロセスをこちらのニーズに沿わせるために誘導する余地</strong>は残る。<strong>実行の仕方に幅がある仕事、あるいは自分がドメインエキスパートとして積んできた経験や知識に頼る度合いが大きい仕事ほど、その知識をプロンプトに翻訳する手間をかける価値がある。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="405" data-label="技法5: まず考えさせる">
+    <div class="sec__mark"><div><span class="sec__t">6:45</span><span class="sec__kind">技法5</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">技法5 — AI にまず考えさせる</h2>
+      <p>関連して、<strong>タスクを実行する前に、AI アシスタントに自分のプロセスを一度たどらせる余地を明示的に与える</strong>ことが助けになる場合がある。これによって、より練られた、しっかり考えられた応答が得られやすくなる。</p>
+
+      <div class="prompt">
+        <b>プロンプトに足す一文</b>
+        <p>Before answering, please think through this problem carefully. Consider the different factors involved, potential constraints, and various approaches before recommending the best solution.</p>
+        <p>回答する前に、この問題をじっくり考えてください。関わる様々な要因、想定される制約、取りうるアプローチを検討したうえで、最良の解決策を提案してください。</p>
+      </div>
+
+      <p>現在の推論モデルや拡張思考モデルは、デフォルトで実行前に考える。ただし、そうでない AI アシスタントを使っている場合でも、こちらから促すことができる。ここで強調されるのは、<strong>思考のための余地は、タスクを実行する「後」ではなく「前」に与えること</strong>。仕事に取りかかる前に考える時間があるのと、まず動いてから後で説明を求められるのとでは、質が違うのと同じ理屈だ。副次的な効果として、<strong>AI アシスタントがどこで判断を誤りかけているかが見えやすくなり</strong>、そこから自分の記述力をさらに磨く手がかりが得られる、と付け加えられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="465" data-label="技法6: 役割・スタイル・トーンを定義する">
+    <div class="sec__mark"><div><span class="sec__t">7:45</span><span class="sec__kind">技法6</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">技法6 — AI の役割・スタイル・トーンを定義する</h2>
+      <p>Claude に<strong>どうコミュニケーションし、どう振る舞ってほしいか</strong>を指定すると、タスクへの取り組み方が大きく変わることがある。期待する専門性のレベル、取ってほしい視点、コミュニケーションのスタイルを指定することで、Claude との対話そのものと、最終的な成果物の両方を導ける。要するに——<strong>AI に何者として振る舞ってほしいか</strong>、ということ。</p>
+
+      <div class="prompt">
+        <b>役割を指定したプロンプト（例1）</b>
+        <p>Please explain how rainbows form from the perspective of an experienced science teacher speaking to a bright 10-year-old who's interested in science.</p>
+        <p>虹がどうやってできるかを、科学に興味がある聡明な10歳の子どもに話しかける、経験豊富な理科の先生の視点で説明して。</p>
+      </div>
+
+      <p>これはブレインストーミングやフィードバックを引き出すのにも良い方法。一般的な役割を指定するだけでなく、物理の説明を求めるときに<strong>リチャード・ファインマンのような特定の人物のペルソナ</strong>を取らせることもできる。</p>
+
+      <div class="prompt">
+        <b>役割を指定したプロンプト（例2）</b>
+        <p>As a UX design expert, review this website wireframe and suggest three improvements focusing on user navigation and accessibility.</p>
+        <p>UX デザインの専門家として、このワイヤーフレームをレビューし、ユーザーナビゲーションとアクセシビリティに焦点を当てた改善案を3つ提案して。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="525" data-label="秘密兵器と反復">
+    <div class="sec__mark"><div><span class="sec__t">8:45</span><span class="sec__kind">秘密兵器</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">秘密兵器 — プロンプト自体の改善を Claude に頼む</h2>
+      <p>おそらく<strong>もっとも強力な技法</strong>として紹介されるのが、<strong>Claude に、プロンプトを良くする手伝いをしてもらう</strong>こと。何をどう頼めばいいか分からないとき、自分の状況や課題を Claude に説明し、プロンプト自体を改善してもらう、あるいは代わりに書いてもらうよう頼める。</p>
+
+      <div class="prompt">
+        <b>プロンプト改善を依頼するプロンプト</b>
+        <p>I'm trying to get you, Claude, to help me with [goal]. I'm not sure how to phrase my request to get the best results. Can you help me craft an effective prompt for this?</p>
+        <p>Claude に〔目標〕を手伝ってほしいと思っている。最良の結果を得るために、どう依頼を言葉にすればいいか分からない。効果的なプロンプトを組み立てるのを手伝ってもらえますか。</p>
+      </div>
+
+      <p>ここは Claude や他の AI アシスタントの間でパフォーマンスの差がもっとも出やすい部分でもあるので、<strong>委任力の実践の一環として、異なるモデルで試してみることを勧める</strong>、と付け加えられる。</p>
+
+      <p><strong>効果的なプロンプトは反復的で実験的なもの。</strong>AI システムやベストプラクティスは常に進化しているので、今日うまくいくやり方が明日は変わっているかもしれない。最初の一回で完璧な結果が出るとは限らないし、それは織り込み済みでよい。応答が求めていたものと違うときは、次のように試行錯誤するとよいと整理される。</p>
+
+      <ul class="acts">
+        <li><h3>具体性や文脈を足す</h3><p>技法1で見た、より詳しい情報を加えるやり方。</p></li>
+        <li><h3>望む出力の例を示す</h3><p>技法2の few-shot prompting を使う。</p></li>
+        <li><h3>タスクをより小さなステップに分ける</h3><p>技法4の考え方を適用する。</p></li>
+        <li><h3>別の技法や組み合わせを試す</h3><p>ひとつの技法にこだわらず、組み合わせて試す。</p></li>
+      </ul>
+
+      <p>ほかにも、<strong>バリエーションを求める</strong>（「3つ違うパターンをもらえますか」）、<strong>別のフォーマットを求める</strong>（「段落ではなく、インタラクティブなアーティファクトで見せてもらえますか」——アーティファクトは Claude が出力をより分かりやすく興味深い形で提示できる独自の方法だと補足される）、<strong>確信度を確認する</strong>（事実確認が絡む質問では「この答えにどれくらい自信がありますか」と尋ねる）、そして<strong>会話をまるごとリセットする</strong>——脱線した会話を直そうとするより、新しい会話を始めたほうが良い結果になることがある。<strong>一回一回のやり取りを、次のプロンプトを改善するためのフィードバックとして使う</strong>ことで、時間をかけて AI システムとのコミュニケーションの勘が育っていく。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-start="631" data-label="うまくいくパターンとまとめ">
+    <div class="sec__mark"><div><span class="sec__t">10:31</span><span class="sec__kind">パターン</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">うまくいくパターンと、避けるべき失敗</h2>
+      <p>ここまでの技法を実践に移すにあたって、動画はいくつかの経験則をまとめている。<strong>一貫してうまくいくパターン</strong>は次のとおり。</p>
+      <ul class="chips">
+        <li>明確なタスク概要から始める</li><li>形式の指定と例を含める</li><li>明示的な制約・要件を設定する</li><li>関連する背景情報を豊富に提供する</li>
+      </ul>
+
+      <p>逆に、避けるべきよくある間違いとして挙げられるのが次の4つ。</p>
+      <ul class="chips">
+        <li>AI が意図を読み取れると思い込む</li><li>ひとつのプロンプトや会話に無関係な複数のタスクを詰め込みすぎる</li><li>「成功とは何か」について曖昧すぎる</li><li>前の応答へのフィードバックを与えない</li>
+      </ul>
+
+      <p class="wrapup">Claude のような AI システムとの効果的なコミュニケーションは、<em>時代を超えた人間のコミュニケーション原則</em>と<em>AI 特有の技法</em>を組み合わせたもの。ここで扱ったアプローチは、異なる AI システムをまたいでも役に立つ。</p>
+
+      <p>6つの原則と、「Claude にプロンプト改善を頼む」という秘密兵器は合わせて、<strong>記述力コンピテンシーを AI との対話に適用するための一式のツールキット</strong>になる。<strong>習熟への近道は反復と実践</strong>だと締めくくられる。</p>
+
+      <p>最後に、プロンプトエンジニアリングは<strong>進化し続ける実践</strong>であり、モデルが向上するにつれて特定のテクニックは不要になっていくかもしれない、とも付け加えられる。それでも、<strong>良いコミュニケーションのこれらの原則自体は、適用の仕方が変わっても関連性を保ち続ける</strong>。実験する姿勢を保ち、結果に基づいてアプローチを調整し続けること。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s10" data-label="重要なポイント（公式コース本文より）">
     <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">重要なポイント</h2>
-      <p>「<strong>秘密兵器</strong>」——AI自体にプロンプトの改善を手伝ってもらう、という方法がある。プロンプトを成功させるには<strong>反復</strong>することだ。AIとの協働を通じて、結果に基づいてアプローチを改善していく。</p>
-      <p>効果的な対話につながる一般的なパターンには、<strong>明確なタスクの概要、形式の指定、明示的な制約条件、関連する背景情報の提供</strong>が含まれる。</p>
+      <p class="tr__note" style="margin:0 0 18px">ここから先3つのセクションは、動画の書き起こしではなく<strong>公式コースページの本文</strong>が出典。動画の内容を踏まえた、コース側の要約・設問にあたる。</p>
+      <ul class="acts">
+        <li><h3>効果的なプロンプトは、明確なコミュニケーション原則とAI特有の技法を組み合わせる</h3></li>
+        <li><h3>6つの基礎的なプロンプト技法</h3><p>コンテキストを提供する／例を示す／制約条件を指定する／複雑なタスクをステップに分割する／AIにまず考えさせる／AIの役割やトーンを定義する。</p></li>
+        <li><h3>「秘密兵器」</h3><p>AI自体にプロンプトの改善を手伝ってもらう。</p></li>
+        <li><h3>プロンプトを成功させるには反復すること</h3><p>AIとの協働を通じて、結果に基づいてアプローチを改善していく。</p></li>
+        <li><h3>効果的な対話につながる一般的なパターン</h3><p>明確なタスクの概要、形式の指定、明示的な制約条件、関連する背景情報の提供。</p></li>
+      </ul>
     </div>
   </section>
 
-  <section class="sec" id="s4">
+  <section class="sec" id="s11" data-label="振り返り（公式コース本文より）">
     <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">振り返り</h2>
@@ -109,7 +313,7 @@
     </div>
   </section>
 
-  <section class="sec" id="s5">
+  <section class="sec" id="s12" data-label="次のステップ（公式コース本文より）">
     <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">次のステップ</h2>
@@ -117,6 +321,59 @@
       <p><a href="10-discernment.html">10 評価力 (Discernment) を詳しく見る →</a></p>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミスや言い直しもそのまま残してある（例: Cloud/Clog/Claw → Claude、fshot → few-shot）。</p>
+    <div class="tr__body">
+      <div><span>0:12</span><p>Let's explore one of the most practical skills when working with AI. Crafting effective prompts. This might sound technical or complicated, and some guides certainly make it seem that way, but at its heart, it's surprisingly straightforward. Prompting is simply how</p></div>
+      <div><span>0:26</span><p>we apply this course's description competency in practice. clearly communicating what we want, how we want it done, and how we want to interact with our AI assistant throughout the entire process. Think of prompting like explaining a task to a helpful new colleague who's eager to assist, but</p></div>
+      <div><span>0:41</span><p>needs clear directions and expectation setting to do their best work. We'll be using Claude throughout this section, but these tips can be carried over to many other AI systems. You might have heard the term prompt engineering tossed around. Prompt engineering is simply the</p></div>
+      <div><span>0:56</span><p>practice of designing effective instructions for AI systems like Claude. It's about crafting your questions and providing context in ways that help AI assistants understand exactly what you want. What's fascinating is that effective prompting blends familiar</p></div>
+      <div><span>1:11</span><p>human communication skills with a few considerations specific to AI. Many principles that make for good human conversation, such as being clear, providing relevant context, and giving concrete examples, also apply when working with AI. Yet, there are</p></div>
+      <div><span>1:25</span><p>differences, such as being more explicit about things humans could naturally infer, and accommodating the AI's limited context window, and sometimes, depending on the AI you're working with, using specific formatting that machines can easily process. As AI assistants</p></div>
+      <div><span>1:40</span><p>continue to evolve, prompting best practices evolve, too. What works with today's AI systems may be different from what works with tomorrow's. Experimentation is key to discovering what works best for your specific needs. In this video, we'll mainly explore six</p></div>
+      <div><span>1:54</span><p>foundational prompting tips that will go a long way toward helping you effectively communicate and collaborate with Claude and other AI systems. They are give Claude context, show examples of what good looks like, specify output constraints, break complex tasks into</p></div>
+      <div><span>2:10</span><p>steps, ask Claude to think first, and define Claude's role, style, or tone. The first principle is simple but powerful. Be specific and clear about what you want, why you want it, and perhaps most surprisingly, who you are. Let's take a simple prompt. Tell me</p></div>
+      <div><span>2:26</span><p>about climate change. How can we improve this by giving Cloud more context? A more specific contextrich version could look like, explain three major impacts of climate change on agriculture in tropical regions with examples from the past decade. Our baseline prompt was</p></div>
+      <div><span>2:43</span><p>vague and leaves clawed guessing about our interests, level of knowledge, and the depth of detail we're looking for, such as geography and time span. We can even add more context by providing information not just about what we're looking for, but why we're asking and how we'll be using that information that</p></div>
+      <div><span>2:58</span><p>Claude gives us. Now, our prompt looks like this. Explain three major impacts of climate change on agriculture in tropical regions with examples from the past decade. I'm preparing for a job interview at an agricultural research lab in Indonesia. I have a degree in</p></div>
+      <div><span>3:13</span><p>ecology, but no specific knowledge on climate change. write a summary of key concepts that would help me speak intelligently in the interview. All this added context helps tailor Claude's response to your specific situation and knowledge level. This kind of background information is something we naturally</p></div>
+      <div><span>3:28</span><p>provide in human conversations, but might forget to include when talking with Claude. Sometimes showing is better than telling. Providing examples of the kind of output you're looking for can be incredibly effective. This is sometimes called fshot prompting or nshot</p></div>
+      <div><span>3:42</span><p>prompting in technical circles where n is the number of examples given but it's really just about showing the AI examples for it to emulate. For instance, take the following prompt. Please convert this technical statement to plain language. The platform implements end-to-end encryption</p></div>
+      <div><span>3:57</span><p>protocols to safeguard data integrity. Clog may already be able to do this to your satisfaction. So we definitely recommend you just try first without examples and see where it leads you. But let's say you have a very specific style you want Claude to follow, and it's</p></div>
+      <div><span>4:12</span><p>harder to explain than to give examples. Your refreshed prompt could look something like this. Here are two examples of how to convert technical jargon into plain language. Original, the quantum algorithm exhibits quadratic speed up. Plain, the new method solves</p></div>
+      <div><span>4:27</span><p>problems roughly twice as fast as previous methods. Original, the interface leverages intuitive design paradigms. Plain, the design is easy to understand and use. Now, please convert this complex technical manual to plain language. When providing examples, aim</p></div>
+      <div><span>4:43</span><p>to cover the full diversity of possible prompts, such as examples that cover different cases or styles. This helps Claude better understand the broad range of the pattern you want it to follow. Being clear about output constraints, such as the desired format and length of Claude's response, or the language you</p></div>
+      <div><span>4:59</span><p>want Claude to code in, or the color of the buttons on the web page you want Claude to design, also helps ensure you get exactly what you need. Here's an example of clear and detailed description to ensure Claude delivers exactly what you're looking for. Create</p></div>
+      <div><span>5:14</span><p>a clean, modern, single page art portfolio website. Include these main sections: hero, about me, skills, portfolio, projects, experience, and contact. Make the navigation menu sticky and responsive with hamburger menu on mobile. Use a sunset color palette and add a dark light mode toggle in the</p></div>
+      <div><span>5:30</span><p>navigation. Guidance like this helps cloud structure its response to match your expectations. When you have a complicated request, breaking it down into smaller steps helps Cloud follow your thinking and deliver better results. Think about it this way. If you ask a friend to do something for you</p></div>
+      <div><span>5:46</span><p>without specifying how, there's a chance that they may not do it the way you intended them to. We've all been there. Listing out task steps ensures that Claude follows the process you want to in order to accomplish its task. This is sometimes called chain of thought</p></div>
+      <div><span>6:00</span><p>prompting. For example, instead of asking Claude to analyze this quarterly sales data, you might say, "I'd like to analyze this quarterly sales data. Please approach this by looking through our sales records to identify the top performing products, comparing current quarter results to the previous quarter,</p></div>
+      <div><span>6:16</span><p>highlighting any unusual trends or patterns, and then suggesting possible reasons for these trends. By default, you may not need to do this, especially for tasks that are relatively straightforward. Furthermore, modern reasoning models or extended thinking models are increasingly capable of</p></div>
+      <div><span>6:31</span><p>performing step-by-step reasoning on their own, but you can still guide this process to ensure it aligns with your needs. The more variance there is in ways to execute the task well, or the more that proper task execution relies on experience and knowledge you've</p></div>
+      <div><span>6:45</span><p>gained as a domain expert, the more you should consider taking the time to translate that knowledge into Claude. Relatedly, sometimes it can be helpful to explicitly give AI assistants like Claude space to work through its process first before executing its task. This approach helps Claude produce more</p></div>
+      <div><span>7:02</span><p>thorough and well-considered responses. For example, you can add this to your prompt. Before answering, please think through this problem carefully. Consider the different factors involved, potential constraints, and various approaches before recommending the best</p></div>
+      <div><span>7:16</span><p>solution. As I mentioned, modern reasoning or extended thinking models by default think before acting. But if you're working with an AI assistant that does not think first by default, you can still prompt the AI to do so. I want to note the importance of giving the AI</p></div>
+      <div><span>7:30</span><p>assistant space to think before doing its task, not after. If you want that thinking to increase the quality of the AI's work, just like how having space to think before you act is different than acting first, then being asked to explain your thinking afterwards. As a</p></div>
+      <div><span>7:45</span><p>side benefit, this also allows you to better see where the AI assistant might be going astray and thus where you could hone your description competency further by providing more guidance. Specifying how you want cloud to communicate and behave can significantly change how it</p></div>
+      <div><span>8:00</span><p>approaches a task. By specifying the level of expected expertise, the perspective you want it to take, or its communication style, you can guide both Claude's interaction with you and the final result of what it produces. Simply put, who do you want the AI to act as?</p></div>
+      <div><span>8:15</span><p>For example, take this prompt. Please explain how rainbows form from the perspective of an experienced science teacher speaking to a bright 10-year-old who's interested in science. This is also a good way to brainstorm or get feedback. You can specify a general role or even ask Claw to take on the persona</p></div>
+      <div><span>8:31</span><p>of a specific figure, such as Richard Fineman, when asking for physics explanations. Here's another example. As a UX design expert, review this website wireframe and suggest three improvements focusing on user navigation and accessibility. Perhaps the most powerful</p></div>
+      <div><span>8:45</span><p>technique is asking Claude to help improve your prompt. When you're not sure how to ask for something or how to improve your prompt, describe to Claude your issue or situation and ask it to make your prompt better or write your prompt for you. I'm trying to get you, Claude, to help me with goal. I'm not</p></div>
+      <div><span>9:01</span><p>sure how to phrase my request to get the best results. Can you help me craft an effective prompt for this? Here's where Claude and other AI assistants may vary most in terms of performance. So, we suggest you experiment with different models as part of practicing delegation.</p></div>
+      <div><span>9:17</span><p>Effective prompting is iterative and experimental. AI systems and best practices are constantly evolving. So, what works today may change tomorrow. Your first attempt won't always yield the perfect result, and that's expected. When a response isn't quite what you</p></div>
+      <div><span>9:31</span><p>need, try refining your approach by playing around with any of the techniques we mentioned, such as add more specificity or context. Provide examples of your desired output. Break the task into smaller steps and try a different technique or combination of</p></div>
+      <div><span>9:47</span><p>techniques. You can also ask for variations such as, "Can you give me three different versions of this?" You can request different formats such as, "Instead of a paragraph, could you present this in an interactive artifact?" Note that artifacts are a unique way that Claude can create</p></div>
+      <div><span>10:01</span><p>outputs that may be easier to understand or more interesting to digest. You can also check confidence, such as for factual questions, you can ask, "How confident are you about this answer?" You can also reset the conversation entirely. Sometimes starting a fresh</p></div>
+      <div><span>10:15</span><p>conversation gives better results than trying to correct the conversation that's gone off track. Use each interaction as feedback to improve your next prompt. Over time, you'll develop an intuition for how to communicate effectively with all AI systems. As you apply these techniques in practice,</p></div>
+      <div><span>10:31</span><p>here's some guidance to recap. Some patterns consistently work well. Starting with a clear task overview statement, including format specifications and examples, setting explicit constraints or requirements, providing rich and relevant background</p></div>
+      <div><span>10:45</span><p>information, and common mistakes to avoid are assuming that Claude can read your mind, or overloading a single prompt or conversation with multiple unrelated tasks, being too vague about what success looks like, and not providing feedback on previous</p></div>
+      <div><span>10:59</span><p>responses. To recap, effective communication with AI systems like Claude combines timeless human communication principles with AI specific techniques. The approaches we've covered will serve you well across different AI systems. These six principles together with the secret</p></div>
+      <div><span>11:13</span><p>weapon of asking Cloud for help form a solid toolkit for applying the description competence to your AI interactions. Iteration and practice here is the key to Swift improvement and mastery. Remember that prompt engineering is an evolving practice. As</p></div>
+      <div><span>11:28</span><p>models improve, some specific techniques become less necessary. However, these principles of good communication are still relevant even if the way we apply them changes. Maintain a spirit of experimentation and adapt your approach based on your results.</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -127,10 +384,11 @@
 <div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <span>出典 — Anthropic 公式 AI Fluency コース「Effective Prompting Techniques」</span>
   <a href="https://youtu.be/2YCaBqP8muw" target="_blank" rel="noopener">youtu.be/2YCaBqP8muw ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>

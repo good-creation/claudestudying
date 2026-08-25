@@ -41,8 +41,13 @@ for f in all_html_files():
 
     if dur:
         d = int(dur.group(1))
-        if secs != ticks:
-            problems.append((f, "sec/tick mismatch", "sec=%d tick=%d" % (secs, ticks)))
+        # タイムラインに載るのは「動画のどこかを指す節」だけ。
+        # 動画に対応する時刻を持たない節（公式コース本文由来の要点・振り返り、演習）は
+        # data-start を持たず、.sec__t には m:ss ではなく短いラベルを入れる。
+        # よって tick と突き合わせるのは .sec 総数ではなく data-start を持つ節の数。
+        if len(starts) != ticks:
+            problems.append((f, "start/tick mismatch",
+                             "data-start=%d tick=%d (sec=%d)" % (len(starts), ticks, secs)))
         if starts and max(starts) >= d:
             problems.append((f, "data-start >= duration", "max=%d dur=%d" % (max(starts), d)))
         if starts != sorted(starts):
@@ -59,7 +64,8 @@ for f in all_html_files():
             if abs(shown - int(start)) > TOLERANCE:
                 problems.append((f, "sec__t vs data-start (>%ds)" % TOLERANCE,
                                  "%s vs %ss" % (label, start)))
-        print("%-34s sec=%d tick=%d dur=%ds" % (f, secs, ticks, d))
+        print("%-34s sec=%d (timed %d) tick=%d dur=%ds"
+              % (f, secs, len(starts), ticks, d))
     else:
         print("%-34s sec=%d (no timeline)" % (f, secs))
 

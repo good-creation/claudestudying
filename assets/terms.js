@@ -176,8 +176,10 @@
     if (open === el) return;
     open = el;
     tw.textContent = el.textContent;
-    te.textContent = el.dataset.en || '';
-    te.style.display = el.dataset.en ? '' : 'none';
+    var en = el.dataset.en || '';
+    te.textContent = en;
+    te.style.display = en ? '' : 'none';
+    te.classList.toggle('is-ja', /[^\x00-\x7F]/.test(en));   /* 日本語の併記は等幅・大文字組みにしない */
     td.textContent = el.dataset.def;
     tip.hidden = false;
     el.setAttribute('aria-describedby','termtip');

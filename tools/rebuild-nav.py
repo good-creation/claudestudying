@@ -9,6 +9,12 @@ import re, os, io, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
+# サイト全体の玄関ページ。3コースを選ぶだけの入口で、レッスン番号は持たない。
+HOME = ("index.html", "ホーム", "コースを選ぶ")
+
+# Claude Code 入門コースの目次ページ（玄関から分離）。このページ自身も nav を持つ。
+COURSE_INDEX = ("claude-code.html", "目次", "Claude Code 入門コース 目次")
+
 LESSONS = [
     ("01-what-is-claude-code.html",      "01", "Claude Code とは何か"),
     ("02-how-claude-code-works.html",    "02", "どう動いているのか"),
@@ -54,14 +60,19 @@ AF_LESSONS = [
 ]
 
 # nav に載せる項目（表示用）
-NAV_ITEMS = LESSONS + APPENDIX + AI_FLUENCY
+NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY
 
 # nav を書き換える対象ファイル（このサイト自身のページのみ。
 # ai-fluency/ 配下はコース専用 nav を手書きで持つため対象外）
-TARGETS = LESSONS + APPENDIX
+# index.html は玄関ページで nav を持たないため対象に含めない。
+TARGETS = [COURSE_INDEX] + LESSONS + APPENDIX
 
 def nav_for(current):
     rows = ["<nav>"]
+    for href, num, ja in [HOME, COURSE_INDEX]:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a href="%s" title="%s" aria-label="%s"%s>%s</a>'
+                    % (href, ja, ja, cur, num))
     for href, num, ja in LESSONS:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
@@ -98,7 +109,8 @@ def af_nav_for(current):
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
-    rows.append('      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>')
+    rows.append('      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>')
+    rows.append('      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>')
     rows.append("    </nav>")
     return "\n".join(rows)
 

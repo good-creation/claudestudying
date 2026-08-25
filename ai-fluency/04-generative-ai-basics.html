@@ -4,13 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>04 生成 AI の基礎 — AI活用力（AI Fluency）学習ノート</title>
-<meta name="description" content="生成AIの定義と、他の種類のAIとの違い、その主な特徴と技術的基盤。">
+<meta name="description" content="生成AIの定義、LLMとパラメータ、それを可能にした3つの技術的進展、事前学習とファインチューニング、プロンプトとコンテキストウィンドウを動画本編から日本語で再構成。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
 
 <div class="chrome"><div class="shell chrome__in">
   <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
@@ -29,14 +38,15 @@
       <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
       <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
       <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
-      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
     </nav>
 </div></div>
 
 <header class="hero shell">
   <div class="hero__top">
-    <p class="eyebrow">04 / AI Fluency</p>
-    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+    <p class="eyebrow">Lesson 04 / AI活用力（AI Fluency）</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式コース — Claude Code 入門コースとは別系統 · 6:21</p>
   </div>
 
   <h1 class="hero__title">生成 AI の<br><em>基礎</em></h1>
@@ -44,45 +54,174 @@
   <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    生成AIとは何かを定義し、他の種類のAIとどう異なるかを説明したうえで、その主な特徴と技術的基盤を扱う回。
+    生成AIとは何かを定義し、他の種類のAIとどう異なるかを説明したうえで、<strong>LLM とパラメータ</strong>、それを可能にした<strong>3つの技術的進展</strong>、<strong>事前学習とファインチューニング</strong>、<strong>プロンプトとコンテキストウィンドウ</strong>までを動画本編から日本語で再構成したもの。末尾には公式コース本文由来の学習目標と次のレッスンへの案内を収録。
   </p>
 
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:4.7%"><s>定義</s><i></i><b>0:18</b></div>
+      <div class="tl__tick" style="left:17.3%"><s>LLM</s><i></i><b>1:06</b></div>
+      <div class="tl__tick" style="left:25.2%"><s>3つの進展</s><i></i><b>1:36</b></div>
+      <div class="tl__tick" style="left:44.4%"><s>スケーリング則</s><i></i><b>2:49</b></div>
+      <div class="tl__tick" style="left:52.5%"><s>学習の仕組み</s><i></i><b>3:20</b></div>
+      <div class="tl__tick" style="left:68.5%"><s>推論</s><i></i><b>4:21</b></div>
+      <div class="tl__tick" style="left:84.5%"><s>3つの特徴</s><i></i><b>5:22</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>06:21</span></div>
+  </div>
+
   <dl class="meta">
-    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
-    <div><dt>Video</dt><dd><a href="https://youtu.be/RyvXxApfHkk" target="_blank" rel="noopener">youtu.be/RyvXxApfHkk ↗</a></dd></div>
-    <div><dt>Topic</dt><dd><small>生成AIの定義と技術的基盤</small></dd></div>
+    <div><dt>Channel</dt><dd>Anthropic<br><small>AI Fluency</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.06.12</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>6:21</span> <small>/ 381s</small></dd></div>
+    <div><dt>Views</dt><dd><span>666,465</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/RyvXxApfHkk" target="_blank" rel="noopener">youtu.be/RyvXxApfHkk ↗</a></dd></div>
   </dl>
 </header>
 
-<main class="doc shell">
+<main class="doc shell" data-duration="381">
 
-  <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+  <section class="sec" id="s1" data-start="18" data-label="生成AIとは何か">
+    <div class="sec__mark"><div><span class="sec__t">0:18</span><span class="sec__kind">定義</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">このレッスンの内容</h2>
-      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <h2 class="sec__h">生成AIとは何か</h2>
+      <p>生成AIとは、<strong>既存のデータを分析するだけでなく、新しいコンテンツを生み出せる</strong>人工知能システムのこと。動画はこの定義を、身近な対比で説明する。</p>
+      <p>従来型のAIは、たとえばメールをスパムかどうかパターンに基づいて分類するだけ。これに対して生成AIは、まったく新しいメールの文面をゼロから書ける。前者は分析し分類する。後者は、それまで存在しなかったものを新たに作り出す——これがAIの能力における根本的な転換だと説明される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="66" data-label="LLMとパラメータ">
+    <div class="sec__mark"><div><span class="sec__t">1:06</span><span class="sec__kind">概念</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">LLM（大規模言語モデル）とパラメータ</h2>
+      <p>Claude のような LLM（Large Language Model / 大規模言語モデル）は、生成AIの代表格。「言語モデル」と呼ばれるのは、人間の言語を予測・生成するよう訓練されているから。「大規模」なのは、数十億個の<strong>パラメータ</strong>を持つから。</p>
+      <p>パラメータとは、モデルが情報をどう処理するかを決める数学的な値のこと。動画は<strong>脳のシナプス結合のようなもの</strong>だと比喩している。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="96" data-label="3つの技術的進展">
+    <div class="sec__mark"><div><span class="sec__t">1:36</span><span class="sec__kind">背景</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">今日の生成AIを可能にした3つの技術的進展</h2>
+      <p>今日の生成AIへの道は突然開けたわけではなく、<strong>3つの重要な進展が同じタイミングで組み合わさった</strong>結果だと説明される。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>アルゴリズムとアーキテクチャの革新</h3>
+          <p>ニューラルネットワーク自体は概念として数十年前からあったが、<strong>2017年のトランスフォーマーアーキテクチャ</strong>の登場が大きな転換点になった。長い文章にわたる単語同士の関係性を保ちながらテキストの並びを処理するのに優れており、文脈の中で言語を理解するうえで決定的だったとされる。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>デジタルデータの爆発的増加</h3>
+          <p>訓練に必要な原材料が揃った段階。Claude のような現代の LLM は、ウェブサイトやコードリポジトリなど、人間の知識とコミュニケーションを表す多様な情報源から学ぶ。この広大な情報の集積が、言語と概念の両方について幅広く繊細な理解をモデルにもたらしたと説明される。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>計算能力の劇的な向上</h3>
+          <p>これほど複雑なモデルを、これほど大量のデータで訓練できるようになったのは計算能力のおかげ。<strong>GPU（画像処理装置）や TPU（テンソル処理装置）</strong>といった専用ハードウェアと、<strong>クラスタ</strong>と呼ばれる分散コンピューティングネットワークが、数年前には不可能だった処理を可能にした。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="169" data-label="スケーリング則と創発的能力">
+    <div class="sec__mark"><div><span class="sec__t">2:49</span><span class="sec__kind">発見</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">スケーリング則と創発的能力</h2>
+      <p>この3要素の組み合わせから、<strong>スケーリング則</strong>と呼ばれる重要な発見が生まれた。モデルが大きくなり、より多くのデータとより多くの計算能力で訓練されるほど、性能が<strong>予測可能な形で</strong>向上するという経験的な知見のこと。</p>
+      <p>さらに意外だったのは、モデルが大きくなるにつれて、<strong>明示的にプログラムされていなかった能力が新たに現れ始めた</strong>こと。段階を追って問題を推論する力や、最小限の指示で新しいタスクに適応する力などが例に挙げられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="200" data-label="事前学習とファインチューニング">
+    <div class="sec__mark"><div><span class="sec__t">3:20</span><span class="sec__kind">仕組み</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">仕組みを覗く——事前学習とファインチューニング</h2>
+      <ol class="steps">
+        <li>
+          <h3>事前学習（pre-training）</h3>
+          <p>Claude のようなモデルは、数十億のテキスト例にわたるパターンを分析する。あらゆるウェブサイトやテキストを読むところを想像してほしいと動画は言う。ただし単に情報を吸収するのではなく、単語・フレーズ・概念のあいだの<strong>統計的な関係</strong>を理解するため。この段階でモデルは、言語と知識の複雑な地図のようなものを組み立てていく。次に来る単語を予測させることを何度も繰り返し、言語を一貫した意味のあるものにするパターンを学んでいく。</p>
+        </li>
+        <li>
+          <h3>ファインチューニング（fine-tuning）</h3>
+          <p>事前学習のあと、指示に従い、役立つ応答を提供し、<strong>有害なコンテンツの生成を避ける</strong>ことを学ぶ追加の訓練が行われる。人間からのフィードバックに加え、報酬とペナルティでモデルの振る舞いを「より役立ち、正直で、無害」な方向に形作る強化学習を伴う。訓練が終わると、モデルはユーザーとやり取りするためにデプロイされる。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="261" data-label="プロンプトとコンテキストウィンドウ">
+    <div class="sec__mark"><div><span class="sec__t">4:21</span><span class="sec__kind">推論</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">プロンプトとコンテキストウィンドウ</h2>
+      <p>Claude などとやり取りするとき、渡しているのは<strong>プロンプト</strong>——モデルが読み込み、訓練で学んだパターンをもとに続きを生成するテキストのこと。モデルはデータベースから既成の答えを取り出しているのではなく、書かれた内容から<strong>統計的に続く新しいテキストを生成している</strong>にすぎない。</p>
+      <p>LLM が一度に考慮できる情報量には実際的な上限があり、これを<strong>コンテキストウィンドウ</strong>と呼ぶ。AIの作業メモリのようなもので、プロンプト・AIの応答・会話中で共有したその他の情報がすべて含まれる。AI各社はより長い文書や会話を扱えるようコンテキストウィンドウを拡張し続けているが、この制限があることで、こうしたシステムは情報に無制限にアクセスできるわけではなく、Web検索のような専用ツールなしには現在のコンテキストウィンドウの外側にある内容を使えないことが分かる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="322" data-label="3つの特徴のまとめ">
+    <div class="sec__mark"><div><span class="sec__t">5:22</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">生成AIを強力にする3つの特徴</h2>
+      <p class="wrapup">ここまでの内容を、現代の生成AIを強力にしている3つの特徴としてまとめている。</p>
+      <ul class="acts">
+        <li><h3>訓練中に膨大な量の情報を処理できる能力</h3><p>言語と知識に関する、複雑で繊細なパターンを学べる。</p></li>
+        <li><h3>インコンテキスト学習能力</h3><p>追加の訓練を必要とせず、プロンプト内の指示や例だけをもとに新しいタスクに適応できる。</p></li>
+        <li><h3>スケールから生まれる創発的能力</h3><p>モデルが大きくなるにつれ、明示的に設計されていなかった能力を身につけ、時にはそれを作った人々さえ驚かせることがある。</p></li>
+      </ul>
+      <p>次の動画では、こうしたシステムが得意なこと・不得意なこと、そしてよくある、あるいは価値のある使いどころを見ていく、と予告して締めくくられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-label="次のレッスンへ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のレッスンへ</h2>
+      <p class="tr__note">以下は公式コース本文（学習目標）が出典。動画本編ではここまでの内容としてすでに扱われている。</p>
       <ul class="acts">
         <li><h3>生成AIとは何かを定義する</h3><p>他の種類のAIとどのように異なるかを説明する。</p></li>
         <li><h3>生成AIの主な特徴と技術的基盤を説明する</h3></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="sec" id="s2">
-    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
-    <div class="sec__body">
-      <h2 class="sec__h">次のレッスンへ</h2>
       <p><a href="05-capabilities-limits.html">05 生成 AI の能力と限界</a>に続く。</p>
-      <div class="warn">
-        <b>本レッスンは学習目標のみ収録</b>
-        <p>本レッスンは、ユーザーから提供された原文が「このレッスンを終えると、次のことができるようになる」という学習目標2点のみで、重要なポイント・振り返りの本文は含まれていない。推測で内容を補うことはせず、原文入手後に追記する。</p>
-      </div>
       <div class="tip">
         <b>「詳細解説1」との対応（推測）</b>
         <p>04と05が「詳細解説1」の2部構成にあたるという位置づけは、03 4D フレームワークの「次のステップ」の記述（「詳細解説1：「生成AIとは何か？」は…2部構成の技術的内容です」）から推測したもので、本レッスンの原文に明示された対応ではない。</p>
       </div>
     </div>
   </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミス（Anthropic→"Enthropic"、Claude→"cloud"、game changer→"gamecher" など）もそのまま残してある。</p>
+    <div class="tr__body">
+      <div><span>0:02</span><p>[music] Hi, my name is Drew Bent and I'm a teacher, programmer, and member of technical staff at Enthropic. Welcome to</p></div>
+      <div><span>0:18</span><p>our exploration of generative AI. In this video, we'll dive into what generative AI actually is, how it works under the hood, and the technological breakthroughs that made these systems possible. You might interact with generative AI daily without fully</p></div>
+      <div><span>0:33</span><p>understanding what's happening behind the scenes. Let's change that. Generative AI refers to artificial intelligence systems that can create new content rather than just analyzing existing data. For example, while traditional AI might classify emails as</p></div>
+      <div><span>0:49</span><p>spam or not spam based on patterns, generative AI can write a completely new email for you. The first approach analyzes and categorizes. The second creates something new that didn't exist before. This represents a fundamental shift in AI capabilities.</p></div>
+      <div><span>1:06</span><p>Large language models or LLM like anthropics cloud models are a prominent type of generative AI. They're called language models because they're trained to predict and generate human language and large because they contain billions</p></div>
+      <div><span>1:21</span><p>of parameters, mathematical values that determine how the model processes information, somewhat like synaptic connections in your brain. The path to today's generative AI wasn't sudden. It involved three crucial developments</p></div>
+      <div><span>1:36</span><p>coming together at the right time. First, there were algorithmic and architectural breakthroughs that fundamentally changed how AI systems learn. While neural networks have been around conceptually for decades, the development of the transformer</p></div>
+      <div><span>1:51</span><p>architecture in 2017 was a gamecher. This architecture excels at processing sequences of text while maintaining relationships between words across long passages, which is critical for understanding language in context.</p></div>
+      <div><span>2:05</span><p>Second, the explosion of digital data provided the essential raw material for training. Modern LLMs like Claude learn from diverse sources such as websites, code repositories, and other text that represent human knowledge and communication.</p></div>
+      <div><span>2:20</span><p>This vast tapestry of information helps models develop a broad and nuanced understanding of both language and concepts. And third, massive increases in computational power made it possible to train these complex models on all</p></div>
+      <div><span>2:35</span><p>that data. Specialized hardware like GPUs or graphics processing units and TPUs or tensor processing units along with distributed computing networks often called clusters enable processing that would have been impossible just a</p></div>
+      <div><span>2:49</span><p>few years earlier. The combination of these three factors led to an important discovery known as the scaling laws. These empirical findings showed that as models grew larger and trained on more data with more computing power, their performance improved in predictable</p></div>
+      <div><span>3:05</span><p>ways. More surprisingly, researchers found that entirely new capabilities began to emerge as these models grew larger. Abilities no one explicitly program, like reasoning through problems stepby step or adapting to new tasks</p></div>
+      <div><span>3:20</span><p>with minimal instruction. Let's peek under the hood at how these systems actually work. During initial training, also called pre-training, LLMs like Claude analyze patterns across billions of text examples. Imagine reading every website and piece of text you could</p></div>
+      <div><span>3:36</span><p>find, not just to absorb information, but to understand the statistical relationships between words, phrases, and concepts. At this stage, the model essentially builds something like a complex map of language and knowledge. This pre-training process involves</p></div>
+      <div><span>3:50</span><p>showing the model text and asking it to predict what comes next. Through many iterations, the model gradually refineses its predictions, learning the patterns that make language coherent and meaningful. After pre-training, models undergo additional training called</p></div>
+      <div><span>4:06</span><p>fine-tuning, where they learn to follow instructions, provide helpful responses, and importantly, avoid generating harmful content. This often involves human feedback to improve the model's performance, as well as reinforcement learning, which uses rewards and</p></div>
+      <div><span>4:21</span><p>penalties to shape the model's behavior toward being more helpful, honest, and harmless. In the case of enthropics models, once models are trained, they are then deployed for you to interact with. When you interact with Claude or another LLM, you're providing a prompt,</p></div>
+      <div><span>4:37</span><p>which is text that the model reads and then continues from based on patterns it learned during training. The model isn't retrieving pre-written answers from a database. Instead, it's generating new text that statistically follows from what you've written. There's also a</p></div>
+      <div><span>4:51</span><p>practical limit to how much information an LLM can consider at once, known as the context window. Think of this as the AI's working memory. The context window includes your prompts, the AI responses, and any other information you've shared</p></div>
+      <div><span>5:06</span><p>in your conversation. While AI companies continue to grow the context window to allow for longer context documents and conversations, these limits remind us that these systems don't have unlimited access to information and cannot use content beyond its current context</p></div>
+      <div><span>5:22</span><p>window without specialized tools like web search. Bringing this together, the three characteristics that make modern generative AI so powerful include, first, its ability to process vast amounts of information during training,</p></div>
+      <div><span>5:37</span><p>allowing it to learn complex and nuanced patterns in language and knowledge. Second, its incontext learning ability. LLMs can adapt to new tasks based on instructions or examples in your prompt without requiring additional training. And third, emerging capabilities that</p></div>
+      <div><span>5:53</span><p>arise from scale. As these models grow larger, they develop abilities that weren't explicitly designed into them, sometimes surprising even their creators. In the next video, we'll explore what these systems can and can't do well, along with their most common or</p></div>
+      <div><span>6:08</span><p>valuable applications. [music]</p></div>
+    </div>
+  </details>
 </main>
 
 <div class="pager">
@@ -97,6 +236,7 @@
   <a href="https://youtu.be/RyvXxApfHkk" target="_blank" rel="noopener">youtu.be/RyvXxApfHkk ↗</a>
 </footer>
 
+<script src="../assets/site.js"></script>
 <script src="../assets/terms.js"></script>
 </body>
 </html>
