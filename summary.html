@@ -28,7 +28,6 @@
       <a href="09-mcp.html" title="MCP で外部につなぐ" aria-label="09 MCP で外部につなぐ">09</a>
       <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
       <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
-      <a class="is-appendix" href="cloudflare.html" title="付録：Cloudflare × Claude Code" aria-label="付録：Cloudflare × Claude Code">CF</a>
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用" aria-current="page">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
@@ -38,7 +37,7 @@
 <header class="hero shell">
   <div class="hero__top">
     <p class="eyebrow">最終まとめ / Summary</p>
-    <p class="eyebrow" style="color:var(--signal)">レッスン01〜11 ＋ 付録の全体像</p>
+    <p class="eyebrow" style="color:var(--signal)">レッスン01〜11の全体像</p>
   </div>
 
   <h1 class="hero__title"><em>できること</em></h1>
@@ -162,7 +161,7 @@
         </div>
         <div class="modes__row">
           <div class="modes__n">claude plugin install</div><div class="modes__c" data-h="種別">CLI</div>
-          <div class="modes__c" data-h="内容">プラグイン導入（Cloudflare Skills など）</div>
+          <div class="modes__c" data-h="内容">プラグイン導入</div>
         </div>
       </div>
     </div>
@@ -263,36 +262,11 @@
           <div class="modes__c is-paid" data-h="費用">有料プラン向け</div>
           <div class="modes__c" data-h="備考">拡張機能の説明に「全ての有料サブスクライバーが利用可能」とある</div>
         </div>
-        <div class="modes__row">
-          <div class="modes__n">Cloudflare Skills / MCP 接続</div>
-          <div class="modes__c is-free" data-h="費用">無料で開始可</div>
-          <div class="modes__c" data-h="備考">Cloudflare 側は基本的に無料で始められる</div>
-        </div>
-        <div class="modes__row">
-          <div class="modes__n">Workers / Pages / D1 / R2</div>
-          <div class="modes__c is-free" data-h="費用">無料枠内なら0円</div>
-          <div class="modes__c" data-h="備考">枠を超えれば Cloudflare 側の従量課金</div>
-        </div>
-        <div class="modes__row">
-          <div class="modes__n">Cloudflare Workers AI</div>
-          <div class="modes__c is-paid" data-h="費用">別課金</div>
-          <div class="modes__c" data-h="備考">Max Plan とは別。無料枠超過後は Cloudflare 側の課金対象</div>
-        </div>
-        <div class="modes__row">
-          <div class="modes__n">Anthropic API を AI Gateway 経由で呼ぶ</div>
-          <div class="modes__c is-paid" data-h="費用">別課金</div>
-          <div class="modes__c" data-h="備考">Max Plan とは別に <strong>API 料金が発生し得る</strong></div>
-        </div>
-      </div>
-
-      <div class="warn">
-        <b>いちばん誤解しやすい一点</b>
-        <p><strong>AI Gateway は、Max Plan の通信をそのまま経由させて可視化する仕組みではない。</strong>Gateway を使う構成では通常 Anthropic API キーで呼び出すことになり、<strong>定額プランとは別に API 課金が発生し得る</strong>。「Max Plan のまま利用量を一元管理できる」という理解にはならない。詳細は <a href="cloudflare.html#cost">付録の費用セクション</a>。</p>
       </div>
 
       <div class="tip">
         <b>この表の扱い</b>
-        <p>プラン構成と料金は変わります。ここは<strong>「どこに費用の境界があるか」を把握するための地図</strong>として使い、実際の金額は <a href="https://claude.com/pricing" target="_blank" rel="noopener">Anthropic の料金ページ</a>と <a href="https://developers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare のドキュメント</a>で確認してください。</p>
+        <p>プラン構成と料金は変わります。ここは<strong>「どこに費用の境界があるか」を把握するための地図</strong>として使い、実際の金額は <a href="https://claude.com/pricing" target="_blank" rel="noopener">Anthropic の料金ページ</a>で確認してください。</p>
       </div>
     </div>
   </section>
@@ -354,24 +328,24 @@
     <div class="sec__mark"><div><span class="sec__t">NOTE</span><span class="sec__kind">出典</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">このページについて</h2>
-      <p>レッスン01〜11（Anthropic 公式コース）と<a href="cloudflare.html">付録</a>の内容を、横断的に再構成したまとめです。各項目の根拠は該当レッスンを参照してください。</p>
+      <p>レッスン01〜11（Anthropic 公式コース）の内容を、横断的に再構成したまとめです。各項目の根拠は該当レッスンを参照してください。</p>
       <div class="warn">
         <b>費用表について</b>
-        <p>費用の区分は、コース本編と付録で示された内容および公開情報にもとづく<strong>整理</strong>です。<strong>具体的な金額や無料枠は変動します。</strong>契約・課金の判断をする前に、必ず各サービスの公式料金ページで最新の情報を確認してください。</p>
+        <p>費用の区分は、コース本編で示された内容および公開情報にもとづく<strong>整理</strong>です。<strong>具体的な金額や無料枠は変動します。</strong>契約・課金の判断をする前に、必ず各サービスの公式料金ページで最新の情報を確認してください。</p>
       </div>
     </div>
   </section>
 </main>
 
 <div class="pager">
-  <a href="cloudflare.html"><b>前 — 付録</b><em>Cloudflare × Claude Code</em></a>
+  <a href="11-review-and-ship.html"><b>前 — 11</b><em>レビューして出荷する</em></a>
   <a class="is-next" href="claude-code.html"><b>コース</b><em>目次に戻る</em></a>
 </div>
 
 <div class="endmark"><img src="img/clawd.png" alt="" aria-hidden="true"></div>
 
 <footer class="foot shell">
-  <span>まとめ — レッスン01〜11 ＋ 付録の全体像</span>
+  <span>まとめ — レッスン01〜11の全体像</span>
   <a href="claude-code.html">目次へ</a>
 </footer>
 

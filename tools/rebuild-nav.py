@@ -30,8 +30,9 @@ LESSONS = [
 ]
 
 # 公式コース外の付録。番号体系に混ぜず、ナビ上も区切って表示する。
+# cloudflare.html はトップの独立コースカードに昇格したため、入門コースの nav には出さない
+# （専用 nav は af_nav_for() に倣った cf_nav_for() で別途生成する）。
 APPENDIX = [
-    ("cloudflare.html", "CF", "付録：Cloudflare × Claude Code"),
     ("summary.html",    "まとめ", "まとめ：できることと、費用"),
     ("quiz.html",       "確認問題", "確認問題 20問"),
 ]
@@ -124,3 +125,26 @@ for href, num, ja in [("index.html", "目次", "AI活用力コース 目次")] +
         print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
     io.open(path, "w", encoding="utf-8").write(new)
     print("  ok    %s" % path)
+
+
+# --- 付録 cloudflare.html 専用の nav ----------------------------------------
+# 入門コースの nav からは外したが、cloudflare.html 自身が孤立しないよう
+# 最小限の専用 nav（玄関へ戻る + 自ページ）を持たせる。
+
+def cf_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="index.html" title="コースを選ぶ" aria-label="コースを選ぶ">ホーム</a>')
+    rows.append('      <a class="is-appendix" href="cloudflare.html" title="付録：Cloudflare × Claude Code" aria-label="付録：Cloudflare × Claude Code"%s>Cloudflare</a>'
+                % (' aria-current="page"' if current == "cloudflare.html" else ""))
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+if os.path.exists("cloudflare.html"):
+    s_cf = io.open("cloudflare.html", encoding="utf-8").read()
+    new, n = pat.subn(cf_nav_for("cloudflare.html"), s_cf, count=1)
+    if n != 1:
+        print("  FAIL  cloudflare.html — found %d bare <nav>" % n); sys.exit(1)
+    io.open("cloudflare.html", "w", encoding="utf-8").write(new)
+    print("  ok    cloudflare.html")
+else:
+    print("  SKIP  cloudflare.html (not found)")
