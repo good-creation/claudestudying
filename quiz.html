@@ -56,7 +56,7 @@
   <img class="hero__clawd" src="img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えるとその場で正誤と解説が表示されます。
+    レッスン01〜11の理解度を確認する問題集。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong>答えるとその場で正誤と解説が表示されます。<strong>解く前に、下の「おさらい」でレッスン01〜11の要点を一枚で確認できます。</strong>
   </p>
 
   <ul class="qlegend">
@@ -65,6 +65,88 @@
     <li><b style="color:#1F6F5C">並べ替え</b>手順を正しい順にクリック</li>
   </ul>
 </header>
+
+<section class="recap shell" id="quizRecap">
+  <div class="recap__top">
+    <p class="eyebrow">解く前のおさらい / Recap</p>
+    <p class="eyebrow"><a href="#examGate">おさらいを飛ばして開始方法へ ↓</a></p>
+  </div>
+  <h2>レッスン01〜11を、一枚に。</h2>
+
+  <p class="recap__lede">
+    出題範囲は <strong>Claude Code 入門コースの全11レッスン</strong>。11本を貫いているのは<strong>コンテキストという1つの資源をどう扱うか</strong>で、道具（CLAUDE.md・サブエージェント・スキル・MCP・フック）はどれもその答えの一つとして出てくる。
+  </p>
+
+  <div class="cards">
+    <article>
+      <p class="cards__k">01 — 02 / 土台</p>
+      <h3>何であり、どう動いているか</h3>
+      <p>コードベースを読み、ファイルを編集し、コマンドを実行する<strong>エージェント型のコーディングツール</strong>。中身は、エージェンティックループ・コンテキストウィンドウ・ツール・権限モードの4つの部品。</p>
+    </article>
+    <article>
+      <p class="cards__k">03 — 05 / 進め方</p>
+      <h3>主導権を渡さずに走らせる</h3>
+      <p>承認モードとプランモードで<strong>どこまで任せるかを自分で決め</strong>、探索 → 計画 → コード → コミットの順で進める。コンテキストの残量は <code>/context</code> で見て、<code>/compact</code> と <code>/clear</code> で管理する。</p>
+    </article>
+    <article>
+      <p class="cards__k">06 — 11 / 積み上げと出荷</p>
+      <h3>同じ説明を、二度としない</h3>
+      <p>毎回の前提は CLAUDE.md へ、調べ物はサブエージェントへ、手順はスキルへ、外部のデータは MCP へ、絶対に守らせたいことはフックへ。最後にレビューを挟んで出荷する。</p>
+    </article>
+  </div>
+
+  <ol class="steps recap__list">
+    <li>
+      <h3><a href="01-what-is-claude-code.html">Claude Code とは何か</a></h3>
+      <p>コードベースを理解し、ファイルを編集し、コマンドを実行し、外部ツールに接続するエージェント型のツール。効果的に使うための前提は3つ——コンテキストには限りがある、既定では許可を求める、そして間違えることがある。</p>
+    </li>
+    <li>
+      <h3><a href="02-how-claude-code-works.html">どう動いているのか</a></h3>
+      <p>プロンプト → コンテキストを集める → アクションを実行する → 結果を検証する、というエージェンティックループ。これにコンテキストウィンドウ・ツール・権限モードが組み合わさる。</p>
+    </li>
+    <li>
+      <h3><a href="03-your-first-prompt.html">最初のプロンプトを書く</a></h3>
+      <p>まず普通に話しかけ、できるだけ具体的に頼む。<kbd>Shift</kbd>+<kbd>Tab</kbd> で自動承認と手動を切り替え、書かせたくないときはプランモードで計画だけ出させる。</p>
+    </li>
+    <li>
+      <h3><a href="04-explore-plan-code-commit.html">探索 → 計画 → コード → コミット</a></h3>
+      <p>コース中で最も重要なワークフロー。計画は Claude のためだけにあるのではなく、<strong>コードが書かれる前に、あなたが軌道修正できる場所を一箇所作るため</strong>にある。</p>
+    </li>
+    <li>
+      <h3><a href="05-context-management.html">コンテキストを管理する</a></h3>
+      <p>読んだファイル・ツールの呼び出しとその結果・メッセージが、すべて容量を食う。満杯になると自動で圧縮される。続きをやるなら <code>/compact</code>、話題を変えるなら <code>/clear</code>。</p>
+    </li>
+    <li>
+      <h3><a href="06-claude-md.html">CLAUDE.md ファイル</a></h3>
+      <p>プロジェクトのルートに置く、コードベースのオンボーディング資料。セッションのたびに自動で読まれるので、毎回ゼロから説明し直さずに済む。プロジェクトとユーザーの2階層。</p>
+    </li>
+    <li>
+      <h3><a href="07-subagents.html">サブエージェントとは何か</a></h3>
+      <p>専門アシスタントに委譲し、<strong>旅路なしで答えを得る</strong>。別のコンテキストウィンドウで働くので、15ファイル読んだ途中経過は捨てられ、必要な要約だけがメインに戻る。</p>
+    </li>
+    <li>
+      <h3><a href="08-skills.html">スキルとは何か</a></h3>
+      <p>同じことを繰り返し説明していると気づいたら、それは書かれるのを待っているスキル。ふだんは名前と description だけが常駐し、依頼にマッチしたときだけ全体が読み込まれる。</p>
+    </li>
+    <li>
+      <h3><a href="09-mcp.html">MCP で外部につなぐ</a></h3>
+      <p>コンテキストの多くはコードベースの外——データベース、業務アプリ、公開リポジトリ——にある。MCP はそこへつなぐオープン標準。ただしツール定義は常時コンテキストを占めるので、入れすぎない。</p>
+    </li>
+    <li>
+      <h3><a href="10-hooks.html">フックで確実に実行させる</a></h3>
+      <p>このコースで唯一の決定論的な手段。<strong>毎回必ず起きてほしいことは、プロンプトに書くのではなくフックに入れる</strong>。整形やログは PostToolUse、危険な操作の遮断は PreToolUse。</p>
+    </li>
+    <li>
+      <h3><a href="11-review-and-ship.html">レビューして出荷する</a></h3>
+      <p>04 の最後の段を操作に落とす回。偏りのないレビューを読み取り専用のサブエージェントに任せ、<code>/commit-push-pr</code> でコミットから PR までを一手で済ませ、<code>--from-pr</code> で同じ文脈に戻る。</p>
+    </li>
+  </ol>
+
+  <div class="tip">
+    <b>この先の全22問との対応</b>
+    <p>各問題には「出題範囲 — 05 コンテキスト管理」のようにレッスン番号が付いています。間違えた問題はその番号のレッスンに戻るのがいちばん早い経路です。費用や機能の全体像まで含めた詳しいまとめは <a href="summary.html">まとめ — できることと、費用</a> にあります。</p>
+  </div>
+</section>
 
 <section class="examgate shell" id="examGate">
   <p class="eyebrow">開始方法を選ぶ</p>
