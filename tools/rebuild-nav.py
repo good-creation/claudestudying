@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""全レッスンページの上部ナビを LESSONS の定義から一括で書き換える。"""
+"""上部ナビを定義から一括で書き換える。
+
+ルート直下のページ（Claude Code 入門コース）と、ai-fluency/ 配下の別コースは
+それぞれ別の nav を持つ。両方をこのスクリプトで生成する。
+"""
 import re, os, io, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,13 +30,43 @@ APPENDIX = [
     ("quiz.html",       "確認問題", "確認問題 20問"),
 ]
 
+# 公式コース外の別コース。付録と同じ視覚的分離（is-appendix）で扱うが、
+# 専用の nav を別に持つのでこのサイトの nav 書き換え対象（TARGETS）には含めない。
+AI_FLUENCY = [
+    ("ai-fluency/index.html", "AI", "AI活用力（別コース）"),
+]
+
+# 別コース ai-fluency/ 側のレッスン。相対パスがルートと違うので nav も別に生成する。
+AF_LESSONS = [
+    ("01-introduction.html",                "01", "AI活用力入門"),
+    ("02-why-ai-fluency.html",              "02", "なぜAI活用力が必要なのか？"),
+    ("03-4d-framework.html",                "03", "4D フレームワーク"),
+    ("04-generative-ai-basics.html",        "04", "生成 AI の基礎"),
+    ("05-capabilities-limits.html",         "05", "生成 AI の能力と限界"),
+    ("06-delegation.html",                  "06", "委任力 (Delegation) を詳しく見る"),
+    ("07-project-delegation.html",          "07", "プロジェクト計画と委任力"),
+    ("08-description.html",                 "08", "記述力 (Description) を詳しく見る"),
+    ("09-prompting-techniques.html",        "09", "効果的なプロンプト技法"),
+    ("10-discernment.html",                 "10", "評価力 (Discernment) を詳しく見る"),
+    ("11-description-discernment-loop.html","11", "記述・評価のループ"),
+    ("12-diligence.html",                   "12", "倫理的責任 (Diligence) を詳しく見る"),
+    ("13-conclusion.html",                  "13", "まとめ"),
+]
+
+# nav に載せる項目（表示用）
+NAV_ITEMS = LESSONS + APPENDIX + AI_FLUENCY
+
+# nav を書き換える対象ファイル（このサイト自身のページのみ。
+# ai-fluency/ 配下はコース専用 nav を手書きで持つため対象外）
+TARGETS = LESSONS + APPENDIX
+
 def nav_for(current):
     rows = ["<nav>"]
     for href, num, ja in LESSONS:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
-    for href, num, ja in APPENDIX:
+    for href, num, ja in APPENDIX + AI_FLUENCY:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a class="is-appendix" href="%s" title="%s" aria-label="%s"%s>%s</a>'
                     % (href, ja, ja, cur, num))
@@ -42,7 +76,7 @@ def nav_for(current):
 # ページ内で class を持たない <nav> は上部ナビだけ（レール側は <nav class="rail">）
 pat = re.compile(r"<nav>.*?</nav>", re.S)
 
-for href, num, ja in LESSONS + APPENDIX:
+for href, num, ja in TARGETS:
     if not os.path.exists(href):
         print("  SKIP  %s (not found)" % href); continue
     s = io.open(href, encoding="utf-8").read()
@@ -51,3 +85,30 @@ for href, num, ja in LESSONS + APPENDIX:
         print("  FAIL  %s — found %d bare <nav>" % (href, n)); sys.exit(1)
     io.open(href, "w", encoding="utf-8").write(new)
     print("  ok    %s" % href)
+
+
+# --- 別コース ai-fluency/ の nav -------------------------------------------
+# 配下のページは 1 階層下にあるので、親コースへのリンクだけ ../ を付ける。
+
+def af_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次"%s>目次</a>'
+                % (' aria-current="page"' if current == "index.html" else ""))
+    for href, num, ja in AF_LESSONS:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
+                    % (href, ja, num, ja, cur, num))
+    rows.append('      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>')
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+for href, num, ja in [("index.html", "目次", "AI活用力コース 目次")] + AF_LESSONS:
+    path = os.path.join("ai-fluency", href)
+    if not os.path.exists(path):
+        print("  SKIP  %s (not found)" % path); continue
+    s_page = io.open(path, encoding="utf-8").read()
+    new, n = pat.subn(af_nav_for(href), s_page, count=1)
+    if n != 1:
+        print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
+    io.open(path, "w", encoding="utf-8").write(new)
+    print("  ok    %s" % path)

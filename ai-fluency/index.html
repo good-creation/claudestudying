@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI活用力（AI Fluency） — 学習ノート</title>
+<meta name="description" content="Anthropic 公式 AI Fluency コースを日本語で再構成した学習ノート。Claude Code 入門コースとは別系統。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次" aria-current="page">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">別コース / Another Course</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">AI活用力<br><em>：フレームワーク＆基礎</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    4Dフレームワーク（委任力、記述力、評価力、倫理的責任）を使って、効果的・効率的・倫理的かつ安全にAIと協働する方法を学びます。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Topic</dt><dd><small>人間と AI の協働</small></dd></div>
+    <div><dt>Lessons</dt><dd><span>13</span></dd></div>
+    <div><dt>Related</dt><dd><a href="../index.html">Claude Code 入門コース ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="shell">
+
+  <section class="gloss" style="border-top:0">
+    <h2>学習内容</h2>
+    <p style="font-size:14.5px;color:var(--ink-2);margin:-10px 0 0">このコースを終えると、次のことができるようになります。</p>
+    <ul class="acts">
+      <li>
+        <h3>AI活用力の説明</h3>
+        <p>AI活用力とは何を意味するのか、そしてAIと効果的、効率的、倫理的かつ安全に協働するためにそれがなぜ重要なのかを説明する。</p>
+      </li>
+      <li>
+        <h3>4Dフレームワークの適用</h3>
+        <p>委任力 (Delegation)、記述力 (Description)、評価力 (Discernment)、倫理的責任 (Diligence) の4Dフレームワークを自分のAIとのやり取りに適用する。</p>
+      </li>
+      <li>
+        <h3>3つの関わり方の区別</h3>
+        <p>AIとの3つの関わり方として、自動化 (Automation)、拡張 (Augmentation)、自律 (Agency) を区別する。</p>
+      </li>
+      <li>
+        <h3>生成AIの仕組みの説明</h3>
+        <p>生成AIと大規模言語モデルがどのように機能するかを、その主要な能力と限界を含めて説明する。</p>
+      </li>
+      <li>
+        <h3>戦略的な委任の判断</h3>
+        <p>問題認識、プラットフォーム理解、タスク委任を用いて、戦略的な委任の判断を行う。</p>
+      </li>
+      <li>
+        <h3>AIとの明確なコミュニケーション</h3>
+        <p>成果物、プロセス、パフォーマンスの記述と基礎的なプロンプト技法を通じて、AIと明確にコミュニケーションする。</p>
+      </li>
+      <li>
+        <h3>AIの出力の批判的評価</h3>
+        <p>AIの出力、プロセス、振る舞いを批判的に評価し、記述・評価のループを通じて結果を改善する。</p>
+      </li>
+      <li>
+        <h3>倫理的責任の実践</h3>
+        <p>AI支援による作業に責任を持つために、作成、透明性、展開における倫理的責任を実践する。</p>
+      </li>
+    </ul>
+  </section>
+
+  <div class="lessons">
+
+    <a class="lsn" href="01-introduction.html">
+      <div class="lsn__n">01</div>
+      <div>
+        <h2 class="lsn__ja">AI活用力入門</h2>
+        <p class="lsn__sum">コースの目的と構成、AI活用力フレームワークの中心にある「4D」（委任力・記述力・評価力・倫理的責任）の紹介。人間と AI の協働への焦点と、このコースから得られるものへの期待を整理する。</p>
+        <ul class="lsn__tags"><li>コースの目的</li><li>4D フレームワーク</li><li>持続的な能力</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="02-why-ai-fluency.html">
+      <div class="lsn__n">02</div>
+      <div>
+        <h2 class="lsn__ja">なぜAI活用力が必要なのか？</h2>
+        <p class="lsn__sum">急速に進化する技術環境において AI活用力がなぜ重要かを探る回。人が AI と協働する3つの方法——自動化・拡張・自律——を紹介する。</p>
+        <ul class="lsn__tags"><li>自動化</li><li>拡張</li><li>自律</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="03-4d-framework.html">
+      <div class="lsn__n">03</div>
+      <div>
+        <h2 class="lsn__ja">4D フレームワーク</h2>
+        <p class="lsn__sum">AI活用力フレームワークの中核「4D」——委任力・記述力・評価力・倫理的責任——を定義する。これらの能力は AI との3つの関わり方すべてに適用され、AI の進化への備えとなる。</p>
+        <ul class="lsn__tags"><li>4D</li><li>自動化</li><li>拡張</li><li>自律</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="04-generative-ai-basics.html">
+      <div class="lsn__n">04</div>
+      <div>
+        <h2 class="lsn__ja">生成 AI の基礎</h2>
+        <p class="lsn__sum">生成AIとは何かを定義し、他の種類のAIとの違い、主な特徴と技術的基盤を説明する。</p>
+        <ul class="lsn__tags"><li>生成 AI</li><li>原文一部のみ</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="05-capabilities-limits.html">
+      <div class="lsn__n">05</div>
+      <div>
+        <h2 class="lsn__ja">生成 AI の能力と限界</h2>
+        <p class="lsn__sum">トランスフォーマーアーキテクチャ・学習データ・計算能力という3つの進展と、事前学習／ファインチューニングという2段階の学習を押さえたうえで、現在の能力と限界（ナレッジカットオフ、ハルシネーション等）を整理する。</p>
+        <ul class="lsn__tags"><li>生成 AI</li><li>能力と限界</li><li>委任力</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="06-delegation.html">
+      <div class="lsn__n">06</div>
+      <div>
+        <h2 class="lsn__ja">委任力 (Delegation) を詳しく見る</h2>
+        <p class="lsn__sum">委任力の3つの構成要素——問題認識・プラットフォーム理解・タスク委任——を理解し、AI にタスクを効果的に委任するタイミングと方法を学ぶ。目標はすべての自動化ではなく、最も効果的な人間と AI のパートナーシップの構築。</p>
+        <ul class="lsn__tags"><li>委任力</li><li>問題認識</li><li>プラットフォーム理解</li><li>タスク委任</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="07-project-delegation.html">
+      <div class="lsn__n">07</div>
+      <div>
+        <h2 class="lsn__ja">プロジェクト計画と委任力</h2>
+        <p class="lsn__sum">委任力への理解を、コースを通じて取り組む実践的な多段階プロジェクトに適用する。プロジェクトを選び、ビジョンを定義し、タスクを分解して人間と AI の間で委任計画を作成する。</p>
+        <ul class="lsn__tags"><li>委任力</li><li>実践プロジェクト</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="08-description.html">
+      <div class="lsn__n">08</div>
+      <div>
+        <h2 class="lsn__ja">記述力 (Description) を詳しく見る</h2>
+        <p class="lsn__sum">成果物・プロセス・パフォーマンスという3種類の記述能力を身につけ、AI システムに意図を効果的に伝える方法を学ぶ。AI はデータベースや自動販売機ではなく、双方向のパートナーである。</p>
+        <ul class="lsn__tags"><li>記述力</li><li>成果物</li><li>プロセス</li><li>パフォーマンス</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="09-prompting-techniques.html">
+      <div class="lsn__n">09</div>
+      <div>
+        <h2 class="lsn__ja">効果的なプロンプト技法</h2>
+        <p class="lsn__sum">コンテキストの提供・例示・制約条件・ステップ分割・AI にまず考えさせる・役割やトーンの定義という6つの基礎的なプロンプト技法を適用し、応答がニーズを満たさない場合の改善を練習する。</p>
+        <ul class="lsn__tags"><li>プロンプト技法</li><li>記述力</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="10-discernment.html">
+      <div class="lsn__n">10</div>
+      <div>
+        <h2 class="lsn__ja">評価力 (Discernment) を詳しく見る</h2>
+        <p class="lsn__sum">成果物・プロセス・パフォーマンスの3つの観点から AI の出力を批判的に評価する方法を学ぶ。評価は記述と連携して継続的なフィードバックループを形成し、最も高度な AI システムでも人間の判断と監視から恩恵を受ける。</p>
+        <ul class="lsn__tags"><li>評価力</li><li>成果物</li><li>プロセス</li><li>パフォーマンス</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="11-description-discernment-loop.html">
+      <div class="lsn__n">11</div>
+      <div>
+        <h2 class="lsn__ja">記述・評価のループ</h2>
+        <p class="lsn__sum">記述力と評価力を実際のプロジェクトに適用し、記述と評価の生産的なフィードバックループに取り組む。人間と AI の協働を通じて、どちらか一方だけでは達成できない成果を生み出す。</p>
+        <ul class="lsn__tags"><li>記述力</li><li>評価力</li><li>実践プロジェクト</li><li>原文一部のみ</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="12-diligence.html">
+      <div class="lsn__n">12</div>
+      <div>
+        <h2 class="lsn__ja">倫理的責任 (Diligence) を詳しく見る</h2>
+        <p class="lsn__sum">作成・透明性・展開という3つの側面から倫理的責任を捉える。利用場面（個人・学術・ビジネス目的）によって開示と検証への期待は異なり、それぞれの責任に応えることが一人ひとりに求められる。</p>
+        <ul class="lsn__tags"><li>倫理的責任</li><li>作成</li><li>透明性</li><li>展開</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="13-conclusion.html">
+      <div class="lsn__n">13</div>
+      <div>
+        <h2 class="lsn__ja">まとめ</h2>
+        <p class="lsn__sum">コースからの主要な学習内容を統合する最終講座。委任力・記述力・評価力・倫理的責任がそれぞれ果たす役割を振り返り、AI が進化し続ける中でもこのフレームワークが有効であり続けることを確認する。</p>
+        <ul class="lsn__tags"><li>4D</li><li>まとめ</li></ul>
+      </div>
+      <div class="lsn__side"><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+  <section class="gloss">
+    <h2>4D フレームワーク</h2>
+    <dl>
+      <div>
+        <dt>Delegation<b>委任力</b></dt>
+        <dd>AIと協働する作業と自分で行う作業を決定する。<a href="06-delegation.html">06</a></dd>
+      </div>
+      <div>
+        <dt>Description<b>記述力</b></dt>
+        <dd>AIシステムと効果的にコミュニケーションする。<a href="08-description.html">08</a></dd>
+      </div>
+      <div>
+        <dt>Discernment<b>評価力</b></dt>
+        <dd>AIの出力を批判的に評価する。<a href="10-discernment.html">10</a></dd>
+      </div>
+      <div>
+        <dt>Diligence<b>倫理的責任</b></dt>
+        <dd>責任あるAI協働を確保する。<a href="12-diligence.html">12</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2>AI との3つの関わり方</h2>
+    <div class="cards">
+      <article>
+        <p class="cards__k">01 — Automation</p>
+        <h3>自動化</h3>
+        <p>AIが指示に基づいて特定のタスクを実行する。</p>
+      </article>
+      <article>
+        <p class="cards__k">02 — Augmentation</p>
+        <h3>拡張</h3>
+        <p>あなたとAIが創造的思考とタスク実行のパートナーとして協働する。</p>
+      </article>
+      <article>
+        <p class="cards__k">03 — Agency</p>
+        <h3>自律</h3>
+        <p>特定のアクションではなく、AIの知識と行動を形成し、あなたに代わって独立して作業するようにAIを導く。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="gloss">
+    <h2>このコースについて</h2>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">Anthropic は、AI によって人々に力を与え、AI が社会に安全な貢献をすることを確実にするためには、幅広い人間の視点や経験と関わることが必要だと考えています。責任ある AI の開発と活用は、単一の分野や視点だけで十分に対処できるものではありません。技術、創造、ビジネス、科学、教育といった幅広い領域にまたがる協働的なアプローチが求められます。だからこそ私たちは、補完的な専門知識を持つ教育者と提携し、AI 協働に関するこの基礎コースを作成しました。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">このコースは、Anthropic と、Ringling College of Art and Design の Rick Dakan 教授および University College Cork の Joseph Feller 教授との長年にわたるパートナーシップの成果です。Rick と Joe は、Claude のような AI ツールが創造的プロセスやビジネスプロセスをどのように変革しているかを探る研究に基づき、2023〜2024年に AI活用力フレームワークを開発しました。このフレームワークを目にしたとき、私たちはすぐに共通のビジョンを認識しました。それは、単なる「便利なプロンプト」を超えて、人々が AI と効果的かつ責任を持って関わることを支援するというものです。彼らのフレームワークは、AI が社会に与える影響を乗り越えていくために不可欠だと私たちが考える、まさに学際的な視点を提供していました。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">彼らが作成した AI活用力フレームワーク、すなわち相互に関連する4つの能力（委任力、記述力、評価力、倫理的責任）は、新たな AI モデルやツールがどのように登場しようとも、より効果的、効率的、倫理的かつ安全な人間と AI の協働を可能にします。私たちは彼らのフレームワークに基づいてこのコースを共同開発し、AI システム、教育、創造性、ビジネスイノベーションにおけるそれぞれの専門知識を結集しました。この取り組みは、アイルランド高等教育局の教育学習向上のための国家フォーラムを通じて一部支援を受けています。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">このフレームワークは、すでに Ringling College と University College Cork の両校における学部および大学院の授業、教職員研修、地域向けの啓発イベントに活かされています。そして今、この公開オンラインコースを通じて、これらの知見をより広く共有できることを嬉しく思います。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">私たちの目標は、AI に関する専門知識のレベルにかかわらず、すべての人にとって AI活用力を身近で有用なものにすることです。進化し続ける AI 協働の状況を乗り越えていく上で、このコースがお役に立てば幸いです。</p>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2 id="source">出典</h2>
+    <div class="warn">
+      <b>出典 — Claude Code 入門コースとは別コース</b>
+      <p>このセクション（<code>ai-fluency/</code>）は <strong>Anthropic 公式 AI Fluency コース</strong>を出典とする、<strong>Claude Code 入門コースとは別系統</strong>の学習ノートです。本サイトの主要コンテンツである「Claude Code 入門コース」（<a href="../index.html">目次へ</a>）とは出典・対象が異なります。各レッスンの動画の尺・公開日・トランスクリプトは未確認のため掲載していません。レッスン04・11は原文が学習目標のみのため、重要なポイントの本文は入手後に追記します。</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="../index.html">Claude Code 入門コース ↗</a>
+</footer>
+
+</body>
+</html>

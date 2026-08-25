@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12 倫理的責任を詳しく見る — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="AI活用力フレームワークの4つ目の能力・倫理的責任（Diligence）。作成・透明性・展開の3つの側面から、AI協働への責任を考える。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る" aria-current="page">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">12 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">倫理的責任<br><em>(Diligence) を詳しく見る</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    様々な文脈によって責任に対する期待は異なるが、<strong>その期待を理解し応える責任</strong>が私たち一人一人にある。倫理的責任とは、AI 協働に対して責任を持つことだ。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Topic</dt><dd><small>倫理的責任 — 作成・透明性・展開</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>AI との協働における倫理的意味合いを理解する</h3></li>
+        <li><h3>AI との作業における透明性の重要性を理解する</h3></li>
+        <li><h3>自分の責任を認識する</h3><p>AI との対話と出力における。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p>倫理的責任とは、<strong>AI 協働に対して責任を持つ</strong>ことである。利用場面（個人目的、学術目的、ビジネス目的）によって、開示と検証に対する期待は異なる場合がある。倫理的責任を果たすことで、AI協働が効果的で効率的であるだけでなく、<strong>倫理的で安全である</strong>ことを確保するのに役立つ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">3つの側面</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任の3つの側面</h2>
+      <div class="modes modes--2col">
+        <div class="modes__row modes__row--head">
+          <div>側面</div><div>内容</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">作成における倫理的責任<small>CREATION</small></div>
+          <div class="modes__c" data-h="内容">どの AI システムを使用し、どのように関わるかについて深く考慮すること。</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">透明性における倫理的責任<small>TRANSPARENCY</small></div>
+          <div class="modes__c" data-h="内容">全ての関係者に対して、作業における AI の役割について正直に伝えること。</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">展開における倫理的責任<small>DEPLOYMENT</small></div>
+          <div class="modes__c" data-h="内容">使用または共有する結果を検証し保証する責任を持つこと。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、少し考えてみる。</p>
+      <ol class="steps">
+        <li><h3>最も難しいと感じる倫理的責任の側面はどれか</h3><p>作成、透明性、展開のうち。それはなぜか。</p></li>
+        <li><h3>利用場面によって取り組み方はどう変わるか</h3><p>個人目的、学術目的、ビジネス目的によって。</p></li>
+        <li><h3>AIの役割を認めることは、他者の認識にどう影響するか</h3><p>作業における。</p></li>
+        <li><h3>予想していなかった倫理的考慮事項は何だったか</h3><p>プロジェクト中に。</p></li>
+        <li><h3>今後の個人的なガイドラインをどう策定するか</h3><p>責任あるAI協働のために。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>このコースの最終講座では、AI活用力について学んだことと、これらの能力がどのように連携するかを振り返る。フレームワーク全体を再確認し、AIが進化する中でこれらの能力をどのように継続的に発展させることができるかを議論する。まとめでは、得られた知識と実践を統合し、将来のAI協働に活かすことができる。</p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="11-description-discernment-loop.html"><b>前のレッスン — 11</b><em>記述・評価のループ</em></a>
+  <span><b>次のレッスン</b><em>—</em></span>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 生成 AI の基礎 — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="生成AIの定義と、他の種類のAIとの違い、その主な特徴と技術的基盤。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎" aria-current="page">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">04 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">生成 AI の<br><em>基礎</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    詳細解説1「生成AIとは何か？」の前半。生成AIとは何かを定義し、他の種類のAIとどう異なるかを説明したうえで、その主な特徴と技術的基盤を扱う回。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Video</dt><dd><a href="https://youtu.be/RyvXxApfHkk" target="_blank" rel="noopener">youtu.be/RyvXxApfHkk ↗</a></dd></div>
+    <div><dt>Topic</dt><dd><small>生成AIの定義と技術的基盤</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>生成AIとは何かを定義する</h3><p>他の種類のAIとどのように異なるかを説明する。</p></li>
+        <li><h3>生成AIの主な特徴と技術的基盤を説明する</h3></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のレッスンへ</h2>
+      <p>詳細解説1の後半、<a href="05-capabilities-limits.html">05 生成 AI の能力と限界</a>に続く。</p>
+      <div class="warn">
+        <b>本レッスンは学習目標のみ収録</b>
+        <p>本レッスンは、ユーザーから提供された原文が「このレッスンを終えると、次のことができるようになる」という学習目標2点のみで、重要なポイント・振り返りの本文は含まれていない。推測で内容を補うことはせず、原文入手後に追記する。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="03-4d-framework.html"><b>前のレッスン — 03</b><em>4D フレームワーク</em></a>
+  <a class="is-next" href="05-capabilities-limits.html"><b>次のレッスン — 05</b><em>生成 AI の能力と限界</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="https://youtu.be/RyvXxApfHkk" target="_blank" rel="noopener">youtu.be/RyvXxApfHkk ↗</a>
+</footer>
+
+</body>
+</html>

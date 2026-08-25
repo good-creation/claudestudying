@@ -5,18 +5,33 @@ import re, os, sys, glob, io
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
+EXCLUDE_DIRS = {".git"}
+
+def all_html_files():
+    for f in sorted(glob.glob("**/*.html", recursive=True)):
+        parts = f.split(os.sep)
+        if any(p in EXCLUDE_DIRS for p in parts):
+            continue
+        yield f
+
 problems = []
-for f in sorted(glob.glob("*.html")):
+for f in all_html_files():
     s = io.open(f, encoding="utf-8").read()
+    base = os.path.dirname(f)
 
     for href in re.findall(r'href="([^"#:]+\.html)[^"]*"', s):
-        if not os.path.exists(href):
+        resolved = os.path.normpath(os.path.join(base, href))
+        if not os.path.exists(resolved):
             problems.append((f, "dead link", href))
     for src in re.findall(r'src="([^"]+)"', s):
-        if not src.startswith("http") and not os.path.exists(src):
+        if src.startswith("http"):
+            continue
+        resolved = os.path.normpath(os.path.join(base, src))
+        if not os.path.exists(resolved):
             problems.append((f, "missing asset", src))
     for css in re.findall(r'<link rel="stylesheet" href="([^"]+)"', s):
-        if not os.path.exists(css):
+        resolved = os.path.normpath(os.path.join(base, css))
+        if not os.path.exists(resolved):
             problems.append((f, "missing css", css))
 
     secs   = len(re.findall(r'class="sec"', s))

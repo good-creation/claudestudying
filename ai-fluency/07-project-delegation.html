@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 プロジェクト計画と委任力 — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="委任力の理解を、コースを通じて取り組む実践的な多段階プロジェクトに適用する。プロジェクト選定からタスク分解・委任計画の作成まで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力" aria-current="page">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">07 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">プロジェクト計画と<br><em>委任力</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <a href="06-delegation.html">06 委任力 (Delegation) を詳しく見る</a>で学んだことを、コースを通じて取り組む実践的な多段階プロジェクトに適用する回。プロジェクトを選び、ビジョンを定義し、タスクに分解して、AIとの委任計画を作成する。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Topic</dt><dd><small>プロジェクト計画への委任力の適用</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>委任力への理解を、実践的な多段階プロジェクトに適用する</h3><p>このコースを通じて取り組む。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">STEP 1</span><span class="sec__kind">プロジェクトを選ぶ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ステップ1<br>プロジェクトを選ぶ</h2>
+      <p>このコースを通じて取り組む、中規模で多段階を踏むプロジェクトを選ぶ。プロジェクトは以下の条件を満たすものが理想的。</p>
+      <ul class="acts">
+        <li><h3>複数の種類のタスクを含むのに十分な規模であること</h3></li>
+        <li><h3>約1時間の作業で完了できる程度に管理可能であること</h3></li>
+        <li><h3>本当に興味を持って作成または達成したいものであること</h3></li>
+      </ul>
+
+      <p>以下にいくつかの提案を示す。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>コミュニケーション・プロジェクト</h3>
+          <p>知識のあるトピックについて魅力的なプレゼンテーションを作成する／一般の読者に複雑なトピックを説明する投稿または一連の投稿を書く／追求したいアイデアの提案書またはピッチを作成する／補足資料付きの個人または職務経歴書を作成する。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>リサーチ・プロジェクト</h3>
+          <p>新興技術やトレンドの現状を調査しまとめる／データセットを分析してパターンを特定し、推奨事項を作成する／複数の製品、サービス、またはアプローチを比較し、推奨を作成する／歴史的な出来事を調査し、魅力的な形式で発見をまとめる。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>クリエイティブ・プロジェクト</h3>
+          <p>オリジナルキャラクターとプロットを持つ短編小説の概要を作成する／主要ページのコンテンツを含むシンプルなウェブサイト構造を設計する／製品、サービス、または体験のコンセプトを開発する。</p>
+        </article>
+        <article>
+          <p class="cards__k">04</p>
+          <h3>学習プロジェクト</h3>
+          <p>身につけたい能力の体系的な学習計画を作成する／学んでいるトピックのリソースコレクションを構築する／よく理解しているプロセスのチュートリアルまたはガイドを作成する／マスターしたいトピックの学習教材セットを作成する。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">STEP 2</span><span class="sec__kind">ビジョンと目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ステップ2<br>プロジェクトのビジョンと目標</h2>
+      <p>Claudeとの会話を始める。プロジェクトのアイデアを共有し、最終結果に対する明確な目標・ビジョンが持てるまでClaudeに質問してもらう。以下について明確なイメージが持てるまで一緒に取り組む。</p>
+      <ul class="acts">
+        <li><h3>プロジェクトの成功とはどのようなものか</h3></li>
+        <li><h3>このプロジェクトを特に価値あるもの、意味のあるものにするものは何か</h3></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">STEP 3</span><span class="sec__kind">タスク分解と委任分析</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ステップ3<br>タスクの分解と委任分析</h2>
+      <p>前の講座で行ったのと同様に、Claudeと一緒に委任力の観点からプロジェクトを検討してみる。</p>
+      <ol class="steps">
+        <li><h3>主要なタスクを一緒に特定する</h3><p>プロジェクトを完了するために必要な。</p></li>
+        <li><h3>各タスクについて、1つずつ話し合う</h3><p>どのような具体的な能力や知識、またはAIの能力が必要か。どの部分が人間ならではの強みから恩恵を受けるか。どの部分がAIの能力をうまく活用できるか。協働が最も影響を与えるのはどこか。</p></li>
+        <li><h3>プロジェクト計画を作成する</h3><p>主要なタスクと委任の判断を含む。</p></li>
+        <li><h3>プロジェクト計画を保存する</h3><p>コースの後半でこのプロジェクトに戻り、記述、評価、倫理的責任の能力を実践する。</p></li>
+      </ol>
+
+      <div class="tip">
+        <b>注意</b>
+        <p>これらの質問について単に意見を述べ合うのではなく、本物の会話をする。前提に疑問を投げかけ、明確化を求め、対話の中で生まれる予期しない洞察を深掘りする。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、少し考えてみる。</p>
+      <ol class="steps">
+        <li><h3>Claudeとの計画の会話からどのような洞察が得られたか</h3></li>
+        <li><h3>委任計画の中で最も困難な側面は何だと予想するか</h3></li>
+        <li><h3>AIにより効果的に委任するために、どのような追加の情報や能力が役立つか</h3></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次の講座では、2番目のコア能力である<strong>記述力（Description）</strong>を探求する。AIシステムと効果的にコミュニケーションするためのアプローチを学び、作成したばかりの計画の実行に役立てる。これには、何が欲しいかを定義する技法、AIがタスクにどのようにアプローチするかを導く技法、プロセス全体を通じてAIにどのように対話してほしいかを指定する技法が含まれる。</p>
+      <p><a href="08-description.html">08 記述力 (Description) を詳しく見る →</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="06-delegation.html"><b>前のレッスン — 06</b><em>委任力 (Delegation) を詳しく見る</em></a>
+  <a class="is-next" href="08-description.html"><b>次のレッスン — 08</b><em>記述力 (Description) を詳しく見る</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 委任力 (Delegation) を詳しく見る — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="委任力の3つの構成要素——問題認識、プラットフォーム理解、タスク委任——と、AIにタスクを効果的に委任するタイミング・方法。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る" aria-current="page">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">06 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">委任力<br><em>(Delegation) を詳しく見る</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    4Dの1番目、<strong>委任力（Delegation）</strong>を詳しく見る回。その3つの構成要素——問題認識、プラットフォーム理解、タスク委任——を理解し、AIにタスクを効果的に委任するタイミングと方法を学ぶ。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Video</dt><dd><a href="https://youtu.be/EljzyfdYkrc" target="_blank" rel="noopener">youtu.be/EljzyfdYkrc ↗</a></dd></div>
+    <div><dt>Topic</dt><dd><small>委任力の3つの構成要素</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>委任力とその3つの構成要素を理解する</h3><p>問題認識、プラットフォーム理解、タスク委任。</p></li>
+        <li><h3>AIにタスクを効果的に委任するタイミングと方法を理解する</h3></li>
+        <li><h3>タスク・プラットフォーム・モードに関する考慮事項の認識を身につける</h3><p>AIと作業する際の。</p></li>
+      </ul>
+      <p>効果的な委任（Delegation）は、AIシステムと効果的かつ効率的に協働するうえで不可欠であり、そのために<strong>自分の専門知識とAIの能力への理解の両方</strong>が必要になる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p>委任とは、自分で行う作業、AIと一緒に行う作業、AIに独立して任せる作業、そしてそれらのタスクをどのように分配するかについて、<strong>思慮深い決定を下すこと</strong>である。</p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>問題認識</h3>
+          <p>AIを関与させる前に、目標と作業の性質を明確に理解すること。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>プラットフォーム理解</h3>
+          <p>さまざまなAIシステムの能力と限界を理解すること。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>タスク委任</h3>
+          <p>それぞれの強みを活用するために、人間とAIの間で思慮深く作業を分配するプロセス。</p>
+        </article>
+      </div>
+
+      <p>効果的な委任には、<strong>ドメインの専門知識</strong>と<strong>AIの能力の理解</strong>の両方が必要になる。</p>
+
+      <blockquote class="quote">
+        <p>目標はすべてを自動化することではなく、あらゆるタスクや目標に対して最も効果的な人間とAIのパートナーシップを構築することである。</p>
+        <cite>— Anthropic 公式 AI Fluency コース</cite>
+      </blockquote>
+
+      <div class="tip">
+        <b>Claude Code 入門コースとの対応（推測）</b>
+        <p>本レッスンの「タスク委任」は、本サイトの<a href="../07-subagents.html">07 サブエージェント</a>で扱う「作業を任せる判断」と近い場面で登場する。ただしこれは原文が明示した対応ではなく、こちらの推測による対応づけ。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、考えてみる。</p>
+      <ol class="steps">
+        <li><h3>この委任フレームワークがあったら、アプローチはどう変わっていたか</h3><p>AIと一緒に作業した最近のプロジェクトについて。この委任フレームワークを念頭に置いていたら、アプローチはどのように変わっていたか。</p></li>
+        <li><h3>AIとの協働から最も恩恵を受けるタスクは何か</h3><p>仕事や学習の中で、AIとの協働から最も恩恵を受けるのはどのような種類のタスクだと思うか。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次のレッスンでは、委任力について学んだことを、コースを通じて取り組む多段階プロジェクトに適用する。興味のあるプロジェクトを選び、そのビジョンを定義し、タスクに分解し、自分とAIの間で戦略的に作業を分担する委任計画を作成する（このレッスンで練習したのと同様に）。このプロジェクトは、コース全体を通じてAI活用力を実践する場となる。</p>
+      <p><a href="07-project-delegation.html">07 プロジェクト計画と委任力 →</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="05-capabilities-limits.html"><b>前のレッスン — 05</b><em>生成 AI の能力と限界</em></a>
+  <a class="is-next" href="07-project-delegation.html"><b>次のレッスン — 07</b><em>プロジェクト計画と委任力</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="https://youtu.be/EljzyfdYkrc" target="_blank" rel="noopener">youtu.be/EljzyfdYkrc ↗</a>
+</footer>
+
+</body>
+</html>

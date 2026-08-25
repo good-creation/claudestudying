@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>09 効果的なプロンプト技法 — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="プロンプトエンジニアリングとは何か。AI からより良い結果を得るための6つの基礎的なプロンプト技法。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法" aria-current="page">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">09 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">効果的な<br><em>プロンプト技法</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    効果的なプロンプトは、<strong>明確なコミュニケーション原則</strong>と<strong>AI特有の技法</strong>を組み合わせる。6つの基礎的な技法を、記述力の実践として身につける。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Video</dt><dd><a href="https://youtu.be/2YCaBqP8muw" target="_blank" rel="noopener">youtu.be/2YCaBqP8muw ↗</a></dd></div>
+    <div><dt>Topic</dt><dd><small>6つの基礎的なプロンプト技法</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>プロンプト技法とは何かを理解する</h3><p>そしてそれが生産的なAI協働になぜ重要なのか。</p></li>
+        <li><h3>6つの基礎的なプロンプト技法を適用する</h3><p>AI との対話を改善するための。</p></li>
+        <li><h3>効果的な対話につながる一般的なパターンを特定する</h3></li>
+        <li><h3>プロンプトを見直し改善する</h3><p>AI の応答がニーズを満たさない場合に。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">6つの技法</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">6つの基礎的な<br>プロンプト技法</h2>
+      <p>効果的なプロンプトは、明確なコミュニケーション原則とAI特有の技法を組み合わせる。</p>
+      <ol class="steps">
+        <li><h3>コンテキストを提供する</h3><p>何が欲しいか、なぜ欲しいか、関連する背景を具体的に伝える。</p></li>
+        <li><h3>例を示す</h3><p>求めている成果物のスタイルや形式を具体的に示す。</p></li>
+        <li><h3>制約条件を指定する</h3><p>形式、長さ、その他の成果物の要件を明確に定義する。</p></li>
+        <li><h3>複雑なタスクをステップに分割する</h3><p>AIを多段階の推論に導く。</p></li>
+        <li><h3>AIにまず考えさせる</h3><p>AIが自身のプロセスを経る余地を与える。</p></li>
+        <li><h3>AIの役割やトーンを定義する</h3><p>AIにどのようにコミュニケーションしてほしいかを指定する。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p>「<strong>秘密兵器</strong>」——AI自体にプロンプトの改善を手伝ってもらう、という方法がある。プロンプトを成功させるには<strong>反復</strong>することだ。AIとの協働を通じて、結果に基づいてアプローチを改善していく。</p>
+      <p>効果的な対話につながる一般的なパターンには、<strong>明確なタスクの概要、形式の指定、明示的な制約条件、関連する背景情報の提供</strong>が含まれる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、少し考えてみる。</p>
+      <ol class="steps">
+        <li><h3>6つの技法のうち、今の対話を最も向上させるのはどれか</h3></li>
+        <li><h3>ニーズを満たさなかった最近の対話を振り返る</h3><p>どの技法を使えば結果が改善されただろうか。</p></li>
+        <li><h3>記述力との関連を考える</h3><p>これらのプロンプト技法の理解は、AI活用力フレームワークの<a href="08-description.html">記述力</a>とどのように関連しているか。</p></li>
+        <li><h3>「不十分なプロンプトの改善」を再度行う</h3><p>必要であれば、前のレッスンの演習を再度行い、これらのプロンプト技法を実践してみる。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次の講座では、AI活用力の3番目のコア能力である<strong>評価力 (Discernment)</strong> を解説する。この詳細解説とその前の講座では、AI と効果的にコミュニケーションする方法と良い記述の実践に焦点を当てた。評価は、AIが応答として生成するものを思慮深く評価するという同様に重要な課題、つまり対話のもう半分に取り組む。</p>
+      <p><a href="10-discernment.html">10 評価力 (Discernment) を詳しく見る →</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="08-description.html"><b>前のレッスン — 08</b><em>記述力 (Description) を詳しく見る</em></a>
+  <a class="is-next" href="10-discernment.html"><b>次のレッスン — 10</b><em>評価力 (Discernment) を詳しく見る</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="https://youtu.be/2YCaBqP8muw" target="_blank" rel="noopener">youtu.be/2YCaBqP8muw ↗</a>
+</footer>
+
+</body>
+</html>

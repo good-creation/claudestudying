@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 記述力を詳しく見る — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="AI活用力フレームワークの2つ目の能力・記述力（Description）。成果物・プロセス・パフォーマンスの3種類の記述で、AIに意図を明確に伝える。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る" aria-current="page">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">08 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">記述力<br><em>(Description) を詳しく見る</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    AI は対話相手の考えを読むことはできない。あなたのニーズ、好ましいアプローチ、望ましい協働スタイルを<strong>どれだけ明確に伝えるか</strong>によって、成果の質が決まる。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Video</dt><dd><a href="https://youtu.be/DmgujoZ1mmk" target="_blank" rel="noopener">youtu.be/DmgujoZ1mmk ↗</a></dd></div>
+    <div><dt>Topic</dt><dd><small>記述力 — 成果物・プロセス・パフォーマンス</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>AIシステムに意図を効果的に伝える方法を理解する</h3></li>
+        <li><h3>明確で目的のあるコミュニケーションの重要性を認識する</h3></li>
+        <li><h3>3種類の記述能力を身につける</h3><p>成果物、プロセス、パフォーマンスの。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p>記述とは、<strong>生産的な協働環境を作り出す方法で AI と対話する</strong>ことである。AIシステムはデータベースや自動販売機ではなく、<strong>双方向のパートナー</strong>だ。最初の段階で AI に明確に伝えることで、時間を節約し、より良い結果につながる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">TECH</span><span class="sec__kind">3つの記述</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">記述の3つの種類</h2>
+      <div class="modes modes--2col">
+        <div class="modes__row modes__row--head">
+          <div>種類</div><div>内容</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">成果物の記述<small>OUTPUT</small></div>
+          <div class="modes__c" data-h="内容">求める成果物、形式、対象者、スタイルの観点から、求める内容を明確に定義する。</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">プロセスの記述<small>PROCESS</small></div>
+          <div class="modes__c" data-h="内容">AI がリクエストにどのようにアプローチするかを導く。最終目標を指定することと同様に重要な場合がある。</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">パフォーマンスの記述<small>PERFORMANCE</small></div>
+          <div class="modes__c" data-h="内容">AI が簡潔か詳細か、挑戦的か支持的かなどの行動的側面を定義する。</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <b>評価力（Discernment）との対応</b>
+        <p>記述の3分類は、<a href="10-discernment.html">10 評価力 (Discernment) を詳しく見る</a>で扱う評価の3分類（成果物・プロセス・パフォーマンス）と同じ軸を使う。記述で明確に伝えたことが、評価で確認する対象になる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、少し立ち止まって考えてみる。</p>
+      <ol class="steps">
+        <li><h3>見落としている記述の構成要素はどれか</h3><p>現在のAIとのやり取りで、成果物、プロセス、パフォーマンスのうち。</p></li>
+        <li><h3>期待通りにいかなかった最近のやり取りを振り返る</h3><p>記述力がより優れていれば、どのように結果が改善されただろうか。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次のレッスンでは、<strong>効果的なプロンプト技法</strong>について詳しく見ていく。プロンプトエンジニアリングとは何か、なぜ重要なのかを学び、AI からより良い結果を得るための<strong>6つの基礎的な技法</strong>を適用し、応答がニーズを満たさない場合にプロンプトをトラブルシューティングして改善する練習をする。</p>
+      <p><a href="09-prompting-techniques.html">09 効果的なプロンプト技法 →</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="07-project-delegation.html"><b>前のレッスン — 07</b><em>プロジェクト計画と委任力</em></a>
+  <a class="is-next" href="09-prompting-techniques.html"><b>次のレッスン — 09</b><em>効果的なプロンプト技法</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="https://youtu.be/DmgujoZ1mmk" target="_blank" rel="noopener">youtu.be/DmgujoZ1mmk ↗</a>
+</footer>
+
+</body>
+</html>

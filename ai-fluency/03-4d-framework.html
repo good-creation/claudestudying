@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 4D フレームワーク — AI活用力（AI Fluency）学習ノート</title>
+<meta name="description" content="AI活用力フレームワークの中核「4D」——委任力・記述力・評価力・倫理的責任——と、AIを利用する3つの主要な方法。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">AI活用力（AI Fluency） / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="AI活用力コース 目次" aria-label="AI活用力コース 目次">目次</a>
+      <a href="01-introduction.html" title="AI活用力入門" aria-label="01 AI活用力入門">01</a>
+      <a href="02-why-ai-fluency.html" title="なぜAI活用力が必要なのか？" aria-label="02 なぜAI活用力が必要なのか？">02</a>
+      <a href="03-4d-framework.html" title="4D フレームワーク" aria-label="03 4D フレームワーク" aria-current="page">03</a>
+      <a href="04-generative-ai-basics.html" title="生成 AI の基礎" aria-label="04 生成 AI の基礎">04</a>
+      <a href="05-capabilities-limits.html" title="生成 AI の能力と限界" aria-label="05 生成 AI の能力と限界">05</a>
+      <a href="06-delegation.html" title="委任力 (Delegation) を詳しく見る" aria-label="06 委任力 (Delegation) を詳しく見る">06</a>
+      <a href="07-project-delegation.html" title="プロジェクト計画と委任力" aria-label="07 プロジェクト計画と委任力">07</a>
+      <a href="08-description.html" title="記述力 (Description) を詳しく見る" aria-label="08 記述力 (Description) を詳しく見る">08</a>
+      <a href="09-prompting-techniques.html" title="効果的なプロンプト技法" aria-label="09 効果的なプロンプト技法">09</a>
+      <a href="10-discernment.html" title="評価力 (Discernment) を詳しく見る" aria-label="10 評価力 (Discernment) を詳しく見る">10</a>
+      <a href="11-description-discernment-loop.html" title="記述・評価のループ" aria-label="11 記述・評価のループ">11</a>
+      <a href="12-diligence.html" title="倫理的責任 (Diligence) を詳しく見る" aria-label="12 倫理的責任 (Diligence) を詳しく見る">12</a>
+      <a href="13-conclusion.html" title="まとめ" aria-label="13 まとめ">13</a>
+      <a class="is-appendix" href="../index.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">03 / AI Fluency</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency コース — Claude Code 入門コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">4D<br><em>フレームワーク</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    基本的なAI活用力フレームワークと、その中核となる<strong>「4D」</strong>——委任力・記述力・評価力・倫理的責任——を説明する回。これらの能力がAIとの様々な関わり方を通じてどのように連携するか、そしてなぜ身につけることがAIの進化に備えるために重要なのかを解説する。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency</small></dd></div>
+    <div><dt>Video</dt><dd><a href="https://youtu.be/W4Ua6XFfX9w" target="_blank" rel="noopener">youtu.be/W4Ua6XFfX9w ↗</a></dd></div>
+    <div><dt>Topic</dt><dd><small>4D フレームワークと3つの利用方法</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">GOAL</span><span class="sec__kind">目標</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">このレッスンの<br>内容</h2>
+      <p>このレッスンを終えると、次のことができるようになる。</p>
+      <ul class="acts">
+        <li><h3>基本的なAI活用力フレームワークとその中核となる「4D」を説明する</h3><p>委任力 (Delegation)、記述力 (Description)、評価力 (Discernment)、倫理的責任 (Diligence)。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">重要なポイント</h2>
+      <p>AI活用力とは、<strong>効果的、効率的、倫理的かつ安全な方法</strong>でAIと関わることを意味する。</p>
+      <p>AIを利用する3つの主要な方法がある。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>自動化 / Automation</h3>
+          <p>AIが指示に基づいて特定のタスクを実行する。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>拡張 / Augmentation</h3>
+          <p>自分とAIが創造的思考とタスク実行のパートナーとして協働する。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>自律 / Agency</h3>
+          <p>特定のアクションではなく、AIの知識と行動を形成し、自分に代わって独立して作業するようAIを導く。</p>
+        </article>
+      </div>
+
+      <p>AI活用力・フレームワークは4つのコア能力（4D）で構成されている。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">D — 1</p>
+          <h3>委任力 / Delegation</h3>
+          <p>AIと協働する作業と自分で行う作業を決定する。</p>
+        </article>
+        <article>
+          <p class="cards__k">D — 2</p>
+          <h3>記述力 / Description</h3>
+          <p>AIシステムと効果的にコミュニケーションする。</p>
+        </article>
+        <article>
+          <p class="cards__k">D — 3</p>
+          <h3>評価力 / Discernment</h3>
+          <p>AIの出力を批判的に評価する。</p>
+        </article>
+        <article>
+          <p class="cards__k">D — 4</p>
+          <h3>倫理的責任 / Diligence</h3>
+          <p>責任あるAI協働を確保する。</p>
+        </article>
+      </div>
+
+      <p>これらの能力は、AIとの3つの利用形態<strong>すべて</strong>に適用される。これらの能力を身につけることで、AIの進化や発展に備えることができる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p>次に進む前に、少し考えてみる。</p>
+      <ol class="steps">
+        <li><h3>4Dのうち、すでに最も自信があるのはどれか</h3><p>委任力、記述力、評価力、倫理的責任のうち。さらに伸ばす必要があるのはどれか。</p></li>
+        <li><h3>フレームワークが活用できたかもしれない最近のやりとり</h3><p>AIとの最近のやりとりを振り返ってみる。</p></li>
+        <li><h3>仕事や個人的なプロジェクトに最も役立つ能力はどれか</h3><p>4Dフレームワークのどの能力が最も役立つと思うか。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>次の講座、詳細解説1「生成AIとは何か？」は、現代のAIの基礎的な仕組み、従来の技術との違い、現時点における生成AIの能力と限界を説明する2部構成の技術的内容。この知識は4Dの貴重な背景や考え方を提供し、特に<strong>委任力（Delegation）</strong>を強化する。</p>
+      <p><a href="04-generative-ai-basics.html">04 生成 AI の基礎 →</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="pager">
+  <a href="02-why-ai-fluency.html"><b>前のレッスン — 02</b><em>なぜAI活用力が必要なのか？</em></a>
+  <a class="is-next" href="04-generative-ai-basics.html"><b>次のレッスン — 04</b><em>生成 AI の基礎</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency コース</span>
+  <a href="https://youtu.be/W4Ua6XFfX9w" target="_blank" rel="noopener">youtu.be/W4Ua6XFfX9w ↗</a>
+</footer>
+
+</body>
+</html>

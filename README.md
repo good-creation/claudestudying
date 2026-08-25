@@ -36,4 +36,13 @@ open http://localhost:8791/
 本文は YouTube の自動生成字幕から取得した英語トランスクリプトと、公式コース本文を突き合わせて執筆。
 図版は academy.claude.com の公式素材。すべて Anthropic に帰属します。
 
+## 別コース：AI活用力（AI Fluency）
+
+Anthropic 公式のもう一つのコース「AI活用力：フレームワーク＆基礎」を、同じ体裁で
+[`ai-fluency/`](ai-fluency/index.html) に収録（全13レッスン）。
+4Dフレームワーク（委任力 Delegation / 記述力 Description / 評価力 Discernment / 倫理的責任 Diligence）を軸に、
+人間と AI の協働を扱う。Claude Code 入門コースとは**出典が異なる別コース**なので、番号体系を分けている。
+
+動画のトランスクリプトと尺は未収録のため、こちらのページにはタイムラインが無い。
+
 開発時の約束事は [CLAUDE.md](CLAUDE.md) を参照。
