@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教育者のための AI Fluency — 学習ノート</title>
+<meta name="description" content="Anthropic 公式コース『AI Fluency for educators』を日本語で再構成した学習ノート。4D フレームワークを教育実践に適用する。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">教育者のための AI Fluency / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="教育者のための AI Fluency コース 目次" aria-label="教育者のための AI Fluency コース 目次" aria-current="page">目次</a>
+      <a href="01-introduction.html" title="教育者のための AI Fluency 入門" aria-label="01 教育者のための AI Fluency 入門">01</a>
+      <a href="02-framework-review.html" title="AI Fluency フレームワークの復習" aria-label="02 AI Fluency フレームワークの復習">02</a>
+      <a href="03-course-design.html" title="コース設計と学習成果への適用" aria-label="03 コース設計と学習成果への適用">03</a>
+      <a href="04-learning-materials.html" title="学習教材と課題への適用" aria-label="04 学習教材と課題への適用">04</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../ai-fluency/index.html" title="AI活用力コースへ" aria-label="AI活用力コースへ">AI活用力</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">別コース / Another Course</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency for educators — 公式 全4レッスンを 01〜04 として収録</p>
+  </div>
+
+  <h1 class="hero__title">教育者のための<br><em>AI Fluency</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    4D フレームワーク（委任力・記述力・評価力・倫理的責任）を、<strong>教育者という役割</strong>に適用するコース。AI を<strong>思考のパートナー</strong>として、コース設計・学習教材・課題と評価づくりに活かす方法を扱う。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>Anthropic 公式コース<br><small>AI Fluency for educators</small></dd></div>
+    <div><dt>Topic</dt><dd><small>教育実践への AI Fluency の適用</small></dd></div>
+    <div><dt>Lessons</dt><dd><span>4</span> <small>/ 公式 全4</small></dd></div>
+    <div><dt>Related</dt><dd><a href="../ai-fluency/index.html">AI活用力（基礎コース） ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="shell">
+
+  <section class="gloss" style="border-top:0">
+    <h2>学習内容</h2>
+    <p style="font-size:14.5px;color:var(--ink-2);margin:-10px 0 0">公式コースを終えると、次のことができるようになります。</p>
+    <ul class="acts">
+      <li>
+        <h3>4D と教育実践の対応を説明する</h3>
+        <p>AI Fluency フレームワークの 4D（委任・記述・識別・誠実さ）が教育実践にどのように適用されるかを説明する。</p>
+      </li>
+      <li>
+        <h3>教育コンテキストドキュメントを作る</h3>
+        <p>教育的価値観、制約、学生プロファイルを捉えた、再利用可能な教育コンテキストドキュメントを作成する。</p>
+      </li>
+      <li>
+        <h3>コース設計に 4D を適用する</h3>
+        <p>4D を適用して、必須のコース内容を特定し、学習の道筋をマッピングし、測定可能な学習目標を明確にする。</p>
+      </li>
+      <li>
+        <h3>学習教材を協働で作成する</h3>
+        <p>確立したコンテキストに基づく AI との協働を通じて、講義スライド、学習ガイド、授業内演習、評価を作成する。</p>
+      </li>
+      <li>
+        <h3>記述・評価のループで教材を磨く</h3>
+        <p>記述-識別のループを使用して、学生のニーズに対して AI が生成した教材を評価し、改善する。</p>
+      </li>
+      <li>
+        <h3>誠実さを実践する</h3>
+        <p>正確性を検証し、AI の役割を文書化し、AI 支援によるコース開発における学術的誠実性を維持することで、誠実さを実践する。</p>
+      </li>
+    </ul>
+    <div class="tip">
+      <b>この6項目は公式コース全体（全4レッスン）の目標</b>
+      <p>本サイトは公式の全4レッスンを 01〜04 として収録しています。4番目の項目「講義スライド、学習ガイド、授業内演習、評価の作成」は <a href="04-learning-materials.html">04 学習教材と課題への AI Fluency の適用</a> で扱われます。</p>
+    </div>
+  </section>
+
+  <div class="lessons">
+
+    <a class="lsn" href="01-introduction.html">
+      <div class="lsn__n">01</div>
+      <div>
+        <h2 class="lsn__ja">教育者のための AI Fluency 入門</h2>
+        <p class="lsn__sum">コースの位置づけを4人の話者が交代で語る回。「効果的・効率的・倫理的・安全に、そして何より実際に学生の学びに役立つ形で AI を教育に持ち込むには」という問いから始め、4D を教育者の役割で使うこと、AI が思考のパートナーになること、そのために必要な前提条件を示す。</p>
+        <ul class="lsn__tags"><li>コースの目的</li><li>4D</li><li>思考のパートナー</li><li>前提条件</li></ul>
+      </div>
+      <div class="lsn__side"><span>4:03</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="02-framework-review.html">
+      <div class="lsn__n">02</div>
+      <div>
+        <h2 class="lsn__ja">AI Fluency フレームワークの復習</h2>
+        <p class="lsn__sum">4D の全体像をひととおり復習する回。委任力・記述力・評価力・倫理的責任のそれぞれに3つのサブコンポーネントがあること、拡張（augmentation）と自動化（automation）の違い、記述と評価が継続的なループを作ることを扱う。</p>
+        <ul class="lsn__tags"><li>4D</li><li>拡張と自動化</li><li>サブコンポーネント</li><li>記述・評価のループ</li></ul>
+      </div>
+      <div class="lsn__side"><span>9:21</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="03-course-design.html">
+      <div class="lsn__n">03</div>
+      <div>
+        <h2 class="lsn__ja">コース設計と学習成果への適用</h2>
+        <p class="lsn__sum">コース設計で普段やっている3つの作業——内容と概念の特定、学習の道筋のマッピング、学習目標の明確化——に 4D を通しで適用する回。豊かな共有文脈を築くことが、汎用の AI を自分の教育文脈に応える協働者へ変える。</p>
+        <ul class="lsn__tags"><li>コース設計</li><li>共有文脈</li><li>学習目標</li><li>役割の切り替え</li></ul>
+      </div>
+      <div class="lsn__side"><span>9:25</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="04-learning-materials.html">
+      <div class="lsn__n">04</div>
+      <div>
+        <h2 class="lsn__ja">学習教材と課題への AI Fluency の適用</h2>
+        <p class="lsn__sum">学生が実際に手を動かす教材——ワークシート、学習ガイド、授業内演習、評価——を作る回。ここまでに築いた文脈があるので、もうゼロから始めることはない。帰無仮説に躓くジャーナリズム専攻の学生という一例を 4D すべてに通し、最後に「AI が課題を合格水準で解けてしまう」時代の学術的誠実性に踏み込む。</p>
+        <ul class="lsn__tags"><li>教材づくり</li><li>記述の3層</li><li>学術的誠実性</li><li>品質と一貫性</li></ul>
+      </div>
+      <div class="lsn__side"><span>10:11</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+  <section class="gloss">
+    <h2>4D フレームワーク</h2>
+    <p style="font-size:14.5px;color:var(--ink-2);margin:-10px 0 0">日本語の見出しは本サイト既存の訳語です。括弧内は公式コースの訳語。</p>
+    <dl>
+      <div>
+        <dt>Delegation<b>委任力</b></dt>
+        <dd>何をしようとしているのか、それを誰がやるべきか（人間か、AI か、一緒にか）を見極める。「委任」とも訳される。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Description<b>記述力</b></dt>
+        <dd>AI とどう話すか。完璧なプロンプトを暗記することではなく、協働者との会話に近いもの。「記述」とも訳される。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Discernment<b>評価力</b></dt>
+        <dd>良い結果と悪い結果を見分ける力と、それに応じて調整する術。「識別」とも訳される。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Diligence<b>倫理的責任</b></dt>
+        <dd>AI との協働の仕方に責任を持つこと。関与を責任ある・透明な・倫理的なものに保つ。「誠実さ」とも訳される。<a href="02-framework-review.html">02</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2>12 のサブコンポーネント</h2>
+    <p style="font-size:14.5px;color:var(--ink-2);margin:-10px 0 0">4D はそれぞれ3つの下位要素を持ちます。詳しくは <a href="02-framework-review.html">02</a>。</p>
+    <div class="cards">
+      <article>
+        <p class="cards__k">D — 1 / Delegation</p>
+        <h3>委任力</h3>
+        <ul>
+          <li><strong>problem awareness</strong>（問題の把握）</li>
+          <li><strong>platform awareness</strong>（プラットフォームの理解）</li>
+          <li><strong>task delegation</strong>（タスクの割り振り）</li>
+        </ul>
+      </article>
+      <article>
+        <p class="cards__k">D — 2 / Description</p>
+        <h3>記述力</h3>
+        <ul>
+          <li><strong>product description</strong>（成果物の記述）</li>
+          <li><strong>process description</strong>（プロセスの記述）</li>
+          <li><strong>performance description</strong>（振る舞いの記述）</li>
+        </ul>
+      </article>
+      <article>
+        <p class="cards__k">D — 3 / Discernment</p>
+        <h3>評価力</h3>
+        <ul>
+          <li><strong>product discernment</strong>（成果物の評価）</li>
+          <li><strong>process discernment</strong>（プロセスの評価）</li>
+          <li><strong>performance discernment</strong>（振る舞いの評価）</li>
+        </ul>
+      </article>
+      <article>
+        <p class="cards__k">D — 4 / Diligence</p>
+        <h3>倫理的責任</h3>
+        <ul>
+          <li><strong>creation diligence</strong>（作成における責任）</li>
+          <li><strong>transparency diligence</strong>（透明性の責任）</li>
+          <li><strong>deployment diligence</strong>（展開における責任）</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="gloss">
+    <h2>このコースの用語</h2>
+    <dl>
+      <div>
+        <dt>Augmentation<b>拡張</b></dt>
+        <dd>AI と一緒に働いて、自分がすでにしている良い仕事に付け加えること。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Automation<b>自動化</b></dt>
+        <dd>何を頼んでいるのか、その影響が何かを深く考えずに AI に作業を渡してしまうこと。学習の場では特に区別が重要になる。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Thinking partner<b>思考のパートナー</b></dt>
+        <dd>コース設計・学習教材の作成・意味のある課題と評価づくりを一緒に考える相手としての AI。<a href="01-introduction.html">01</a></dd>
+      </div>
+      <div>
+        <dt>Teaching context document<b>教育コンテキストドキュメント</b></dt>
+        <dd>自分の教育アプローチと文脈をまとめた再利用可能な文書。以降の AI との会話で共有し、共通理解の土台にする。公式レッスン1の演習で作る。<a href="01-introduction.html">01</a></dd>
+      </div>
+      <div>
+        <dt>Description–Discernment loop<b>記述・評価のループ</b></dt>
+        <dd>欲しいものを記述し、返ってきたものを評価し、そこから記述を練り直す往復。1周ごとに協働が深まる。<a href="02-framework-review.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Rich shared context<b>豊かな共有文脈</b></dt>
+        <dd>自分の教育文脈・制約・教育的ビジョンを AI と共有して積み上げたもの。汎用のアシスタントを自分の文脈に応える協働者へ変える。<a href="03-course-design.html">03</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2>このコースについて</h2>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">このコースは、Anthropic が学術専門家である University College Cork の Joseph Feller 教授および Ringling College of Art and Design の Rick Dakan 教授と<strong>提携して</strong>作られたものです（公式ページの表現は <em>Anthropic has partnered with academic experts…</em>）。著作権表示は <em>copyright 2025 Rick Dakan, Joseph Feller, and Anthropic PBC</em> の 3 者連名です。動画スライドの下部には <strong>ANTHROPIC</strong>・<strong>UCC</strong>・<strong>Ringling College of Art + Design</strong>・<strong>HEA</strong>（Higher Education Authority）・<strong>National Forum</strong> のロゴが並びます。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">01 の動画で述べられているとおり、このコースは Anthropic Academy の <strong>AI Fluency: Framework &amp; Foundations</strong> コースの上に直接構築されています。まだ受けていない場合は、先にそちらで中核となる概念に慣れておくことが推奨されています。本サイトでは <a href="../ai-fluency/index.html">AI活用力（AI Fluency）</a> がその基礎コースにあたります。</p>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0">また、姉妹コースとして、学生に AI活用力フレームワークを教えるためのコースと、学生自身のためのコースも作られている、と 01 の動画で案内されています。</p>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2 id="source">出典</h2>
+    <p style="font-size:15px;color:var(--ink-2);line-height:1.9;margin:20px 0 0;overflow-wrap:anywhere">このセクション（<code>educators/</code>）は Anthropic 公式コース <strong>AI Fluency for educators</strong>（<a href="https://www.anthropic.com/ai-fluency-for-educators" target="_blank" rel="noopener">anthropic.com/ai-fluency-for-educators ↗</a> ／ <a href="https://academy.claude.com/" target="_blank" rel="noopener">academy.claude.com ↗</a>）を出典とする学習ノートです。本文は YouTube 公式動画の書き起こしと、公式 Academy のレッスンページ本文をもとに再構成しています。ライセンスは <strong>CC BY-NC-SA 4.0</strong>、copyright 2025 Rick Dakan, Joseph Feller, and Anthropic PBC。</p>
+    <div class="warn">
+      <b>収録範囲と番号のずれ</b>
+      <p>公式コースの<strong>全4レッスンを 01〜04 として収録</strong>しています。公式コースはこの後に <code>Course quiz</code> と <code>Completion badge</code> が続きますが、そちらは<strong>本サイト未収録</strong>です。<br>
+      また、公式 Academy のレッスン番号と YouTube 動画タイトルの番号がずれています。本サイトの 03 は<strong>公式 Lesson 3 of 4</strong> ですが動画タイトルは <code>Lesson 2:</code>、04 は<strong>公式 Lesson 4 of 4</strong> ですが動画タイトルは <code>Lesson 3:</code> です（動画側の番号がフレームワーク復習回を数えていないため）。02 の動画タイトルにはレッスン番号がありません。<br>
+      各ページの演習（TRY）は公式 Academy ページの Exercises セクションから起こしたものです。<strong>02 には公式の演習がありません</strong>。</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式コース AI Fluency for educators ／ CC BY-NC-SA 4.0</span>
+  <a href="../ai-fluency/index.html">AI活用力（基礎コース） ↗</a>
+</footer>
+
+<script src="../assets/terms.js"></script>
+</body>
+</html>

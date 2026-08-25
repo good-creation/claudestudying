@@ -41,6 +41,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
   </div>
 </div>
@@ -94,6 +95,17 @@
         <li>Terminal</li><li>Visual Studio Code</li><li>Claude Desktop App</li><li>Web</li><li>JetBrains IDEs</li>
       </ul>
       <p>以降の説明は、ターミナルでの利用を前提としている。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude Code の定義として、本文が最も重視しているポイントはどれか。
+          <ul class="chk__c"><li>Claude.ai より高性能なモデルを使っていること</li><li>コードベースを理解し、ファイルを編集し、コマンドを実行し、既存ツールと統合すること</li><li>対応する動作環境の数が多いこと</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 環境の中で理解・編集・実行・統合を行う「エージェント型」であることが核心。</p>
+          <p>動作環境（Terminal・VS Code など5つ）は前提として挙げられているだけで、定義の中心ではない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -115,6 +127,17 @@
       </div>
 
       <p>一番分かりやすい違いは、Claude Code が<strong>AI エージェントとして動く</strong>こと。コピペの往復がなくなるのは結果であって、原因はこのアーキテクチャの違いにある。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude.ai と比べたときに、Claude Code とのコピペの往復が無くなるのはなぜか。
+          <ul class="chk__c"><li>コピペが不要になる機能が別途ついているから</li><li>AI エージェントとして動き、ファイルを直接読み書きできるから</li><li>Claude.ai より応答が速いから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — コピペが無くなるのは結果であり、原因は AI エージェントというアーキテクチャの違いにある。</p>
+          <p>表にあるとおり、Claude Code はファイルを直接読み、自身で編集できるので、人が受け渡しをする必要がない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -149,6 +172,17 @@
       </div>
 
       <p>さらにエージェントは、目標達成を助けるために<strong>ツール・外部サービス・他の AI エージェント</strong>にアクセスできる場合がある、と補足される。Claude Code が「ファイル編集」「コマンド実行」「Web 検索」を持っているのは、この一般論の具体化にあたる。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          AI エージェントの核心は何だと説明されているか。
+          <ul class="chk__c"><li>大規模言語モデルがリアルタイムでループ動作すること</li><li>大規模言語モデルが一問一答で正確に答えること</li><li>大規模言語モデルが外部サービスに接続できること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 判断と実行と観測を回し続ける「ループ」構造こそが核心とされる。</p>
+          <p>一問一答ではなく繰り返しの構造である点がポイントで、外部サービスへのアクセスはあくまで補足の要素。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -175,6 +209,17 @@
           <p>ドキュメントや最新の API リファレンスが必要になれば、自分で調べに行く。学習データのカットオフを外部で埋める動き。</p>
         </li>
       </ul>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「ターミナルコマンドを実行する」の説明で強調されているのは、単に実行するだけでなく何をすることか。
+          <ul class="chk__c"><li>実行結果をログとして保存すること</li><li>複数のコマンドを同時に並行実行すること</li><li>出力を使って次に何をすべきかを判断すること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 出力を使って次にすべきことを判断する。</p>
+          <p>「use the output to decide what to do next」とあるとおり、出力を次の判断に使う点がループの実体とされている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -207,6 +252,17 @@
           <p><strong>状況を把握し続けること</strong>で、これらを早期に発見できる。</p>
         </article>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コンテキストウィンドウについて、本文が説明している性質はどれか。
+          <ul class="chk__c"><li>容量に制限が無く、常にコードベース全体を読み込む</li><li>権限モードを切り替えると広がる</li><li>多くを保持できるが、一度にすべては保持できない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 作業メモリであり、多くを保持できても一度にすべては保持できない。</p>
+          <p>だからこそコードベース全体を読み込むのではなく、戦略的な方法で答えを見つけ出す「エージェント的」な動きが必要になる。</p>
+        </div>
+      </details>
     </div>
   </section>
 

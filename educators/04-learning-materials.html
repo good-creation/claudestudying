@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 学習教材と課題への AI Fluency の適用 — 教育者のための AI Fluency 学習ノート</title>
+<meta name="description" content="Anthropic 公式コース『AI Fluency for educators』Lesson 4 の内容を再構成した日本語の学習ノート。確立した文脈の上に、4D を通して学習教材と課題をつくる。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">教育者のための AI Fluency / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="教育者のための AI Fluency コース 目次" aria-label="教育者のための AI Fluency コース 目次">目次</a>
+      <a href="01-introduction.html" title="教育者のための AI Fluency 入門" aria-label="01 教育者のための AI Fluency 入門">01</a>
+      <a href="02-framework-review.html" title="AI Fluency フレームワークの復習" aria-label="02 AI Fluency フレームワークの復習">02</a>
+      <a href="03-course-design.html" title="コース設計と学習成果への適用" aria-label="03 コース設計と学習成果への適用">03</a>
+      <a href="04-learning-materials.html" title="学習教材と課題への適用" aria-label="04 学習教材と課題への適用" aria-current="page">04</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../ai-fluency/index.html" title="AI活用力コースへ" aria-label="AI活用力コースへ">AI活用力</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 04 / AI Fluency for Educators（公式 Lesson 4 of 4）</p>
+    <p class="eyebrow" style="color:var(--signal)">10:11 · 全文書き起こし＋公式 Academy 本文より</p>
+    <p class="eyebrow" style="color:var(--caution)">Anthropic 公式 AI Fluency for educators — コース最終回</p>
+  </div>
+
+  <h1 class="hero__title">学習教材と<br><em>課題への適用</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    コース最終回。明日のワークシートから期末試験まで、<strong>学生が実際に手を動かす教材</strong>をつくる回。これまでに積み上げた文脈があるおかげで<strong>もうゼロから始めることはない</strong>ことを軸に、ひとつの具体例——ジャーナリズム専攻の学生が<strong>帰無仮説</strong>で躓いている——を 4D すべてに通して展開する。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:1.8%"><s>導入</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:7.36%"><s>文脈</s><i></i><b>0:45</b></div>
+      <div class="tl__tick" style="left:13.58%"><s>具体例</s><i></i><b>1:23</b></div>
+      <div class="tl__tick" style="left:22.26%"><s>委任力</s><i></i><b>2:16</b></div>
+      <div class="tl__tick" style="left:28.81%"><s>記述力</s><i></i><b>2:56</b></div>
+      <div class="tl__tick" style="left:42.39%"><s>評価力</s><i></i><b>4:19</b></div>
+      <div class="tl__tick" style="left:53.68%"><s>倫理的責任</s><i></i><b>5:28</b></div>
+      <div class="tl__tick" style="left:60.88%"><s>一貫性</s><i></i><b>6:12</b></div>
+      <div class="tl__tick" style="left:69.39%"><s>学術的誠実性</s><i></i><b>7:04</b></div>
+      <div class="tl__tick" style="left:80.03%"><s>2つの要点</s><i></i><b>8:09</b></div>
+      <div class="tl__tick" style="left:89.03%"><s>結び</s><i></i><b>9:04</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>10:11</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Anthropic<br><small>AI Fluency for educators</small></dd></div>
+    <div><dt>Published</dt><dd><span>2025.08.20</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>10:11</span> <small>/ 611s</small></dd></div>
+    <div><dt>Views</dt><dd><span>23,811</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/YTUywmN2N4s" target="_blank" rel="noopener">youtu.be/YTUywmN2N4s ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="611">
+
+  <section class="sec" id="s1" data-start="11" data-label="学生が実際に手を動かす教材">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">学習教材は「橋」になりうる</h2>
+      <p>この回で扱うのは、AI Fluency を使って<strong>学生が実際に手を動かす教材</strong>をつくること。明日のワークシートから期末試験まで、あらゆるものが対象になる。</p>
+      <p>学習教材は、<strong>学生が独力でできることと、そのコースで得た知識があればできることの間の橋渡し</strong>になりうる、と語られる。講義を補うワークシートでも、練習のための活動でも、採点する課題でも同じで——<strong>私たちは、学生の学びに本当に役立つ教材をつくるのに数えきれない時間を費やしている</strong>。AI は、その橋をより良く理解し、築くための強力な<strong>コネクター</strong>になりうる。</p>
+      <div class="tip">
+        <b>レッスン番号のずれ</b>
+        <p>この回は公式 Academy では <strong>Lesson 4 of 4</strong>（<code>Applying AI Fluency to learning materials and assignments</code>）だが、YouTube の動画タイトルは <code>Lesson 3:</code> になっている。動画側の番号がフレームワーク復習回（本サイト <a href="02-framework-review.html">02</a>）を数えていないためで、<a href="03-course-design.html">03</a> でも同じずれが起きている。本サイトの番号は公式 Academy の並びに合わせている。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="45" data-label="もうゼロから始めない">
+    <div class="sec__mark"><div><span class="sec__t">0:45</span><span class="sec__kind">前提</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">もうゼロから始めることはない</h2>
+      <p>過去の会話、アップロードしたファイル、接続したツールから文脈が引き継がれていれば、これからつくるワークシート・活動・評価のすべてが、<strong>はるかに深い理解の上に立てる</strong>ようになる。AI パートナーはすでに次のことを知っているからだ——自分の具体的な学習目標と、それが選んだ内容とどう関係するか。学生のために描いた<strong>教育的な道筋</strong>。そして自分の教育哲学と制約。</p>
+      <p>つまり、<strong>もうゼロから始めることはない</strong>。代わりにつくるのは、<strong>これまでにあったものの上に論理的に積み上がる教材</strong>だ。</p>
+      <figure class="fig">
+        <img src="../img/edu-context-together.jpg" alt="公式コースのスライド。中央に「AI pulls all the context together」。左側に lab activity・prior knowledge・learning objectives・learning needs、右側に worksheet・lesson plans・future curriculum・scaffold support が並んでいる。" loading="lazy">
+        <figcaption>公式コース図版 — <code>AI pulls all the context together</code>。左に <code>lab activity</code> / <code>prior knowledge</code> / <code>learning objectives</code> / <code>learning needs</code>、右に <code>worksheet</code> / <code>lesson plans</code> / <code>future curriculum</code> / <code>scaffold support</code>。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="83" data-label="この回の進め方と具体例">
+    <div class="sec__mark"><div><span class="sec__t">1:23</span><span class="sec__kind">具体例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">帰無仮説で躓くジャーナリズムの学生</h2>
+      <p>前回同様、フレームワークの <strong>4D すべてを通しで</strong>たどる。ただしこの動画は<strong>かなり高いレベルに留め、この形で AI と働くときの一般的な力学に焦点を当てる</strong>——より具体的なアイデアとワークフローについては、レッスン・演習・ハンドアウトを見てほしい、と断りが入る。</p>
+      <p>そのうえで動画は、ひとつの具体例をここから最後まで使い続ける。<strong>ジャーナリズム専攻の学生の一団が、統計学の帰無仮説と対立仮説（null and alternative hypotheses）の理解に苦しんでいる</strong>——とりわけ<strong>変数が自明でないとき</strong>に。その混乱に対処する課題をつくる必要がある。</p>
+      <p>これまでの文脈構築のおかげで、AI パートナーは<strong>すでに次のことを知っている</strong>。</p>
+      <ul class="acts">
+        <li><h3>第4週の学習目標の一部であること</h3></li>
+        <li><h3>このジャーナリズムの学生は数学的な抽象に苦しむこと</h3></li>
+        <li><h3>実世界の例を通して仮説検定へ積み上げてきたこと</h3></li>
+        <li><h3>前の活動でソーシャルメディア分析を「橋渡しの概念」として使ったこと</h3></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="136" data-label="委任力">
+    <div class="sec__mark"><div><span class="sec__t">2:16</span><span class="sec__kind">D — 1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">委任力（Delegation）——この状況でどう分けるか</h2>
+      <p>では、この状況でどう委任すればよいか。動画は 3 つのサブコンポーネントに沿って答える。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">Delegation — 1</p>
+          <h3>problem awareness</h3>
+          <p>問題の把握。<strong>なぜ学生が混乱しているのか、何に対処すべきなのか</strong>を教えてくれる。</p>
+        </article>
+        <article>
+          <p class="cards__k">Delegation — 2</p>
+          <h3>platform awareness</h3>
+          <p>プラットフォームの理解。<strong>AI は多様な練習問題を素早く生成できる</strong>ことを思い出させてくれる。</p>
+        </article>
+        <article>
+          <p class="cards__k">Delegation — 3</p>
+          <h3>task delegation</h3>
+          <p>タスクの割り振り。ここでは<strong>自然に決まる</strong>——自分が具体的な混乱点と望む成果を定義し、AI がコースの進行に沿った多様な練習シナリオをつくり、<strong>一緒に磨いて</strong>いく。</p>
+        </article>
+      </div>
+      <p>ただし<strong>最も重要なのは</strong>、と動画は続ける。確立された文脈があるおかげで、<strong>AI は自分の教育的な連なりにぴったり収まる問題を生成できる</strong>。だからこそ、一緒に磨いていった先で、その課題が<strong>本当に学生の学びの旅に資するもの</strong>になる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="176" data-label="記述力">
+    <div class="sec__mark"><div><span class="sec__t">2:56</span><span class="sec__kind">D — 2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">記述力（Description）——共有された理解を参照する</h2>
+      <p>AI は多くの話題に幅広い認識を持っている。<strong>しかし学習教材をつくるときは、文脈が鍵になる</strong>。たとえば、学生にトピックをどう提示するのが最善かについて、すでに AI と話してきたとする。そこで<strong>ゼロから始めるのではなく、その共有された理解を参照する</strong>。動画で実際に読み上げられる言い方はこうだ。</p>
+      <div class="prompt">
+        <b>動画で読み上げられるプロンプト</b>
+        <p>Remember how we discussed that my journalism students need concrete examples before abstractions? Let's create a worksheet for null hypothesis that builds on the social media analysis examples from last week.</p>
+        <p>大意：私のジャーナリズムの学生は抽象の前に具体例が必要だ、と話し合ったのを覚えていますか。先週のソーシャルメディア分析の例の上に積み上がる、帰無仮説のワークシートをつくりましょう。</p>
+      </div>
+      <p>そのうえで、<strong>積み上げてきた文脈を活かしながら</strong>、成果物・プロセス・振る舞いの 3 つの記述で具体的な詳細を足していく。動画が列挙する指示文はそのまま次のとおり。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">Description — 1 / 3:39</p>
+          <h3>product description</h3>
+          <p>成果物の記述。何を出してほしいか。</p>
+          <ul>
+            <li>明確な番号付きの<strong>ワークシート形式</strong>にする</li>
+            <li>学生が書き込む<strong>スペースを入れる</strong></li>
+            <li><strong>解答は別ページ</strong>に置く</li>
+          </ul>
+        </article>
+        <article>
+          <p class="cards__k">Description — 2 / 3:46</p>
+          <h3>process description</h3>
+          <p>プロセスの記述。どう取り組んでほしいか。</p>
+          <ul>
+            <li>まず<strong>変数の同定についての主要な誤解</strong>を狙う</li>
+            <li>各問題を<strong>日常生活に引きつけられるシナリオ</strong>で始める</li>
+            <li><strong>仮説を書く前に変数を同定</strong>させる</li>
+            <li><strong>複雑さを段階的に</strong>上げる</li>
+          </ul>
+        </article>
+        <article>
+          <p class="cards__k">Description — 3 / 4:03</p>
+          <h3>performance description</h3>
+          <p>振る舞いの記述。やりとりの間どう振る舞ってほしいか。</p>
+          <ul>
+            <li>シナリオは<strong>創造的に</strong>。ただし言語は<strong>10年生の読解レベル</strong>に保つ</li>
+            <li>難しすぎると思う問題があれば<strong>フラグを立てて</strong>知らせる</li>
+          </ul>
+        </article>
+      </div>
+      <p class="wrapup">自分の教育上の専門性は、<em>伝え方</em>に表れる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="259" data-label="評価力">
+    <div class="sec__mark"><div><span class="sec__t">4:19</span><span class="sec__kind">D — 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">評価力（Discernment）——「ありがとう」と言って走り去らない</h2>
+      <p>AI が案を出し始めたら、評価力を働かせて<strong>役に立つものと立たないものを見分ける</strong>。たとえば AI が、人気のソーシャルメディアアプリを題材にした課題を提案してきたとする。身近で、関連があり、先週の議論ともつながるので、これは完璧だと思える。</p>
+      <p>ここで動画が強調するのは、<strong>採否を返して終わりにしない</strong>ことだ。良い提案にも、合わない提案にも、<strong>理由を説明して返す</strong>。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">提案がうまくはまるとき</p>
+          <h3>なぜ効くのかを説明する</h3>
+          <p>やりがちなのは<strong>「ありがとう」と言って走り去る</strong>こと。そうではなく、<strong>なぜそれが効くのかを AI に説明する</strong>——今後より良い提案を得るために。</p>
+        </article>
+        <article>
+          <p class="cards__k">提案が複雑すぎるとき</p>
+          <h3>なぜ合わないのかを説明する</h3>
+          <p>やりがちなのは<strong>ただ却下する</strong>こと。そうではなく、<strong>なぜそれが自分の文脈に合わないのかを説明する</strong>。</p>
+        </article>
+      </div>
+      <p>こうして<strong>文脈を育て続ける</strong>。記述と評価の往復は新しい会話を開き、フィードバックを与えてニーズを明確にしていくうちに、満足のいく結果にたどり着く。その過程で、<strong>他のトピックの新しい教え方を見つけたり、考えてもみなかった角度を探ったりする</strong>ことがある。</p>
+      <p>ここでの要点は、<strong>会話を続け、文脈を育て続けること</strong>。そうすれば、新しくつくる学習教材のひとつひとつが、<strong>自分が設計した一貫した学びの旅を補強する</strong>ものになる。</p>
+      <p>そして——<strong>良い評価は、問題も可能性も両方を認識する</strong>。ときに AI は<strong>別の分野からの手法</strong>を提案し、それが自分の概念を見事に照らし出すことがある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="328" data-label="倫理的責任">
+    <div class="sec__mark"><div><span class="sec__t">5:28</span><span class="sec__kind">D — 4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任（Diligence）——教材づくりで「意図的である」ということ</h2>
+      <p>教材をつくるとき、倫理的責任とは<strong>意図的であること（being intentional）</strong>を意味する。動画が挙げる留意点は次の 3 つ。</p>
+      <ul class="acts">
+        <li>
+          <h3>creation diligence <mark>作成における責任</mark></h3>
+          <p><strong>機微なデータを守り、責任ある AI 利用の手本を示す。</strong>そして<strong>学生に求めるのとまったく同じように、学術的な引用に細心の注意を払う</strong>。</p>
+        </li>
+        <li>
+          <h3>transparency diligence <mark>透明性の責任</mark></h3>
+          <p><strong>自分の透明性そのものを、教育の機会に変えられる。</strong>diligence statement（誠実さについての声明）を書いて学生と議論し、自分が AI をどう使ったのか、そのプロセスで<strong>自分自身の人間としての専門性がどんな役割を果たしたのか</strong>を理解してもらう。</p>
+        </li>
+        <li>
+          <h3>deployment diligence <mark>展開における責任</mark></h3>
+          <p><strong>正確性・バイアス・誤り、そして自分が掲げた目標との整合</strong>について、教材を注意深く見直す。</p>
+        </li>
+      </ul>
+      <p class="wrapup">最終的に、AI を使ったか使わなかったかにかかわらず、<em>つくった教材の影響を所有するのは自分</em>だ。</p>
+      <figure class="fig">
+        <img src="../img/edu-diligence-materials.jpg" alt="公式コースのスライド。見出しは「Diligence in material design」。Creation Diligence: Protect sensitive data and model responsible AI use、Transparency Diligence: Write diligence statements where AI is used、Deployment Diligence: Review materials carefully の3項目が並んでいる。" loading="lazy">
+        <figcaption>公式コース図版 — <code>Diligence in material design</code>。<code>Creation Diligence: Protect sensitive data and model responsible AI use</code> / <code>Transparency Diligence: Write diligence statements where AI is used</code> / <code>Deployment Diligence: Review materials carefully</code>。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="372" data-label="一貫した学習体験へ">
+    <div class="sec__mark"><div><span class="sec__t">6:12</span><span class="sec__kind">応用</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">秘密のプロンプトは要らない</h2>
+      <p>この 4D のアプローチは、多様な学習教材づくりに効く。</p>
+      <ul class="chips">
+        <li>study guides</li>
+        <li>labs</li>
+        <li>rubrics</li>
+        <li>worksheets</li>
+        <li>exams</li>
+      </ul>
+      <p>そして動画ははっきりこう言う——<strong>AI fluent な教育者は、このリストのどの項目についても「AI の使い方を一気に強化する秘密のプロンプト」を知っている必要はない</strong>。必要なのは、<strong>すでに持っている教育の専門性と専門分野の専門性を、AI との協働にどう適用するかを認識できること</strong>だけだ。</p>
+      <p>さらに、AI と作業を重ねるほど、<strong>互いに継ぎ目なく働く教材</strong>をつくるのが容易になる——AI がその文脈すべてを保持していられるおかげで。たとえば AI にこう尋ねられる。</p>
+      <ul>
+        <li>このラボはワークシートとどうつながるのか</li>
+        <li>学生はどんな準備をしてきたのか</li>
+        <li>これはカリキュラムのどこへ続いていくのか</li>
+        <li>学生にはどの程度の支援が必要なのか</li>
+      </ul>
+      <p class="wrapup">最終的に、教材は<em>ばらばらの活動の寄せ集め</em>ではなく、<em>意図的に設計された結束した学習体験</em>として感じられるべきだ。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s9" data-start="424" data-label="学術的誠実性という課題">
+    <div class="sec__mark"><div><span class="sec__t">7:04</span><span class="sec__kind">課題</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">学術的誠実性——単純な解決策は無い</h2>
+      <p><strong>AI が多くの課題を、人間の学生なら合格かそれ以上の成績が付く水準で完了できてしまう</strong>——この事実は、<strong>あらゆる段階の教育に巨大な課題を生んだ</strong>。そして動画はそこで立ち止まり、はっきり認める。<strong>この課題に単純な解決策は無い。</strong></p>
+      <p>幼稚園から大学院まで、それぞれの教育文脈が、学習を保証し評価するうえで固有の障害に直面している。それぞれの機関が、自分たちの法的・倫理的・専門職的な基準と制約の中で動いている。</p>
+      <blockquote class="quote">
+        <p>私たちは全員、AI が浸透した世界でどう倫理的かつ効果的に教えるかを、いま模索している最中だ。</p>
+        <cite>— Anthropic 公式 AI Fluency for educators, Lesson 4</cite>
+      </blockquote>
+      <p>そのうえで、話し手たちは自分たちの教育実践で分かったこととして、<strong>AI Fluency がこの巨大な課題と向き合う助けになる</strong>と述べる。ただし順序がある——<strong>倫理的責任を働かせるには、まず自分の懸念と基準を同僚や学生と明らかにし、全員が同じ理解に立つ必要がある</strong>。</p>
+      <p>そしてこうした<strong>倫理的責任についての会話は、AI と協働して課題や評価を設計するプロセスに直接活きる</strong>。より深く知りたい場合は、姉妹コース <strong>Teaching AI Fluency</strong> を見てほしい、と案内される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s10" data-start="489" data-label="2つの要点">
+    <div class="sec__mark"><div><span class="sec__t">8:09</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回の2つの要点</h2>
+      <p>動画は、AI と学習教材をつくることについて<strong>2つの鍵となる考え</strong>を扱った、とまとめる。</p>
+      <ol class="steps">
+        <li>
+          <h3>会話と反復を通じて文脈を築く</h3>
+          <p><strong>単純に始めて、そこから複雑さを足していく。</strong>AI が高度すぎる下書きを出してきたら、<strong>学生の何が混乱すると思うかを説明して、足場かけ（scaffolding）を頼む</strong>。AI が素晴らしいものを出してきたら、<strong>なぜそれが良いのかを説明する</strong>。改訂のたびに文脈は深まり、今後の出力は良くなる。</p>
+        </li>
+        <li>
+          <h3>すべてを自分の教育の視点（teaching lens）を通して見る</h3>
+          <p>良い提案も悪い提案も、<strong>あらゆる AI の提案に自分の専門性が要る</strong>。これは自分の学生に効くのか。自分の学習目標に合っているのか。<strong>専門性が、汎用のコンテンツを狙いの定まった学習体験に変える</strong>。そして本物の倫理的責任を実践する——<strong>とりわけ自分の専門分野については正確性を検証し</strong>、意図しないバイアスや学習の障壁がないか確認し、<strong>学生に期待するのと同じ責任ある関わり方の手本として、自分の協働プロセスを記録する</strong>。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="s11" data-start="544" data-label="結び">
+    <div class="sec__mark"><div><span class="sec__t">9:04</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">速さではなく、品質のために</h2>
+      <p>結びで動画が念を押すのは、<strong>これは教材をより速くつくる話ではない</strong>ということ。<strong>より良く機能する教材をつくる話</strong>だ——それが、自分の教育的専門性と AI の能力との<strong>本物の協働</strong>から生まれるものだから。</p>
+      <p>確かにこのアプローチは時間を節約する。<strong>しかし本当の変革は品質にある。</strong>手に入るのは次のようなものだ。</p>
+      <ul>
+        <li>互いの上に<strong>一貫して積み上がる</strong>教材</li>
+        <li>実際の教育と学習目標に<strong>整合した</strong>評価</li>
+        <li>自分の学生固有のニーズに<strong>よりよく応える</strong>活動</li>
+        <li>自分の教育的ビジョンを<strong>体現する</strong>リソース</li>
+      </ul>
+      <p>だから焦点を当てるのは速さではなく、<strong>思慮深く設計した学びの旅を支えるために、互いに機能する教材をつくること</strong>。</p>
+      <p>そして最後の呼びかけ。この回の演習アイデアのどれか、あるいは<strong>今週つくる必要があるもの何でも</strong>をひとつ選ぶ。そこに <strong>4D を意識的に適用してみる</strong>。何が自分に効いて何が効かなかったかを振り返り、できれば<strong>同僚と共有してみる</strong>。</p>
+      <p class="wrapup">速さのためではなく、<em>互いに機能する教材</em>のために。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="key" data-label="重要なポイント">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <p class="tr__note">ここから先（重要なポイント・演習・振り返り・次のステップ）は、動画ではなく Anthropic 公式 Academy のレッスンページ本文が出典。</p>
+      <h2 class="sec__h">重要なポイント</h2>
+      <div class="cards">
+        <article>
+          <p class="cards__k">Key takeaway — 1</p>
+          <h3>文脈が効いてくる</h3>
+          <p>確立されたコンテキストにより、<strong>各新しいワークフローが最初から始めるよりも良くなる</strong>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Key takeaway — 2</p>
+          <h3>記述・識別のループ</h3>
+          <p>記述-識別のループは、<strong>意味のある反復を通じて教材を改善する</strong>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Key takeaway — 3</p>
+          <h3>教材ごとに委任は変わる</h3>
+          <p><strong>異なる教材には異なる委任戦略が必要</strong>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Key takeaway — 4</p>
+          <h3>効率より一貫性と品質</h3>
+          <p><strong>効率性だけでなく、一貫性と品質に焦点を当てる</strong>。</p>
+        </article>
+      </div>
+      <p>公式ページに掲げられたこの回の学習目標は次の 4 つ——4D フレームワークを適用して AI アシスタントと共に教材を作成する／確立されたコンテキストを活用して一貫性のある教材開発を行う／Discernment（識別）を通じて体系的な品質管理を適用する／統合された学習体験として機能する教材を構築する。</p>
+      <div class="tip">
+        <b>訳語について</b>
+        <p>4D は「委任・記述・識別・誠実さ」と訳されることもある。本サイトでは既存の <a href="../ai-fluency/index.html">AI活用力</a> コースに合わせて<strong>委任力・記述力・評価力・倫理的責任</strong>で通している。上の「重要なポイント」はその訳語のまま載せた。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ex" data-label="演習">
+    <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">演習：学習教材をつくる（Creating Learning Materials）</h2>
+      <p><strong>想定時間：50 分。</strong>前回のコース（再）設計の会話をそのまま続けるか、その会話の要約を出力して新しい会話の入力に使う。このコースの動画トランスクリプトを AI パートナーに共有してもかまわない。</p>
+      <p>この文脈の上に、次の<strong>1つ以上</strong>の学習教材をつくる。</p>
+      <div class="tip">
+        <b>公式本文の「lesson 2」について</b>
+        <p>公式の演習本文は <code>Continue your course (re)design conversation from lesson 2</code> と書いているが、これは YouTube 動画タイトル側の番号を指している。公式 Academy の並びでは <strong>Lesson 3 of 4</strong>、本サイトでは <a href="03-course-design.html">03 コース設計と学習成果への適用</a> にあたる。</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>選択肢1：講義スライドデッキ</h3>
+          <p><strong>立ち上げ</strong></p>
+          <ul>
+            <li>コースの文脈を共有し、具体的なトピックを参照する</li>
+            <li>自分のプレゼンのスタイルと教室の空気感を説明する</li>
+            <li>スライドが担うことと、自分が口頭で補うことの切り分けを議論する</li>
+            <li>視覚面の好みや、所属機関のテンプレートがあれば示す</li>
+          </ul>
+          <p><strong>作成と改良</strong></p>
+          <ul>
+            <li>まずスライドのアウトラインを求める</li>
+            <li>評価する：流れは論理的か。複雑さは適切か</li>
+            <li>各スライドについて、自分なら何を足す／変えるかを考える</li>
+            <li>重要なスライドを1枚選んで、一緒に詳細に作り込む</li>
+            <li>なぜ特定のアプローチが自分の学生により良く効くのかを説明する</li>
+            <li>結果を統合してデッキ全体を組み上げる</li>
+          </ul>
+          <p><strong>最終確認</strong></p>
+          <ul>
+            <li>事実の正確性を検証する</li>
+            <li>画像や引用が必要な箇所をメモする</li>
+            <li>AI がデッキにどう寄与したかを記録する</li>
+          </ul>
+        </li>
+        <li>
+          <h3>選択肢2：学習ガイド／復習ガイド</h3>
+          <p><strong>立ち上げ</strong></p>
+          <ul>
+            <li>いま作業した講義トピックを参照する</li>
+            <li>自分の学生が普段どう勉強するかを説明する</li>
+            <li>過去にうまくいった（あるいはいかなかった）学習補助の種類を説明する</li>
+            <li>独習用なのか、指導つきの復習用なのかを示す</li>
+          </ul>
+          <p><strong>作成と改良</strong></p>
+          <ul>
+            <li>学生が習得すべき鍵となる概念を AI と一緒に特定する</li>
+            <li>難易度の異なる自己チェック問題をつくる</li>
+            <li>よくある誤解を AI に予測させる</li>
+            <li>他のコーストピックへのつながりをつくる</li>
+            <li>このガイドが本当に独力での学習を助けるかを評価する</li>
+          </ul>
+          <p><strong>最終確認</strong></p>
+          <ul>
+            <li>解答が正確であることを確かめる</li>
+            <li>自分の評価との整合を検証する</li>
+            <li>アクセシビリティと明快さを確認する</li>
+            <li>必要な引用がないか確認する</li>
+          </ul>
+        </li>
+        <li>
+          <h3>選択肢3：対話型の授業内演習</h3>
+          <p><strong>立ち上げ</strong></p>
+          <ul>
+            <li>教室のセットアップと通常のクラス規模を説明する</li>
+            <li>この活動に使える時間を説明する</li>
+            <li>自分の学生とうまくいく相互作用の種類を共有する</li>
+            <li>この演習の学習ゴールを示す</li>
+          </ul>
+          <p><strong>作成と改良</strong></p>
+          <ul>
+            <li>トピックを補強する活動を一緒に組む</li>
+            <li>段取りを考え抜く：学生はどうグループをつくるか。結果はどう共有するか</li>
+            <li>学生の多様な反応を AI に予測させる</li>
+            <li>明確な手順と時間配分をつくる</li>
+            <li>自分用のファシリテーション用メモをつくる</li>
+            <li>考える：活動が速く進みすぎたら？ 遅すぎたら？</li>
+          </ul>
+          <p><strong>最終確認</strong></p>
+          <ul>
+            <li>手順の明快さをテストする</li>
+            <li>アクセシビリティと多様な学習スタイルへの配慮を考える</li>
+            <li>不測の事態への備えを計画する</li>
+          </ul>
+        </li>
+        <li>
+          <h3>選択肢4：理解度チェック小テスト</h3>
+          <p><strong>立ち上げ</strong></p>
+          <ul>
+            <li>自分の学習目標を参照する</li>
+            <li>どの水準の理解を測るのかを説明する</li>
+            <li>学術的誠実性へのアプローチを議論する</li>
+            <li>形成的評価なのか総括的評価なのかを示す</li>
+          </ul>
+          <p><strong>作成と改良</strong></p>
+          <ul>
+            <li>難易度の異なる 5〜10 問をつくる</li>
+            <li>出題形式を混ぜる（多肢選択・短答・応用）</li>
+            <li>各問を具体的な目標に紐づける</li>
+            <li>明快な問題文と、もっともらしい誤答選択肢（distractors）を書くのを AI に手伝ってもらう</li>
+            <li>解説を詳しくつくる（なぜ正解が正解で、なぜ誤答が誤答なのか）</li>
+          </ul>
+          <p><strong>最終確認</strong></p>
+          <ul>
+            <li>すべての解答が正しいことを検証する</li>
+            <li>意図しないバイアスや紛らわしさがないか確認する</li>
+            <li>難易度が適切かを確かめる</li>
+            <li>学生が誤解しうる読み方がないか考える</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="reflect" data-label="振り返り">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <ol class="steps">
+        <li><h3>確立されたコンテキストがあることは、生成された教材の品質にどのように影響しましたか？</h3></li>
+        <li><h3>これらの教材はどのように互いに構築し、参照し合いましたか？</h3></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="next" data-label="次のステップ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ</h2>
+      <p>これで、<strong>教育における AI Fluency の完全なサイクルを経験した</strong>ことになる——<a href="01-introduction.html">自分の教育的コンテキストを確立する</a>ところから、<a href="03-course-design.html">コースを設計し</a>、<strong>一貫性のある学習教材をつくる</strong>ところまで。公式コースでは、この次に短いクイズを受けて修了バッジを獲得する機会がある。</p>
+      <div class="warn">
+        <b>本サイトの収録範囲はここまで</b>
+        <p>公式コースはこの回のあとに <code>Course quiz</code>（コースクイズ）と <code>Completion badge</code>（修了バッジ）が続くが、<strong>本サイトは未収録</strong>。クイズと修了バッジは <a href="https://academy.claude.com/" target="_blank" rel="noopener">academy.claude.com ↗</a> の公式コース上でのみ受けられる。</p>
+      </div>
+      <p>さらに専門性を深めたい場合、公式ページが案内するのは次の 2 つ。</p>
+      <ul class="acts">
+        <li>
+          <h3>AI Fluency: Framework &amp; Foundations</h3>
+          <p>4D をあらゆる文脈で拡張的に練習する基礎コース。修了すると修了バッジが得られ、同僚や管理職に自分の AI Fluency を示せる。本サイトでは <a href="../ai-fluency/index.html">AI活用力（AI Fluency）</a> がこのコースにあたる。</p>
+        </li>
+        <li>
+          <h3>Teaching AI Fluency</h3>
+          <p>学生に AI Fluency を導入することに関心があるなら、こちらのコースへ。<a href="#s9">7:04 の学術的誠実性の節</a>でも、より深く知りたい場合の行き先として案内されている。<strong>本サイトには未収録。</strong></p>
+        </li>
+      </ul>
+      <ul class="chips">
+        <li><a href="index.html">教育者のための AI Fluency 目次へ</a></li>
+        <li><a href="../ai-fluency/index.html">AI活用力（基礎コース）へ</a></li>
+        <li><a href="../claude-code.html">Claude Code 入門コースへ</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。音声認識ミス（<code>Learning eggs</code>、<code>asssuring</code> など）や言い直しはそのまま残してある。原文の字幕は 2〜3 秒刻みで区切られているため、表示上は約 15 秒ごとにまとめてあるが、語句には手を加えていない。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>Let's explore using AI Fluency to create materials your students actually work with. Everything from tomorrow's worksheet to a final exam. Learning eggs can help bridge the gap between what students can do independently and what they can do with the knowledge acquired</p></div>
+      <div><span>0:27</span><p>in your course. So whether it's a worksheet to complement a lecture, an activity for student practice, or a graded assignment, we spend countless hours trying to create materials that actually help our students learn. AI can be a powerful connector to help you</p></div>
+      <div><span>0:43</span><p>better understand and build that bridge for your students. With context from past conversations, uploaded files, and connected tools, every worksheet, activity, and assessment you create can now draw on much deeper understanding. Your AI partner knows your specific</p></div>
+      <div><span>1:00</span><p>learning objectives and how they relate to your chosen content, the pedagogical journey you've mapped for your students, your teaching philosophy and constraints. This means you're never starting from scratch. Instead, you're creating materials that build logically</p></div>
+      <div><span>1:17</span><p>on whatever came before. Let's explore how to leverage this context as we create the materials students actually work with. As before, we'll be working through all four Ds from the framework. In this video, we keep things fairly high level and focus on the general</p></div>
+      <div><span>1:32</span><p>dynamics of working with AI in this way, but have a look at the lessons, exercises, and handouts for more specific ideas and workflows. Let's say a group of journalism students are struggling with a concept like understanding null and alternative</p></div>
+      <div><span>1:47</span><p>hypotheses in statistics, especially when variables aren't obvious. You need an assignment that addresses their confusion. Thanks to your previous context building, your AI partner already knows this is a part of your week four learning objectives. Your</p></div>
+      <div><span>2:02</span><p>journalism students struggle with mathematical abstractions. You've been building towards hypothesis testing through real world examples. Previous activities use social media analytics as a bridge concept. So, how might you delegate in this situation?</p></div>
+      <div><span>2:19</span><p>Your problem awareness tells you why your students are confused and what needs to be addressed. Your platform awareness reminds you that AI can quickly generate diverse practice problems. But most importantly, your established context means AI can</p></div>
+      <div><span>2:34</span><p>generate problems that fit perfectly into your pedagogical sequence. Task delegation becomes natural. You define the specific confusion point and desired outcome. AI creates varied practice scenarios that align with your courses</p></div>
+      <div><span>2:49</span><p>progression. Together, you refine until the assignment genuinely serves your students learning journey. Now comes description. Sharing your vision with AI. Remember that AI has broad awareness of many topics, but when it comes to building learning materials, context is</p></div>
+      <div><span>3:06</span><p>key. Let's say you've been chatting with AI about how to best illustrate topics to students. Instead of starting fresh, you could reference this shared understanding, telling AI, "Remember how we discussed that my journalism students need concrete examples before abstractions? Let's create a worksheet</p></div>
+      <div><span>3:22</span><p>for null hypothesis that builds on the social media analysis examples from last week. Then add specific details with rich product and process and performance descriptions while leveraging the previously built context. This might end</p></div>
+      <div><span>3:39</span><p>up like format as a worksheet with clear numbering. Include space for student work. Put the answer key on a separate page. Include process expectations like first target their main misconceptions about identifying variables. Then start</p></div>
+      <div><span>3:54</span><p>each problem with a relatable scenario from their daily lives. Next, ask students to identify variables before writing hypothesis. Build complexity gradually. And finally, provide AI with clear performance parameters. For example, tell it to be creative with</p></div>
+      <div><span>4:10</span><p>scenarios, but keep language at a 10th grade reading level. If any problem seems too complex, flag it for me. Your teaching expertise shines through in how you communicate. As AI generates options, apply your discernment skills to identify what is useful and what is</p></div>
+      <div><span>4:25</span><p>not. For example, maybe the AI suggests an assignment using a popular social media app as its scenario. you think it's perfect because it's accessible, relevant, and connects to last week's discussion. Don't just say thanks and run. Explain to the AI why it works to</p></div>
+      <div><span>4:41</span><p>get better suggestions in the future. Or if another suggestion is too complex, don't just reject it. Explain why it is a bad fit. And again, keep the context growing. The back and forth of describing and discerning opens up new conversations as we provide feedback and</p></div>
+      <div><span>4:58</span><p>clarify needs until we're satisfied with the result. Along the way, you might discover new ways to teach other topics and explore angles you hadn't even considered. The key point here is keep the conversation going and keep nurturing the context so each new bit of learning material you create reinforces</p></div>
+      <div><span>5:14</span><p>the coherent learning journey you've designed. And remember, good discernment recognizes both problems and possibilities. Sometimes AI suggests an approach from another field that brilliantly illuminates your concept. When creating materials, diligence means</p></div>
+      <div><span>5:30</span><p>being intentional. Here are some things to keep in mind. Apply creation diligence to protect sensitive data and model responsible AI use. Pay careful attention to academic citations just like you'd want your students to.</p></div>
+      <div><span>5:45</span><p>Transparency diligence. You can make your own transparency a teaching opportunity by writing diligence statements and discussing them with your students so they understand how you used AI and the role of your own human expertise in the process. Deployment diligence. Review materials carefully</p></div>
+      <div><span>6:02</span><p>for accuracy, bias, errors, and alignment with your stated objectives. Ultimately, it's you who owns the impact of the materials you create with or without AI. The 4D's approach works when building a variety of learning</p></div>
+      <div><span>6:17</span><p>materials, study guides, labs, rubrics, worksheets, exams. As an AI fluent educator, you don't need to know the secret prompt that will supercharge your use of AI for every item in that list. You just need to recognize how to apply your existing teaching and subject</p></div>
+      <div><span>6:32</span><p>matter expertise to your AI collaborations. Plus, the more you work with AI, the easier it becomes to create materials that work together seamlessly, thanks to AI's ability to hold all of that context together. You might ask AI how this lab connects to the worksheet,</p></div>
+      <div><span>6:49</span><p>what preparations students have had, where this leads in your curriculum, what level of support students need. In the end, your materials should feel intentionally designed as a cohesive learning experience, not a collection of</p></div>
+      <div><span>7:04</span><p>random activities. The fact that AI can complete many assignments at a level of competency that would earn passing or higher grades for a human student has created a massive challenge for education at all levels. There are no simple solutions to this challenge. Each</p></div>
+      <div><span>7:21</span><p>specific education context from kindergarten to graduate school faces unique obstacles to asssuring and assessing student learning. Each institution operates within its own legal, ethical, and professional standards and constraints. We're all trying to figure out how to teach</p></div>
+      <div><span>7:36</span><p>ethically and effectively in an AI infused world. We have found in our teaching practice that AI fluency can help us reckon with this enormous challenge. To exercise diligence, we need to first elucidate our concerns and standards with our colleagues and</p></div>
+      <div><span>7:52</span><p>students so that we can all get on the same page. These diligence conversations can directly inform the process of collaborating with AI to design assignments and assessments. For a deeper dive on this, check out our teaching AI fluency course. In this</p></div>
+      <div><span>8:09</span><p>video, we've covered two key ideas for creating learning materials with AI. First, build context through conversation and iteration. Start simple, then add complexity. When AI drafts something too advanced, explain what you expect would confuse students</p></div>
+      <div><span>8:25</span><p>and ask for scaffolding. AI gives you something amazing, explain why it's good. Each revision deepens the context and improves future output. Second, view everything through your teaching lens. Every AI suggestion, good or bad, needs</p></div>
+      <div><span>8:40</span><p>your expertise. Will this work for your students? Does it match your learning objectives? Your expertise transforms generic content into targeted learning experiences and practice real diligence. Verify accuracy, especially for your subject matter. Check for unintended</p></div>
+      <div><span>8:57</span><p>biases or learning barriers and document your collaboration process as you model the responsible interaction you expect from students. Remember that this is not just about creating materials faster. It's about creating materials that work</p></div>
+      <div><span>9:12</span><p>better because they emerge from genuine collaboration between your pedagogical expertise and AI's capabilities. Yes, this approach saves time, but the real transformation is in the quality. You'll get materials that build coherently on each other. Assessments align with your</p></div>
+      <div><span>9:28</span><p>actual teaching and learning objectives, activities that better address your specific students needs, resources that embody your pedagogical vision. Focus on creating materials that work together to support the learning journey you've thoughtfully designed, not just on</p></div>
+      <div><span>9:43</span><p>speed. For now, try it yourself. Pick one of this lesson's exercise ideas or really anything you need to create this week. Apply the 4Ds consciously. Reflect on what works for you, what doesn't, and maybe even share it with a colleague.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="03-course-design.html"><b>前のレッスン — 03</b><em>コース設計と学習成果への適用</em></a>
+  <span class="is-next"><b>次のレッスン</b><em>—</em></span>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式コース AI Fluency for educators, Lesson 4 of 4 ／ CC BY-NC-SA 4.0</span>
+  <a href="https://youtu.be/YTUywmN2N4s" target="_blank" rel="noopener">youtu.be/YTUywmN2N4s ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

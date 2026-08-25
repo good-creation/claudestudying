@@ -31,6 +31,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -85,6 +86,18 @@
         <img src="img/code-reviewer.jpg" alt="ターミナルで「Spawn the code reviewer subagent to review the code we last created」と入力され、code-reviewer サブエージェントが動いている画面。" loading="lazy">
         <figcaption>公式コース図版 — <code>code-reviewer</code> サブエージェントの起動。走査したファイルや実行したコマンドは折りたたまれ、メインには結果だけが返る。</figcaption>
       </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コードレビュー用のサブエージェントを作るとき、本文が推奨しているのはどれか。
+          <ul class="chk__c"><li>メインエージェントとコンテキストウィンドウを共有させる</li><li>レビュー基準をそのつど口頭で伝える</li><li>ツールを読み取り専用に制限する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — レビュアーは問題を指摘すべきであって、ファイルを編集すべきではないため、読み取り専用ツールに制限する。</p>
+          <p>独自のコンテキストウィンドウで動くからこそバイアスを引き継がないのであって、共有はむしろ逆効果。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -97,6 +110,18 @@
         <b>Slack との連携</b>
         <p><code>CLAUDE.md</code> にチャンネルが記載された <strong>Slack MCP サーバー</strong>が設定されていれば、<strong>PR のリンクはチームのチャンネルに自動的に投稿される</strong>。<a href="06-claude-md.html">06 CLAUDE.md</a> と <a href="09-mcp.html">09 MCP</a> が、ここで合流する。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Slack MCP サーバーが設定されている場合、<code>/commit-push-pr</code> 実行後に何が起きるか。
+          <ul class="chk__c"><li>PR のリンクがチームのチャンネルに自動的に投稿される</li><li>コミットメッセージが自動的に翻訳される</li><li>レビュアーが自動的に割り当てられる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — CLAUDE.md にチャンネルが記載された Slack MCP サーバーが設定されていれば、PR のリンクが自動投稿される。</p>
+          <p>翻訳やレビュアー割り当ては本文に出てこない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -113,6 +138,18 @@
       </div>
 
       <p>これで<strong>中断した箇所からすぐに再開できる</strong>。<a href="05-context-management.html">05</a> で見たとおり、<code>/clear</code> すればコンテキストは消える。<code>--from-pr</code> は、消えたはずの文脈を<em>PR という外部の錨</em>から取り戻す手段にあたる。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>claude --from-pr &lt;PR_NUMBER&gt;</code> を実行する目的は何か。
+          <ul class="chk__c"><li>中断していた箇所から、その PR のセッションに戻る</li><li>新しい PR を自動的に作成する</li><li>PR のレビューを自動承認する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — PR という外部の錨から、消えたはずの文脈を取り戻して中断箇所から再開する。</p>
+          <p>PR 作成やレビュー承認そのものを行う機能ではない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -144,6 +181,18 @@
         <li><h3>一つずつ検証する</h3><p>誤検知（false positive）を除外するために、見つけたものを確認する。</p></li>
         <li><h3>深刻度でランク付けする</h3><p>重要なものから順に提示される。</p></li>
       </ol>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Code Review が、見つけた問題を一つずつ検証するのはなぜか。
+          <ul class="chk__c"><li>誤検知（false positive）を除外するため</li><li>深刻度のスコアを計算するため</li><li>コミットメッセージを自動生成するため</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 複数のエージェントが並行して見つけたものを一つずつ検証し、誤検知を除外する。</p>
+          <p>深刻度のランク付けは検証のあとに来る別のステップ。</p>
+        </div>
+      </details>
 
       <dl class="meta">
         <div><dt>Title</dt><dd>Introducing Code Review</dd></div>

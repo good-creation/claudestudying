@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -83,6 +84,18 @@
       <h2 class="sec__h">外にあるコンテキストをつなぐ</h2>
       <p><strong>MCP（Model Context Protocol）は、Claude Code が外部のツールやデータソースに接続できるようにするオープン標準。</strong>質問をすると、Claude は<strong>それらのツールをいつ使うべきかを自動的に理解する</strong>。</p>
       <p>必要性の根拠はコンテキストにある。<strong>あなたのコンテキストの多くは他の場所に住んでいる</strong>——データベース、業務アプリ、公開リポジトリ。コードベースを読むだけでは届かない範囲がある。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          MCP が必要とされる根拠として本文が挙げているのはどれか。
+          <ul class="chk__c"><li>Claude のモデルが古い情報しか持っていないこと</li><li>コンテキストの多くがコードベースの外（データベースや業務アプリなど）にあること</li><li>ローカルファイルの読み込みが遅いこと</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — コンテキストの多くは他の場所（データベース、業務アプリ、公開リポジトリ）に住んでいて、コードベースを読むだけでは届かない。</p>
+          <p>モデルの鮮度や読み込み速度の話は本文に出てこない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -114,6 +127,18 @@
       </figure>
 
       <p>さらに、<strong>claude.com/connectors に数百のコネクタがある</strong>。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          本文における「ツール」の説明として正しいのはどれか。
+          <ul class="chk__c"><li>エージェントに、タスクをよりよく完了するためのアクションを実行する能力を与えるもの</li><li>テキストの出力を直接返すだけの機能</li><li>MCP サーバーだけが持つ特別な機能</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — ツールはエージェントにアクションを実行する能力を与える。これがテキスト出力だけの他の AI との違いとされる。</p>
+          <p>「テキストを返すだけ」はむしろツールを持たない AI の説明として対比されている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -157,6 +182,18 @@
         <img src="img/mcp-manage.jpg" alt="/mcp の実行結果。Manage MCP servers として 4 servers、Local MCPs に linear-server（needs authentication）、Built-in MCPs に claude-in-chrome（connected）、context7（connected）、figma（needs authentication）が並んでいる。" loading="lazy">
         <figcaption>公式コース図版 — <code>/mcp</code> の一覧。<code>Local MCPs</code>（自分で追加したもの）と <code>Built-in MCPs</code>（常時利用可能なもの）が分かれ、それぞれ接続状態が出る。</figcaption>
       </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          stdio タイプの MCP サーバーについて、本文の説明として正しいのはどれか。
+          <ul class="chk__c"><li>自分のマシン上で動くローカルプロセスで、標準入出力でつながる</li><li>サービスプロバイダーがホストし、ネットワーク経由でつながる</li><li><code>/mcp</code> コマンドを使わないと追加できない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — stdio はローカルプロセス用で、自分のマシン上で動き、標準入出力で接続する。</p>
+          <p>ネットワーク経由でサービスプロバイダーがホストするのは HTTP タイプの方。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -194,6 +231,18 @@
         <b>繰り返し出てくる型</b>
         <p><a href="06-claude-md.html">CLAUDE.md</a>、<a href="08-skills.html">スキル</a>、<a href="10-hooks.html">フック</a>、そして MCP——<strong>いずれも「リポジトリにチェックインすればチーム全員に配れる」という同じ構造</strong>を持つ。個人の設定とチームの設定を分けるのが、Claude Code のカスタマイズ全体を貫く設計になっている。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          project スコープで MCP サーバーを設定する利点として本文が挙げているのはどれか。
+          <ul class="chk__c"><li>自分専用の設定として他人からは見えなくなる</li><li>どのプロジェクトからでも呼び出せる汎用スコープになる</li><li>コードベースに関わる全員が自動で同じサーバーを得る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — <code>.mcp.json</code> をバージョン管理にチェックインすることで、コードベースに関わる全員が自動で同じサーバーを得る。</p>
+          <p>自分専用・全プロジェクト共通なのは Local / User スコープの性質で、Project とは逆。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -225,6 +274,18 @@
         <b>10% の閾値</b>
         <p>MCP ツールがコンテキストウィンドウの<strong>10% を超える</strong>と、Claude Code は自動的に<strong>ツール検索モード</strong>に切り替わり、必要に応じて適切なツールを発見しにいく。ただし、<strong>コンテキストに載っていない分、これは確実に機能するとは限らない。</strong></p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          MCP ツールがコンテキストウィンドウの何%を超えると、Claude Code は自動的にツール検索モードに切り替わるか。
+          <ul class="chk__c"><li>10%</li><li>5%</li><li>25%</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 10% を超えると自動的にツール検索モードに切り替わる。</p>
+          <p>この切り替えは万能ではなく、コンテキストに載っていない分、確実に機能するとは限らないという注意も添えられている。</p>
+        </div>
+      </details>
     </div>
   </section>
 

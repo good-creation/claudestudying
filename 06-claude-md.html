@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -86,6 +87,17 @@
         <li>コードベースを探索し直す</li><li>必要な依存関係を理解し直す</li><li>実装済みの機能を把握し直す</li>
       </ul>
       <p>そして最後に、いちばん厄介なものが加わる——<strong>ときには推測をしなければならない。それが、Claude を正しい方向に導くことを難しくする。</strong></p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>CLAUDE.md</code> が無い状態で毎回発生する再発見コストに含まれないのはどれか。
+          <ul class="chk__c"><li>必要な依存関係を理解し直す</li><li>コードベースを探索し直す</li><li>コミットメッセージのスタイルを統一し直す</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 挙げられているのはコードベースの探索・依存関係の理解・実装済み機能の把握の3つと、推測の必要性。</p>
+          <p>コミットメッセージのスタイル統一は、この節では触れられていない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -100,6 +112,17 @@
       </blockquote>
       <p>この一文が仕組みのすべてで、だからこそ<em>短く保つ</em>ことが効いてくる。書いた分だけ、毎回のプロンプトが長くなる。</p>
       <p>ゼロから書く必要はない。<code>/init</code> を実行すれば、Claude があなたのコードベースを見て生成してくれる。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「CLAUDE.md の内容はあなた自身のプロンプトに追記される」という説明から、なぜ短く保つことが重要になるのか。
+          <ul class="chk__c"><li>書いた分だけ、毎回のプロンプトが長くなるから</li><li>長いファイルは Claude が読み込めないから</li><li><code>/init</code> を実行するたびに内容が上書きされてしまうから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 内容がそのままプロンプトに追記される以上、書いた分だけ毎回のプロンプトが長くなる。</p>
+          <p>この一文が仕組みのすべてであり、だからこそ短く保つことが効いてくると説明されている。<code>/init</code> はゼロから生成する手段であって、上書きが理由で短くするわけではない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -121,6 +144,17 @@
       </figure>
 
       <p>効果もはっきり述べられる。この状態で React コンポーネントの作成を頼めば、<strong>Claude は最初から Tailwind（あるいはあなたが使っている CSS フレームワーク）でスタイルを当てる方法を知っている</strong>。まず全体を理解しにいく手間がない分、初手から仕事が良くなる。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>CLAUDE.md</code> に書く内容として、本文の実例が挙げていないのはどれか。
+          <ul class="chk__c"><li>使っているスタック（フレームワークや ORM）の1行紹介</li><li>開発サーバーやテストのプロジェクト固有の呼び出し方</li><li>チームメンバー個人のエディタのキーボードショートカット設定</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 実例が挙げるのはスタック・コマンド・コードスタイル・プロジェクトの決めごとの4項目。</p>
+          <p>個人のエディタ設定のような話は登場せず、「他の人にも当てはまるか」という観点からもプロジェクト全体向けの内容にとどまる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -152,6 +186,17 @@
         <b>切り分けの基準</b>
         <p>「<strong>他の人にも当てはまるか</strong>」だけで決まる。プロジェクトの事実はプロジェクトへ、あなたの癖はユーザーへ。ここを混ぜると、チームの誰かにとって邪魔なルールが共有ファイルに紛れ込む。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「コメントの書き方」のような個人的な好みは、どちらのレベルのメモリファイルに書くべきか。
+          <ul class="chk__c"><li>どちらにも書かず、プロンプトで毎回伝える</li><li>プロジェクトレベル（バージョン管理にコミット）</li><li>ユーザーレベル（設定フォルダ・全プロジェクトに適用）</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 個人的な好みはユーザーレベルに書く。切り分けの基準は「他の人にも当てはまるか」の一点。</p>
+          <p>プロジェクトレベルはチームで共有されるため、個人の癖を混ぜるとチームの誰かにとって邪魔なルールになってしまう。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -187,6 +232,17 @@
         <img src="img/md-memory.jpg" alt="ターミナルで「Ok, put in the CLAUDE.md file to only use server actions instead of API routes」と依頼している画面。" loading="lazy">
         <figcaption>公式コース図版 — ヒント01の実演。<em>「API ルートではなく Server Actions だけを使う、と CLAUDE.md に書いておいて」</em>と頼むだけでルールが永続化される。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          プロジェクトの開始時に、あえて <code>CLAUDE.md</code> 無しで始めることが推奨されるのはなぜか。
+          <ul class="chk__c"><li>どこで常に軌道修正が必要になるかが見えてきて、ファイルをコンパクトに保てるから</li><li>ファイルを後から作ると読み込み速度が上がるから</li><li>/init コマンドは後からしか使えないから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 無しで始めることで、どこで常に軌道修正が必要になるかが見えてきて、ファイルを必要な情報だけにコンパクトに保てる。</p>
+          <p>準備ができた段階で <code>/init</code> を使えばよく、最初から埋めにいく必要はない。</p>
+        </div>
+      </details>
     </div>
   </section>
 

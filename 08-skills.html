@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -86,6 +87,18 @@
         <li>チームのコーディング規約を説明する</li><li>PR レビューの形式を説明し直す</li><li>コミットメッセージの好みを思い出させる</li>
       </ul>
       <p>そして一行で切る——<strong>スキルはこれを解決する。</strong></p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          スキルが解決する問題として本文が挙げているのはどれか。
+          <ul class="chk__c"><li>同じ説明を Claude に繰り返し行う手間</li><li>Claude のモデル性能の限界</li><li>プロジェクトのファイル数が多すぎること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — コーディング規約・PR レビューの形式・コミットメッセージの好みなど、毎回説明し直している手間を解決する。</p>
+          <p>モデル性能やファイル数の話は本文に出てこない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -98,6 +111,18 @@
         <cite>— 公式解説 / 00:19</cite>
       </blockquote>
       <p>もう少し広い定義も与えられる。<strong>エージェントスキルは、指示・スクリプト・リソースのフォルダ</strong>であり、エージェントがそれを発見して、より正確かつ効率的に物事を行うために使う。Claude Code ではその実体が <code>SKILL.md</code> ファイルになる。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude Code においてスキルの実体は何か。
+          <ul class="chk__c"><li>CLAUDE.md ファイル</li><li>SKILL.md ファイル</li><li>YAML 形式の設定ファイル</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — Claude Code では、指示・スクリプト・リソースのフォルダが SKILL.md ファイルという形をとる。</p>
+          <p>CLAUDE.md は常時読み込まれる別の仕組みで、s5 で対比される。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -115,6 +140,18 @@
         <b>ここから導かれる書き方</b>
         <p>スキルの中身がどれだけ良くても、<strong>description がタスクの言い回しと噛み合わなければ一度も起動しない</strong>。「いつ使うか」を description に書くのが実質的な仕事になる。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude がそのスキルを使うかどうかを決める判断材料は何か。
+          <ul class="chk__c"><li>スキルのファイル名</li><li>description</li><li>スキルフォルダの作成日時</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — description が、依頼の内容とマッチするかどうかの判断材料になる。</p>
+          <p>description がタスクの言い回しと噛み合わなければ、中身がどれだけ良くても一度も起動しない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -141,6 +178,18 @@
           <div class="modes__c" data-h="入れるもの">チーム標準、会社のブランドガイドライン、Web デザインで使うフォントや色</div>
         </div>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          リポジトリのルートの <code>.claude/skills</code> に置いたプロジェクトスキルは、誰に届くか。
+          <ul class="chk__c"><li>そのプロジェクトを最初に作った人だけ</li><li>自分のホームディレクトリを使うすべてのプロジェクト</li><li>そのリポジトリを clone した人全員</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — clone した人全員に自動で行き渡る。</p>
+          <p>「全プロジェクトについてくる」のはパーソナルスキルの方で、置き場所は <code>~/.claude/skills</code>。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -175,6 +224,18 @@
       </div>
 
       <p>コンテキストの観点でも差が出る。スキルは<strong>名前と説明だけが読み込まれる</strong>ので、コンテキストウィンドウを埋めない。<strong>デバッグしているときに、PR レビューのチェックリストがコンテキストに居座っている必要はない。</strong>実際にレビューを頼んだときに読み込まれればいい。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コンテキストの観点で、スキルが CLAUDE.md と違う点は何か。
+          <ul class="chk__c"><li>スキルはすべての会話に全文が読み込まれる</li><li>スキルは名前と説明だけが常に読み込まれ、本体は必要なときだけ読み込まれる</li><li>スキルはコンテキストウィンドウを一切使わない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 名前と説明だけが読み込まれ、コンテキストウィンドウを埋めない。実際にマッチしたときだけ本体が読み込まれる。</p>
+          <p>「すべての会話に読み込まれる」のは CLAUDE.md の方の性質。</p>
+        </div>
+      </details>
     </div>
   </section>
 

@@ -43,6 +43,12 @@ AI_FLUENCY = [
     ("ai-fluency/index.html", "AI", "AI活用力（別コース）"),
 ]
 
+# 公式コース外の別コース。educators/ 配下は教育者向け AI Fluency コース。
+# 専用の nav を別に持つのでこのサイトの nav 書き換え対象（TARGETS）には含めない。
+EDUCATORS = [
+    ("educators/index.html", "教育", "教育者のための AI Fluency（別コース）"),
+]
+
 # 別コース ai-fluency/ 側のレッスン。相対パスがルートと違うので nav も別に生成する。
 AF_LESSONS = [
     ("01-introduction.html",                "01", "AI活用力入門"),
@@ -61,7 +67,7 @@ AF_LESSONS = [
 ]
 
 # nav に載せる項目（表示用）
-NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY
+NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY + EDUCATORS
 
 # nav を書き換える対象ファイル（このサイト自身のページのみ。
 # ai-fluency/ 配下はコース専用 nav を手書きで持つため対象外）
@@ -78,7 +84,7 @@ def nav_for(current):
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
-    for href, num, ja in APPENDIX + AI_FLUENCY:
+    for href, num, ja in APPENDIX + AI_FLUENCY + EDUCATORS:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a class="is-appendix" href="%s" title="%s" aria-label="%s"%s>%s</a>'
                     % (href, ja, ja, cur, num))

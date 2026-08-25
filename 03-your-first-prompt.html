@@ -37,6 +37,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
   </div>
 </div>
@@ -84,6 +85,17 @@
       <h2 class="sec__h">まず、普通に話しかける</h2>
       <p>出だしは拍子抜けするほど素っ気ない。<strong>Claude Code には、他の AI アシスタントに話しかけるのと同じように話しかければいい</strong>。特別な構文も、決まった型もない。</p>
       <p>プロンプトを入力するときに考慮できるのが、承認モードとプランモード。どちらも「<em>あなたを守り、同時に作業を楽にする</em>」ためのものだ。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude Code にプロンプトを入力するとき、決まった構文や型は必要か。
+          <ul class="chk__c"><li>必要——専用のコマンド構文を覚える必要がある</li><li>不要——他の AI アシスタントに話しかけるのと同じでよい</li><li>不要だが、必ず英語で入力する必要がある</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 特別な構文も決まった型もなく、他の AI アシスタントと同じように話しかければよい。</p>
+          <p>その上で、承認モードとプランモードという2つの仕組みが、作業を安全かつ楽にするために用意されている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -122,6 +134,17 @@
         <img src="img/modes.jpg" alt="Claude Code のターミナル画面。下部に accept edits on (shift+tab to cycle) と表示されている。" loading="lazy">
         <figcaption>公式コース図版 — 入力欄の下に現在のモードが出る。<code>accept edits on (shift+tab to cycle)</code> が自動承認モードの表示。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          動画時点の自動承認モード（ACCEPT EDITS）で、デフォルトの線引きとして説明されているのはどれか。
+          <ul class="chk__c"><li>ファイル編集は毎回たずねられるが、コマンド実行は自動で承認される</li><li>ファイル編集は自動で承認されるが、コマンド実行は必ず止まる</li><li>ファイル編集もコマンド実行も、両方とも自動で承認される</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 編集は自動でも、コマンドの実行だけは必ず止まるという線引きがデフォルトで引かれている。</p>
+          <p>手動モードはどちらも毎回たずねる点で自動承認モードと異なる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -156,6 +179,17 @@
         <img src="img/plan-mode.jpg" alt="Claude Code 起動直後の画面。入力欄の下に plan mode on (shift+tab to cycle) と表示されている。" loading="lazy">
         <figcaption>公式コース図版 — <code>plan mode on (shift+tab to cycle)</code>。この表示が出るまで <kbd>Shift</kbd>+<kbd>Tab</kbd> を押す。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          プランモードで「読み取り専用ツールでコードベースを分析する」段階では、ファイルはどうなるか。
+          <ul class="chk__c"><li>一切編集されない</li><li>編集が提案され、承認すればすぐに反映される</li><li>バックアップを取ったうえで編集される</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — この段階では読み取り専用ツールで調査するだけで、ファイルは一切編集されない。</p>
+          <p>編集が入るのはプランが承認され実行に移った後であり、プランモード自体は複雑な変更の計画や安全なコードレビューに向いている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -189,6 +223,17 @@
       </figure>
 
       <p>あとは Claude にプランを立てさせる。<strong>プランを確認して問題なければ承認し、各ステップで承認を求めさせる</strong>。最後には、Claude が何を行い、どのようにその結論に至ったのかを正確に確認できる。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          実演のプロンプトで「既存のライトテーマに合う、コントラストの良い色を見つけてほしい」という一文は、何の役割を果たしているか。
+          <ul class="chk__c"><li>作業の範囲を明示している</li><li>判断が必要な部分の基準を渡している</li><li>完成後の成果物を具体的に示している</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 色の選び方という判断が必要な部分について、先に基準を与えている。</p>
+          <p>範囲の明示は「アプリ全体に」、成果物の具体化は「ヘッダーのトグルスイッチ」がそれぞれ担っており、役割が分かれている。</p>
+        </div>
+      </details>
     </div>
   </section>
 

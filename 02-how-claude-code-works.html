@@ -37,6 +37,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
   </div>
 </div>
@@ -113,6 +114,17 @@
         <img src="img/agentic-loop.jpg" alt="Your prompt から Gather context → Take action → Verify results のループを経て Done に至る図。ループの下から「You interrupt, steer or add context」の矢印が入っている。" loading="lazy">
         <figcaption>公式コース図版 — Your prompt →〈Gather context → Take action → Verify results〉→ Done。検証で満たなければ Gather context へ戻る。下から刺さる矢印が「あなたが中断・誘導・コンテキスト追加できる」ポイント。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          エージェンティックループの5段階のうち、「ファイルを編集する、コマンドを実行するなど、返ってきたツール呼び出しを実際に走らせる」のはどの段階か。
+          <ul class="chk__c"><li>アクションを実行する</li><li>コンテキストを集める</li><li>結果を検証する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 「アクションを実行する」段階で、モデルから返ってきたツール呼び出しを実際に走らせる。</p>
+          <p>「コンテキストを集める」段階はモデルとやり取りしてテキストかツール呼び出しを受け取る段階、「結果を検証する」段階はその実行結果がプロンプトの意図を達成しているか判断する段階で、それぞれ役割が異なる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -126,6 +138,17 @@
         <b>読み替えると</b>
         <p>長い作業ほど、序盤のやり取りは要約に置き換わっていく。だから「さっき言ったこと」が常に原文のまま残っているとは限らない。重要な前提は、会話ではなくファイル（<code>CLAUDE.md</code> など）に置いておくほうが安全になる。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コンテキストウィンドウが上限に達したとき、Claude Code は何を行うか。
+          <ul class="chk__c"><li>それ以上の会話を一切受け付けなくなる</li><li>ファイルの内容だけを保持し、会話履歴を全削除する</li><li>何を取り除き何を要約できるかを自動で判断し、圧縮（compact）する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 自動的に会話を圧縮（compact）し、使用可能なサイズまで戻す。</p>
+          <p>その結果、序盤のやり取りは要約に置き換わっていくため、重要な前提はファイルに置くほうが安全になる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -144,6 +167,17 @@
       <ul class="chips">
         <li>Read file</li><li>Search web</li><li>Edit file</li><li>Run command</li><li>…</li>
       </ul>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude Code がツールを呼び出すかどうかを判断するしくみとして、本文が説明しているのはどれか。
+          <ul class="chk__c"><li>セマンティックな理解を用いて、いつ呼ぶべきかを判断している</li><li>あらかじめ決められた手順を順番に再生している</li><li>ユーザーが毎回どのツールを使うか指定している</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — セマンティックな理解を用いて、いつツールを呼び出し、その出力をどう使うかを判断する。</p>
+          <p>決まった手順の再生ではなく意味を見て判断するからこそ、テキストを返すだけの普通のアシスタントと対比される。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -221,6 +255,17 @@
         <b>モードより強いもの</b>
         <p><a href="https://code.claude.com/docs/en/permissions">公式ドキュメント</a>いわく、ルールの評価順は <strong>deny → ask → allow</strong> で、先に一致したものが勝つ。ルールの具体性は順序を変えない。だから <code>deny</code> は<strong>すべてのモードで効く</strong>——権限スキップモードでも、PreToolUse フックが「許可」を返しても、deny が勝つ。逆に <code>allow</code> は権限スキップ下では意味を持たない。触らせたくないものは、モードではなく deny で止めるのが確実——これは <a href="10-hooks.html">10 フック</a> の「お願いではなく、保証」と同じ考え方。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          動画時点の3モードのうち、ファイル編集は確認なしで実行するがコマンド実行は毎回たずねるのはどれか。
+          <ul class="chk__c"><li>自動承認（ACCEPT EDITS）</li><li>手動（DEFAULT）</li><li>プランモード（PLAN）</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 自動承認はファイル編集を確認なしで実行し、コマンド実行はたずねる。</p>
+          <p>手動はどちらも毎回たずね、プランモードはそもそもファイル編集をせず読み取り専用ツールしか使わない。</p>
+        </div>
+      </details>
     </div>
   </section>
 

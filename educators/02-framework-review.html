@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 AI Fluency フレームワークの復習 — 教育者のための AI Fluency 学習ノート</title>
+<meta name="description" content="4D（委任力・記述力・評価力・倫理的責任）と、その12のサブコンポーネントを動画の全文書き起こしに沿って整理した日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">教育者のための AI Fluency / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="教育者のための AI Fluency コース 目次" aria-label="教育者のための AI Fluency コース 目次">目次</a>
+      <a href="01-introduction.html" title="教育者のための AI Fluency 入門" aria-label="01 教育者のための AI Fluency 入門">01</a>
+      <a href="02-framework-review.html" title="AI Fluency フレームワークの復習" aria-label="02 AI Fluency フレームワークの復習" aria-current="page">02</a>
+      <a href="03-course-design.html" title="コース設計と学習成果への適用" aria-label="03 コース設計と学習成果への適用">03</a>
+      <a href="04-learning-materials.html" title="学習教材と課題への適用" aria-label="04 学習教材と課題への適用">04</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../ai-fluency/index.html" title="AI活用力コースへ" aria-label="AI活用力コースへ">AI活用力</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 02 / AI Fluency for Educators（公式 Lesson 2 of 4）</p>
+    <p class="eyebrow" style="color:var(--signal)">9:21 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">AI Fluency<br><em>フレームワークの復習</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    教育実践に入る前の土台の回。<strong>「AI を使うこと」と「AI に流暢であること」の違い</strong>から始めて、4D——委任力・記述力・評価力・倫理的責任——を一つずつ、<strong>それぞれ3つのサブコンポーネント</strong>まで降りて定義していく。以下はその全内容を、話の流れに沿って日本語で再構成したもの。
+  </p>
+
+  <p class="eyebrow">この回で学べること — 公式ページ「In this lesson」より</p>
+  <ul class="chips">
+    <li>AI Fluency の意味を定義する</li>
+    <li>4つの D をそれぞれ定義する</li>
+  </ul>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2%"><s>導入</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:12.7%"><s>土台</s><i></i><b>1:11</b></div>
+      <div class="tl__tick" style="left:19.6%"><s>委任力</s><i></i><b>1:50</b></div>
+      <div class="tl__tick" style="left:38.5%"><s>記述力</s><i></i><b>3:36</b></div>
+      <div class="tl__tick" style="left:52.4%"><s>評価力</s><i></i><b>4:54</b></div>
+      <div class="tl__tick" style="left:68.3%"><s>ループ</s><i></i><b>6:23</b></div>
+      <div class="tl__tick" style="left:74.5%"><s>責任</s><i></i><b>6:58</b></div>
+      <div class="tl__tick" style="left:88.4%"><s>総括</s><i></i><b>8:16</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>09:21</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Anthropic</dd></div>
+    <div><dt>Published</dt><dd><span>2025.08.20</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>9:21</span> <small>/ 561s</small></dd></div>
+    <div><dt>Views</dt><dd><span>95,264</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/7tR7modJioQ" target="_blank" rel="noopener">youtu.be/7tR7modJioQ ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="561">
+
+  <section class="sec" id="s1" data-start="11" data-label="導入">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">「AI を使う」ことと「AI に流暢である」ことの違い</h2>
+      <p>おそらく AI は試したことがあるはずだ——エッセイを手伝ってもらう、問題を解く、あるいは何ができるのか触ってみるだけでも。本当に気に入って頻繁に使っているアプリケーションを、いくつか見つけているかもしれない。<strong>だが、AI を使うことと、AI に流暢であることの間には違いがある</strong>——動画はそこから切り出す。</p>
+      <p>この動画で扱うのは AI fluency、すなわち <strong>AI を効果的・効率的・倫理的・安全に使うこと</strong>。特定のツールや巧いプロンプトを超えたスキルであり、本物の習熟につながるスキルだと語られる。それは<strong>今日の AI と働いていても、次に来るものと働くことになっても役に立つ</strong>。</p>
+      <p>そのために辿るのが <strong>4D フレームワーク</strong>——AI との働き方を変えることを願って提示される4つのコンピテンシー。情報を集めているときも、プロジェクトで協働しているときも、さらには AI システムを自分の代わりに独立して働くよう設定しているときも、これらのスキルが自分をより効果的にする、とされる。</p>
+      <div class="tip">
+        <b>この動画は高レベルの概観にすぎない</b>
+        <p>動画自身が 0:58 で断っている。「この動画はフレームワークの高レベルな概観を提供するだけで、各コンピテンシーについてのより豊かな洞察と演習は、私たちの <em>AI Fluency: Framework &amp; Foundations</em> コースで探ってほしい」。本サイトではそのコースを <a href="../ai-fluency/index.html">AI活用力（AI Fluency）</a> として別に収録している。各 D の詳細は <a href="../ai-fluency/06-delegation.html">06 委任力</a>／<a href="../ai-fluency/08-description.html">08 記述力</a>／<a href="../ai-fluency/10-discernment.html">10 評価力</a>／<a href="../ai-fluency/12-diligence.html">12 倫理的責任</a> にある。</p>
+      </div>
+      <div class="tip">
+        <b>この回だけ動画タイトルにレッスン番号が無い</b>
+        <p>元動画の実タイトルは <em>Summary of the AI Fluency Framework | AI Fluency</em> で、他の回と違い「Lesson N:」が付かない。複数のコースで共有される<strong>フレームワーク要約動画</strong>だからで、公式 Academy 上ではこのコースの <strong>Lesson 2 of 4「AI Fluency Framework review」</strong>として置かれている。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="71" data-label="土台：責任ある人間">
+    <div class="sec__mark"><div><span class="sec__t">1:11</span><span class="sec__kind">土台</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">土台にあるのは「輪の中にいる責任ある人間」</h2>
+      <p>AI fluency の核心は <strong>responsible human in the loop（輪の中にいる責任ある人間）</strong>であること、つまり<strong>自分で意思決定し、AI を責任を持って使う</strong>ことだと述べられる。それは、<strong>自分がすでにやっている素晴らしい仕事に付け加える／拡張する（augmenting）</strong>ということでもある。</p>
+      <p>これと対比されるのが <strong>simple automation（単純な自動化）</strong>——自分が何を頼んでいるのか、その影響がどうなりうるのかを深く考えないまま、AI に仕事をやらせてしまうこと。そして<strong>これは学習の場面で特に重要</strong>だと念を押される。学習において、私たちは AI に自分の代わりに作業をしてほしいわけではない。<strong>自分の仕事をより良くする手助けをしてほしい</strong>のだ。</p>
+      <p>そのうえで 4D が示される——<strong>delegation（委任）、description（記述）、discernment（評価）、diligence（倫理的責任）</strong>。動画はこれを<strong>互いに結びついた4つのコンピテンシーであり、組み合わさったときに AI fluency をつくり出すもの</strong>として捉えるよう促す。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="110" data-label="委任力（Delegation）">
+    <div class="sec__mark"><div><span class="sec__t">1:50</span><span class="sec__kind">D — 1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">委任力（Delegation・「委任」とも訳される）</h2>
+      <p>1つ目は委任力。要するに<strong>「自分たちは何をしようとしているのか、そしてそれを誰がやるべきか」を見極めること</strong>。委任力が問うのは、<strong>人間がやるべき仕事は何か、AI がやるべき仕事は何か、そして一緒にやるべき仕事は何か</strong>。</p>
+      <p>「単純に聞こえるだろう？」と動画は言う。<strong>だが、仕事を効果的に分けることこそが、思慮深い AI 協働の土台</strong>になる。効果的な委任には3種類の awareness（把握）が必要だとして、順に説明される。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>problem awareness / 問題の把握</h3>
+          <p>AI アシスタントを開く前に、<strong>自分が実際に何をしようとしているのか</strong>をはっきりさせる。「テスト勉強」——それはそうだが、教材を効果的に学ぶために何をする必要があるのか。語彙の復習か。ケーススタディの準備か。「うまく勉強できた」とはどういう状態か。<strong>最初の時点でゴールが明確なほど、AI と作業する間も当初の意図に忠実でいやすい。</strong>協働の途中で problem awareness を改訂することもあるが、AI と働く間の<strong>北極星（north star）</strong>として存在すべきだとされる。問題についての自分の理解こそが、流暢な AI 利用の土台になる。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>platform awareness / プラットフォームの把握</h3>
+          <p><strong>AI はどれも同じではない。</strong>システムごとに能力と限界が違う。複雑な推論が得意なものもあれば、学生の学習を助けるために特別に作られたものもある。problem awareness が「やるべき仕事」を教えてくれるなら、platform awareness は<strong>その仕事を片付けるのに最適な道具または相棒</strong>を見つける助けになる。授業への行き方を選ぶのに似ている——歩く、自転車、バス、車。すべては自分の具体的な状況次第。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>task delegation / タスクの割り振り</h3>
+          <p>実際に<strong>自分と AI の間で仕事を分け、それぞれの強みを活かす</strong>ところ。私たち人間は<strong>創造性、判断、実世界の文脈</strong>をもたらす。AI は<strong>速度、一貫性、大量の情報を処理する能力</strong>を提供する。<strong>双方の強みを活かすときに、最良の結果が生まれる。</strong></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="216" data-label="記述力（Description）">
+    <div class="sec__mark"><div><span class="sec__t">3:36</span><span class="sec__kind">D — 2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">記述力（Description・「記述」とも訳される）</h2>
+      <p>記述力は<strong>実際に AI にどう話すか</strong>だが、<strong>単なるプロンプティング以上のもの</strong>だと定義される。AI と流暢に働くことは、完璧なプロンプトを暗記したり命令を出したりすることよりも、<strong>協働者との会話を持つことに近い</strong>——記述力はその認識の上に立っている。動画は記述の3つの次元を挙げる。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>product description / 成果物の記述</h3>
+          <p><strong>最終的な結果に何を求めるか</strong>について。詳しいほどよい。「メールを書く必要がある」で止めない。<strong>どのくらいの長さにすべきか、キーメッセージは何か、そのメールは誰に宛てるのか、どんな文体で書くべきか</strong>——そこまで指定する。出力、形式、想定読者、そして最終成果物そのもののスタイルについて、自分が望むものを伝えることが product description である。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>process description / プロセスの記述</h3>
+          <p><strong>AI が依頼にどう取り組むべきか</strong>について。「別の人にそのタスクのやり方を教えているところを想像してみる。その人に言うであろうことが、そのまま AI アシスタントに言うことの候補になる」。たとえば<strong>「注意深く順を追って考えて」「複数の視点を考慮して」「最も重要な点から始めて」</strong>と頼む。これが AI の思考プロセスを導き、<strong>自分のビジョンにより沿った最終結果</strong>につながる。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>performance description / 振る舞いの記述</h3>
+          <p><strong>やりとりの間、AI にどう振る舞ってほしいか</strong>を定める。自分のアイデアに切り込む批判的な編集者が必要なら、そう言う。支援的なブレインストーミングが欲しいなら、そう頼む。<strong>AI アシスタントの応答の仕方を形づくるのは自分である。</strong></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="294" data-label="評価力（Discernment）">
+    <div class="sec__mark"><div><span class="sec__t">4:54</span><span class="sec__kind">D — 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">評価力（Discernment・「識別」とも訳される）</h2>
+      <p>記述力が「何が欲しいかを説明すること」だとすれば、評価力は<strong>良い結果と悪い結果を見分ける能力</strong>のこと。AI が産み出すものについて<strong>良い判断力を持ち、それに応じてどう適応し調整するかを知っている</strong>ことを含む。良い評価力は<strong>誤りから守ってくれる</strong>し、それだけでなく、<strong>AI の助けを借りて目標を達成する新しい創造的なやり方を探ること</strong>さえ可能にしてくれる。記述力と同じく、product・process・performance の3つのレベルで働く。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>product discernment / 成果物の評価</h3>
+          <p><strong>AI が作ったものの質を評価する。</strong>情報は正確か。提案は実際に役立つか。<strong>だがそれだけではなく——AI は自分が考えていなかったものを見せてくれたか。</strong>これは事実誤認をチェックすることであると同時に、<strong>新しい視点へ自分の思考を開くこと</strong>でもある。友人と一緒に作業するときと、よく似ている。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>process discernment / プロセスの評価</h3>
+          <p><strong>AI がどうやってそこにたどり着いたかを調べる。</strong>関連する要因をすべて考慮したか。妥当な前提を置いたか。論理的な手順を踏んだか。<strong>AI の推論を理解することが、良い出力を信頼し、同時に問題を見つけることの助けになる。</strong></p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>performance discernment / 振る舞いの評価</h3>
+          <p><strong>やりとりの間、AI がどう振る舞ったか。</strong>自分が必要としていた形で役に立ったか。頼んだ役割に留まったか。適切なときに押し返してきたか。<strong>この意識が、次回以降のやりとりを調整するのに効いてくる。</strong></p>
+        </article>
+      </div>
+      <p>そして強調される。<strong>良い評価力とは、誤りを探し回ることだけではない。</strong>AI が自分を驚かせたとき、あるいは本当に自分がよりよく考える助けになってくれたときを<strong>認識すること</strong>でもある。AI は、自分が考えてもみなかった手法を提案したり、見落としていた結びつきをつくったり、示唆に富む形でアイデアを枠づけたりすることがある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="383" data-label="記述と評価のループ">
+    <div class="sec__mark"><div><span class="sec__t">6:23</span><span class="sec__kind">ループ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">記述と評価は継続的なフィードバックループになる</h2>
+      <p>すでに触れたとおり、記述力と評価力は<strong>継続的なフィードバックループ</strong>として一緒に働く。<strong>欲しいものを記述し、得たものを評価し、そして調整して記述を練り直す。</strong>良い会話がどれもそうであるように、理解を一緒に築いていくことになる。</p>
+      <p><strong>この反復のプロセスこそ、本物の AI fluency が育つ場所</strong>だと語られる。会話の一巡ごとに協働が深まっていく。「エッセイについていくつか考えがあるので、一緒に考えるのを手伝って」から始まったものが、<strong>構成・論証・根拠についての繊細な思考</strong>へと発展していく。</p>
+      <blockquote class="quote">
+        <p>このループが、AI を「指示に従う道具」から「自分がより良く考え、目標をより良く達成するのを助けるパートナー」へと変える。</p>
+        <cite>— 動画 6:52 付近</cite>
+      </blockquote>
+      <p>このループそのものを掘り下げた回が、姉妹コースの <a href="../ai-fluency/11-description-discernment-loop.html">11 記述・評価のループ</a> にある。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="418" data-label="倫理的責任（Diligence）">
+    <div class="sec__mark"><div><span class="sec__t">6:58</span><span class="sec__kind">D — 4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任（Diligence・「誠実さ」とも訳される）</h2>
+      <p>最後は倫理的責任——<strong>AI とどう協働するかについて責任を引き受けること</strong>。そして<strong>AI とのやりとりのあらゆる段階で重要</strong>だとされる。倫理的責任は、AI への関与が<strong>責任ある・透明な・倫理的なもの</strong>であり続けることを保証する。</p>
+      <p>動画はここで釘を刺す。<strong>「これは退屈なコンプライアンスの話ではない。自分が納得でき、支持できるやり方で AI と協働することについての話だ。」</strong></p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>creation diligence / 作成の責任</h3>
+          <p><strong>どの AI システムを使い、それとどう関わるかを思慮深く選ぶこと。</strong>AI アシスタントを選ぶときは、<strong>プライバシー、セキュリティ、そして自分の具体的な文脈への適切さ</strong>を考える。個人的なブレインストーミングに AI を使う——いい。複雑な分析に使う——それも素晴らしい。<strong>ただし、状況が違えば求められるアプローチも違う。</strong></p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>transparency diligence / 透明性の責任</h3>
+          <p><strong>AI とどう働いたかについて正直であること。</strong>教授、チームメイト、そして将来の雇用主には、<strong>AI がいつ、どのように自分を助けたのかを知る資格がある</strong>。正しくやっていれば<strong>隠すことは何もない</strong>。それどころか、AI と流暢に協働できる自分の能力を披露していることになる——そしてそれは<strong>すでに決定的に重要な professional skill</strong> になっている。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>deployment diligence / 公開の責任</h3>
+          <p><strong>AI とつくったものの所有権を引き受けること。</strong>正確性を検証し、適切さを確かめ、<strong>世に出すものに対して責任を取る</strong>。</p>
+        </article>
+      </div>
+      <blockquote class="quote">
+        <p>AI がメールの下書きを書くかもしれない。だが、送るのはあなただ。AI がアイデアを提案するかもしれない。だが、どれを使うか選ぶのはあなただ。最終結果に責任があるのは、常に私たち自身である。</p>
+        <cite>— 動画 8:08 付近</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="496" data-label="総括：練習で育つ">
+    <div class="sec__mark"><div><span class="sec__t">8:16</span><span class="sec__kind">総括</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">4D は一緒に使ったときに生きてくる</h2>
+      <p><strong>4D は一緒に使ったときに本当に生きてくる。</strong>そして何事もそうであるように、<strong>練習によって上達する</strong>。動画は視聴者に語りかける——「この動画を、学校のオンラインコースの一部として、あるいは自分自身の学びのために見ているかもしれない。<strong>だが、実際に試してみることこそが、私たちの言っていることの意味と、4D が AI との働き方をどう変えうるかを、本当に理解し始める場所だ</strong>」。</p>
+      <p><strong>思慮深く仕事を委任し、注意深く明確にニーズを記述し、批判的に出力を評価し、誠実に結果への責任を引き受ける</strong>——そのたびに、自分の fluency は育っていく。</p>
+      <p>そして 8:44、4D が <strong>AI 技術が進化したあとも意味を持ち続けること</strong>への期待が語られる。新しい能力は来るだろう。<strong>だが、戦略的思考、明確なコミュニケーション、批判的評価、倫理的責任の必要性は残り続ける。</strong></p>
+      <p>締めくくりは実践への呼びかけ。<strong>次の AI とのやりとりから練習を始める。自分がどの D を使っているかに気づく。ひとつひとつをもっと意図的にやってみる。</strong>AI との協働がどれほど速く良くなるか、驚くことになるはずだ、と。</p>
+      <p class="wrapup">これがフレームワーク。あとは、<em>自分のものにしにいこう</em>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="key" data-label="要点整理（公式コース本文より）">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">要点整理（公式コース本文より）</h2>
+      <div class="tip">
+        <b>ここからは出典が変わる</b>
+        <p>ここまでのセクションは動画のトランスクリプトに基づく。以下は公式 Academy のレッスンページにある <em>Key takeaways</em>（重要なポイント）の訳。</p>
+      </div>
+      <ul class="acts">
+        <li>
+          <h3>4つの D が連携することで真の AI Fluency が生まれる</h3>
+          <p>4つは独立したスキルではなく、互いに結びついたコンピテンシーとして働く。</p>
+        </li>
+        <li>
+          <h3>拡張（augmentation）は自動化（automation）より強力</h3>
+          <p>AI と協働して自分の仕事を高めることは、AI に単に仕事をやらせることより強力である。</p>
+        </li>
+        <li>
+          <h3>記述力（Description）と評価力（Discernment）は継続的な改善ループを形成する</h3>
+          <p>記述し、評価し、記述を練り直す——この往復が協働を深める。</p>
+        </li>
+        <li>
+          <h3>各 D には、AI とのやりとりの異なる側面に対応する3つのサブコンポーネントがある</h3>
+          <p>委任力は problem / platform awareness と task delegation、記述力と評価力は product / process / performance、倫理的責任は creation / transparency / deployment。</p>
+        </li>
+        <li>
+          <h3>これらのスキルは、AI 技術がどう進化しても変わらず重要であり続ける</h3>
+          <p>特定のツールやプロンプト技法に縛られていないため。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="ex" data-label="実践">
+    <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">実践</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">実践：次のやりとりで、どの D を使っているかに気づく</h2>
+      <div class="tip">
+        <b>この回に公式の演習は無い</b>
+        <p>公式 Academy のこのレッスンのページには <em>Exercises</em> セクションが存在しない。以下は動画の締め（8:57）が実際に呼びかけている内容をそのまま実践手順にしたもので、<strong>公式の演習ではない</strong>。公式ページは代わりに「完全な内訳は <em>AI Fluency: Framework &amp; Foundations</em> コースを参照」と案内している。</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>次の AI とのやりとりから練習を始める</h3>
+          <p>新しく場を設ける必要はない。すでに予定している次の一回で始める。</p>
+        </li>
+        <li>
+          <h3>自分がどの D を使っているかに気づく</h3>
+          <p>いま自分は仕事を割り振っているのか（委任力）、望むものを説明しているのか（記述力）、返ってきたものを見極めているのか（評価力）、それとも結果への責任を引き受けているのか（倫理的責任）。</p>
+        </li>
+        <li>
+          <h3>ひとつひとつを、もっと意図的にやってみる</h3>
+          <p>気づいた D を、いつもより一段はっきり言葉にしてやってみる。動画は「AI との協働がどれほど速く良くなるか、驚くことになるはず」と言う。</p>
+        </li>
+      </ol>
+      <p>各 D を演習つきで深く扱っているのは姉妹コースのほう。手を動かしたい場合はこちらへ。</p>
+      <ul class="chips">
+        <li><a href="../ai-fluency/06-delegation.html">委任力 (Delegation) を詳しく見る</a></li>
+        <li><a href="../ai-fluency/08-description.html">記述力 (Description) を詳しく見る</a></li>
+        <li><a href="../ai-fluency/10-discernment.html">評価力 (Discernment) を詳しく見る</a></li>
+        <li><a href="../ai-fluency/12-diligence.html">倫理的責任 (Diligence) を詳しく見る</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="reflect" data-label="振り返り">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p class="tr__note">公式ページにはこの回の振り返り設問が無い。以下は動画が投げかけている問いから、本サイトが教育者向けに起こしたもの。</p>
+      <ol class="steps">
+        <li><h3>自分の直近の AI 利用は、拡張だったか、単純な自動化だったか</h3><p>「自分の仕事をより良くする手助け」を求めていたか、それとも「自分の代わりに作業してもらう」ことを求めていたか。</p></li>
+        <li><h3>12 のサブコンポーネントのうち、意識せずにやっているものはどれか</h3><p>逆に、名前を聞いて初めて意識したものはどれか。</p></li>
+        <li><h3>自分の授業で、学生に最初に伝えるべき D はどれか</h3><p>それはなぜか。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="next" data-label="次のステップ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ（公式コース本文より）</h2>
+      <p>公式ページの <em>What's next</em> はこう予告する——次のレッスンでは <strong>AI Fluency をコース設計と学習成果に適用する</strong>。必須の内容を特定し、学習の道筋を描き、明確な目標を明文化するために、<strong>AI を協働のパートナーとして使う</strong>ことを学ぶ。そのすべてを、<strong>自分の教育的ビジョンと専門性をプロセスの中心に置いたまま</strong>行う。</p>
+      <p><a href="03-course-design.html">03 コース設計と学習成果への適用 →</a></p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。認識ミス（highle、customuilt、fast amounts、the 40s など）もそのまま残してある。日本語本文側では正しい語に直している。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>You've probably tried AI, maybe to help with an essay, solve a problem, or just explore what it can do. You've probably even found a few applications you really love and work with often. But there's a difference between using AI and being fluent with it. In this video, we'll</p></div>
+      <div><span>0:26</span><p>explore AI fluency. using AI effectively, efficiently, ethically, and safely. We're talking about skills that go beyond any specific tool or clever prompt. Skills that lead to genuine mastery that will serve you whether you're working with today's AI or whatever comes next. We'll walk through</p></div>
+      <div><span>0:43</span><p>the 4D framework, four competencies that we hope will transform how you work with AI. Whether you're gathering information, collaborating on projects, or even setting up AI systems to work independently on your behalf, these skills will make you more effective.</p></div>
+      <div><span>0:58</span><p>This video provides just a highle overview of the framework, and we encourage you to explore the richer insights and exercises for each competency available in our AI fluency framework and foundations course. At its core, AI fluency is about being a</p></div>
+      <div><span>1:13</span><p>responsible human in the loop, which means making decisions and using AI responsibly. It's about augmenting or adding to the great work you already do. This is in contrast to simple automation where people ask AI to do work for them without thinking deeply about what</p></div>
+      <div><span>1:29</span><p>they're asking or what the impact might be. This is especially important in learning where we really don't want AI to do work for us. Instead, we want AI to help us do our work better. The four Ds are delegation, description, discernment, and diligence. Think of</p></div>
+      <div><span>1:44</span><p>them as four interconnected competencies that when combined create AI fluency. Let's begin with delegation. Basically figuring out what we are trying to do and who should do it. Delegation asks what work should humans do, what should AI do, and what should we do together.</p></div>
+      <div><span>2:00</span><p>Simple, right? But splitting up the work effectively is the foundation of thoughtful AI collaboration. Effective delegation requires three types of awareness. First, problem awareness. Before you even pull up an AI assistant, get clear on what you're actually trying</p></div>
+      <div><span>2:15</span><p>to do. Studying for a test, sure, but what do you need to do in order to effectively learn the materials? Is it reviewing vocabulary? Preparing for case studies? What does successful studying look like? The clearer you are about your goals at the outset, the easier it</p></div>
+      <div><span>2:32</span><p>is to stay true to your original intention as you work with AI. Occasionally, you might revise your problem awareness during the course of AI collaboration, but it should exist as your north star as you work with AI. Your understanding of the problem is the foundation of fluent AI use. Second,</p></div>
+      <div><span>2:49</span><p>platform awareness. Not all AI is the same. Different AI systems have different capabilities and limitations. Some are great at complex reasoning. Some are customuilt to aid student learning. If problem awareness tells us the job that needs doing, platform</p></div>
+      <div><span>3:05</span><p>awareness helps us find the best tool or partner to get the job done. It's like choosing how to get to class. You might walk, bike, bus, or drive. It all depends on your specific circumstances. Finally, there's task delegation. Task delegation is where you actually divide</p></div>
+      <div><span>3:20</span><p>the work between yourself and AI to leverage the strengths of each. Us humans bring creativity, judgment, and real world context. AI offers speed, consistency, and the ability to process fast amounts of information. The best results happen when we play to both</p></div>
+      <div><span>3:36</span><p>strengths. Next, let's look at description. Description is how you actually talk to AI, but it's more than just prompting. It recognizes that working with AI fluently is more like having a conversation with a collaborator, not memorizing perfect prompts or giving commands. Consider</p></div>
+      <div><span>3:52</span><p>these three dimensions of description. Product description is about what you want from the final result. The more detail, the better. Don't just say, "I need to write an email." Specify how long it should be, the key messages, who the email is going to, what style the</p></div>
+      <div><span>4:07</span><p>writing should be in, and so on. Product description is about conveying what you want about the outputs, format, intended audience, and style of the final product itself. Process description is about how the AI should approach your request. Imagine you're teaching another person</p></div>
+      <div><span>4:22</span><p>how to do the task. Whatever you'd say to them is what you might consider saying to the AI assistant. For example, you might ask the AI to think carefully step by step. Consider multiple perspectives or start with the most important points. This helps guide AI's thinking process for a final result that</p></div>
+      <div><span>4:38</span><p>is more aligned to your vision. Finally, performance description defines how you want AI to behave during your interaction. Need a critical editor who challenges your ideas? Say so. Want supportive brainstorming? Ask for it. You shape how your AI assistant</p></div>
+      <div><span>4:54</span><p>responds. While description is about explaining what we want, discernment is about our ability to recognize a good or bad result. It involves having good judgment about what AI produces and knowing how to adapt and adjust accordingly. Good discernment protects</p></div>
+      <div><span>5:10</span><p>against errors and might even allow you to explore new creative ways to accomplish your goals with AI's help. Like description, it works on three levels: product, process, and performance. Product discernment evaluates the quality of what the AI creates. Is the information accurate? Do</p></div>
+      <div><span>5:27</span><p>the suggestions actually help? But also, did the AI show you something you hadn't considered? This is both about checking for factual inaccuracies as well as opening up your thinking to new perspectives, much like you would when working with a friend. Process discernment examines how the AI got</p></div>
+      <div><span>5:43</span><p>there. Did it consider all relevant factors, make reasonable assumptions, follow logical steps? Understanding the AI's reasoning can help you trust good outputs and spot problems. Performance discernment is about how the AI behaved during your interaction. Was it helpful</p></div>
+      <div><span>5:58</span><p>in the way you needed? Did it stay in the role you asked for? Push back when appropriate? This awareness helps you adjust for future interactions. Remember, good discernment is not just hunting for errors. It's also recognizing when the AI surprises you or</p></div>
+      <div><span>6:13</span><p>genuinely helps you think better. Sometimes AI suggests approaches you hadn't considered, makes connections you missed, or frames ideas in illuminating ways. As we mentioned before, description and discernment work together in a continuous feedback loop.</p></div>
+      <div><span>6:29</span><p>You describe what you want, discern what you get, then adjust and refine your description. It's like any good conversation. You build understanding together. This iterative process is where real AI fluency develops. Each round of conversation deepens the collaboration. What starts as help me</p></div>
+      <div><span>6:45</span><p>think through some ideas I have for my essay evolves to nuance thinking about structure, arguments, and evidence. This loop transforms AI from a tool that follows instructions into a partner that helps you think and achieve your goals better. Last but not least, let's talk</p></div>
+      <div><span>7:00</span><p>about diligence. Diligence is about taking responsibility for how we collaborate with AI. And it's important at every stage of AI interaction. Diligence ensures AI engagement remains responsible, transparent, and ethical. This isn't some boring compliance thing.</p></div>
+      <div><span>7:15</span><p>It's about collaborating with AI in ways you can feel good about and stand behind. First is creation diligence, which involves thoughtfully selecting which AI systems we use and how we interact with them. When picking an AI assistant, consider privacy, security, and appropriateness for your specific</p></div>
+      <div><span>7:30</span><p>context. Using AI for personal brainstorming, cool. Using it for complex analysis, also great. But different situations call for different approaches. Next is transparency diligence, which means being honest about how you've worked with AI. Your professors, teammates, and future</p></div>
+      <div><span>7:45</span><p>employers deserve to know when AI helped you and how. Done right, you have nothing to hide. In fact, you're showcasing your ability to collaborate with AI fluently, which has become a critical professional skill. Finally, there's deployment diligence, which means taking ownership of what we create</p></div>
+      <div><span>8:01</span><p>with AI. We verify accuracy, ensure appropriateness, and take responsibility for what we put out into the world. AI might draft the email, but you send it. AI might suggest ideas, but you choose which to use. We're always responsible for the final result. The 4Ds really</p></div>
+      <div><span>8:17</span><p>come alive when you use them together. And like anything, they improve with practice. You may be watching this video as part of an online course in school or for your own learning. But trying it out in practice is where you likely really start understanding what we mean and how</p></div>
+      <div><span>8:32</span><p>the 4Ds can change how you work with AI. Each time you thoughtfully delegate work, carefully and clearly describe your needs, critically evaluate and discern outputs, and diligently take responsibility for the results, your fluency grows. Our hope is that the 40s remain relevant even as AI technology</p></div>
+      <div><span>8:48</span><p>evolves. New capabilities will come, but the need for strategic thinking, clear communication, critical evaluation, and ethical responsibility will endure. Start practicing with your next AI interaction. Notice which D you're using. Try being more intentional about each one. You'll be surprised how</p></div>
+      <div><span>9:04</span><p>quickly your AI collaborations improve. That's the framework. Now go make it yours.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="01-introduction.html"><b>前のレッスン — 01</b><em>教育者のための AI Fluency 入門</em></a>
+  <a class="is-next" href="03-course-design.html"><b>次のレッスン — 03</b><em>コース設計と学習成果への適用</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency for Educators コース「AI Fluency Framework review」／ CC BY-NC-SA 4.0</span>
+  <a href="https://youtu.be/7tR7modJioQ" target="_blank" rel="noopener">youtu.be/7tR7modJioQ ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

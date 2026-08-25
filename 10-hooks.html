@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -92,6 +93,18 @@
         <b>この回の位置づけ</b>
         <p>CLAUDE.md・スキル・プロンプトはすべて<em>モデルの判断</em>を経由する。フックだけがそれを経由しない。<strong>「確率的にやってほしいこと」と「必ず起きてほしいこと」を書き分けるための道具</strong>だと捉えると、使いどころが決まる。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          フックが CLAUDE.md などの他の仕組みと決定的に違う点は何か。
+          <ul class="chk__c"><li>必ず実行される（決定論的である）こと</li><li>より高性能なモデルを使うこと</li><li>設定ファイルが一切不要なこと</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — フックは決定論的で、例外なく必ず走る。CLAUDE.md に書いても「ほとんどの場合」実行されるだけで、完璧ではない。</p>
+          <p>モデルの性能や設定不要かどうかは本文の論点ではない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -105,6 +118,18 @@
         <li><h3>危険な操作をブロックする</h3><p>本番ファイルの変更など、起こってはいけないことを止める。</p></li>
         <li><h3>タスク完了時に自分に通知を送る</h3><p>Claude が作業を終えたら知らせる。</p></li>
       </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          フックの一般的な用途として本文に挙げられていないのはどれか。
+          <ul class="chk__c"><li>実行されたすべてのコマンドをログに記録する</li><li>Claude が使うモデルを自動的に切り替える</li><li>タスク完了時に自分に通知を送る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — モデルの自動切り替えは本文に出てこない。</p>
+          <p>本文が挙げるのは自動フォーマット・コマンドのログ記録・危険な操作のブロック・完了通知の4つ。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -156,6 +181,18 @@
         <img src="img/hooks-config.jpg" alt="VS Code のエクスプローラーで .claude フォルダに hooks ディレクトリと settings.json が並び、settings.json の中身に hooks / PreToolUse が見えている画面。" loading="lazy">
         <figcaption>公式コース図版 — プロジェクトの <code>.claude/</code> に <code>hooks/</code> ディレクトリと <code>settings.json</code> が同居している。</figcaption>
       </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>PreToolUse</code> イベントはいつ発火するか。
+          <ul class="chk__c"><li>ツール呼び出しが完了した後</li><li>プロンプトを送信したとき</li><li>ツール呼び出しの前</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — PreToolUse はツール呼び出しの前に発火し、危険な操作のブロックに使われる。</p>
+          <p>呼び出し後に発火するのは PostToolUse、プロンプト送信時は UserPromptSubmit。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -168,6 +205,18 @@
       <ul class="chips">
         <li>TypeScript → Prettier</li><li>Go → gofmt</li><li>Python → Ruff</li><li>そのプロジェクトが使っているもの</li>
       </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          編集後の自動整形の実践例で使われているフックイベントはどれか。
+          <ul class="chk__c"><li>PostToolUse</li><li>PreToolUse</li><li>Notification</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — <code>PostToolUse</code> に <code>"Edit|MultiEdit|Write"</code> というマッチャーを設定し、ファイル変更のたびに発火させる。</p>
+          <p>PreToolUse は実行前のブロック用、Notification は通知の転送用と役割が異なる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -216,6 +265,18 @@
         <b>判断基準</b>
         <p><strong>チームにとって「提案」ではなく「保証」が必要なものなら、何でも。</strong>（whatever your team needs to be <em>guaranteed</em>, not <em>suggested</em>）</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>PreToolUse</code> フックが終了コード 2 を返すとどうなるか。
+          <ul class="chk__c"><li>アクションがブロックされ、stderr のメッセージが Claude にフィードバックされる</li><li>通常どおりツール呼び出しが続行される</li><li>アクションはブロックされるが、Claude には理由が伝わらない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 終了コード2はブロックを意味し、stderr のメッセージが Claude に返って、なぜ止められたかを理解できる。</p>
+          <p>終了コード0は続行。ブロックはされてもClaudeに理由が伝わらないのでは、終了コード2の設計が上手いところ——なぜ止められたかが伝わる点——を欠いてしまう。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -225,6 +286,18 @@
       <h2 class="sec__h">チームと共有する</h2>
       <p><code>.claude/settings.json</code> で設定されたフックは<strong>プロジェクトレベル</strong>で、リポジトリにチェックインできる。これでチーム全体が自動的に同じフックを得る。</p>
       <p>ひとつ実務的な注意がある。コマンド内では <strong><code>CLAUDE_PROJECT_DIR</code> 環境変数</strong>を使ってプロジェクトに保存されたスクリプトを参照する——そうすれば、<strong>Claude の現在の作業ディレクトリがどこであっても動く</strong>。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コマンド内で <code>CLAUDE_PROJECT_DIR</code> 環境変数を使う理由として本文が挙げているのは何か。
+          <ul class="chk__c"><li>Claude の現在の作業ディレクトリがどこであっても動くようにするため</li><li>フックの実行速度を上げるため</li><li>チームメンバーごとに実行権限を分けるため</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — これを使ってプロジェクトに保存されたスクリプトを参照すれば、作業ディレクトリの位置に関わらず動く。</p>
+          <p>速度や権限管理については本文に記述がない。</p>
+        </div>
+      </details>
     </div>
   </section>
 

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 教育者のための AI Fluency 入門 — 教育者のための AI Fluency 学習ノート</title>
+<meta name="description" content="Anthropic 公式コース『AI Fluency for educators』Lesson 1 の動画内容を再構成した日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">教育者のための AI Fluency / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="教育者のための AI Fluency コース 目次" aria-label="教育者のための AI Fluency コース 目次">目次</a>
+      <a href="01-introduction.html" title="教育者のための AI Fluency 入門" aria-label="01 教育者のための AI Fluency 入門" aria-current="page">01</a>
+      <a href="02-framework-review.html" title="AI Fluency フレームワークの復習" aria-label="02 AI Fluency フレームワークの復習">02</a>
+      <a href="03-course-design.html" title="コース設計と学習成果への適用" aria-label="03 コース設計と学習成果への適用">03</a>
+      <a href="04-learning-materials.html" title="学習教材と課題への適用" aria-label="04 学習教材と課題への適用">04</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../ai-fluency/index.html" title="AI活用力コースへ" aria-label="AI活用力コースへ">AI活用力</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 01 / AI Fluency for Educators（公式 Lesson 1 of 4）</p>
+    <p class="eyebrow" style="color:var(--signal)">4:03 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">教育者のための<br><em>AI Fluency 入門</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    コースの1本目。4人の話者が交代で、<strong>「このコースに何を期待できるか」「なぜ今それが重要か」「前提条件」「AI fluent な教育者になるとはどういうことか」</strong>を語る。以下はその全内容を、話の流れに沿って日本語で再構成したもの。
+  </p>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:4.5%"><s>導入</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:17.7%"><s>核心</s><i></i><b>0:43</b></div>
+      <div class="tl__tick" style="left:35.8%"><s>なぜ今</s><i></i><b>1:27</b></div>
+      <div class="tl__tick" style="left:43.2%"><s>教育者の役割</s><i></i><b>1:45</b></div>
+      <div class="tl__tick" style="left:50.6%"><s>到達点</s><i></i><b>2:03</b></div>
+      <div class="tl__tick" style="left:71.6%"><s>前提</s><i></i><b>2:54</b></div>
+      <div class="tl__tick" style="left:84.8%"><s>結び</s><i></i><b>3:26</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>04:03</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Anthropic</dd></div>
+    <div><dt>Published</dt><dd><span>2025.08.20</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>4:03</span> <small>/ 243s</small></dd></div>
+    <div><dt>Views</dt><dd><span>48,677</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/hJONtvW1fyw" target="_blank" rel="noopener">youtu.be/hJONtvW1fyw ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="243">
+
+  <section class="sec" id="s1" data-start="11" data-label="このコースを生んだ問い">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">教育者たちが同じく抱えていた問い</h2>
+      <p>「AI Fluency for Educators へようこそ」という挨拶とともに、4人の話者が順に名乗る——Zoe、Rick Dakan、Maggie Vo、Joe Feller。このコースが扱うのは<strong>実践のなかの AI fluency、とりわけ自分たちの教育実践における AI fluency</strong> だと告げられる。</p>
+      <p>コースは、教育者たちとの会話から生まれた。誰もが同じ問いと格闘していた、と語られる。</p>
+      <blockquote class="quote">
+        <p>AI を、効果的・効率的・倫理的・安全に、そして何より<strong>実際に学生の学びに役立つ</strong>形で、自分たちの教育に持ち込むにはどうすればいいのか。</p>
+        <cite>— How do we bring AI into our teaching in ways that are effective, efficient, ethical, and safe, and most importantly, actually help our students learn?</cite>
+      </blockquote>
+      <figure class="fig">
+        <img src="../img/edu-fluent-use.jpg" alt="スライド「Fluent AI use is…」。Effective、Efficient、Ethical、Safe の4つのアイコンが2行2列に並び、右側に話者の映像が表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>Fluent AI use is…</code> として <strong>Effective</strong> / <strong>Efficient</strong> / <strong>Ethical</strong> / <strong>Safe</strong> の4つが並ぶ。</figcaption>
+      </figure>
+      <p>続けて、この動画で扱う4点が予告される。</p>
+      <ul class="chips">
+        <li>このコースに何を期待できるか</li>
+        <li>なぜ今それが重要なのか</li>
+        <li>前提条件</li>
+        <li>AI fluent な教育者になることについての考え</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="43" data-label="コースの核心">
+    <div class="sec__mark"><div><span class="sec__t">0:43</span><span class="sec__kind">核心</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">4D を「教育者としての役割」で使う</h2>
+      <p>このコースの核心は、基礎コースで扱われた <strong>AI Fluency フレームワークを適用すること</strong>にある。<strong>委任力</strong>（Delegation・「委任」とも訳される）、<strong>記述力</strong>（Description・「記述」とも訳される）、<strong>評価力</strong>（Discernment・「識別」とも訳される）、<strong>倫理的責任</strong>（Diligence・「誠実さ」とも訳される）——この 4D を、<strong>教育者としての役割のなかでどう使うか</strong>を探っていく。</p>
+      <figure class="fig">
+        <img src="../img/edu-4d-framework.jpg" alt="スライド「The 4D Framework — Four core competencies for AI Fluency」。Delegation、Description、Discernment、Diligence の4つの箱が矢印で互いに結ばれた循環図。" loading="lazy">
+        <figcaption>公式コース図版 — <code>The 4D Framework</code> / <code>Four core competencies for AI Fluency</code>。<strong>Delegation</strong>・<strong>Description</strong>・<strong>Discernment</strong>・<strong>Diligence</strong> が矢印で互いに結ばれている。</figcaption>
+      </figure>
+      <p>そのうえで、AI が自分にとっての<strong>思考のパートナー（thinking partner）</strong>になりうることが語られる。コースを設計し、学習教材を作り、意味のある課題と評価を組み立てる——その手助けをする相手としての AI である。そして<strong>同じくらい重要なこと</strong>として、この技術との<strong>バランスを保つこと</strong>も扱う、と念を押される。</p>
+      <p>コースを終える頃には、AI を使って次の3つができるようになる、と示される。</p>
+      <ul class="acts">
+        <li><h3>自分の前提を問い直す</h3><p>AI を使って、自分が当たり前としてきた仮定に揺さぶりをかける。</p></li>
+        <li><h3>教科内容を新しい視点で見る</h3><p>扱っている題材を、これまでとは違う角度から捉え直す。</p></li>
+        <li><h3>個別化された学習体験をつくる</h3><p>学生一人ひとりにより合った学びの体験を作る。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="87" data-label="なぜ教育で重要か">
+    <div class="sec__mark"><div><span class="sec__t">1:27</span><span class="sec__kind">背景</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">なぜ教育で AI fluency が重要なのか</h2>
+      <p>AI は<strong>急速に教育の風景の一部になりつつある</strong>。ここで挙げられる理由は3つ。</p>
+      <ol class="steps">
+        <li><h3>学生はすでに AI を使っている</h3><p>こちらの準備ができていようがいまいが、という言い方がされる。</p></li>
+        <li><h3>雇用主の期待が上がっている</h3><p>卒業生が AI と流暢に働けることを、雇用主がますます期待するようになっている。</p></li>
+        <li><h3>教育機関が統合の方法に苦慮している</h3><p>世界中の教育機関が、これらの技術をどう責任を持って統合するかと格闘している。</p></li>
+      </ol>
+      <figure class="fig">
+        <img src="../img/edu-why-matters.jpg" alt="スライド「Why this matters」。Student expectations、Employer expectations、Modeling responsible use の3項目が縦に並び、右側に話者の映像が表示されている。" loading="lazy">
+        <figcaption>公式コース図版 — <code>Why this matters</code>。<strong>Student expectations</strong> / <strong>Employer expectations</strong> / <strong>Modeling responsible use</strong> の3項目。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="105" data-label="教育者の機会">
+    <div class="sec__mark"><div><span class="sec__t">1:45</span><span class="sec__kind">役割</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">手本を示せる立場にいる</h2>
+      <p>ここで話者が交代し、教育者の側の機会が語られる。私たち教育者には、<strong>次の世代が AI とどう関わるかを形づくる機会</strong>がある。<strong>思慮深く批判的な関与とはどういうものか</strong>、その手本を示すことができる。そして学生に、AI と「関わる」ことだけでなく、<strong>AI と賢く一緒に働くこと</strong>を教えられる。</p>
+      <blockquote class="quote">
+        <p>それはすべて、私たちから始まる。プレッシャーはないよ。</p>
+        <cite>— It all starts with us. No pressure.</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="123" data-label="このコースの到達点">
+    <div class="sec__mark"><div><span class="sec__t">2:03</span><span class="sec__kind">到達点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">問いはもう「入るかどうか」ではない</h2>
+      <p>いま問われているのは、<strong>AI が教育の一部になるかどうか</strong>ではない。問いは、<strong>それが学びの体験を損なうのではなく高めるものになるよう、どう保証するか</strong>である。そしてそこに、受講者自身が関わってくる。</p>
+      <p>コースを終える頃には、<strong>4D を日々の教育実践に適用できる</strong>ようになる。その道筋は2段階で示される。</p>
+      <ol class="steps">
+        <li>
+          <h3>コース設計とレッスン計画</h3>
+          <p>AI がコース設計とレッスン計画をどう支えられるかを探るところから始める。より<strong>一貫性があり、包摂的で、引き込まれる</strong>学習体験を組み立てられるようにする。</p>
+        </li>
+        <li>
+          <h3>教材の作成</h3>
+          <p>次に、ハンドアウトから課題、評価にいたるまでの教材作成を扱う。<strong>自分の teaching vision（教育のビジョン）と academic integrity（学術的誠実性）を保ったまま</strong>行う方法を見る。</p>
+        </li>
+      </ol>
+      <p>さらに、自分の所属機関でこうした議論を<strong>リードする自信</strong>が身につき、学生に対して<strong>責任ある AI との関わり方の手本</strong>を示せるようになる。そして最も重要なこととして、<strong>自分にとって本物だと感じられるアプローチ（an approach that feels authentic to you）</strong>を築くことが挙げられる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="174" data-label="前提条件と姉妹コース">
+    <div class="sec__mark"><div><span class="sec__t">2:54</span><span class="sec__kind">前提</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">前提条件と、姉妹コース</h2>
+      <p>このコースは、Anthropic Academy で公開されている <strong>AI Fluency: Framework &amp; Foundations</strong> コースの上に<strong>直接構築されている</strong>。まだ受けていない場合は、先にそちらで中核となる概念に慣れておくことが推奨される。<strong>4D フレームワークはこのコース全体を通じて繰り返し参照される</strong>ためである。</p>
+      <div class="tip">
+        <b>本サイトでの対応</b>
+        <p>その基礎コースは、本サイトでは <a href="../ai-fluency/index.html">AI活用力（AI Fluency）</a> として収録している。4D の各能力を1つずつ掘り下げる回があるので、先に読んでおくと本コースの前提が揃う。次の <a href="02-framework-review.html">02 AI Fluency フレームワークの復習</a> は、その要点をひととおりおさらいする回にあたる。</p>
+      </div>
+      <p>あわせて、<strong>姉妹コース</strong>も作られていることが案内される。ひとつは<strong>学生に AI fluency フレームワークを教えるためのコース</strong>、もうひとつは<strong>学生自身のためのコース</strong>。自分の AI fluency の実践を築いていくうえで役に立つかもしれない資料として紹介される。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="206" data-label="結び">
+    <div class="sec__mark"><div><span class="sec__t">3:26</span><span class="sec__kind">結び</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">より良い問いを立てられるようになること</h2>
+      <p>締めくくりでは、まず正直な前置きが置かれる。<strong>AI 技術がどこへ向かうのか、誰も正確には知らない</strong>。私たちは皆それを一緒に考えている最中であり、そのことは<strong>むしろかなり解放的（quite liberating）</strong>だ、と語られる。</p>
+      <blockquote class="quote">
+        <p>AI fluency フレームワークは、一晩で専門家になることではない。<strong>AI で拡張された世界で、より良い問いを立てられるようになること</strong>だ。</p>
+        <cite>— It's about learning to ask better questions in an AI enhanced world.</cite>
+      </blockquote>
+      <p class="wrapup"><strong>AI fluent な教育者</strong>——<strong>教育的価値観を中心に据えたまま</strong>、AI アシスタントと思慮深く関われる教育者——になることで、学生とともに、次に来るものが何であれ、より良く舵を取れるようになる。「では、始めよう」と結ばれる。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="key" data-label="要点整理（公式コース本文より）">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">要点整理（公式コース本文より）</h2>
+      <div class="tip">
+        <b>ここからは出典が変わる</b>
+        <p>ここまでのセクションは動画のトランスクリプトに基づく。以下は公式 Academy のレッスンページ本文（Key takeaways・Exercises・Lesson reflection）に基づく整理で、動画そのものの発言ではない。</p>
+      </div>
+      <ul class="acts">
+        <li>
+          <h3>4D は思考のパートナーシップを築く土台になる</h3>
+          <p>4D フレームワークは<strong>教育的誠実さを基盤として</strong>、教育者が AI との真の思考パートナーシップを築くのに役立つ。</p>
+        </li>
+        <li>
+          <h3>コンテキスト構築は不可欠</h3>
+          <p>AI は<strong>特定の状況・価値観・制約を理解することでより有用になる</strong>ため、コンテキストの構築が欠かせない。</p>
+        </li>
+        <li>
+          <h3>置き換えるのではなく強化する</h3>
+          <p>教育者にとっての AI フルエンシーとは、教育と学習における<strong>人間の専門知識と判断力を置き換えるのではなく強化する</strong>ことを意味する。</p>
+        </li>
+      </ul>
+      <div class="tip">
+        <b>公式コースでの位置づけ</b>
+        <p>本サイトの 01 は、公式 Academy では <strong>Lesson 1 of 4</strong>「Introduction to AI Fluency for Educators」（所要 15 分）にあたり、YouTube の動画タイトルの番号（<code>Lesson 1:</code>）とも一致する。番号がずれるのは <a href="03-course-design.html">03</a> で、そちらは公式 Lesson 3 of 4 だが動画タイトルは <code>Lesson 2:</code> になっている。詳しくは <a href="index.html#source">コース目次の出典</a> を参照。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="try" data-label="演習">
+    <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
+    <div class="sec__body">
+      <p class="tr__note">ここから先は動画ではなく、Anthropic 公式 Academy のレッスンページの演習（Exercises）が出典。</p>
+      <h2 class="sec__h">共有できる教育ビジョンを作る</h2>
+      <p>原題は <strong>Building a shared teaching vision</strong>、想定所要時間は <strong>30分</strong>。公式は「内省を促すのに良い、土台となる演習であり、今後の AI 協働で<strong>再利用できる成果物</strong>を作るもの」と位置づけている。</p>
+
+      <ol class="steps">
+        <li>
+          <h3>Part 1: 自己内省（10分）</h3>
+          <p>AI と関わる前に、まず自分の立ち位置を明確にする。</p>
+          <ul>
+            <li>自分の中核的な教育観・教育哲学は何か。</li>
+            <li>自分が直面している固有の制約は何か（機関的・技術的・時間的）。</li>
+            <li>自分の学生は典型的にどんな人たちか（背景・課題・目標）。</li>
+            <li>自分が最も価値を置く教育方法・学習体験は何か。それはなぜか。</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Part 2: 教育的価値観と文脈について話す（25分）</h3>
+          <p>Claude、あるいは自分が選んだ任意の AI アシスタントとの会話を始める。会話の始め方は次のとおり。</p>
+          <ul>
+            <li>自分は教育者であり、<strong>自分の教育アプローチと文脈の再利用可能な要約</strong>を作りたい、と説明する。</li>
+            <li>この文書が今後の協働で共通理解を確立するのに役立つことを AI に伝える。</li>
+            <li>自分の教育実践の関連する側面すべてを一緒に考えてほしい、と示す。</li>
+            <li><strong>AI に自分をインタビューしてもらう</strong>か、あるいは<strong>自分から情報を話し始めて「他に何を知ると役立つか」と尋ねる</strong>か、どちらでもよい。</li>
+            <li>急がないこと。目的は、重要な文脈を浮かび上がらせる<strong>往復の会話</strong>にある。</li>
+          </ul>
+        </li>
+        <li>
+          <h3>カバーすべき領域（AI に探索を手伝ってもらう）</h3>
+          <ul>
+            <li>自分の専門分野・レベル・具体的に担当しているコース</li>
+            <li>学生が典型的に直面する課題</li>
+            <li>機関の文脈と制約</li>
+            <li>自分の教育哲学と、好んで使う方法</li>
+            <li>自分の教育における日常的な悩みどころ</li>
+            <li>AI を自分の実践に統合する目標</li>
+            <li>自分の教育状況の固有な側面</li>
+          </ul>
+        </li>
+        <li>
+          <h3>会話的に進める</h3>
+          <ul>
+            <li>一度に全部を共有する必要はない。</li>
+            <li>AI にフォローアップの質問をするよう促す。</li>
+            <li>文脈を説明するのに役立つ具体例を共有する（<strong>プライバシーと機微なデータに注意する</strong>）。</li>
+            <li>考えながら口に出し、進めながら考えを練り直してよい。</li>
+          </ul>
+        </li>
+        <li>
+          <h3>再利用できる文書にまとめる</h3>
+          <ul>
+            <li>会話を、今後の AI との会話で共有できる<strong>構造化されたコンテキスト文書</strong>に統合するよう AI に依頼する。</li>
+            <li>一緒に見直し、足りないものを追加し、誤りがあれば修正する。</li>
+            <li><strong>コピーして再利用しやすい形式</strong>を求める。</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="warn">
+        <b>実在の学生の情報を入れる前に</b>
+        <p>公式の演習も「具体例を共有するときはプライバシーと機微なデータに注意」と明記している。所属機関の規程で AI アシスタントへの入力が制限されている情報がないか、先に確認しておくとよい。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="reflect" data-label="振り返り">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り（公式コース本文より）</h2>
+      <ol class="steps">
+        <li><h3>あなたの教育実践のどの側面を言葉にするのが最も難しかったですか？</h3></li>
+        <li><h3>このプロセスを通じて、何がより明確になりましたか？</h3></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="next" data-label="次のステップ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ（公式コース本文より）</h2>
+      <p>次のレッスンは <strong>4D フレームワーク——委任・記述・識別・誠実さ——の手短な復習</strong>を扱う。公式ページには、<strong>すでに AI Fluency: Framework &amp; Foundations コースを受講済みで、その内容に不安がなければ次のレッスンは飛ばしてもよい</strong>と書かれている。</p>
+      <p><a href="02-framework-review.html">02 AI Fluency フレームワークの復習 →</a></p>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。話者交代の <code>&gt;&gt;</code> や認識ミス（Rick Dacen など）もそのまま残してある。細部の表記に多少の揺れがある点に注意。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>Hello and welcome to AI Fluency for Educators. I'm Zoe. &gt;&gt; I'm Rick Dacen. &gt;&gt; I'm Maggie Vo. &gt;&gt; I'm Joe Feller. &gt;&gt; This course is all about AI fluency in practice, specifically in our teaching practice. It grew out of conversations with educators who are all wrestling with the same question. How do we bring</p></div>
+      <div><span>0:27</span><p>AI into our teaching in ways that are effective, efficient, ethical, and safe, and most importantly, actually help our students learn? In this video, we'll walk you through what you can expect from this course, why it matters right now, prerequisites, and some thoughts on becoming an AI fluent educator. Let's</p></div>
+      <div><span>0:43</span><p>dive in. &gt;&gt; At its heart, this course is about applying the AI fluency framework, which was covered in our core course in education. We'll explore how to apply the four Ds of delegation, description, discernment, and diligence in our role</p></div>
+      <div><span>0:58</span><p>as educators. We'll discuss how AI can become a thinking partner for you, helping design courses, create learning materials, and build meaningful assignments and assessments. Just as importantly, we'll talk about maintaining balance with this</p></div>
+      <div><span>1:13</span><p>technology. By the end of this course, you'll be able to use AI to challenge your assumptions, to see subject matter in new ways, and create more individualized learning experiences for your students. So, why does AI fluency matter in education? AI is rapidly</p></div>
+      <div><span>1:29</span><p>becoming part of the educational landscape. Whether we're ready or not, students are already using AI. Employers increasingly expect graduates to work fluently with AI and institutions worldwide are grappling with how to integrate these technologies</p></div>
+      <div><span>1:44</span><p>responsibly. &gt;&gt; As educators, we have the opportunity to shape how the next generation engages with AI. We can model what thoughtful critical engagement looks like and we can teach our students not just to engage with AI but to work with it</p></div>
+      <div><span>2:00</span><p>wisely. It all starts with us. No pressure. At this point, the question isn't whether AI will be part of education. It's how we'll ensure it enhances rather than diminishes the learning experience. And that's where you come in. By the end of this course,</p></div>
+      <div><span>2:15</span><p>you'll be able to apply the 4D framework to your everyday teaching practice. We'll start by exploring how AI can support your course design and lesson planning, helping you develop more coherent, inclusive, and engaging learning experiences. Then we'll look at</p></div>
+      <div><span>2:31</span><p>creating course materials from handouts to assignments to assessments in ways that maintain your teaching vision and academic integrity. &gt;&gt; You'll develop confidence to lead these conversations at your institution and model responsible AI engagement for your</p></div>
+      <div><span>2:48</span><p>students. Most importantly, you'll build an approach that feels authentic to you. This course builds directly on the AI fluency framework and foundations course available on Anthropic Academy. If you haven't taken it yet, we recommend</p></div>
+      <div><span>3:03</span><p>starting there to familiarize yourself with the core concepts before continuing. We'll be referring back to the 4D framework throughout this course. &gt;&gt; By the way, we've also created companion courses on teaching the AI fluency framework to your students as well as a</p></div>
+      <div><span>3:18</span><p>course design for students themselves. These might be useful resources as you build your AI fluency practice. &gt;&gt; None of us knows exactly where AI technology is headed. We're all figuring this out together, and that's actually quite liberating. The AI fluency</p></div>
+      <div><span>3:33</span><p>framework isn't about becoming an expert overnight. It's about learning to ask better questions in an AI enhanced world. As an AI fluent educator, one who can engage thoughtfully with AI assistants while keeping pedagogical values at the center, you'll be better prepared to navigate whatever comes next</p></div>
+      <div><span>3:48</span><p>alongside your students. So, let's get started.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="index.html"><b>コース目次</b><em>教育者のための AI Fluency</em></a>
+  <a class="is-next" href="02-framework-review.html"><b>次のレッスン — 02</b><em>AI Fluency フレームワークの復習</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式コース AI Fluency for educators「Introduction to AI Fluency for Educators」／ CC BY-NC-SA 4.0</span>
+  <a href="https://youtu.be/hJONtvW1fyw" target="_blank" rel="noopener">youtu.be/hJONtvW1fyw ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

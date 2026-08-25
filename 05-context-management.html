@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -92,6 +93,17 @@
         <img src="img/ctx-intro.jpg" alt="「Context Window」と題された図。多数のシリンダー状のアイコンが並び、一部が Taken（使用済み）、残りが Available（利用可能）として色分けされている。" loading="lazy">
         <figcaption>公式コース図版 — コンテキストウィンドウを容量として描いたもの。<em>Taken</em> が使用済み、<em>Available</em> が残り。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コンテキストウィンドウを消費するものとして、見落とされやすいと本文が指摘しているのはどれか。
+          <ul class="chk__c"><li>入力したプロンプトと読んだファイル</li><li>ツール呼び出しとその結果</li><li>コミットメッセージの文面</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — ツールを1回呼ぶたびに、呼び出しとその結果の両方が積まれていく点が見落とされやすいとされる。</p>
+          <p>プロンプトやファイルは列挙された4項目の前半にあたり、コミットメッセージは本文で触れられていない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -114,6 +126,17 @@
         <img src="img/ctx-compact1.jpg" alt="ターミナルに「Compacting conversation…」と表示されている画面。" loading="lazy">
         <figcaption>公式コース図版 — 圧縮中の表示。<code>Compacting conversation…</code></figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コンテキストウィンドウの圧縮（compact）について正しいのはどれか。
+          <ul class="chk__c"><li>会話をすべて削除してゼロから始める操作である</li><li>手動でしか実行できず、自動では起きない</li><li>会話を要約し不要なツール結果を削除するが、詳細が失われる可能性がある</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 重要な詳細の要約と不要なツール呼び出し結果の削除を行うが、その過程で詳細が失われる可能性がある。</p>
+          <p>すべて削除するのは <code>/clear</code> であり、圧縮は上限に近づくと自動でも走る。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -128,6 +151,17 @@
         <img src="img/ctx-clear.jpg" alt="ターミナルで /clear を実行し、(no content) と表示された画面。" loading="lazy">
         <figcaption>公式コース図版 — <code>/clear</code> の実行結果。会話が空になる。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/compact</code> と <code>/clear</code> の違いとして本文が説明しているのはどれか。
+          <ul class="chk__c"><li><code>/compact</code> は残すための操作、<code>/clear</code> は捨てるための操作</li><li><code>/compact</code> は捨てるための操作、<code>/clear</code> は残すための操作</li><li>両方とも会話をすべて削除する点で同じ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — <code>/compact</code> は残すための操作、<code>/clear</code> は捨てるための操作とはっきり対比されている。</p>
+          <p><code>/clear</code> は前のセッションの記憶を一切持たずにゼロから始める点が <code>/compact</code> と異なる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -146,6 +180,17 @@
         <b>読み方のコツ</b>
         <p>「何が容量を食っているか」がカテゴリ別に出るのがこのコマンドの価値。<strong>System tools が大きければ MCP サーバーの入れすぎ</strong>、Messages が大きければ会話が長すぎる、と原因が切り分けられる（→ <a href="09-mcp.html">09 MCP</a>）。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/context</code> を実行すると分かることとして、本文が挙げていないのはどれか。
+          <ul class="chk__c"><li>コンテキストサイズの概要</li><li>過去に実行した全コマンドの履歴一覧</li><li>最も容量を占めているカテゴリ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — <code>/context</code> で得られるのはサイズの概要・最も容量を占めるカテゴリ・内訳の視覚的なグラフィックの3つ。</p>
+          <p>コマンド履歴の一覧は本文に登場しない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -170,6 +215,17 @@
         <img src="img/ctx-claudemd.jpg" alt="CLAUDE.md ファイルの中身。Commands セクションに npm start / npm run seed / npm run dev / npm run build / npm run lint が並び、IMPORTANT として Run the test suite EVERY TIME と書かれている。" loading="lazy">
         <figcaption>公式コース図版 — <code>CLAUDE.md</code> の例。コマンド一覧に加え、<code>**IMPORTANT** Run the test suite EVERY TIME</code> のような譲れないルールが書かれている。詳しくは <a href="06-claude-md.html">06</a>。</figcaption>
       </figure>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/compact</code> と <code>/clear</code> のどちらを使うべきかを決める判断軸として本文が示しているのはどれか。
+          <ul class="chk__c"><li>いま取り組んでいるものが同じ機能かどうか</li><li>コンテキストの残量が何パーセントか</li><li>MCP サーバーを使っているかどうか</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 判断軸は「いま取り組んでいるものが同じ機能かどうか」の一点とされている。</p>
+          <p>同じ機能を続けるなら <code>/compact</code>、新しい機能に移るなら以前の会話のバイアスを避けるため <code>/clear</code> が向く。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -200,6 +256,17 @@
         <b>この3つの関係</b>
         <p>並んでいる3つは、いずれも「<strong>コンテキストに入れる前に減らす</strong>」という同じ発想の変奏。入力を絞る（具体的に）、常駐を削る（MCP）、外に出す（サブエージェント）。詳しくは <a href="07-subagents.html">07 サブエージェント</a>、<a href="08-skills.html">08 スキル</a>、<a href="09-mcp.html">09 MCP</a>。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          曖昧なプロンプトが長期的にはより多くのコンテキストを消費するのはなぜか。
+          <ul class="chk__c"><li>明確な指示がないと Claude がコードベースをより多く探索し、自分で推論しなければならないから</li><li>プロンプト自体の文字数が多くなるから</li><li>MCP サーバーが自動的に追加で起動するから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 明確な指示がなければ Claude はより多く探索・推論しなければならず、それが詳しいプロンプト1〜2文よりはるかに高くつく。</p>
+          <p>「曖昧なプロンプトは一見小さく見えて、長期的にはより多くのコンテキストを消費する」という皮肉として説明されている。</p>
+        </div>
+      </details>
     </div>
   </section>
 

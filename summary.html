@@ -31,6 +31,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用" aria-current="page">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -105,6 +106,30 @@
         <b>この8つを支える3つの前提</b>
         <p><strong>① コンテキストは有限</strong> — 全部読ませるのではなく戦略的に探させる。<strong>② デフォルトで許可を求める</strong> — 実行と変更の前に必ず止まる。<strong>③ 間違えることがある</strong> — 意図の誤解、新しいバグ、過剰設計。状況を把握し続けることで早期に発見できる。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「読む」の説明にある、探索だけでメインのコンテキストを汚したくないときに投げる先はどれか。
+          <ul class="chk__c"><li>explore サブエージェント</li><li>CLAUDE.md</li><li>フック</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 調べるだけなら explore サブエージェントに投げると、メインのコンテキストが汚れない。</p>
+          <p>CLAUDE.md は常時読み込まれる記憶、フックは決定論的な強制の仕組みで、探索の切り分けには使わない。</p>
+        </div>
+      </details>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          8つの能力を支える3つの前提のうち、「実行と変更の前に必ず止まる」に対応するのはどれか。
+          <ul class="chk__c"><li>間違えることがある</li><li>コンテキストは有限</li><li>デフォルトで許可を求める</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 「デフォルトで許可を求める」が、実行と変更の前に必ず止まるという前提にあたる。</p>
+          <p>「コンテキストは有限」は探索の戦略、「間違えることがある」は状況把握による早期発見の話。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -164,6 +189,18 @@
           <div class="modes__c" data-h="内容">プラグイン導入</div>
         </div>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          会話を要約して空き容量を作りつつ、記憶（内容）は残すコマンドはどれか。
+          <ul class="chk__c"><li>/compact</li><li>/clear</li><li>/context</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — /compact は会話を要約して空き容量を作るが、記憶は残す。</p>
+          <p>/clear はすべて削除してゼロから始めるコマンド、/context は容量の内訳を表示するだけのコマンド。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -206,6 +243,18 @@
         <b>使い分けの一行</b>
         <p><strong>常に効かせたい → CLAUDE.md</strong>／<strong>特定タスクのときだけ → スキル</strong>／<strong>絶対に守らせたい → フック</strong>。強制力はこの順に上がり、コンテキスト消費は逆順に下がる。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「本体はマッチしたときだけ読み込まれ、名前と説明だけが常駐する」という読まれ方をするのはどのファイルか。
+          <ul class="chk__c"><li>.claude/skills/SKILL.md</li><li>CLAUDE.md</li><li>.mcp.json</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — スキルは名前と説明だけ常駐し、本体はマッチ時のみ読み込まれる。</p>
+          <p>CLAUDE.md は毎回全文が読まれ、.mcp.json はツール定義そのものが常駐する。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -268,6 +317,18 @@
         <b>この表の扱い</b>
         <p>プラン構成と料金は変わります。ここは<strong>「どこに費用の境界があるか」を把握するための地図</strong>として使い、実際の金額は <a href="https://claude.com/pricing" target="_blank" rel="noopener">Anthropic の料金ページ</a>で確認してください。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          A の表で「追加費用なし」に分類されているのはどれか。
+          <ul class="chk__c"><li>MCP の接続先サービス（Linear・Figma など）の契約</li><li>サブエージェントの利用</li><li>Claude Code 本体の利用そのもの</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — サブエージェントは追加費用なしとされる（別コンテキストで動くぶんトークンは消費する、という注記付き）。</p>
+          <p>本体の利用そのものは有料プランに含まれるもの、接続先サービスの契約は表 B の「各サービス次第」の側にある。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -302,6 +363,18 @@
       </div>
 
       <p class="wrapup">スキルが優れているのは、<em>名前と説明だけ常駐して、本体は必要なときにしか読み込まれない</em>から。コンテキストを費用として見ると、各機能の設計意図が揃って見えてくる。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          MCP のツール定義が常駐してコンテキストを消費する問題への対策として、本文が挙げているのはどれか。
+          <ul class="chk__c"><li>探索の全過程をあえてメインの会話に残す</li><li>使っていないサーバーを /mcp で無効化し、CLI で代替できるなら CLI を使う</li><li>CLAUDE.md を毎回全文読み込ませて代わりにする</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — /mcp で使っていないサーバーを無効化し、CLI で代替できるなら CLI（gh、aws）のほうが安いとされている。</p>
+          <p>CLAUDE.md の全文読み込みや探索過程の保持は、いずれもコンテキストを消費する側の話であり対策にならない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -321,6 +394,18 @@
       </ol>
 
       <p class="wrapup">読むところから始めて、<em>触らせる範囲を後から広げる</em>。順番を逆にしない。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「はじめ方」の手順として本文が示している順序に合っているのはどれか。
+          <ul class="chk__c"><li>最初に MCP をフル権限で全部接続する</li><li>最初にフックですべての操作を強制する</li><li>まず CLAUDE.md 無しでしばらく使い、必要なら /init する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — しばらく CLAUDE.md 無しで使って軌道修正の箇所を見つけ、準備できたら /init する、という順序が示されている。</p>
+          <p>MCP のフル権限接続やフックの全面導入を最初に持ってくるのは、「権限とコンテキストは後から広げるほうが安全」という方針と逆。</p>
+        </div>
+      </details>
     </div>
   </section>
 

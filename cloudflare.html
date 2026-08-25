@@ -93,6 +93,30 @@
         <b>コース本編との対応</b>
         <p>01 と 02 は <a href="09-mcp.html">09 MCP</a> そのもの。とくに Code Mode は、あのレッスンで扱った<strong>「MCP サーバーは使っていなくてもツール定義がコンテキストを食う」</strong>という問題への回答になっている。03 は <a href="08-skills.html">08 スキル</a>の「専門知識を特定タスクに」の実例。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          5つの構成要素のうち、「AI の使われ方そのものを管理する仕組み」に分類されるのはどれか。
+          <ul class="chk__c"><li>Skills と MCP Server</li><li>AI Gateway と Access</li><li>MCP Server と Code Mode</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — AI Gateway（利用量・コスト・ログの一元管理）と Access（誰がどの AI エージェントを使ったかの追跡）が管理側にあたる。</p>
+          <p>MCP Server・Code Mode・Skills は「Claude Code に Cloudflare を触らせる仕組み」の側に分類される。</p>
+        </div>
+      </details>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Code Mode の設計上の工夫として本文が説明しているのはどれか。
+          <ul class="chk__c"><li>すべての Cloudflare API を常にコンテキストへ読み込んでおく</li><li>Cloudflare の全操作を自動承認する</li><li>必要な API をその都度検索して実行し、コンテキスト消費を抑える</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — API 数が非常に多いため、その都度検索して実行する設計にすることでコンテキスト消費を抑えている。</p>
+          <p>常時読み込みは Code Mode がまさに避けようとしている挙動で、自動承認の話は出てこない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -125,6 +149,18 @@
       <p>この形なら、Claude Code は「コードを書く人」だけでなく、<strong>Cloudflare の公式ドキュメントを参照し、環境設定を確認し、ログからエラー原因を調べる開発エージェント</strong>として機能する。</p>
 
       <p>Cloudflare の MCP は<strong>2系統</strong>が提供されている——広範な Cloudflare API をカバーする <strong>Code Mode</strong> と、ドキュメント・監視・DNS 分析などに<strong>絞った専用サーバー</strong>。用途が限られているなら後者のほうがコンテキストを食わない。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          用途がドキュメント確認や DNS 分析などに限られている場合、どちらのほうがコンテキストを食わないか。
+          <ul class="chk__c"><li>用途を絞った専用サーバー</li><li>広範な Cloudflare API をカバーする Code Mode</li><li>両方とも同じだけコンテキストを消費する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 用途が限られているなら、絞った専用サーバーのほうがコンテキストを食わない。</p>
+          <p>Code Mode は広範な API をカバーする分、用途を絞った使い方には向かない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -150,6 +186,18 @@
         <b>起動ディレクトリに注意</b>
         <p>Cloudflare の <code>wrangler.jsonc</code> が既にあるプロジェクトでは、<strong>そのファイルがあるディレクトリから Claude Code を起動する</strong>のが推奨されている。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>wrangler.jsonc</code> が既にあるプロジェクトで推奨されているのはどれか。
+          <ul class="chk__c"><li>wrangler.jsonc を削除してから起動する</li><li>別のプロジェクトとして新規に作り直す</li><li>そのファイルがあるディレクトリから Claude Code を起動する</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — wrangler.jsonc があるディレクトリから起動するのが推奨されている。</p>
+          <p>削除や作り直しは本文に出てこない、不要な手間。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -181,6 +229,18 @@
         <b>プロンプトの作り</b>
         <p>最後の1文「本番環境への変更・デプロイは私の確認後に行って」が効いている。<a href="04-explore-plan-code-commit.html">04</a> の<em>「軌道修正はコードが書かれる前にやる」</em>と、<a href="03-your-first-prompt.html">03</a> のプランモードを、依頼文の中で先に宣言している形。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          最初の依頼例に「本番環境への変更・デプロイは私の確認後に行って」と書く意図は何か。
+          <ul class="chk__c"><li>Claude Code にデプロイ権限そのものを与えないようにする</li><li>Workers の利用を禁止する</li><li>いきなり本番を操作させず、まず設計とローカル環境を固める</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — この依頼なら、いきなり本番を操作させず、まず設計とローカル環境を固められる。</p>
+          <p>デプロイ権限自体を奪う話でも、Workers の利用を禁じる話でもない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -203,6 +263,18 @@
         <b>設定の点検</b>
         <p>Cloudflare の DNS 設定を確認して、HTTPS やリダイレクトの問題を調べて。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          「ログ調査」の依頼例にある「変更が必要なら、実施前に差分とリスクを示して」という一文の狙いは何か。
+          <ul class="chk__c"><li>変更を実行する前に内容を確認できるようにする</li><li>確認を挟まずに、調査から修正まで一気に進めてもらう</li><li>MCP のコンテキスト消費を減らす</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 実施前に差分とリスクを提示させることで、変更の中身を確認してから実行に移せる。</p>
+          <p>狙いは逆で、修正の前に人間が内容を見る余地を作ること。コンテキスト消費を抑えるのは Code Mode や用途を絞った MCP の話で、これとは別の論点。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -244,6 +316,18 @@
       </div>
 
       <p>したがって、上の <a href="#stack">要点 04（AI Gateway）</a>にある「利用量・コストの一元管理」は、<strong>API 課金でチームが AI を使う構成に切り替えたうえでの話</strong>と読むのが正確。Max Plan の定額利用を続けたまま Gateway で可視化する、という理解にはならない。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          AI Gateway と Max Plan の関係について、本文の説明として正しいのはどれか。
+          <ul class="chk__c"><li>AI Gateway は Cloudflare Workers AI の利用を常に無料にする仕組み</li><li>AI Gateway は Max Plan の通信をそのまま経由させる仕組みで、追加費用は発生しない</li><li>AI Gateway 経由で Anthropic API を呼ぶ構成は Max Plan とは別で、API 課金が発生し得る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — AI Gateway を使う場合は通常 API キーで呼び出す構成になり、Max Plan の利用枠とは別に API 課金が発生し得る。</p>
+          <p>AI Gateway は Max Plan の通信をそのまま経由させる用途とは別物、というのが本文の強調点。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -280,6 +364,18 @@
         <b>フックで保証に変える</b>
         <p>上の3番目は「お願い」なので、モデルが従わないことがある。<a href="10-hooks.html">10 フック</a>の言い方を借りれば——<strong>毎回必ず起きてほしいなら、プロンプトではなくフックに入れる。</strong><code>PreToolUse</code> で本番 Worker への書き込みをブロックすれば、権限設定と二重の防御になる。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          本番環境の変更権限を渡す前に、本文が最初のステップとして推奨しているのはどれか。
+          <ul class="chk__c"><li>まずは読み取り専用権限で接続する</li><li>すぐに DNS や WAF の変更権限を与える</li><li>自動承認モードにして作業を速める</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — ログ確認や設定の点検から始め、書き込みは後から足せばよいとされている。</p>
+          <p>自動承認モードは、むしろ本番変更では避けるべきとされている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -305,6 +401,18 @@
         <b>Cloudflare 自身の推奨</b>
         <p>認可範囲に慣れるまでは、<strong>デモ用アカウントから始める</strong>ことが勧められている。</p>
       </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          安全な導入順として本文が示しているのはどれか。
+          <ul class="chk__c"><li>MCP のフル権限接続 → Skills → 読み取り専用への縮小</li><li>Skills → 読み取り MCP → 開発用環境へのデプロイ → 本番</li><li>本番への書き込み権限 → Skills → MCP</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — Skills（操作なし）→ 読み取り MCP → 開発用環境へのデプロイ → 本番、の順に権限を広げるのが安全とされる。</p>
+          <p>本番やフル権限から入る順序は、リスクを先に取ってしまう逆の進め方になる。</p>
+        </div>
+      </details>
     </div>
   </section>
 

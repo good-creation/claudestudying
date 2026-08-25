@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 コース設計と学習成果への適用 — 教育者のための AI Fluency 学習ノート</title>
+<meta name="description" content="豊かな共有文脈を築いて AI を思考のパートナーに変え、内容の特定・学習の道筋・学習目標という3つのコース設計の仕事に 4D を適用する回の日本語の学習ノート。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<nav class="rail" id="rail" aria-label="レッスンタイムライン">
+  <div class="rail__line">
+    <div class="rail__prog" id="railProg"></div>
+    <div class="rail__head" id="railHead" data-t="0:00"></div>
+  </div>
+</nav>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">教育者のための AI Fluency / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="教育者のための AI Fluency コース 目次" aria-label="教育者のための AI Fluency コース 目次">目次</a>
+      <a href="01-introduction.html" title="教育者のための AI Fluency 入門" aria-label="01 教育者のための AI Fluency 入門">01</a>
+      <a href="02-framework-review.html" title="AI Fluency フレームワークの復習" aria-label="02 AI Fluency フレームワークの復習">02</a>
+      <a href="03-course-design.html" title="コース設計と学習成果への適用" aria-label="03 コース設計と学習成果への適用" aria-current="page">03</a>
+      <a href="04-learning-materials.html" title="学習教材と課題への適用" aria-label="04 学習教材と課題への適用">04</a>
+      <a class="is-appendix" href="../index.html" title="学習ノート ホームへ" aria-label="学習ノート ホームへ戻る">ホーム</a>
+      <a class="is-appendix" href="../ai-fluency/index.html" title="AI活用力コースへ" aria-label="AI活用力コースへ">AI活用力</a>
+      <a class="is-appendix" href="../claude-code.html" title="Claude Code 入門コースへ" aria-label="Claude Code 入門コースへ戻る">CC コース</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 03 / AI Fluency for Educators（公式 Lesson 3 of 4）</p>
+    <p class="eyebrow" style="color:var(--signal)">9:25 · 全文書き起こし＋公式コース本文より</p>
+  </div>
+
+  <h1 class="hero__title">コース設計と<br><em>学習成果への適用</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    Joe Feller が、コース設計の<strong>3つの基本的な仕事——内容と概念の特定、学習の道筋を描くこと、学習目標の明文化</strong>——に 4D を当てていく回。鍵になるのは <strong>rich shared context（豊かな共有文脈）を築くこと</strong>。動画で実際に読み上げられているプロンプトも収録する。
+  </p>
+
+  <p class="eyebrow">この回で学べること — 公式ページ「In this lesson」より</p>
+  <ul class="chips">
+    <li>4D すべてをコース設計に体系的に適用する</li>
+    <li>高レベルの計画から具体的な学習目標へ移行する</li>
+    <li>AI との協働を通じて一貫性のあるコース構造を構築する</li>
+    <li>AI の能力を活用しながら教育的な整合性を維持する</li>
+  </ul>
+
+  <div class="tl" aria-hidden="true">
+    <div class="tl__bar">
+      <div class="tl__fill" id="tlFill"></div>
+      <div class="tl__tick" style="left:2%"><s>共有文脈</s><i></i><b>0:11</b></div>
+      <div class="tl__tick" style="left:9.6%"><s>3つの仕事</s><i></i><b>0:54</b></div>
+      <div class="tl__tick" style="left:18.2%"><s>①内容</s><i></i><b>1:43</b></div>
+      <div class="tl__tick" style="left:33.8%"><s>①評価</s><i></i><b>3:11</b></div>
+      <div class="tl__tick" style="left:45.5%"><s>②道筋</s><i></i><b>4:17</b></div>
+      <div class="tl__tick" style="left:63.9%"><s>③目標</s><i></i><b>6:01</b></div>
+      <div class="tl__tick" style="left:75.2%"><s>責任</s><i></i><b>7:05</b></div>
+      <div class="tl__tick" style="left:89%"><s>まとめ</s><i></i><b>8:23</b></div>
+    </div>
+    <div class="tl__ends"><span>00:00</span><span>09:25</span></div>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Channel</dt><dd>Anthropic</dd></div>
+    <div><dt>Published</dt><dd><span>2025.08.20</span></dd></div>
+    <div><dt>Runtime</dt><dd><span>9:25</span> <small>/ 565s</small></dd></div>
+    <div><dt>Views</dt><dd><span>29,177</span></dd></div>
+    <div><dt>Source</dt><dd><a href="https://youtu.be/cVFLuBbnbMo" target="_blank" rel="noopener">youtu.be/cVFLuBbnbMo ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell" data-duration="565">
+
+  <section class="sec" id="s1" data-start="11" data-label="豊かな共有文脈">
+    <div class="sec__mark"><div><span class="sec__t">0:11</span><span class="sec__kind">導入</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">鍵は「豊かな共有文脈」を築くこと</h2>
+      <p>「こんにちは、Joe Feller です。AI fluency がコースとレッスンの設計プロセスをどう変えうるかを探っていきましょう」——動画はそう始まる。</p>
+      <p><strong>人間と AI のパートナーシップの鍵は、rich shared context（豊かな共有文脈）を築くこと</strong>。つまり、自分がそのコースやレッスンで<strong>何を達成しようとしているのかを、AI に正確に処理させる</strong>ことだと述べられる。</p>
+      <p>これが AI を、<strong>generic assistant（汎用のアシスタント）から、自分固有の教育文脈・自分の制約・自分の pedagogical vision（教育的ビジョン）に応える collaborator（協働者）へと変える</strong>。</p>
+      <p>なぜなら、<strong>教育者にとって AI の最も変革的な能力のひとつが、大きな文脈を保持したまま、相互に絡み合った意思決定を一緒に考え抜く手助けをしてくれること</strong>だから。これをうまくやったとき、<strong>AI は汎用アシスタントというより、自分の教え方をわかっている同僚に近くなる</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s2" data-start="54" data-label="コース設計の3つの仕事">
+    <div class="sec__mark"><div><span class="sec__t">0:54</span><span class="sec__kind">前提</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">いったん AI を忘れる——コース設計の3つの基本的な仕事</h2>
+      <p>「AI のことは少しのあいだ忘れよう」。コースを設計するとき、私たちはたいてい<strong>3つの基本的な仕事</strong>に取り組んでいる、として次の3つが挙げられる。</p>
+      <div class="cards">
+        <article>
+          <p class="cards__k">01</p>
+          <h3>内容と概念を特定する</h3>
+          <p>学生にとって不可欠な内容と概念を特定する。<strong>学生が誰なのか、何を学ぶ必要があるのか、彼らの成功のためにどう構造化するのか</strong>を考えながら。</p>
+        </article>
+        <article>
+          <p class="cards__k">02</p>
+          <h3>学習の道筋を描く</h3>
+          <p>learning journey を描く。<strong>1回の授業でも学期全体でも、トピックがどう互いの上に積み上がって学生の学びを支えるか</strong>を決めていく。</p>
+        </article>
+        <article>
+          <p class="cards__k">03</p>
+          <h3>学習目標を明文化する</h3>
+          <p>具体的な学習目標を明文化する。<strong>その回のあと、あるいはコース修了時に、学生が何をできるようになるべきか</strong>を捉えるもの。</p>
+        </article>
+      </div>
+      <figure class="fig">
+        <img src="../img/edu-course-design.jpg" alt="スライド「Course design」。Identify concepts / Map learning journey / Build learning objectives の3項目が縦に並び、右側に話者の映像がある。" loading="lazy">
+        <figcaption>公式コース図版 — <code>Course design</code>：<code>Identify concepts</code>／<code>Map learning journey</code>／<code>Build learning objectives</code>。</figcaption>
+      </figure>
+      <p>そのうえで、この回の問いが立てられる。<strong>AI との本物の協働関係を築くことは、この3つの仕事を「効率化する」だけでなく「変革する」ことができるのか。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s3" data-start="103" data-label="① 内容と概念：委任と記述">
+    <div class="sec__mark"><div><span class="sec__t">1:43</span><span class="sec__kind">仕事 01 — 前半</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">① 内容と概念の特定 — 賢い委任の判断から、記述へ</h2>
+      <p>内容と概念の特定で AI と働くとき、<strong>最初の一歩は賢い委任（delegation）の判断をすること</strong>。これは<strong>自分自身の専門分野の専門性と、自分が達成しようとしていること</strong>に依存する。</p>
+      <p>たとえば、<strong>高レベルのトピックはもう頭にあって、細部を埋める手助けだけが欲しい</strong>場合。あるいは、<strong>含める必要があるとわかっている具体的な概念はあるが、それをどう構成すべきかがはっきりしない</strong>場合。<strong>状況ごとに求められる協働の種類が違う。そして自分の具体的なニーズを理解することが決定的に重要になる。</strong></p>
+      <p>さらに、<strong>「何を(what)」やっているかと同じくらい、「なぜ(why)」やっているのかを理解することも決定的</strong>だとされる。what と why の両方に答えられれば、<strong>誰がその仕事をすべきか——人間か、AI か、その両方か——そしてどうやるかについて、より良い委任の判断ができる</strong>。</p>
+      <p>次に来るのが記述（description）。<strong>AI を自分固有の問題空間へ本当に招き入れること</strong>。たとえば「統計学入門のトピックを挙げて」と聞く代わりに、こう試してみる——として、動画は実際にプロンプトを読み上げる。</p>
+      <div class="prompt">
+        <b>動画で読み上げられているプロンプト — 統計学 × ジャーナリズム専攻</b>
+        <p>I'm building a stats course for journalism students who need data literacy but often come to me anxious about math or skeptical that statistics matter in their careers. Help me think through how to identify concepts that will help address these student concerns while building their confidence.</p>
+        <p>データリテラシーを必要としているジャーナリズム専攻の学生向けに、統計学のコースをつくっています。ただ彼らはしばしば、数学に不安を抱えていたり、統計が自分のキャリアで重要だということに懐疑的だったりする状態で私のところに来ます。こうした学生の懸念に対処しつつ、彼らの自信を育てるのに役立つ概念を、どう特定すればよいか一緒に考えるのを手伝ってください。</p>
+      </div>
+      <p>動画は、後半の <em>Help me think through…</em> の部分を <strong>key call to action（重要な行動要請）</strong> を付け加える箇所として説明している。そして注目を促す——<strong>この記述は、汎用のコース計画ではなく、自分の実際の教育上の課題に根ざした「思考空間」をつくり出している。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s4" data-start="191" data-label="① 内容と概念：評価と責任">
+    <div class="sec__mark"><div><span class="sec__t">3:11</span><span class="sec__kind">仕事 01 — 後半</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">① 内容と概念の特定 — 評価し、理由を返し、責任を保つ</h2>
+      <p>AI がアイデアを提案し始めたら、そこが <strong>product discernment（成果物の評価）</strong> の出番。提案を<strong>自分自身の専門性に照らして</strong>評価する。<strong>「この概念は本当に、あの懐疑的なジャーナリズム専攻の学生たちの役に立つのか？」</strong></p>
+      <p>だが、と動画は続ける。<strong>ただ受け入れたり却下したりするだけにしない。</strong>自分の文脈で<strong>なぜそれが機能するのか、あるいは機能しないのか</strong>を AI アシスタントに説明する。<strong>そうすることで、自分の専門性を使って、今後のより良い提案を形づくっていることになる。AI というパートナーに教えているのだ</strong>——それは自然にできて然るべきことだ、と。</p>
+      <p>そしてこのプロセス全体を通じて <strong>diligence（倫理的責任）を保つ</strong>。<strong>意思決定を外注しているのではない。最終的に学生の前に置かれるものへの責任を、自分が引き受けている。</strong></p>
+      <p>さらに、<strong>AI との協働における主要な決定を記録し、自分の考えを学生と共有すべき</strong>だとされる。<strong>この透明性は、思慮深い専門家が AI にどう向き合うかを学生に示し、責任ある協働の手本になる。</strong></p>
+      <p>思慮深い AI 協働から得られるものは<strong>時間の節約を超える</strong>。<strong>やりとりのたびに自分の理解が深まり、同時に「何が実際に学生のためになるか」への説明責任を保ち続けられる。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s5" data-start="257" data-label="② 学習の道筋を描く">
+    <div class="sec__mark"><div><span class="sec__t">4:17</span><span class="sec__kind">仕事 02</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">② 学習の道筋を描く — AI に学生を演じてもらう</h2>
+      <p>次はもうひとつのおなじみの難題——<strong>トピックのリストを、一貫した学習の道筋（learning journey）に変えること</strong>。「ここが、AI とのパートナーシップが本当に面白くなるところ」だと言われる。</p>
+      <p>前と同じく、<strong>明確な委任の思考から始める</strong>。問うべきは次の3つ。</p>
+      <ul class="chips">
+        <li>自分のゴールは何か</li>
+        <li>どんな種類の仕事が必要か</li>
+        <li>その仕事のどの側面が AI で自動化または拡張できるか</li>
+      </ul>
+      <p>次に<strong>良い記述</strong>を使って、その委任の判断を AI パートナーと共有する。ここでは <strong>product description と process description の両方に注意を払い、AI に何をしてほしいかと、どうしてほしいかの両方を説明する</strong>。</p>
+      <p>「この種の仕事には、もうひとつ面白い切り口がある」。コースの流れの案が頭にあるとき、<strong>AI に役割を切り替えるよう頼む</strong>。</p>
+      <div class="prompt">
+        <b>動画で読み上げられているプロンプト — 学生を演じてもらう</b>
+        <p>Please act as one of my students. How would you react to this planned course at different points along the way? Where might you get confused? What background would you need at each stage? What support will you need for transitioning between topics?</p>
+        <p>私の学生の一人として振る舞ってください。この計画中のコースの、道中のさまざまな地点で、あなたならどう反応しますか。どこで混乱しそうですか。各段階でどんな前提知識が必要になりますか。トピックからトピックへ移るとき、どんな支援が必要になりますか。</p>
+      </div>
+      <p><strong>この AI の対話的なロールプレイ能力は強力なのに、私たちはしばしば使い忘れる。いつでも使える学生フォーカスグループを持っているようなものだ</strong>と強調される。</p>
+      <p>この協働において——実のところ<strong>あらゆる AI 協働において</strong>——忘れてはいけないこと。<strong>評価力は問題を捕まえる助けになるだけでなく、予期しない洞察や良いアイデアを認識する助けにもなる。</strong>AI との本物の会話を絶えず目指し続ければ、<strong>本当に驚くような洞察や、自分の問題についての新しい考え方に出会える</strong>。</p>
+      <p>ここでの良い倫理的責任とは、<strong>品質保証であり、責任を引き受けることであり、透明であること</strong>。<strong>だが、ただの開示以上のものでもある。自分自身のプロセスに細かく注意を払うことが、次回の改善につながる。</strong></p>
+    </div>
+  </section>
+
+  <section class="sec" id="s6" data-start="361" data-label="③ 学習目標を明文化する">
+    <div class="sec__mark"><div><span class="sec__t">6:01</span><span class="sec__kind">仕事 03</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">③ 学習目標を明文化する — 積み上げた文脈が土台になる</h2>
+      <p><strong>AI と協働することで、学習目標を定めるという仕事に新しい息を吹き込める。</strong></p>
+      <p>いま述べたプロセスを通じて AI と文脈を築いてきたなら——<strong>自分の知識、制約、ゴールを共有してきたなら</strong>——価値あるものができている。<strong>自分のコースと教育的アプローチについての共有理解</strong>だ。</p>
+      <p>もしそうでないなら、と動画は代替案を示す。<strong>コースのシラバスをアップロードし</strong>、自分のアプローチ、具体的な教育文脈、そのコースに関わるあらゆる制約を AI アシスタントに説明することから始めてみる。</p>
+      <p>その土台の上に、次の条件を満たす学習目標をつくれる。</p>
+      <ul class="chips">
+        <li>正確である</li>
+        <li>意味がある</li>
+        <li>学生を動機づける</li>
+        <li>自分の教育哲学に忠実である</li>
+        <li>所属機関の要件に整合している</li>
+      </ul>
+      <p><strong>4D に導かれたこれらの会話は、驚くほど生成的になりうる。プロセスが速いぶん、より多く実験でき、違うアプローチを試して、何が響くかを見られる。</strong></p>
+      <p>さらに、<strong>学生が自分の学習目標を違う形で見られるように AI と一緒に働く</strong>こともできる。例として挙げられるのが、<strong>コースの成果を履歴書のスキルに対応づけること（mapping course outcomes to resume skills）</strong>——これは<strong>非常に動機づけになりうる</strong>。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="s7" data-start="425" data-label="倫理的責任の再訪と本当の力">
+    <div class="sec__mark"><div><span class="sec__t">7:05</span><span class="sec__kind">中核</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">倫理的責任をもう一度 — そして「本当の力」がどこから来るか</h2>
+      <p><strong>教育にとってあまりに重要なので</strong>、と断って、倫理的責任がもう一度取り上げられる。<strong>倫理的責任は、自分のための記録以上のもの。自分の実践を学生や同僚と共有する機会でもある。</strong></p>
+      <p>AI との働き方について透明であるとき、<strong>同時に4つのことが起きる</strong>。</p>
+      <ul class="acts">
+        <li>
+          <h3>責任ある AI 協働の手本になる</h3>
+          <p>学生は、専門家が実際にどう AI と関わるのかを見ることになる。</p>
+        </li>
+        <li>
+          <h3>教育上の工夫を共有できる</h3>
+          <p>自分が編み出したやり方が、そのまま同僚と共有できる形になる。</p>
+        </li>
+        <li>
+          <h3>AI が自分の専門性をどう高めうるかを示せる</h3>
+          <p>置き換えではなく、高めるものとして。</p>
+        </li>
+        <li>
+          <h3>人間の判断・価値観・学生との関係が中心にあり続けることを示せる</h3>
+          <p>それらが自分の仕事の中心にあり続けていることを、行動で見せられる。</p>
+        </li>
+      </ul>
+      <p>「良い知らせ——この協働的アプローチは時間を節約できる。<strong>もっと良い知らせ——それは始まりにすぎない。</strong>」なぜなら、<strong>流暢な AI 協働の本当の力</strong>は次のところから来るから、と続く。</p>
+      <ul class="chips">
+        <li>自分自身の思考の中の隠れた前提と盲点を浮かび上がらせること</li>
+        <li>見落としていたかもしれない概念どうしの創造的な結びつきを発見すること</li>
+        <li>新しいアイデアを探りながら一貫性を保つこと</li>
+        <li>練習で強くなる個人の力量を築くこと</li>
+      </ul>
+      <blockquote class="quote">
+        <p>4D はチェックリストではない。それは、自分の教育学的・専門分野的な専門性が協働的な探索を導き、その結果として自分ひとりでも AI ひとりでも設計できなかったであろう、学生により良く役立つコースが生まれる——そのための本物の認知的パートナーシップ（genuine cognitive partnership）を築く枠組みである。</p>
+        <cite>— 動画 8:06 付近</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="sec" id="s8" data-start="503" data-label="適用範囲と次への橋渡し">
+    <div class="sec__mark"><div><span class="sec__t">8:23</span><span class="sec__kind">総括</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この文脈構築は、あらゆる本格的な計画作業に効く</h2>
+      <p>この文脈構築のアプローチは、<strong>あらゆる本格的な計画作業に効く</strong>とされる。</p>
+      <ul class="chips">
+        <li>ゼロからの新しいコースの作成</li>
+        <li>既存コースの更新</li>
+        <li>カリキュラム系列の計画</li>
+        <li>学習経路の開発</li>
+      </ul>
+      <p><strong>鍵は、大きな絵から始めて、細部へ降りていく間ずっと文脈を築き、そして保ち続けること。</strong></p>
+      <p>そして次回予告。<strong>次のレッスンでは、こうして確立した文脈が、学習教材と評価（assessments）の作成をどう変えるかを探る。</strong>ただしその前に——<strong>提供されている演習で、自分でこのアプローチを実際に練習すること</strong>。</p>
+      <p class="wrapup">このワークフローで計画しているのはコースだが、より重要なのは、<em>思考のパートナーシップ</em>と、教育実践全体を高めるスキルセットを築いていること。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="key" data-label="要点整理（公式コース本文より）">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">要点</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">要点整理（公式コース本文より）</h2>
+      <div class="tip">
+        <b>ここからは出典が変わる</b>
+        <p>ここまでのセクションは動画のトランスクリプトに基づく。以下は公式 Academy のレッスンページにある <em>Key takeaways</em>（重要なポイント）の訳。</p>
+      </div>
+      <ul class="acts">
+        <li>
+          <h3>コンテキスト構築は、汎用的な AI を教育と思考のパートナーへ変える</h3>
+          <p>あなたのアプローチ、ビジョン、ニーズを理解するパートナーへ。</p>
+        </li>
+        <li>
+          <h3>4D それぞれが、コース設計の協働で特定の役割を果たす</h3>
+          <p>委任力で何を誰がやるかを決め、記述力で問題空間へ招き入れ、評価力で自分の専門性に照らし、倫理的責任で最終成果への責任を保つ。</p>
+        </li>
+        <li>
+          <h3>目標は効率化だけでなく向上</h3>
+          <p>求めているのは、より速い計画立案ではなく、より良い教育と学習。</p>
+        </li>
+        <li>
+          <h3>あなたの教育学的および専門分野の専門知識が、プロセス全体を導く</h3>
+          <p>AI がプロセスを導くのではない。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="ex" data-label="演習">
+    <div class="sec__mark"><div><span class="sec__t">TRY</span><span class="sec__kind">演習</span></div></div>
+    <div class="sec__body">
+      <p class="tr__note">ここから先は動画ではなく、Anthropic 公式 Academy のこのレッスンの <em>Exercises</em> セクションが出典。</p>
+      <h2 class="sec__h">演習：コース設計ワークフローを通しでやる（Complete Course Design Workflow）</h2>
+      <p>推定時間：<strong>50分</strong>。<strong>レッスン01 で作った Teaching Context document（教育コンテキストドキュメント）を最初のプロンプトの一部として再利用し</strong>、コースの部分的／全体的な（再）設計プロセスを通しでやる。このコースの動画トランスクリプトを AI パートナーに共有してもよい。</p>
+      <ol class="steps">
+        <li>
+          <h3>Stage 1 — アプローチを計画する</h3>
+          <p>AI を始める前に、自分自身のために次を明確にする。</p>
+          <ul>
+            <li>どのコース、あるいはどのユニットを設計または再設計するのか</li>
+            <li>どんな作業が必要か（内容の選定、順序づけ、目標設定など）</li>
+            <li>どの側面に自分の専門性が要るか。どこで AI が助けになりうるか</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Stage 2 — 協働を始める</h3>
+          <p><strong>会話を始める。</strong></p>
+          <ul>
+            <li>Claude か、任意の AI アシスタントと新しい会話を始める</li>
+            <li>レッスン01 の Teaching Context document を共有する</li>
+            <li>どのコースに取り組んでいて、何を達成しようとしているかを説明する</li>
+          </ul>
+          <p><strong>記述を豊かにする。</strong></p>
+          <ul>
+            <li>コース名を挙げるだけにしない——具体的な課題を説明する</li>
+            <li>このコースを固有にしているもの（学生のニーズ、前提条件、成果）を共有する</li>
+            <li>成功がどう見えるかについての自分のビジョンを描写する</li>
+            <li>自分の委任の考え——何を一緒にやりたいのか、なぜか——を説明する</li>
+          </ul>
+          <p><strong>パートナーシップを立ち上げる。</strong></p>
+          <ul>
+            <li>AI に確認の質問をするよう促す</li>
+            <li>制約（時間、リソース、機関の要件）を共有する</li>
+            <li>ゼロから始めるのか、既存教材を改訂するのかを示す</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Stage 3 — 記述と評価で会話を育てる</h3>
+          <p>関連するコース要素を通しでやる。<strong>全体を通じて評価力を働かせ、継続的な会話を通じて自分の記述を練り直す。</strong></p>
+          <p><strong>内容の特定。</strong></p>
+          <ul>
+            <li>自分の文脈に基づいて、トピックと概念を提案してもらう</li>
+            <li>提案ごとに評価する——これは<strong>自分の</strong>学生のためになるか？</li>
+            <li>なぜ機能するのか／しないのかを、常に AI へ説明し返す</li>
+            <li>良いアイデアは発展させ、弱いアイデアは方向を修正する</li>
+          </ul>
+          <p><strong>学習の道筋のマッピング。</strong></p>
+          <ul>
+            <li>3〜4回分の授業セッションの順序づけを一緒にやる</li>
+            <li>移行点で、学生の視点に立つよう AI に頼む</li>
+            <li>「ここで学生は何に混乱しそうか？」「どんな足場かけ（scaffolding）が必要か？」を探る</li>
+            <li>各セッションが前のセッションの上にどう積み上がるかを議論する</li>
+          </ul>
+          <p><strong>学習目標。</strong></p>
+          <ul>
+            <li>内容マップを、具体的で測定可能な目標に変換する</li>
+            <li>所属機関の要件との整合を確認する</li>
+            <li>目標がより広いコース目標へ積み上がる（ladder up）ようにする</li>
+            <li>隙間や重複を見つけるのを AI に手伝ってもらう</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Stage 4 — 文書化と振り返り</h3>
+          <ul>
+            <li>正確性、引用などを検証する</li>
+            <li>主要な決定と、自分の理由づけを文書化する</li>
+            <li>どの AI の提案を却下したか、その理由をメモする</li>
+            <li>自分の計画立案における AI の役割についての短い声明（statement）を作る</li>
+            <li>このプロセスを学生や同僚とどう共有しうるかを考える</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="tip">
+        <b>Teaching Context document とは</b>
+        <p>公式コースのレッスン1の演習「Building a shared teaching vision」で、AI との会話を通じてつくる<strong>再利用可能な教育コンテキストドキュメント</strong>のこと。自分の教育哲学、制約、学生像、好む教育方法などをまとめたもので、今後の AI との協働の冒頭で共有して共通理解を確立するために使う。本サイトでは <a href="01-introduction.html">01 教育者のための AI Fluency 入門</a> に収録している。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="reflect" data-label="振り返り">
+    <div class="sec__mark"><div><span class="sec__t">REFLECT</span><span class="sec__kind">振り返り</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">振り返り</h2>
+      <p class="tr__note">公式ページにはこの回の振り返り設問が無い。以下は動画と公式演習の Stage 4 から、本サイトが起こしたもの。</p>
+      <ol class="steps">
+        <li><h3>どの AI の提案を却下したか。それはなぜか</h3><p>却下の理由を言葉にできたとき、それは自分の教育的判断そのものになっている。</p></li>
+        <li><h3>AI に学生を演じてもらったとき、予想していなかった指摘はあったか</h3><p>「いつでも使える学生フォーカスグループ」は、自分の何を見えるようにしたか。</p></li>
+        <li><h3>このプロセスのどこまでを、学生や同僚に共有できるか</h3><p>共有できない部分があるとしたら、それはなぜか。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="next" data-label="次のステップ">
+    <div class="sec__mark"><div><span class="sec__t">NEXT</span><span class="sec__kind">次へ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">次のステップ（公式コース本文より）</h2>
+      <p>公式ページの <em>What's next</em> はこう予告する——次のレッスンでは <strong>AI とともに学習教材と課題を作成すること</strong>を扱う。<strong>ここまでに築いた文脈が、講義スライドから評価まで、教材づくりをより一貫性のある効果的なものにする</strong>ことを発見する。同時に、<strong>学生もまた AI を使える状況で、学術的誠実性をどう保つか</strong>という課題にも取り組む。</p>
+      <div class="tip">
+        <b>本サイトでの対応</b>
+        <p>この予告にあたるのが公式 Lesson 4「Applying AI Fluency to learning materials and assignments」で、本サイトでは <a href="04-learning-materials.html">04 学習教材と課題への AI Fluency の適用</a> として収録している。動画の 8:45 も次回予告として「確立した文脈が学習教材と評価の作成をどう変えるか」を扱うと述べている。</p>
+      </div>
+      <ul class="chips">
+        <li><a href="04-learning-materials.html">04 学習教材と課題への AI Fluency の適用 →</a></li>
+        <li><a href="index.html">教育者のための AI Fluency コース 目次へ</a></li>
+        <li><a href="../ai-fluency/index.html">AI活用力（AI Fluency）コースへ</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <details class="tr">
+    <summary><span>原文トランスクリプト（英語・全文）</span></summary>
+    <p class="tr__note">YouTube の自動生成字幕から取得したもの。認識ミス（highle、court content、role playing の区切りなど）もそのまま残してある。日本語本文側では正しい語に直している。</p>
+    <div class="tr__body">
+      <div><span>0:11</span><p>Hello, I'm Joe Feller. Let's explore how AI fluency can transform your course and lesson design process. The key to human AI partnership is building rich shared context. Helping AI process exactly what you're trying to achieve in your course</p></div>
+      <div><span>0:26</span><p>or lesson. This turns AI from a generic assistant into a collaborator who responds to your specific teaching context, your constraints, and your pedagogical vision. That's because one of AI's most transformative capabilities for educators is holding large contexts</p></div>
+      <div><span>0:42</span><p>in mind while helping us think through interconnected decisions. When you do this well, AI becomes less like a generic assistant and more like a colleague who gets your teaching approach. Let's forget about AI for a moment. When designing a course, we</p></div>
+      <div><span>0:58</span><p>generally engage in three fundamental pieces of work. We identify the content and concepts that are essential for our students, considering who they are, what they need to learn, and how to structure it for their success. We also map out the learning journey, deciding how</p></div>
+      <div><span>1:15</span><p>topics will build on each other to support student learning over the course of a single session or the whole term. and we articulate specific learning objectives that capture what students should be able to do after a given session or by the end of the course.</p></div>
+      <div><span>1:32</span><p>Now, let's explore how building a genuine collaborative partnership with AI can transform, not just streamline, these three tasks when working with AI on identifying court content and concepts. The first step is to make</p></div>
+      <div><span>1:48</span><p>smart delegation decisions. This depends on your own subject matter expertise and what you're trying to accomplish. For example, maybe you already have highle topics in mind and just want help filling out some of the details. Or</p></div>
+      <div><span>2:03</span><p>perhaps you have specific concepts that you know you'll need to include, but you aren't quite sure how to organize them. Each situation calls for different kinds of collaboration, and understanding your specific needs is critical. It's also critical to understand why you are doing</p></div>
+      <div><span>2:20</span><p>it. Answering what and why means that we can make better delegation decisions about who should do the work, human, AI or both, and how. Next comes description. Really inviting AI into</p></div>
+      <div><span>2:35</span><p>your specific problem space. For example, instead of asking for introductory statistics topics, try something like, "I'm building a stats course for journalism students who need data literacy but often come to me anxious about math or skeptical that</p></div>
+      <div><span>2:51</span><p>statistics matter in their careers. Then add a key call to action. Help me think through how to identify concepts that will help address these student concerns while building their confidence." Notice how this description creates a thinking space rooted in your actual pedagogical</p></div>
+      <div><span>3:08</span><p>challenge, not generic course planning. As AI starts suggesting ideas, that's where product discernment comes in to evaluate those suggestions against your own expertise. Does this concept actually help those skeptical journalism students? But don't just accept or</p></div>
+      <div><span>3:25</span><p>reject. Explain to the AI assistant why something works or doesn't in your context. By doing this, you're using your expertise to shape better future suggestions. You're teaching your AI partner something that should come</p></div>
+      <div><span>3:40</span><p>naturally. And throughout this process, maintain diligence. You're not outsourcing decisions. You're taking responsibility for what ends up in front of your students. And you should document key decisions in your AI collaboration and share your thinking</p></div>
+      <div><span>3:56</span><p>with your students. This transparency shows our students how thoughtful professionals approach AI and it models responsible collaboration. What you get from thoughtful AI collaboration goes beyond saving time. Each exchange</p></div>
+      <div><span>4:11</span><p>deepens our understanding while maintaining accountability for what actually serves our students. Now for another familiar challenge, turning a list of topics into a coherent learning journey. This is where AI partnership really gets interesting. Like before,</p></div>
+      <div><span>4:28</span><p>start with clear delegation thinking. Ask, "What are my goals? What kinds of work needs to be done? What aspects of that work can best be automated or augmented with AI?" Then use good description to share these delegation decisions with your AI partner. Pay</p></div>
+      <div><span>4:45</span><p>attention to both product and process description and explain what you would like AI to do and also how. Here's another interesting angle to this type of work. When you have a possible course flow in mind, ask the AI to switch roles. Say something like, "Please act</p></div>
+      <div><span>5:02</span><p>as one of my students. How would you react to this planned course at different points along the way? Where might you get confused? What background would you need at each stage? What support will you need for transitioning between topics?" This interactive role</p></div>
+      <div><span>5:18</span><p>playing capability of AI is powerful, but we often forget to use it. It's like having a student focus group available at any time. In this collaboration, indeed in every AI collaboration, remember that discernment helps us to catch problems, but also to recognize</p></div>
+      <div><span>5:35</span><p>unexpected insights and good ideas. If we continually strive for real conversations with AI, we'll encounter some really surprising insights and new ways of thinking about our problems. Good diligence here means quality</p></div>
+      <div><span>5:50</span><p>assurance, taking responsibility, and being transparent. But it's more than just disclosure. By paying close attention to our own process, it helps us improve the next time. Collaborating with AI lets us breathe new life into defining learning</p></div>
+      <div><span>6:06</span><p>objectives. If you've been building context with AI through the process we just discussed, sharing your knowledge, constraints, and goals, then you've created something valuable. a shared understanding of your course and pedagogical approach. If not, try</p></div>
+      <div><span>6:23</span><p>uploading a course syllabus and describing to your AI assistant your approach, specific teaching context, and any constraints relevant to the course. Now, you can use that foundation to craft learning objectives that are accurate, meaningful, motivating to your</p></div>
+      <div><span>6:39</span><p>students, true to your teaching philosophy, and aligned with your institution's requirements. These conversations guided by the 4Ds can be surprisingly generative. Because the process is faster, you can experiment more, try different approaches, and see</p></div>
+      <div><span>6:55</span><p>what resonates. You can also work with AI to help students see their learning objectives differently, like mapping course outcomes to resume skills, which can be very motivating. Let's revisit diligence one more time because it is so important to education. Diligence is</p></div>
+      <div><span>7:10</span><p>more than just documentation for your own use. It's an opportunity to share your practice with your students and peers. When you're transparent about how you work with AI, you do several things at once. You model responsible AI collaboration. You share pedagogical</p></div>
+      <div><span>7:26</span><p>innovations. And you demonstrate how AI can enhance your learning expertise, and you're showing that human judgment, values, and relationships with your students remain at the center of your work. Good news, this collaborative approach can save time. Better news,</p></div>
+      <div><span>7:43</span><p>that's just the beginning. Because the real power of fluent AI collaboration comes from surfacing hidden assumptions and blind spots in our own thinking. It comes from discovering creative connections between concepts that we otherwise might have missed and</p></div>
+      <div><span>7:58</span><p>maintaining coherence while exploring new ideas or building personal competencies that get stronger with practice. The four Ds aren't a checklist. They're a framework for building genuine cognitive partnership where your</p></div>
+      <div><span>8:13</span><p>pedagogical and subject matter expertise guides collaborative exploration resulting in courses that serve students better than either you or the AI could have designed alone. This context building approach works for any</p></div>
+      <div><span>8:28</span><p>substantial planning task, including creating new courses from scratch, updating existing courses, planning curriculum sequences, and developing learning pathways. The key is starting with the big picture, building and</p></div>
+      <div><span>8:43</span><p>maintaining context as you work down through the details. In our next lesson, we'll explore how this established context can transform the creation of learning materials and assessments. But first, practice the approach yourself with the exercises we've provided. And</p></div>
+      <div><span>9:00</span><p>remember, yes, with this workflow, you're planning a course, but more importantly, you're building a thinking partnership and a set of skills that will enhance your entire pedagogical practice.</p></div>
+    </div>
+  </details>
+</main>
+
+<div class="pager">
+  <a href="02-framework-review.html"><b>前のレッスン — 02</b><em>AI Fluency フレームワークの復習</em></a>
+  <a class="is-next" href="04-learning-materials.html"><b>次のレッスン — 04</b><em>学習教材と課題への AI Fluency の適用</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Anthropic 公式 AI Fluency for Educators コース「Applying AI Fluency to course design and learning outcomes」／ CC BY-NC-SA 4.0</span>
+  <a href="https://youtu.be/cVFLuBbnbMo" target="_blank" rel="noopener">youtu.be/cVFLuBbnbMo ↗</a>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

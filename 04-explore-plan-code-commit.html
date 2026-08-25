@@ -36,6 +36,7 @@
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
       <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問">確認問題</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
+      <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
 </div></div>
 
@@ -89,6 +90,17 @@
       <ul class="chips">
         <li>1 — Explore / 探索</li><li>2 — Plan / 計画</li><li>3 — Code / コード</li><li>4 — Commit / コミット</li>
       </ul>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          探索・計画を飛ばして、いきなり Claude にコードを書かせにいくと何が起きると説明されているか。
+          <ul class="chk__c"><li>あとから軌道修正が増える</li><li>実行速度が上がり、作業全体が早く終わる</li><li>コミットメッセージの精度が上がる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — ほとんどの人はこの2段を飛ばしていきなり書かせにいき、その結果あとから軌道修正が増える。</p>
+          <p>だからこそ4段のうち最初の2段（探索・計画）を守ることが、このワークフローで唯一持ち帰ってほしいポイントとされている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -123,6 +135,17 @@
       </div>
 
       <p>なお、変更を加える意図がなくコードベースの概要だけがほしい場合は、プランモードに入らずに<strong>explore サブエージェント</strong>を走らせるという手もある（「このコードベースを探索して」と頼むだけでいい）。サブエージェントの詳細は <a href="07-subagents.html">07 サブエージェント</a> で扱う。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude が計画を提示した直後の段階が「軌道修正に最適な場所」とされているのはなぜか。
+          <ul class="chk__c"><li>まだコードが1行も書かれておらず、修正が桁違いに安いから</li><li>この段階なら計画をやり直しても課金されないから</li><li>この段階でしか Web 検索が使えないから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — まだコードが1行も書かれていないため、計画段階での修正は書かれたコードを直す作業より桁違いに安い。</p>
+          <p>プランモードではファイルが編集されないので、この時点なら何度でも安く軌道修正できる。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -133,6 +156,17 @@
       <p>計画が良さそうなら <strong>approve</strong> を選んで承認し、Claude にリストの項目を進めさせる。このとき、ファイル編集を自動承認させるか毎回確認させるかを選べる（<a href="03-your-first-prompt.html">03</a> の承認モード）。</p>
       <p>Claude は計画を「完了」と見なす前に、できる限り自分でトラブルシューティングを行う。それでも<strong>時にはあなたの介入が必要になる</strong>。</p>
       <p>ここでプランモードの利点がもう一つ効いてくる——実行が終わったあとも、<strong>どうやってその結果に至ったかというコンテキストが残っている</strong>。それが Claude の次の判断を導く材料になる。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コード段階を終えたあとも、プランモードを経由したことの利点として挙げられているのはどれか。
+          <ul class="chk__c"><li>テストが自動的に生成される</li><li>コードの実行速度が速くなる</li><li>どうやってその結果に至ったかというコンテキストが残り、次の判断の材料になる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 実行が終わったあとも経緯のコンテキストが残り、それが Claude の次の判断を導く材料になる。</p>
+          <p>速度向上やテスト自動生成は本文に書かれていない。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -169,6 +203,17 @@
         <b>Quick tip</b>
         <p>Claude が<strong>同じ問題に何度もぶつかっている</strong>のに気づいたら、その解決策を <code>CLAUDE.md</code> に保存するよう頼む。次のセッションからは最初から知っている状態で始まる（→ <a href="06-claude-md.html">06 CLAUDE.md</a>）。</p>
       </div>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          この節の前提として述べられている、Claude が自分の結果に自信を持つために必要なことは何か。
+          <ul class="chk__c"><li>コンテキストウィンドウが十分に大きいこと</li><li>より多くのツールにアクセスできること</li><li>「正しい」とはどういうことかが明確であること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 「正しい」とはどういうことかが明確でなければ、Claude は自分の結果に自信を持てない。</p>
+          <p>この前提のもとで、成功基準の定義・ツールの追加・テストスイートという3つの工夫が並べられている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -185,6 +230,17 @@
       </figure>
 
       <p>そのあと、Claude に<strong>自分のスタイルでコミットメッセージを生成させる</strong>。そして、これを繰り返す。</p>
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          コミット前にサブエージェントのコードレビュアーを走らせる理由として説明されているのはどれか。
+          <ul class="chk__c"><li>メインエージェントより処理が速いから</li><li>コミットメッセージを自動生成できるのはサブエージェントだけだから</li><li>メインエージェントがセッション中に持っているかもしれない偏りを引き継がず、新鮮な視点をもたらすから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — サブエージェントはコードベースに新鮮な視点をもたらし、メインエージェントの偏りを引き継がない。</p>
+          <p>「書いた本人にレビューさせない」という原則を、エージェントの世界でも成立させる仕組みとして説明されている。</p>
+        </div>
+      </details>
     </div>
   </section>
 
