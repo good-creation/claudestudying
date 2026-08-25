@@ -34,7 +34,7 @@ LESSONS = [
 # （専用 nav は af_nav_for() に倣った cf_nav_for() で別途生成する）。
 APPENDIX = [
     ("summary.html",    "まとめ", "まとめ：できることと、費用"),
-    ("quiz.html",       "確認問題", "確認問題 20問"),
+    ("quiz.html",       "試験", "試験 — レベル1〜3とランク判定"),
 ]
 
 # 公式コース外の別コース。付録と同じ視覚的分離（is-appendix）で扱うが、

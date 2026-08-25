@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>確認問題 — Claude Code 入門コース 学習ノート</title>
-<meta name="description" content="レッスン01〜11の理解度を確認する全22問。4択・正誤判定・並べ替えの3形式、出題順ランダム、合格ライン80%。">
+<title>試験 — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="レッスン01〜11の理解度を確認する試験。4択・正誤判定・並べ替えの3形式、出題順ランダム、合格ライン80%。採点は全問回答後にまとめて表示。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -17,8 +17,8 @@
     <img class="clawd clawd--lg" src="img/clawd.png" alt="目を閉じたマスコット" style="margin:0 auto 22px">
     <p class="examlock__k">Exam mode — content hidden</p>
     <h2>問題を隠しました</h2>
-    <p>試験中に他の画面へ切り替えたため、内容を非表示にしました。戻って続けるには下のボタンを押してください。<strong>離席は記録され、採点結果に表示されます。</strong></p>
-    <button type="button">試験に戻る</button>
+    <p>本番モード中に他の画面へ切り替えたため、内容を非表示にしました。戻って続けるには下のボタンを押してください。<strong>離席は記録され、採点結果に表示されます。</strong></p>
+    <button type="button">本番モードに戻る</button>
     <p class="examlock__count">離席 <span id="examLockCount">0</span> 回</p>
   </div>
 </div>
@@ -40,7 +40,7 @@
       <a href="10-hooks.html" title="フックで確実に実行させる" aria-label="10 フックで確実に実行させる">10</a>
       <a href="11-review-and-ship.html" title="レビューして出荷する" aria-label="11 レビューして出荷する">11</a>
       <a class="is-appendix" href="summary.html" title="まとめ：できることと、費用" aria-label="まとめ：できることと、費用">まとめ</a>
-      <a class="is-appendix" href="quiz.html" title="確認問題 20問" aria-label="確認問題 20問" aria-current="page">確認問題</a>
+      <a class="is-appendix" href="quiz.html" title="試験" aria-label="試験" aria-current="page">試験</a>
       <a class="is-appendix" href="ai-fluency/index.html" title="AI活用力（別コース）" aria-label="AI活用力（別コース）">AI</a>
       <a class="is-appendix" href="educators/index.html" title="教育者のための AI Fluency（別コース）" aria-label="教育者のための AI Fluency（別コース）">教育</a>
     </nav>
@@ -146,6 +146,21 @@
   <div class="tip">
     <b>この先の全22問との対応</b>
     <p>各問題には「出題範囲 — 05 コンテキスト管理」のようにレッスン番号が付いています。間違えた問題はその番号のレッスンに戻るのがいちばん早い経路です。費用や機能の全体像まで含めた詳しいまとめは <a href="summary.html">まとめ — できることと、費用</a> にあります。</p>
+  </div>
+</section>
+
+<section class="examgate shell" id="bankGate">
+  <p class="eyebrow">出題範囲を選ぶ</p>
+  <h2>どの問題に挑戦しますか。</h2>
+  <p class="recap__lede" style="margin-top:10px">既定は「確認問題」（全23問）です。何も選ばなければこのまま始まります。レベル別チャレンジは任意で挑戦できます。</p>
+
+  <div class="cards bankcards" id="bankCards" role="radiogroup" aria-label="出題範囲を選ぶ">
+    <article class="bankcard is-selected" data-bank="" tabindex="0" role="radio" aria-checked="true">
+      <p class="cards__k">確認問題</p>
+      <h3>全問</h3>
+      <p>レッスン01〜11の理解度を確認する、これまでどおりの問題集。</p>
+      <p class="bankcard__n">23問</p>
+    </article>
   </div>
 </section>
 

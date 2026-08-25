@@ -191,7 +191,7 @@
         <summary>
           <b>確認</b>
           <code>wrangler.jsonc</code> が既にあるプロジェクトで推奨されているのはどれか。
-          <ul class="chk__c"><li>wrangler.jsonc を削除してから起動する</li><li>別のプロジェクトとして新規に作り直す</li><li>そのファイルがあるディレクトリから Claude Code を起動する</li></ul>
+          <ul class="chk__c"><li>まず wrangler.jsonc を消してから Claude Code を起動する</li><li>別のプロジェクトとして一から作り直す</li><li>wrangler.jsonc が置かれている場所そのものを起動ディレクトリにする</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: C</b> — wrangler.jsonc があるディレクトリから起動するのが推奨されている。</p>
@@ -234,7 +234,7 @@
         <summary>
           <b>確認</b>
           最初の依頼例に「本番環境への変更・デプロイは私の確認後に行って」と書く意図は何か。
-          <ul class="chk__c"><li>Claude Code にデプロイ権限そのものを与えないようにする</li><li>Workers の利用を禁止する</li><li>いきなり本番を操作させず、まず設計とローカル環境を固める</li></ul>
+          <ul class="chk__c"><li>Claude Code からデプロイ権限そのものを取り上げておく</li><li>Workers そのものの利用を禁止しておく</li><li>本番にはまだ触らせず、先に設計とローカルの土台を作らせる</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: C</b> — この依頼なら、いきなり本番を操作させず、まず設計とローカル環境を固められる。</p>
@@ -369,7 +369,7 @@
         <summary>
           <b>確認</b>
           本番環境の変更権限を渡す前に、本文が最初のステップとして推奨しているのはどれか。
-          <ul class="chk__c"><li>まずは読み取り専用権限で接続する</li><li>すぐに DNS や WAF の変更権限を与える</li><li>自動承認モードにして作業を速める</li></ul>
+          <ul class="chk__c"><li>最初は読み取りしかできない権限だけをつないでおく</li><li>すぐに DNS や WAF を変更できる権限まで渡してしまう</li><li>自動承認モードに切り替えて作業を速めてしまう</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: A</b> — ログ確認や設定の点検から始め、書き込みは後から足せばよいとされている。</p>
@@ -406,7 +406,7 @@
         <summary>
           <b>確認</b>
           安全な導入順として本文が示しているのはどれか。
-          <ul class="chk__c"><li>MCP のフル権限接続 → Skills → 読み取り専用への縮小</li><li>Skills → 読み取り MCP → 開発用環境へのデプロイ → 本番</li><li>本番への書き込み権限 → Skills → MCP</li></ul>
+          <ul class="chk__c"><li>MCP にフル権限でつないでから、Skills を入れ、あとで読み取り専用に絞り込む</li><li>知識だけの Skills から始めて、読み取り専用の MCP、開発環境へのデプロイを経てから本番に進む</li><li>本番への書き込み権限を先に渡し、そのあと Skills と MCP を足していく</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: B</b> — Skills（操作なし）→ 読み取り MCP → 開発用環境へのデプロイ → 本番、の順に権限を広げるのが安全とされる。</p>

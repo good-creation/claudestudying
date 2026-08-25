@@ -210,7 +210,7 @@
         <summary>
           <b>確認</b>
           編集後の自動整形の実践例で使われているフックイベントはどれか。
-          <ul class="chk__c"><li>PostToolUse</li><li>PreToolUse</li><li>Notification</li></ul>
+          <ul class="chk__c"><li>ツール呼び出しが完了した後に発火するイベント（PostToolUse）</li><li>ツール呼び出しの前に発火するイベント（PreToolUse）</li><li>通知を転送するためのイベント（Notification）</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: A</b> — <code>PostToolUse</code> に <code>"Edit|MultiEdit|Write"</code> というマッチャーを設定し、ファイル変更のたびに発火させる。</p>
@@ -291,7 +291,7 @@
         <summary>
           <b>確認</b>
           コマンド内で <code>CLAUDE_PROJECT_DIR</code> 環境変数を使う理由として本文が挙げているのは何か。
-          <ul class="chk__c"><li>Claude の現在の作業ディレクトリがどこであっても動くようにするため</li><li>フックの実行速度を上げるため</li><li>チームメンバーごとに実行権限を分けるため</li></ul>
+          <ul class="chk__c"><li>Claude がどこを作業ディレクトリにしていても、同じスクリプトを迷わず参照できるようにするため</li><li>フックが走る速度を少しでも上げるため</li><li>チームメンバーごとに実行できる権限を分けるため</li></ul>
         </summary>
         <div class="chk__a">
           <p><b>答え: A</b> — これを使ってプロジェクトに保存されたスクリプトを参照すれば、作業ディレクトリの位置に関わらず動く。</p>

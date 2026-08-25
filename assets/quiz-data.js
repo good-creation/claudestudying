@@ -1,4 +1,4 @@
-/* 確認問題の問題バンク。
+/* 試験の問題バンク（既存の23問）。レベル別チャレンジは assets/quiz-levels.js。
    type: "choice"（4択）/ "truefalse"（正誤判定）/ "order"（並べ替え）
    choice    … options の先頭が正解。表示時にシャッフルされる
    truefalse … a: true = 記述が正しい
