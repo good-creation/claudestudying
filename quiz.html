@@ -192,32 +192,6 @@
     </li>
 
     <li>
-      <h3>修了証の送り先を入れます。</h3>
-      <p>本番モードでは入力が必須、練習モードでは空のままでも解けます。</p>
-
-      <div class="quizid" id="quizId">
-        <div class="quizid__row">
-          <label class="quizid__f">
-            <span>メールアドレス <em>結果の送付先</em></span>
-            <input type="email" id="qEmail" name="email" autocomplete="email" inputmode="email"
-                   placeholder="you@example.com" maxlength="120" spellcheck="false">
-          </label>
-          <label class="quizid__f">
-            <span>氏名 <em>修了証に印字・任意</em></span>
-            <input type="text" id="qName" name="name" autocomplete="name"
-                   placeholder="山田 太郎" maxlength="40">
-          </label>
-        </div>
-        <p class="quizid__err" id="qIdErr" hidden></p>
-        <p class="quizid__note">
-          採点が終わると、点数・合否・復習すべきレッスンを記した<strong>修了証をこのアドレスへ送ります</strong>。
-          入力内容はこの端末のブラウザにだけ保存され、送信時以外どこにも送られません。
-        </p>
-        <p class="quizid__off">送信先が未設定のため、いまはメールを送りません（<code>assets/result-mail.js</code> の ENDPOINT が空です）。</p>
-      </div>
-    </li>
-
-    <li>
       <h3>本番モードで受けますか、練習モードで解きますか。</h3>
       <p>いま選ばれている試験を確かめてから、どちらかのボタンを押してください。</p>
 
@@ -280,7 +254,6 @@
   <a href="claude-code.html">目次へ</a>
 </footer>
 
-<script src="assets/result-mail.js"></script>
 <script src="assets/exam.js"></script>
 <script src="assets/quiz-data.js"></script>
 <script src="assets/quiz-levels.js"></script>

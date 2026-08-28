@@ -4,212 +4,96 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anthropic 公式コース 学習ノート</title>
-<meta name="description" content="Anthropic 公式コースを日本語で再構成した学習ノートサイト。Claude Code 入門コース、AI活用力（AI Fluency）、教育者のための AI Fluency、アドバンス、Cloudflare 付録の5系統を、進捗つきでここから選ぶ。">
+<meta name="description" content="Anthropic 公式コースを日本語で再構成した学習ノートサイト。Claude Code 入門コース、AI活用力（AI Fluency）、教育者のための AI Fluency、アドバンス、Cloudflare 付録の5系統をここから選ぶ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body class="home">
+<body>
 
 <header class="hero shell">
   <div class="hero__top">
     <p class="eyebrow">Anthropic 公式コース / 日本語 学習ノート</p>
-    <p class="eyebrow" style="color:var(--signal)">全38レッスン · 5コース</p>
+    <p class="eyebrow" style="color:var(--signal)">コースを選ぶ</p>
   </div>
 
-  <h1 class="hero__title">今やる<em>レッスン</em>を<br>進める</h1>
+  <h1 class="hero__title">Anthropic 公式コース<br><em>学習ノート</em></h1>
 
   <img class="hero__clawd" src="img/clawd.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    Anthropic の公式解説・公式コース本文を日本語で再構成した学習ノート。<strong>Claude Code 入門コース</strong>と、別系統の<strong>AI活用力（AI Fluency）</strong>・<strong>教育者のための AI Fluency</strong>・<strong>アドバンス</strong>、そして公式コース外の<strong>Cloudflare 付録</strong>の5系統を収録しています。読んだレッスンはこの端末に記録され、下の「つづきから」に出ます。
+    Anthropic の公式解説・公式コース本文を日本語で再構成した学習ノートサイト。<strong>Claude Code 入門コース</strong>と、別系統の<strong>AI活用力（AI Fluency）</strong>・<strong>教育者のための AI Fluency</strong>・<strong>アドバンス</strong>の各コース、そして公式コース外の<strong>Cloudflare 付録</strong>の5系統を収録しています。下から読みたいものを選んでください。
   </p>
 </header>
 
-<main class="home shell">
+<main class="shell">
 
-  <!-- 進捗はこの端末の localStorage にしか無いので、JS が値を入れてから出す -->
-  <section class="resume" id="resume" hidden aria-labelledby="resumeK">
-    <p class="eyebrow resume__k" id="resumeK">現在のレッスン</p>
-    <div class="resume__now">
-      <span class="resume__num" id="resumeNum">01</span>
-      <p class="resume__t" id="resumeT"></p>
-      <a class="resume__go" id="resumeGo" href="01-what-is-claude-code.html">このレッスンを開く →</a>
-    </div>
-    <div class="resume__last" id="resumeLast" hidden>
-      <i aria-hidden="true"></i>
-      <span>最後にアクセス</span>
-      <b id="resumeLastT"></b>
-      <a class="resume__back" id="resumeBack" href="#">つづきから →</a>
-    </div>
-    <div class="bar"><i id="resumeBar"></i></div>
-    <div class="resume__foot">
-      <span id="resumePct">完了 0%</span>
-      <span id="resumeRest">残り 38 / 全 38</span>
-    </div>
-  </section>
+  <!-- 進捗はこの端末の localStorage にしか無い。JS が値を入れてから出す -->
+  <p class="resumeline" id="resume" hidden>
+    <span class="resumeline__k">つづきから</span>
+    <a id="resumeGo" href="01-what-is-claude-code.html"></a>
+    <span class="resumeline__n" id="resumeN"></span>
+  </p>
 
-  <div class="tracks">
+  <div class="lessons">
 
-    <article class="track" style="--g1:#5A2A08;--g2:#180B03;--c:#F0A25C;--glow:rgba(240,162,92,.22)"
-             data-course="claude-code">
-      <span class="track__motif" aria-hidden="true">01</span>
-      <p class="track__kind">Course 01 · Getting Started</p>
-      <p class="track__en">Claude Code 入門コース</p>
-      <h2 class="track__h"><a href="claude-code.html">Claude Code を使えるようにする</a></h2>
-      <p class="track__lead">
-        Anthropic 公式の入門コース。動画10本＋公式コース本文をもとに再構成しました。
-        各ページは動画の実タイムコードを軸に組み、英語トランスクリプト全文を収録しています。
-      </p>
-      <div class="track__foot">
-        <span class="track__range">レッスン 01〜11</span>
-        <a class="track__open" href="claude-code.html">コースを開く →</a>
-        <span class="track__count">全11レッスン</span>
-        <button type="button" class="track__more" aria-expanded="false" aria-controls="list-claude-code"
-                aria-label="レッスン一覧を開く">▼</button>
+    <a class="lsn" href="claude-code.html">
+      <div class="lsn__n">入門</div>
+      <div>
+        <div class="lsn__en">Claude Code — Getting Started</div>
+        <h2 class="lsn__ja">Claude Code 入門コース</h2>
+        <p class="lsn__sum">Anthropic 公式の Claude Code 入門コース。動画10本＋公式コース本文をもとに再構成。各ページは動画の実タイムコードを軸に組み、英語トランスクリプト全文を収録しています。</p>
+        <ul class="lsn__tags"><li>動画10本</li><li>タイムコード</li><li>英語トランスクリプト</li></ul>
       </div>
-      <ul class="track__list" id="list-claude-code" hidden>
-        <li><a href="01-what-is-claude-code.html"><em>01</em><span>Claude Code とは何か</span></a></li>
-        <li><a href="02-how-claude-code-works.html"><em>02</em><span>どう動いているのか</span></a></li>
-        <li><a href="03-your-first-prompt.html"><em>03</em><span>最初のプロンプトを書く</span></a></li>
-        <li><a href="04-explore-plan-code-commit.html"><em>04</em><span>探索 → 計画 → コード → コミット</span></a></li>
-        <li><a href="05-context-management.html"><em>05</em><span>コンテキストを管理する</span></a></li>
-        <li><a href="06-claude-md.html"><em>06</em><span>CLAUDE.md ファイル</span></a></li>
-        <li><a href="07-subagents.html"><em>07</em><span>サブエージェントとは何か</span></a></li>
-        <li><a href="08-skills.html"><em>08</em><span>スキルとは何か</span></a></li>
-        <li><a href="09-mcp.html"><em>09</em><span>MCP で外部につなぐ</span></a></li>
-        <li><a href="10-hooks.html"><em>10</em><span>フックで確実に実行させる</span></a></li>
-        <li><a href="11-review-and-ship.html"><em>11</em><span>レビューして出荷する</span></a></li>
-      </ul>
-      <div class="bar"><i></i></div>
-    </article>
+      <div class="lsn__side"><span>全11レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
 
-    <article class="track" style="--g1:#26325F;--g2:#0D1128;--c:#93A7EA;--glow:rgba(147,167,234,.22)"
-             data-course="ai-fluency">
-      <span class="track__motif" aria-hidden="true">02</span>
-      <p class="track__kind">Course 02 · AI Fluency</p>
-      <p class="track__en">AI活用力（AI Fluency）</p>
-      <h2 class="track__h"><a href="ai-fluency/index.html">AI と組む力を身につける</a></h2>
-      <p class="track__lead">
-        4Dフレームワーク（委任力・記述力・評価力・倫理的責任）で人間と AI の協働を扱う、
-        Claude Code 入門コースとは別系統の公式コース。動画11本のトランスクリプトと
-        公式コースページの本文をもとに再構成しています。
-      </p>
-      <div class="track__foot">
-        <span class="track__range">レッスン 01〜13</span>
-        <a class="track__open" href="ai-fluency/index.html">コースを開く →</a>
-        <span class="track__count">全13レッスン</span>
-        <button type="button" class="track__more" aria-expanded="false" aria-controls="list-ai-fluency"
-                aria-label="レッスン一覧を開く">▼</button>
+    <a class="lsn" href="ai-fluency/index.html">
+      <div class="lsn__n" style="color:var(--caution)">活用</div>
+      <div>
+        <div class="lsn__en" style="color:var(--caution)">AI Fluency — Another Course</div>
+        <h2 class="lsn__ja">AI活用力（AI Fluency）</h2>
+        <p class="lsn__sum">4Dフレームワーク（委任力・記述力・評価力・倫理的責任）で人間とAIの協働を扱う、Claude Code 入門コースとは別系統の公式コース。動画11本のトランスクリプトと公式コースページの本文をもとに再構成しています。</p>
+        <ul class="lsn__tags"><li>別コース</li><li>4D フレームワーク</li><li>動画11本</li></ul>
       </div>
-      <ul class="track__list" id="list-ai-fluency" hidden>
-        <li><a href="ai-fluency/01-introduction.html"><em>01</em><span>AI活用力入門</span></a></li>
-        <li><a href="ai-fluency/02-why-ai-fluency.html"><em>02</em><span>なぜAI活用力が必要なのか？</span></a></li>
-        <li><a href="ai-fluency/03-4d-framework.html"><em>03</em><span>4D フレームワーク</span></a></li>
-        <li><a href="ai-fluency/04-generative-ai-basics.html"><em>04</em><span>生成 AI の基礎</span></a></li>
-        <li><a href="ai-fluency/05-capabilities-limits.html"><em>05</em><span>生成 AI の能力と限界</span></a></li>
-        <li><a href="ai-fluency/06-delegation.html"><em>06</em><span>委任力 (Delegation) を詳しく見る</span></a></li>
-        <li><a href="ai-fluency/07-project-delegation.html"><em>07</em><span>プロジェクト計画と委任力</span></a></li>
-        <li><a href="ai-fluency/08-description.html"><em>08</em><span>記述力 (Description) を詳しく見る</span></a></li>
-        <li><a href="ai-fluency/09-prompting-techniques.html"><em>09</em><span>効果的なプロンプト技法</span></a></li>
-        <li><a href="ai-fluency/10-discernment.html"><em>10</em><span>評価力 (Discernment) を詳しく見る</span></a></li>
-        <li><a href="ai-fluency/11-description-discernment-loop.html"><em>11</em><span>記述・評価のループ</span></a></li>
-        <li><a href="ai-fluency/12-diligence.html"><em>12</em><span>倫理的責任 (Diligence) を詳しく見る</span></a></li>
-        <li><a href="ai-fluency/13-conclusion.html"><em>13</em><span>まとめ</span></a></li>
-      </ul>
-      <div class="bar"><i></i></div>
-    </article>
+      <div class="lsn__side"><span>全13レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
 
-    <article class="track" style="--g1:#1F4A34;--g2:#0A1A12;--c:#74CCA1;--glow:rgba(116,204,161,.20)"
-             data-course="educators">
-      <span class="track__motif" aria-hidden="true">03</span>
-      <p class="track__kind">Course 03 · For Educators</p>
-      <p class="track__en">教育者のための AI Fluency</p>
-      <h2 class="track__h"><a href="educators/index.html">教える場に AI を持ち込む</a></h2>
-      <p class="track__lead">
-        4Dフレームワークを教育実践に適用する、教育者向けの公式コース。
-        Rick Dakan 教授（Ringling College of Art and Design）と Joseph Feller 教授
-        （University College Cork）が Anthropic と共同開発した全4レッスンを収録しています。
-      </p>
-      <div class="track__foot">
-        <span class="track__range">レッスン 01〜04</span>
-        <a class="track__open" href="educators/index.html">コースを開く →</a>
-        <span class="track__count">全4レッスン</span>
-        <button type="button" class="track__more" aria-expanded="false" aria-controls="list-educators"
-                aria-label="レッスン一覧を開く">▼</button>
+    <a class="lsn" href="educators/index.html">
+      <div class="lsn__n" style="color:var(--caution)">教育</div>
+      <div>
+        <div class="lsn__en" style="color:var(--caution)">AI Fluency for Educators — Another Course</div>
+        <h2 class="lsn__ja">教育者のための AI Fluency</h2>
+        <p class="lsn__sum">4Dフレームワークを教育実践に適用する、教育者向けの公式コース。Rick Dakan 教授（Ringling College of Art and Design）と Joseph Feller 教授（University College Cork）が Anthropic と共同開発。公式の全4レッスンを収録しています。</p>
+        <ul class="lsn__tags"><li>別コース</li><li>4D フレームワーク</li><li>教育実践への適用</li></ul>
       </div>
-      <ul class="track__list" id="list-educators" hidden>
-        <li><a href="educators/01-introduction.html"><em>01</em><span>教育者のための AI Fluency 入門</span></a></li>
-        <li><a href="educators/02-framework-review.html"><em>02</em><span>AI Fluency フレームワークの復習</span></a></li>
-        <li><a href="educators/03-course-design.html"><em>03</em><span>コース設計と学習成果への適用</span></a></li>
-        <li><a href="educators/04-learning-materials.html"><em>04</em><span>学習教材と課題への AI Fluency の適用</span></a></li>
-      </ul>
-      <div class="bar"><i></i></div>
-    </article>
+      <div class="lsn__side"><span>全4レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
 
-    <article class="track" style="--g1:#4A2352;--g2:#170A1B;--c:#C892D8;--glow:rgba(200,146,216,.20)"
-             data-course="advanced">
-      <span class="track__motif" aria-hidden="true">04</span>
-      <p class="track__kind">Course 04 · How AI Works</p>
-      <p class="track__en">アドバンス</p>
-      <h2 class="track__h"><a href="advanced/index.html">AI の中身を知る</a></h2>
-      <p class="track__lead">
-        AI が中で何をしているのかを掘り下げる別コース。予測の仕組み、トークンと埋め込み、
-        知識がどこから来るのか、そしてなぜ幻覚・追従・バイアスが起きるのか。
-        動画6本とインタラクティブ教材3本をもとに再構成しています。
-      </p>
-      <div class="track__foot">
-        <span class="track__range">レッスン 01〜09</span>
-        <a class="track__open" href="advanced/index.html">コースを開く →</a>
-        <span class="track__count">全9レッスン</span>
-        <button type="button" class="track__more" aria-expanded="false" aria-controls="list-advanced"
-                aria-label="レッスン一覧を開く">▼</button>
+    <a class="lsn" href="advanced/index.html">
+      <div class="lsn__n">応用</div>
+      <div>
+        <div class="lsn__en">Advanced — How AI Actually Works</div>
+        <h2 class="lsn__ja">アドバンス</h2>
+        <p class="lsn__sum">AI が中で何をしているのかを掘り下げる別コース。予測の仕組み、トークンと埋め込み、知識がどこから来るのか、そしてなぜ幻覚・追従・バイアスが起きるのか。動画6本とインタラクティブ教材3本をもとに再構成しています。</p>
+        <ul class="lsn__tags"><li>別コース</li><li>動画6本</li><li>仕組みと限界</li></ul>
       </div>
-      <ul class="track__list" id="list-advanced" hidden>
-        <li><a href="advanced/01-what-happens-when-you-talk-to-ai.html"><em>01</em><span>AIに話しかけると何が起きているのか</span></a></li>
-        <li><a href="advanced/02-tokens-and-embeddings.html"><em>02</em><span>トークンと埋め込み</span></a></li>
-        <li><a href="advanced/03-parametric-memory-and-context.html"><em>03</em><span>パラメトリックメモリとコンテキスト</span></a></li>
-        <li><a href="advanced/04-can-you-trust-ai.html"><em>04</em><span>AIの答えは信じられるのか</span></a></li>
-        <li><a href="advanced/05-why-do-models-hallucinate.html"><em>05</em><span>なぜAIは幻覚を起こすのか</span></a></li>
-        <li><a href="advanced/06-what-is-sycophancy.html"><em>06</em><span>追従性（sycophancy）とは何か</span></a></li>
-        <li><a href="advanced/07-why-does-bias-exist.html"><em>07</em><span>なぜAIにバイアスが存在するのか</span></a></li>
-        <li><a href="advanced/08-what-does-ai-know-about-you.html"><em>08</em><span>AIは自分について何を知っているのか</span></a></li>
-        <li><a href="advanced/09-diligence-statement.html"><em>09</em><span>AIデューデリジェンス声明の書き方</span></a></li>
-      </ul>
-      <div class="bar"><i></i></div>
-    </article>
+      <div class="lsn__side"><span>全9レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
 
-    <article class="track" style="--g1:#37414A;--g2:#12161A;--c:#A6B8C6;--glow:rgba(166,184,198,.18)"
-             data-course="cloudflare">
-      <span class="track__motif" aria-hidden="true">05</span>
-      <p class="track__kind">Appendix · 公式コース外</p>
-      <p class="track__en">Cloudflare × Claude Code</p>
-      <h2 class="track__h"><a href="cloudflare.html">Cloudflare とつなぐ</a></h2>
-      <p class="track__lead">
-        公式コース外の付録。Cloudflare と Claude Code を組み合わせて使う際の構成メモ。
-        MCP Server・Code Mode・Skills・AI Gateway・Access の5要素を1ページで扱います。
-      </p>
-      <div class="track__foot">
-        <span class="track__range">付録 1ページ</span>
-        <a class="track__open" href="cloudflare.html">開く →</a>
-        <span class="track__count">全1ページ</span>
-        <button type="button" class="track__more" aria-expanded="false" aria-controls="list-cloudflare"
-                aria-label="内容の一覧を開く">▼</button>
+    <a class="lsn" href="cloudflare.html">
+      <div class="lsn__n" style="color:var(--caution)">付録</div>
+      <div>
+        <div class="lsn__en" style="color:var(--caution)">Appendix — 公式コース外</div>
+        <h2 class="lsn__ja">Cloudflare × Claude Code</h2>
+        <p class="lsn__sum">公式コース外の付録。Cloudflare と Claude Code を組み合わせて使う際の構成メモ。MCP Server・Code Mode・Skills・AI Gateway・Access の5要素を扱います。</p>
+        <ul class="lsn__tags"><li>公式コース外</li><li>独自資料</li></ul>
       </div>
-      <ul class="track__list" id="list-cloudflare" hidden>
-        <li><a href="cloudflare.html"><em>01</em><span>Cloudflare × Claude Code</span></a></li>
-      </ul>
-      <div class="bar"><i></i></div>
-    </article>
+      <div class="lsn__side"><span>1ページ</span><span class="lsn__go">読む →</span></div>
+    </a>
 
   </div>
-
-  <div class="homefoot">
-    <p>進捗はこの端末のブラウザにだけ保存されます。サーバーには送られません。</p>
-    <button type="button" id="progReset">進捗を消す</button>
-  </div>
-
 </main>
 
 <div class="endmark"><img src="img/clawd.png" alt="" aria-hidden="true"></div>
@@ -220,98 +104,23 @@
 </footer>
 
 <script src="assets/progress.js"></script>
-<script src="assets/terms.js"></script>
 <script>
-/* 静的に置いたカードへ、この端末の進捗を上書きする。
-   NOTEPROGRESS が無い／localStorage が使えない環境では何もしない＝カードはそのまま出る。 */
+/* 次に開くレッスン＝カタログ順でまだ読んでいない最初のもの。
+   1本も読んでいなければ何も出さない（初めて来た人に空の枠を見せない）。 */
 (function () {
-  var P = window.NOTEPROGRESS;
-  if (!P) return;
-
-  var COURSE_NAME = {
-    'claude-code': 'Claude Code 入門コース',
-    'ai-fluency':  'AI活用力（AI Fluency）',
-    'educators':   '教育者のための AI Fluency',
-    'advanced':    'アドバンス',
-    'cloudflare':  'Cloudflare 付録'
-  };
-
-  function $(id) { return document.getElementById(id); }
-
-  function paint() {
-    var s = P.stats();
-
-    /* --- つづきから --- */
-    var next = s.info[s.next];
-    if (next) {
-      $('resumeNum').textContent = next.num;
-      $('resumeT').innerHTML = '';
-      $('resumeT').appendChild(document.createTextNode(next.title));
-      var sub = document.createElement('small');
-      sub.textContent = COURSE_NAME[next.course] || '';
-      $('resumeT').appendChild(sub);
-      $('resumeGo').href = next.href;
-      $('resumeGo').textContent = (s.done ? 'このレッスンを開く' : '最初のレッスンを開く') + ' →';
-      $('resumeK').textContent = s.done >= s.total ? '全レッスン読了 · もう一度読むなら' : '現在のレッスン';
-    }
-
-    var last = s.last && s.info[s.last];
-    if (last) {
-      $('resumeLastT').textContent = last.num + '・' + last.title;
-      $('resumeBack').href = last.href;
-      $('resumeLast').hidden = false;
-    } else {
-      $('resumeLast').hidden = true;
-    }
-
-    $('resumeBar').style.width = s.pct + '%';
-    $('resumePct').textContent = '完了 ' + s.pct + '%';
-    $('resumeRest').textContent = '残り ' + (s.total - s.done) + ' / 全 ' + s.total;
-    $('resume').hidden = false;
-
-    /* --- コースごとの進捗 --- */
-    Array.prototype.forEach.call(document.querySelectorAll('.track'), function (card) {
-      var id = card.getAttribute('data-course');
-      var p = s.per[id];
-      if (!p) return;
-
-      var bar = card.querySelector('.bar i');
-      if (bar) bar.style.width = (p.total ? Math.round(p.done / p.total * 100) : 0) + '%';
-
-      var count = card.querySelector('.track__count');
-      if (count) count.textContent = p.done + ' / ' + p.total + ' 完了';
-
-      Array.prototype.forEach.call(card.querySelectorAll('.track__list a'), function (a) {
-        var key = a.getAttribute('href');
-        if (s.read[key]) a.classList.add('is-read');
-        else a.classList.remove('is-read');
-      });
-    });
-  }
-
-  /* --- ⌄ でレッスン一覧を開く --- */
-  Array.prototype.forEach.call(document.querySelectorAll('.track__more'), function (btn) {
-    btn.addEventListener('click', function () {
-      var list = document.getElementById(btn.getAttribute('aria-controls'));
-      if (!list) return;
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-      btn.setAttribute('aria-label', open ? 'レッスン一覧を開く' : 'レッスン一覧を閉じる');
-      list.hidden = open;
-    });
-  });
-
-  var reset = $('progReset');
-  if (reset) {
-    reset.addEventListener('click', function () {
-      if (!window.confirm('この端末に保存した「読んだレッスン」の記録を消します。よろしいですか？')) return;
-      P.reset();
-      paint();
-    });
-  }
-
-  paint();
+  var box = document.getElementById('resume');
+  if (!box || !window.NOTEPROGRESS) return;
+  var s = NOTEPROGRESS.stats();
+  if (!s.done) return;
+  var next = s.info[s.next];
+  if (!next) return;
+  var a = document.getElementById('resumeGo');
+  a.href = next.href;
+  a.textContent = next.num + '・' + next.title;
+  document.getElementById('resumeN').textContent = s.done + ' / ' + s.total + ' 完了';
+  box.hidden = false;
 })();
 </script>
+<script src="assets/terms.js"></script>
 </body>
 </html>

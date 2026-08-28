@@ -243,21 +243,6 @@
       window.EXAM.finish();
     }
 
-    /* 修了証メール。送り先が未入力なら何も送らず、その旨だけ表示する */
-    if (window.RESULTMAIL) {
-      var mail = document.createElement('div');
-      mail.className = 'qmail';
-      result.querySelector('.qresult__acts').insertAdjacentElement('beforebegin', mail);
-      window.RESULTMAIL.deliver({
-        total: total, correct: correct, need: need,
-        passLine: Math.round(PASS * 100),
-        state: state, mode: exam ? 'exam' : 'practice',
-        leaves: leaves, weak: weak,
-        rank: rank || '',
-        bank: (currentBank && currentBank.id) ? String(currentBank.id) : ''
-      }, mail);
-    }
-
     result.querySelector('.qresult__again').addEventListener('click', restart);
     result.scrollIntoView({behavior: smooth ? 'smooth' : 'auto', block:'center'});
   }
