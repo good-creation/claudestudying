@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解答集 — Claude Code 入門コース 学習ノート</title>
+<meta name="description" content="試験（標準22問・レベル1〜3の各10問、全62問）の正解と解説の完全版。合言葉で解錠する。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="../claude-code.html">Claude Code 入門コース / 学習ノート</a>
+  <nav>
+      <a href="../index.html" title="コースを選ぶ" aria-label="コースを選ぶ">ホーム</a>
+      <a href="../claude-code.html" title="Claude Code 入門コース 目次" aria-label="Claude Code 入門コース 目次">目次</a>
+      <a class="is-appendix" href="../quiz.html" title="試験 — レベル1〜3とランク判定" aria-label="試験 — レベル1〜3とランク判定">試験</a>
+      <a class="is-appendix" href="index.html" title="解答集（合言葉つき）" aria-label="解答集（合言葉つき）" aria-current="page">解答</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">付録 / Answer key</p>
+    <p class="eyebrow" style="color:var(--caution)">合言葉つき · 公式コース外</p>
+  </div>
+
+  <h1 class="hero__title"><em>解答集</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <a href="../quiz.html">試験</a>の全問——標準試験22問と、レベル1〜3のチャレンジ各10問、あわせて<strong>62問</strong>——の
+    <strong>正解と解説の完全版</strong>。試験ページは採点するまで答えを出しませんが、ここは最初から全部出ています。
+    <strong>解く前に開くと試験が機能しなくなる</strong>ので、答え合わせと復習のために使ってください。
+  </p>
+</header>
+
+<section class="examgate shell" id="ansGate">
+  <p class="eyebrow">Locked</p>
+  <h2>合言葉を入力してください。</h2>
+
+  <ul class="examgate__rules">
+    <li>このページの本文は<b>暗号化して置いてあります</b>。合言葉が合うまで、ページのソースを見ても答えは読めません。</li>
+    <li>合言葉は<b>4桁の数字</b>です。</li>
+    <li>一度解除すると、<b>このタブを閉じるまで</b>開いたままになります。</li>
+  </ul>
+
+  <form id="ansForm" class="anslock" autocomplete="off">
+    <label class="anslock__f" for="ansPass">
+      <span>合言葉 <em>4桁の数字</em></span>
+      <input type="password" id="ansPass" inputmode="numeric" pattern="[0-9]*" maxlength="16"
+             placeholder="••••" autocomplete="off" spellcheck="false">
+    </label>
+    <button type="submit" id="ansBtn">解除する</button>
+  </form>
+  <p class="quizid__err" id="ansErr" hidden></p>
+
+  <p class="examgate__note">
+    <strong>この鍵でできることと、できないこと。</strong>本文は AES-GCM で暗号化してあるので、
+    合言葉を知らない人がソースを開いても中身は読めません。ただし合言葉は4桁——
+    総当たりを試せば破れます。<strong>本気の秘匿ではなく、答えがうっかり目に入らないようにするための鍵</strong>だと考えてください。
+    静的サイトなので、サーバー側で止める仕組みは持てません。
+  </p>
+</section>
+
+<main class="doc shell">
+  <div id="ansBody" hidden></div>
+</main>
+
+<p class="anslockback shell" id="ansLock" hidden>
+  <button type="button" id="ansRelock">このタブのロックを掛け直す</button>
+</p>
+
+<div class="pager">
+  <a href="../quiz.html"><b>戻る — 試験</b><em>もう一度解く</em></a>
+  <a class="is-next" href="../summary.html"><b>まとめ</b><em>できることと、費用</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>解答集 — 出題は assets/quiz-data.js / assets/quiz-levels.js から自動生成</span>
+  <a href="../claude-code.html">目次へ</a>
+</footer>
+
+<script src="answers.enc.js"></script>
+<script src="unlock.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

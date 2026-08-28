@@ -70,7 +70,7 @@
 <section class="recap shell" id="quizRecap">
   <div class="recap__top">
     <p class="eyebrow">解く前のおさらい / Recap</p>
-    <p class="eyebrow"><a href="#examGate">おさらいを飛ばして開始方法へ ↓</a></p>
+    <p class="eyebrow"><a href="#examGate">おさらいを飛ばして試験を始める ↓</a></p>
   </div>
   <h2>レッスン01〜11を、一枚に。</h2>
 
@@ -147,29 +147,24 @@
     <b>この先の全22問との対応</b>
     <p>各問題には「出題範囲 — 05 コンテキスト管理」のようにレッスン番号が付いています。間違えた問題はその番号のレッスンに戻るのがいちばん早い経路です。費用や機能の全体像まで含めた詳しいまとめは <a href="summary.html">まとめ — できることと、費用</a> にあります。</p>
   </div>
-</section>
 
-<section class="examgate shell" id="bankGate">
-  <p class="eyebrow">出題範囲を選ぶ</p>
-  <h2>どの試験に挑戦しますか。</h2>
-  <p class="recap__lede" style="margin-top:10px">既定は「標準」（全22問）です。何も選ばなければこのまま始まります。レベル別チャレンジは任意で挑戦できます。</p>
-
-  <div class="cards bankcards" id="bankCards" role="radiogroup" aria-label="出題範囲を選ぶ">
-    <article class="bankcard is-selected" data-bank="" tabindex="0" role="radio" aria-checked="true">
-      <p class="cards__k">標準試験</p>
-      <h3>全問</h3>
-      <p>レッスン01〜11の理解度を確認する、これまでどおりの試験。</p>
-      <p class="bankcard__n">22問</p>
-    </article>
+  <div class="warn">
+    <b>答え合わせは、解いたあとで</b>
+    <p>全62問（標準22問 ＋ レベル1〜3の各10問）の正解と解説をまとめた <a href="answers/index.html">解答集</a> を別ページに置いています。合言葉つきです。<strong>解く前に開くと、この試験は機能しなくなります。</strong>採点が終わってから開いてください。</p>
   </div>
 </section>
 
 <section class="examgate shell" id="examGate">
-  <p class="eyebrow">開始方法を選ぶ</p>
-  <h2>本番モードで受けますか、練習モードで解きますか。</h2>
+  <p class="eyebrow">開始の手順 / Start</p>
+  <h2>3つ決めれば、始まります。</h2>
+  <p class="recap__lede" style="margin-top:10px">
+    <strong>① 出題範囲を選ぶ → ② 修了証の送り先 → ③ モードを選んで開始</strong>。この順に下へ並んでいます。
+    何も変えなければ「標準試験 — 全問（22問）」がそのまま始まります。
+  </p>
 
+  <p class="examgate__rulesk">始める前に知っておくこと</p>
   <ul class="examgate__rules">
-    <li><b>合格ラインは 80%</b>。全22問中 <b>18問以上</b>の正解で合格です（出題数はバンクにより変わります）。</li>
+    <li><b>合格ラインは 80%</b>。全<span id="ruleTotal">22</span>問中 <b><span id="ruleNeed">18</span>問以上</b>の正解で合格です。</li>
     <li>解答中は<b>正誤・得点を表示しません</b>。採点すると、全問の正解・解説がまとめて表示されます。</li>
     <li>本番モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
     <li>他のタブやアプリに切り替えると、<b>その瞬間に問題文を隠します</b>。戻れば続きから再開できます。</li>
@@ -177,33 +172,69 @@
     <li>ページを閉じたり再読み込みしようとすると確認が出ます。<b>再読み込みすると解答は失われます。</b></li>
   </ul>
 
-  <div class="quizid" id="quizId">
-    <p class="quizid__k">修了証の送り先</p>
-    <div class="quizid__row">
-      <label class="quizid__f">
-        <span>メールアドレス <em>結果の送付先</em></span>
-        <input type="email" id="qEmail" name="email" autocomplete="email" inputmode="email"
-               placeholder="you@example.com" maxlength="120" spellcheck="false">
-      </label>
-      <label class="quizid__f">
-        <span>氏名 <em>修了証に印字・任意</em></span>
-        <input type="text" id="qName" name="name" autocomplete="name"
-               placeholder="山田 太郎" maxlength="40">
-      </label>
-    </div>
-    <p class="quizid__err" id="qIdErr" hidden></p>
-    <p class="quizid__note">
-      採点が終わると、点数・合否・復習すべきレッスンを記した<strong>修了証をこのアドレスへ送ります</strong>。
-      本番モードでは入力が必須、練習モードでは空のままでも解けます（その場合メールは送りません）。
-      入力内容はこの端末のブラウザにだけ保存され、送信時以外どこにも送られません。
-    </p>
-    <p class="quizid__off">送信先が未設定のため、いまはメールを送りません（<code>assets/result-mail.js</code> の ENDPOINT が空です）。</p>
-  </div>
+  <ol class="steps gatesteps">
+    <li id="bankGate">
+      <h3>どの試験に挑戦しますか。</h3>
+      <p>既定は「標準試験 — 全問」。レベル別チャレンジは任意で選べます。行をクリックすると選択が切り替わります。</p>
 
-  <div class="examgate__btns">
-    <button type="button" id="examStart">本番モードで開始する</button>
-    <button type="button" id="examPractice">練習モードで解く</button>
-  </div>
+      <div class="bankcards" id="bankCards" role="radiogroup" aria-label="出題範囲を選ぶ">
+        <article class="bankcard is-selected" data-bank="" tabindex="0" role="radio" aria-checked="true">
+          <span class="bankcard__mark" aria-hidden="true"></span>
+          <div class="bankcard__id">
+            <p class="bankcard__k">標準試験</p>
+            <h3>全問</h3>
+          </div>
+          <p class="bankcard__lead">レッスン01〜11の理解度を確認する、これまでどおりの試験。</p>
+          <span class="bankcard__badge">既定</span>
+          <span class="bankcard__n">22問</span>
+        </article>
+      </div>
+    </li>
+
+    <li>
+      <h3>修了証の送り先を入れます。</h3>
+      <p>本番モードでは入力が必須、練習モードでは空のままでも解けます。</p>
+
+      <div class="quizid" id="quizId">
+        <div class="quizid__row">
+          <label class="quizid__f">
+            <span>メールアドレス <em>結果の送付先</em></span>
+            <input type="email" id="qEmail" name="email" autocomplete="email" inputmode="email"
+                   placeholder="you@example.com" maxlength="120" spellcheck="false">
+          </label>
+          <label class="quizid__f">
+            <span>氏名 <em>修了証に印字・任意</em></span>
+            <input type="text" id="qName" name="name" autocomplete="name"
+                   placeholder="山田 太郎" maxlength="40">
+          </label>
+        </div>
+        <p class="quizid__err" id="qIdErr" hidden></p>
+        <p class="quizid__note">
+          採点が終わると、点数・合否・復習すべきレッスンを記した<strong>修了証をこのアドレスへ送ります</strong>。
+          入力内容はこの端末のブラウザにだけ保存され、送信時以外どこにも送られません。
+        </p>
+        <p class="quizid__off">送信先が未設定のため、いまはメールを送りません（<code>assets/result-mail.js</code> の ENDPOINT が空です）。</p>
+      </div>
+    </li>
+
+    <li>
+      <h3>本番モードで受けますか、練習モードで解きますか。</h3>
+      <p>いま選ばれている試験を確かめてから、どちらかのボタンを押してください。</p>
+
+      <div class="startbox">
+        <p class="startbox__k">これから始める試験</p>
+        <p class="startbox__pick">
+          <b id="gatePickName">標準試験（全問）</b>
+          <span class="startbox__meta" id="gatePickMeta">全22問 ・ 合格ライン 18問（80%）</span>
+        </p>
+        <div class="examgate__btns">
+          <button type="button" id="examStart">本番モードで開始する</button>
+          <button type="button" id="examPractice">練習モードで解く</button>
+        </div>
+        <p class="startbox__hint">出題範囲を変えたいときは、<a href="#bankGate">↑ 手順01の一覧</a>で選び直してください。</p>
+      </div>
+    </li>
+  </ol>
 
   <p class="examgate__note">
     <strong>技術的な限界について。</strong>Web ページは、他のタブやアプリを開くこと自体を禁止できません。ブラウザがページにその権限を与えていないためです。本番モードができるのは「<strong>離れたことを検知して、即座に内容を隠し、記録する</strong>」ところまでです。カンニングを物理的に不可能にする仕組みではなく、集中を保つための補助として使ってください。
@@ -254,6 +285,7 @@
 <script src="assets/quiz-data.js"></script>
 <script src="assets/quiz-levels.js"></script>
 <script src="assets/quiz.js"></script>
+<script src="assets/progress.js"></script>
 <script src="assets/terms.js"></script>
 </body>
 </html>

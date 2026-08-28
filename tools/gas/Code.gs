@@ -14,7 +14,7 @@
 
 /* ===================== 設定 ===================== */
 var TOKEN        = 'claudestudying-quiz';   // assets/result-mail.js の TOKEN と同じ文字列
-var SITE_URL     = '';                      // 例 'https://good-creation.github.io/claudestudying/'（空なら復習リンクを張らない）
+var SITE_URL     = 'https://good-creation.github.io/claudestudying/';  // 例 'https://good-creation.github.io/claudestudying/'（空なら復習リンクを張らない）
 var SENDER_NAME  = 'Claude Code 入門コース 学習ノート';
 var COURSE_NAME  = 'Claude Code 入門コース（全11レッスン）確認問題';
 var TIMEZONE     = 'Asia/Tokyo';

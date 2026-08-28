@@ -37,6 +37,11 @@
   var elQuit    = document.getElementById('qQuit');
   var bankHost  = document.getElementById('bankCards');
   var result    = document.getElementById('quizResult');
+  /* 開始ボタンの真上で「いま何を始めるのか」を名乗る欄と、きまり書きの中の可変部分 */
+  var elPickName = document.getElementById('gatePickName');
+  var elPickMeta = document.getElementById('gatePickMeta');
+  var elRuleTot  = document.getElementById('ruleTotal');
+  var elRuleNeed = document.getElementById('ruleNeed');
 
   var SETS = Array.isArray(window.QUIZ_SETS) ? window.QUIZ_SETS : [];
   var SETS_BY_ID = {};
@@ -82,6 +87,15 @@
   function updateBankLabel(){
     if (elBank) elBank.textContent = '（' + bankLabel(currentBank) + '）';
   }
+  /* 出題範囲を選ぶ一覧と開始ボタンのあいだには入力欄が挟まる。
+     押す直前にもう一度、選ばれている試験と問数・合格ラインを出す。 */
+  function updateGatePick(){
+    if (elPickName) elPickName.textContent = bankLabel(currentBank);
+    if (elPickMeta) elPickMeta.textContent =
+      '全' + total + '問 ・ 合格ライン ' + need + '問（' + Math.round(PASS * 100) + '%）';
+    if (elRuleTot)  elRuleTot.textContent  = total;
+    if (elRuleNeed) elRuleNeed.textContent = need;
+  }
   function buildBankCard(set){
     var el = document.createElement('article');
     el.className = 'bankcard';
@@ -96,11 +110,14 @@
       el.setAttribute('tabindex', '0');
     }
     el.innerHTML =
-      '<p class="cards__k">レベル' + esc(set.level) + ' ' + esc(set.levelName) +
-        ' <span class="bankcard__badge">' + esc(set.badge) + '</span></p>' +
-      '<h3>' + esc(set.title) + '</h3>' +
-      '<p>' + esc(set.lead) + '</p>' +
-      '<p class="bankcard__n">' + (n ? n + '問' : '準備中') + '</p>';
+      '<span class="bankcard__mark" aria-hidden="true"></span>' +
+      '<div class="bankcard__id">' +
+        '<p class="bankcard__k">レベル' + esc(set.level) + ' ' + esc(set.levelName) + '</p>' +
+        '<h3>' + esc(set.title) + '</h3>' +
+      '</div>' +
+      '<p class="bankcard__lead">' + esc(set.lead) + '</p>' +
+      '<span class="bankcard__badge">' + esc(set.badge) + '</span>' +
+      '<span class="bankcard__n">' + (n ? n + '問' : '準備中') + '</span>';
     return el;
   }
   function selectBank(id){
@@ -279,10 +296,14 @@
     var btns = [].slice.call(el.querySelectorAll('button'));
     var selected = -1;
     btns.forEach(function(b, i){
+      b.setAttribute('aria-pressed', 'false');
       b.addEventListener('click', function(){
         if (el.classList.contains('is-done')) return;
         selected = i;
-        btns.forEach(function(other, j){ other.classList.toggle('is-picked', j === i); });
+        btns.forEach(function(other, j){
+          other.classList.toggle('is-picked', j === i);
+          other.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+        });
         updateProgress();
       });
     });
@@ -295,6 +316,7 @@
         var ok = selected !== -1 && opts[selected].ok;
         btns.forEach(function(b, i){
           b.disabled = true;
+          b.classList.remove('is-picked');
           if (opts[i].ok) b.classList.add('is-correct');
           else if (i === selected) b.classList.add('is-wrong');
         });
@@ -347,7 +369,7 @@
       isAnswered: function(){ return picks.length === q.items.length; },
       grade: function(){
         el.classList.add('is-done');
-        btns.forEach(function(b){ b.disabled = true; });
+        btns.forEach(function(b){ b.disabled = true; b.classList.remove('is-picked'); });
         var ok = picks.length === q.items.length;
         picks.forEach(function(p, i){
           var hit = p.textContent === q.items[i];
@@ -381,6 +403,8 @@
     need  = Math.ceil(total * PASS);
     elTotal.textContent = total;
     elNeed.textContent  = need;
+
+    updateGatePick();
 
     qs.forEach(function(q, i){
       var st = q.type === 'order' ? buildOrder(q, i + 1) : buildPick(q, i + 1);

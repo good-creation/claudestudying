@@ -194,3 +194,29 @@ for href, num, ja in [("index.html", "目次", "アドバンスコース 目次"
         print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
     io.open(path, "w", encoding="utf-8").write(new)
     print("  ok    %s" % path)
+
+
+# --- 付録 answers/ の nav ----------------------------------------------------
+# 解答集。1ページしかないので、行き先は入門コースの目次・試験・ホームの3つだけ。
+# ai-fluency/ と同じく ../ 前置の専用 nav を持つので TARGETS には入れない。
+
+def ans_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="../index.html" title="コースを選ぶ" aria-label="コースを選ぶ">ホーム</a>')
+    rows.append('      <a href="../claude-code.html" title="Claude Code 入門コース 目次" aria-label="Claude Code 入門コース 目次">目次</a>')
+    rows.append('      <a class="is-appendix" href="../quiz.html" title="試験 — レベル1〜3とランク判定" aria-label="試験 — レベル1〜3とランク判定">試験</a>')
+    rows.append('      <a class="is-appendix" href="index.html" title="解答集（合言葉つき）" aria-label="解答集（合言葉つき）"%s>解答</a>'
+                % (' aria-current="page"' if current == "index.html" else ""))
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+_ans = os.path.join("answers", "index.html")
+if os.path.exists(_ans):
+    s_ans = io.open(_ans, encoding="utf-8").read()
+    new, n = pat.subn(ans_nav_for("index.html"), s_ans, count=1)
+    if n != 1:
+        print("  FAIL  %s — found %d bare <nav>" % (_ans, n)); sys.exit(1)
+    io.open(_ans, "w", encoding="utf-8").write(new)
+    print("  ok    %s" % _ans)
+else:
+    print("  SKIP  %s (not found)" % _ans)
