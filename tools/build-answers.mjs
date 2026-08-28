@@ -7,8 +7,9 @@
 
    問題バンクを書き換えたら、必ずこれを実行し直すこと。実行しないと解答集は古いまま。
 
-     node tools/build-answers.mjs            # 合言葉は既定の 1245
-     node tools/build-answers.mjs 9999       # 合言葉を変える
+     node tools/build-answers.mjs <合言葉>    # 合言葉は必須。既定値は持たない
+                                             # （このリポジトリは公開なので、
+                                             #   合言葉をコードにもドキュメントにも書かない）
 
    平文を HTML に置くと閲覧ソースから答えが読めてしまうので、本文は丸ごと
    AES-GCM で暗号化して置き、ブラウザ側（answers/unlock.js）が合言葉から
@@ -21,7 +22,11 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
-const PASSPHRASE = process.argv[2] || "1245";
+const PASSPHRASE = process.argv[2];
+if (!PASSPHRASE) {
+  console.error("合言葉を引数で渡してください:  node tools/build-answers.mjs <合言葉>");
+  process.exit(1);
+}
 const ITER = 250000;
 
 /* --- 問題バンクを読む（JS のまま評価するのでバンクと必ず一致する） --- */
