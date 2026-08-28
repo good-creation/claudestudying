@@ -810,10 +810,15 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 .ans__intro{max-width:44em;font-size:14.5px;line-height:1.9;color:var(--ink-2)}
 .ans__intro strong{color:var(--ink)}
 
-/* バンクへの飛び先。.cards と同じく flex + shadow で格子を描き、空セルを作らない */
-.anstoc{display:flex;flex-wrap:wrap;margin:26px 0 0;box-shadow:0 0 0 1px var(--rule)}
+/* バンクへの飛び先。flex + flex-grow だと、枚数が列数の倍数でないとき最後の1枚だけが
+   全幅に伸びる（試験ページの .bankcards をリストに作り替えたのと同じ理由）。
+   ここは幅の揃った格子でいいので、列を固定できる grid に置く。auto-fill なので
+   余った枠は伸びずに空くだけ。地を --paper で塗っておき、空いた分が
+   地色の穴として見えないようにする。 */
+.anstoc{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  margin:26px 0 0;background:var(--paper);box-shadow:0 0 0 1px var(--rule)}
 .anstoc a{
-  flex:1 1 220px;min-width:0;padding:16px 18px;background:var(--paper);
+  min-width:0;padding:16px 18px;background:var(--paper);
   box-shadow:0 0 0 1px var(--rule);text-decoration:none;color:inherit;
 }
 .anstoc a:hover{background:var(--signal-wash)}
