@@ -16,14 +16,19 @@
 var TOKEN        = 'claudestudying-quiz';   // assets/result-mail.js の TOKEN と同じ文字列
 var SITE_URL     = 'https://good-creation.github.io/claudestudying/';  // 例 'https://good-creation.github.io/claudestudying/'（空なら復習リンクを張らない）
 var SENDER_NAME  = 'Claude Code 入門コース 学習ノート';
-var COURSE_NAME  = 'Claude Code 入門コース（全11レッスン）確認問題';
+var COURSE_NAME  = 'Claude Code 入門コース（全11レッスン）試験';
 var TIMEZONE     = 'Asia/Tokyo';
 var MAX_PER_ADDR = 5;    // 同じアドレスへ 6 時間あたり何通まで
 var MAX_PER_DAY  = 80;   // 1 日の総数（Gmail の 1 日 100 通制限に対する余裕分）
 
-/* 出題セットの id → 修了証に印字する名前。未登録の id はそのまま印字する */
+/* 出題セットの id → 修了証に印字する名前。未登録の id はそのまま印字する。
+   id は assets/quiz-levels.js の window.QUIZ_SETS と合わせること
+   （空にすると修了証に 'l2' のような生の id が出る） */
 var BANKS = {
-  // 'advanced': 'アドバンス'
+  'l1a': 'レベル1-A 基礎（見習い）',
+  'l1b': 'レベル1-B 基礎（見習い）',
+  'l2' : 'レベル2 実践（実務者）',
+  'l3' : 'レベル3 応用（手練れ）'
 };
 /* =============================================== */
 
