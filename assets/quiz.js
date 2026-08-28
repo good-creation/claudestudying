@@ -6,7 +6,14 @@
   var host = document.getElementById('quizList');
   if (!host || !window.QUIZ) return;
 
-  var LESSON = {
+  /* コースごとに差し替わるもの。別ディレクトリの試験（github/quiz.html）は、
+     このスクリプトを読み込む前に window.QUIZ_SITE を定義して上書きする。
+     LESSON の href と links の href は、試験ページから見た相対パスで書く。 */
+  var SITE   = window.QUIZ_SITE || {};
+  var IMG    = SITE.img || '';          /* 画像への前置（サブディレクトリなら '../'） */
+  var MASCOT = SITE.mascot || (IMG + 'img/clawd.png');   /* 結果画面に出すマーク */
+  var LINKS  = SITE.links || [["index.html","目次に戻る"],["summary.html","まとめを読む"]];
+  var LESSON = SITE.lessons || {
     "01":["01-what-is-claude-code.html","Claude Code とは何か"],
     "02":["02-how-claude-code-works.html","どう動いているのか"],
     "03":["03-your-first-prompt.html","最初のプロンプトを書く"],
@@ -82,7 +89,7 @@
     return currentBank ? currentBank.questions : window.QUIZ;
   }
   function bankLabel(b){
-    return b ? (b.title + ' ' + b.levelName + ' — ' + b.badge) : '標準試験（全問）';
+    return b ? (b.title + ' ' + b.levelName + ' — ' + b.badge) : (SITE.standard || '標準試験（全問）');
   }
   function updateBankLabel(){
     if (elBank) elBank.textContent = '（' + bankLabel(currentBank) + '）';
@@ -206,7 +213,7 @@
 
     result.className = 'qresult is-on is-' + state;
     result.innerHTML =
-      '<img class="clawd clawd--md" src="img/clawd.png" alt="" aria-hidden="true" style="margin-bottom:18px">' +
+      '<img class="clawd clawd--md" src="' + MASCOT + '" alt="" aria-hidden="true" style="margin-bottom:18px">' +
       levelHtml +
       '<p class="qresult__k">Result — 合格ライン ' + Math.round(PASS * 100) + '%</p>' +
       '<p class="qresult__v">' + label +
@@ -231,8 +238,9 @@
           '</li></ul>') +
       '<div class="qresult__acts">' +
         '<button type="button" class="qresult__again">シャッフルしてもう一度</button>' +
-        '<a class="qresult__link" href="index.html">目次に戻る</a>' +
-        '<a class="qresult__link" href="summary.html">まとめを読む</a>' +
+        LINKS.map(function(l){
+          return '<a class="qresult__link" href="' + l[0] + '">' + esc(l[1]) + '</a>';
+        }).join('') +
       '</div>';
 
     var exam = !!(window.EXAM && window.EXAM.isActive());

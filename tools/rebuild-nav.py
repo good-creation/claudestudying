@@ -49,6 +49,12 @@ EDUCATORS = [
     ("educators/index.html", "教育", "教育者のための AI Fluency（別コース）"),
 ]
 
+# 公式コース外の別コース。github/ 配下は社内研修資料由来の GitHub 入門コース。
+# 専用の nav を別に持つのでこのサイトの nav 書き換え対象（TARGETS）には含めない。
+GITHUB = [
+    ("github/index.html", "Git", "GitHub 完全ガイド（別コース）"),
+]
+
 # 別コース ai-fluency/ 側のレッスン。相対パスがルートと違うので nav も別に生成する。
 AF_LESSONS = [
     ("01-introduction.html",                "01", "AI活用力入門"),
@@ -67,7 +73,7 @@ AF_LESSONS = [
 ]
 
 # nav に載せる項目（表示用）
-NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY + EDUCATORS
+NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY + EDUCATORS + GITHUB
 
 # nav を書き換える対象ファイル（このサイト自身のページのみ。
 # ai-fluency/ 配下はコース専用 nav を手書きで持つため対象外）
@@ -220,3 +226,44 @@ if os.path.exists(_ans):
     print("  ok    %s" % _ans)
 else:
     print("  SKIP  %s (not found)" % _ans)
+
+
+# --- 別コース github/ の nav -------------------------------------------------
+# GitHub 完全ガイド。社内研修資料由来なので公式コースの番号体系には混ぜない。
+# 試験ページを持つので、目次・01〜06・試験・ホームの並びになる。
+
+GH_LESSONS = [
+    ("01-what-is-git.html",         "01", "Git とは何か"),
+    ("02-commit-and-main.html",     "02", "コミットと main"),
+    ("03-branch-and-merge.html",    "03", "ブランチとマージ"),
+    ("04-push-and-pull.html",       "04", "ローカル・リモートと PUSH / PULL"),
+    ("05-conflict.html",            "05", "コンフリクト"),
+    ("06-development-flow.html",    "06", "実際の開発フロー"),
+]
+
+def gh_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次"%s>目次</a>'
+                % (' aria-current="page"' if current == "index.html" else ""))
+    for href, num, ja in GH_LESSONS:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
+                    % (href, ja, num, ja, cur, num))
+    rows.append('      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問"%s>試験</a>'
+                % (' aria-current="page"' if current == "quiz.html" else ""))
+    rows.append('      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>')
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+for href, num, ja in ([("index.html", "目次", "GitHub 完全ガイド 目次")]
+                      + GH_LESSONS
+                      + [("quiz.html", "試験", "試験 — 全18問")]):
+    path = os.path.join("github", href)
+    if not os.path.exists(path):
+        print("  SKIP  %s (not found)" % path); continue
+    s_page = io.open(path, encoding="utf-8").read()
+    new, n = pat.subn(gh_nav_for(href), s_page, count=1)
+    if n != 1:
+        print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
+    io.open(path, "w", encoding="utf-8").write(new)
+    print("  ok    %s" % path)

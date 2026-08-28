@@ -75,6 +75,18 @@ window.NOTEPROGRESS = (function () {
       ]
     },
     {
+      id: 'github',
+      home: 'github/index.html',
+      lessons: [
+        ['github/01-what-is-git.html',      '01', 'Git とは何か'],
+        ['github/02-commit-and-main.html',  '02', 'コミットと main'],
+        ['github/03-branch-and-merge.html', '03', 'ブランチとマージ'],
+        ['github/04-push-and-pull.html',    '04', 'ローカル・リモートと PUSH / PULL'],
+        ['github/05-conflict.html',         '05', 'コンフリクト'],
+        ['github/06-development-flow.html', '06', '実際の開発フロー']
+      ]
+    },
+    {
       id: 'cloudflare',
       home: 'cloudflare.html',
       lessons: [

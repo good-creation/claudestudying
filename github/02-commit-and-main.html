@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 コミットと main — GitHub 完全ガイド 学習ノート</title>
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。コミットは変更を1つずつ履歴として残すセーブポイント、main はプロジェクトの公式の最新版。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main" aria-current="page">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 02 / GitHub</p>
+    <p class="eyebrow" style="color:var(--caution)">社内研修資料 — 公式コース外</p>
+  </div>
+
+  <h1 class="hero__title">コミットと<br><em>main</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <a href="01-what-is-git.html">01</a> で「管理するのは履歴だ」と決めた。ではその履歴は、誰がどうやって刻むのか。答えが<strong>コミット</strong>で、刻まれた履歴が最後に集まる本線が <strong>main</strong>。この2つは、あとの回に出てくる用語がすべてぶら下がる幹になる。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
+    <div><dt>Slides</dt><dd><small>04 — 05</small></dd></div>
+    <div><dt>Format</dt><dd><small>スライド資料（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">COMMIT</span><span class="sec__kind">保存</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">『コミット』＝ファイルの『保存』</h2>
+      <p>資料はコミットを、ゲームの言葉で言い換える。<strong>変更を1つずつ『履歴』として保存するセーブポイント</strong>。「保存」と等号で結んでいるので身構えなくていいが、ふつうの上書き保存と決定的に違うところが1つある——<strong>1つずつ</strong>という部分。</p>
+      <p>資料が並べているのは、次の3つのコミット。</p>
+
+      <ol class="steps">
+        <li><h3>index.html の3行目を変えた</h3><p>1つ目のセーブポイント。</p></li>
+        <li><h3>app.js にログイン処理を追加した</h3><p>2つ目のセーブポイント。</p></li>
+        <li><h3>README を書き換えた</h3><p>3つ目のセーブポイント。</p></li>
+      </ol>
+
+      <p>3つの作業をまとめて1回保存するのではなく、<strong>作業の区切りごとに1つ</strong>置いていく。こうしておくと、あとから履歴を読んだときに「この時点で何をしたか」が1行で分かる。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-04.jpg" alt="チェックマークの入った印が3つ並び、その下に「index.htmlの3行目を変えた」「app.jsにログイン処理を追加した」「READMEを書き換えた」の3枚のカードが並ぶ図。右下に COMMIT（コミット）のラベル。" loading="lazy">
+        <figcaption>研修資料 スライド04 — <em>『コミット』＝ファイルの『保存』</em>／<em>変更を1つずつ『履歴』として保存するセーブポイントです。</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料がコミットの例として挙げている3つは、どんな単位で置かれているか。
+          <ul class="chk__c"><li>1日の作業を終業時にまとめて1回</li><li>ファイルを新しく作ったときだけ1回</li><li>「3行目を変えた」「ログイン処理を追加した」のような、作業の区切りごとに1つずつ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 3つの作業をひとまとめにするのではなく、区切りごとにセーブポイントを置いていく。</p>
+          <p>資料が「変更を1つずつ」と書いているのはこの部分。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">MAIN</span><span class="sec__kind">本線</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">main とは何か？</h2>
+      <p>資料は <code>main</code> を<strong>「本番の出し物」</strong>と呼ぶ。定義としては<strong>プロジェクトの公式の最新版</strong>で、性格としては<strong>確認された完成形を置く場所</strong>。そして、はっきり否定文が付く——<strong>みんなが自由に書き換える場所ではありません</strong>。</p>
+      <p>資料が <code>main</code> に与えている決まりは2つ。</p>
+
+      <ul class="acts">
+        <li><h3>main は壊さない</h3><p>公式の最新版なので、壊れた状態を置いてはいけない。</p></li>
+        <li><h3>main はいつでも動く状態にする</h3><p>誰がいつ見に来ても動く、という状態を保つ。</p></li>
+      </ul>
+
+      <p>スライドでは、台の上でスポットライトを浴びている <code>main</code> の隣に、<strong>「未完成」と書かれたドラフトが4枚</strong>床に転がっている。未完成のものは <code>main</code> に置かない、という線引きがそのまま絵になっている。では未完成のものはどこで書くのか——それが次の回の<a href="03-branch-and-merge.html">ブランチ</a>。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-05.jpg" alt="スポットライトの当たる台の上に「main 本番の出し物」と書かれた冊子と鍵のアイコンが置かれ、台の外に「ドラフトA」から「ドラフトD」までの未完成と書かれた紙が散らばっている図。" loading="lazy">
+        <figcaption>研修資料 スライド05 — <em>main とは何か？</em>／<em>本番の出し物</em>／<em>main は、プロジェクトの公式の最新版です。</em>／<em>確認された完成形を置く場所。みんなが自由に書き換える場所ではありません。</em>／<em>main は壊さない</em>／<em>main はいつでも動く状態にする</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料の説明からすると、作りかけの変更を <code>main</code> に直接置くのが避けられるのはなぜか。
+          <ul class="chk__c"><li>main は容量が小さく、大きな変更を受け取れないから</li><li>main は確認された完成形を置く場所で、いつでも動く状態に保つと決めているから</li><li>main には1日に1回しか変更を入れられない決まりがあるから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 公式の最新版であることと、いつでも動く状態にすること。この2つが理由になっている。</p>
+          <p>資料は「みんなが自由に書き換える場所ではありません」とも明記している。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">コミットは<em>変更を1つずつ</em>刻むセーブポイント。main は<em>公式の最新版</em>で、壊さず、いつでも動く状態に保つ。</p>
+      <p>ここまでで「履歴をどう刻むか」と「刻んだものが最後にどこへ集まるか」が決まった。残るのは、完成する前の作業をどこで進めるか。次の回で<strong>ブランチ</strong>と<strong>マージ</strong>を見る。</p>
+
+      <ul class="chips">
+        <li><a href="03-branch-and-merge.html">03 ブランチとマージ</a></li>
+        <li><a href="01-what-is-git.html">01 Git とは何か</a></li>
+        <li><a href="index.html">GitHub 完全ガイド 目次</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="01-what-is-git.html"><b>前のレッスン — 01</b><em>Git とは何か</em></a>
+  <a class="is-next" href="03-branch-and-merge.html"><b>次のレッスン — 03</b><em>ブランチとマージ</em></a>
+</div>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — 社内研修資料『超簡単！GitHub完全ガイド』スライド04〜05</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

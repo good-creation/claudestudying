@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 Git とは何か — GitHub 完全ガイド 学習ノート</title>
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。Git はコードの保管庫であり、管理する対象はファイルそのものではなく変更の履歴である。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か" aria-current="page">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 01 / GitHub</p>
+    <p class="eyebrow" style="color:var(--caution)">社内研修資料 — 公式コース外</p>
+  </div>
+
+  <h1 class="hero__title">Git とは<br><em>何か</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    Git を「ファイルを共有する道具」だと思っていると、この先の言葉がひとつも噛み合わなくなる。資料が最初に置く結論は<strong>「Git とはコードの保管庫」</strong>で、そこから<strong>「ファイルを見るな、履歴を見ろ」</strong>という一番大事な考え方が出てくる。この回はその2枚だけを扱う。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
+    <div><dt>Slides</dt><dd><small>02 — 03</small></dd></div>
+    <div><dt>Format</dt><dd><small>スライド資料（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">STORE</span><span class="sec__kind">結論</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">結論：Git とはコードの保管庫</h2>
+      <p>資料は前置きなしに結論から入る。<strong>Git はコードの保管庫である。</strong>そして、すぐに但し書きが付く——<strong>ただのファイル共有じゃない</strong>。</p>
+      <p>共有ストレージにファイルを置くのと何が違うのか。保管庫に入るのはファイルだけではなく、<strong>誰が、いつ、どこを、どう変えたか</strong>という4つの情報も一緒に入る。だから資料はこれを「履歴も見られるコードの保管庫」と呼ぶ。</p>
+
+      <ul class="acts">
+        <li><h3>誰が</h3><p>その変更を入れた人。</p></li>
+        <li><h3>いつ</h3><p>その変更が入った時点。</p></li>
+        <li><h3>どこを</h3><p>変わったのがどのファイルのどの部分か。</p></li>
+        <li><h3>どう変えたか</h3><p>変更の中身そのもの。</p></li>
+      </ul>
+
+      <figure class="fig">
+        <img src="../img/gh-02.jpg" alt="ファイルを表すアイコンから矢印が伸び、装置の中へ入っていく図。装置の下に「誰が」「いつ」「どこを」「どう変えたか」の4つのカードが並んでいる。" loading="lazy">
+        <figcaption>研修資料 スライド02 — <em>結論：Git とはコードの保管庫！</em>／<em>ただのファイル共有じゃないよ！</em>／<em>誰が、いつ、どこを、どう変えたか。履歴も見られるコードの保管庫！</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料が「ただのファイル共有ではない」と念を押すのは、Git が何を一緒に抱えているからか。
+          <ul class="chk__c"><li>変更した人・時点・箇所・内容という4つの情報</li><li>チーム全員のアカウントと権限の一覧</li><li>ファイルを圧縮して容量を減らす仕組み</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 保管されるのはファイルだけではない。誰が・いつ・どこを・どう変えたか、が一緒に残る。</p>
+          <p>だから資料はこれを「履歴も見られる」保管庫と呼んでいる。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">HISTORY</span><span class="sec__kind">一番大事な考え方</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ファイルを見るな、履歴を見ろ</h2>
+      <p>資料が「Git で一番大事な考え方」として掲げるのがこれ。ここは覚え方の話ではなく、<strong>何を管理の対象にするか</strong>という話になっている。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">観点</div><div class="cmp__a">悪い例</div><div class="cmp__b">良い例</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">管理の対象</div><div class="cmp__a">ファイルそのものを管理する</div><div class="cmp__b">変更の履歴を管理する</div></div>
+        <div class="cmp__row"><div class="cmp__ax">手元に並ぶもの</div><div class="cmp__a"><code>最新版_final_絶対最後.zip</code></div><div class="cmp__b">v1.0 初期作成 → v1.1 機能追加 → v1.2 不具合修正 → v1.3 パフォーマンス改善</div></div>
+      </div>
+
+      <p>悪い例のファイル名は、誰もが一度は作ったことのあるあれ。名前で世代を表そうとすると、<strong>ファイルが増えるほど「どれが本物か」が分からなくなる</strong>。良い例では並んでいるのが版そのものではなく、<strong>版から版へ何をしたか</strong>——初期作成、機能追加、不具合修正、パフォーマンス改善——という一本の線になっている。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-03.jpg" alt="左に赤枠の「悪い例：ファイルそのものを管理する」とzipファイルのアイコン、右に青枠の「良い例：変更の履歴を管理する」とv1.0からv1.3までを結ぶ矢印が描かれた図。" loading="lazy">
+        <figcaption>研修資料 スライド03 — <em>Git で一番大事な考え方</em>／<em>ファイルを見るな、履歴を見ろ。</em>／悪い例に <em>最新版_final_絶対最後.zip</em>、良い例に <em>v1.0 初期作成</em> <em>v1.1 機能追加</em> <em>v1.2 不具合修正</em> <em>v1.3 パフォーマンス改善</em>。</figcaption>
+      </figure>
+
+      <div class="tip">
+        <b>この一行が、あとの回すべてに効いてくる</b>
+        <p>Git の用語がややこしく感じるのは、たいてい「ファイルの操作」として理解しようとしているとき。<a href="04-push-and-pull.html">04</a> で出てくる「なぜ別のパソコンでもマージできるのか」という問いにも、資料は同じ考え方——共有しているのはファイルではなく履歴だから——で答えている。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料が良い例として並べているのは、次のうちどれか。
+          <ul class="chk__c"><li>日付を付けたファイルを世代ごとに残しておく</li><li>完成したファイルを1つだけ残し、途中のものは消しておく</li><li>初期作成・機能追加・不具合修正といった、版から版への変更が一本の線で並んでいる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 管理の対象は版そのものではなく、版から版へ何をしたかという変更のつながり。</p>
+          <p>ファイル名で世代を表そうとするのが、資料が悪い例として挙げている側。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">Git はコードの保管庫。入るのはファイルだけでなく、<em>誰が・いつ・どこを・どう変えたか</em>。</p>
+      <p>そして管理する対象は、ファイルそのものではなく<strong>変更の履歴</strong>。次の回は、その履歴を1つずつ刻む操作である<a href="02-commit-and-main.html">コミット</a>と、履歴の本線である <code>main</code> を見る。</p>
+
+      <ul class="chips">
+        <li><a href="02-commit-and-main.html">02 コミットと main</a></li>
+        <li><a href="index.html">GitHub 完全ガイド 目次</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <span><b>前のレッスン</b><em>—</em></span>
+  <a class="is-next" href="02-commit-and-main.html"><b>次のレッスン — 02</b><em>コミットと main</em></a>
+</div>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — 社内研修資料『超簡単！GitHub完全ガイド』スライド02〜03</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

@@ -17,7 +17,8 @@ def strip(x): return re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', x))
 NUM = re.compile(r'\d[\d,]*')
 
 files = sorted(glob.glob("0*.html")+glob.glob("1*.html")+["cloudflare.html","summary.html"]
-               +glob.glob("ai-fluency/*.html")+glob.glob("advanced/*.html"))
+               +glob.glob("ai-fluency/*.html")+glob.glob("advanced/*.html")
+               +glob.glob("educators/*.html")+glob.glob("github/*.html"))
 tot = 0; problems = []
 for f in files:
     s = io.open(f, encoding="utf-8").read()

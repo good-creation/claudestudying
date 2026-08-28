@@ -527,6 +527,41 @@ body.exam .chk{display:none}
 /* 出題中のバンク名（.quizbar 内） */
 .quizbar__bank{margin-left:6px;color:var(--ink-2)}
 
+/* ---------- 合言葉のゲート（assets/gate.js） ----------
+   見た目だけの目隠し。公開配信なので直リンクとソース表示では素通りする。
+   本文を display:none で伏せるのは、解除前に中身が一瞬でも見えないようにするため
+   （visibility:hidden だと選択やスクリーンリーダーに残る）。 */
+html.is-gated body > *{display:none}
+html.is-gated body > .gate{display:flex}
+html.is-gated{overflow:hidden}
+
+.gate{
+  position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  padding:var(--gutter);background:var(--ground);
+}
+.gate__box{width:100%;max-width:33em;background:var(--paper);box-shadow:0 0 0 1px var(--rule);
+  padding:clamp(26px,4vw,44px)}
+.gate__k{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal)}
+.gate__t{font-family:var(--mincho);font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(21px,3vw,29px);line-height:1.45;margin:10px 0 0;word-break:auto-phrase}
+.gate__lead{margin:14px 0 0;font-size:14px;line-height:1.9;color:var(--ink-2)}
+.gate__row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.gate__row input{
+  flex:1 1 190px;min-width:0;font:inherit;font-family:var(--mono);font-size:19px;
+  letter-spacing:.4em;text-align:center;padding:13px 14px;
+  background:var(--ground);color:var(--ink);border:1px solid var(--rule);border-radius:0;
+}
+.gate__row input:focus{outline:2px solid var(--signal);outline-offset:-1px;border-color:var(--signal)}
+.gate__row input[aria-invalid]{border-color:var(--caution);background:var(--caution-bg)}
+.gate__row button{
+  cursor:pointer;font:inherit;font-family:var(--mono);font-size:13px;letter-spacing:.1em;
+  padding:13px 26px;background:none;color:var(--ink);border:1px solid var(--ink);
+}
+.gate__row button:hover{border-color:var(--signal);color:var(--signal)}
+.gate__err{margin:12px 0 0;font-size:13.5px;font-weight:700;color:var(--caution)}
+.gate__back{margin:22px 0 0;font-size:13px}
+
 /* ---------- 採点前は隠す得点表示、採点する ボタン ---------- */
 .quizbar__score{color:var(--ink-2)}
 #qSubmit{border-color:var(--ink);color:var(--ink)}
@@ -688,6 +723,10 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 /* デスクトップでは専用列を確保し、タイトルやタイムラインと重ならないようにする */
 .hero{position:relative}
 .hero__clawd{display:block;width:84px;height:auto;aspect-ratio:600 / 487;margin:26px 0 0 auto;pointer-events:none}
+/* GitHub コースだけは Claude のマスコットではなく GitHub のマークを使う。
+   マークは正方形なので 600/487 を上書きする。マスコットと違って表情が無く、
+   小さいと何のマークか読み取れないので、幅はマスコットより大きく取る。 */
+.hero__clawd.is-mark{width:clamp(96px,9vw,124px);aspect-ratio:1 / 1}
 @media (min-width:1001px){
   .hero{
     display:grid;
@@ -710,6 +749,7 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 /* ページ末尾の区切り */
 .endmark{display:flex;justify-content:center;padding:38px 0 6px}
 .endmark img{width:56px;opacity:.85}
+.endmark--mark img{width:96px}
 
 /* ---------- 用語ツールチップ ---------- */
 /* 本文中の専門用語。読みの邪魔をしないよう、点線の下線だけで示す */

@@ -36,6 +36,11 @@ ai-fluency/                 別コース「AI活用力（AI Fluency）」— 独
 advanced/                   別コース「アドバンス」— 独立セクション
   index.html                コース概要 + レッスン目次
   NN-<slug>.html            レッスンページ（01〜09）
+github/                     別コース「GitHub 完全ガイド」— 社内研修資料が出典
+  index.html                コース概要 + レッスン目次 + 用語 + 出典
+  NN-<slug>.html            レッスンページ（01〜06）
+  quiz.html                 このコース専用の試験（18問）
+  quiz-data.js              その問題バンク
 answers/                    付録「解答集」— 試験の答えと解説（合言葉つき・生成物）
   index.html                鍵と器だけ。本文は持たない
   answers.enc.js            暗号化した本文（自動生成・直接編集しない）
@@ -43,7 +48,10 @@ answers/                    付録「解答集」— 試験の答えと解説（
 assets/site.css             全ページ共通のスタイル（ここ以外に CSS を書かない）
 assets/site.js              タイムライン再生ヘッドのスクロール追従
 assets/terms.js             用語ツールチップ（辞書＋本文への自動下線）
+img/gh-NN.jpg               GitHub コースの図版（研修資料のスライドをそのまま保存）
+img/github-mark.png         GitHub コースのマーク（このコースだけ clawd.png の代わりに使う）
 assets/progress.js          読んだレッスンを localStorage に控える（表示は index.html の1行だけ）
+assets/gate.js              合言葉の目隠し（educators/ と cloudflare.html。見た目だけ）
 img/*.jpg                   公式図版（ページから相対パスで参照）
 tools/validate.py           リンク・画像・タイムライン整合性チェック
 tools/check-quiz.py         小問題（.chk）の検査
@@ -149,6 +157,54 @@ tools/build-answers.mjs     解答集の本文を問題バンクから生成し�
 原文に答えが書かれていないクイズに、こちらで答えを書かない。
 原文が載せているプロンプト例は `.prompt` で全文載せる（読者がそのままコピーして使えるため）。
 
+### スライド資料が出典のコース（`github/` が先例）
+
+`github/` は Anthropic 公式ではなく、**社内研修資料『超簡単！GitHub完全ガイド』（全18枚のスライド）**が出典。
+動画もインタラクティブ教材もなく、**根拠が18枚の画像しかない**という点が他コースと違う。
+
+- スライドは `img/gh-01.jpg` 〜 `img/gh-18.jpg` にそのまま保存し、各レッスンから `.fig` で参照する。
+  **`figcaption` にはスライドに実際に写っている文字列だけを `<em>` で並べる**（要約や推測を混ぜない）
+- 18枚を6レッスンに束ねている（対応は各ページの `.meta` の `Slides` に書いてある）。
+  番号は 01 から振り直し、`.sec__t` にはタイムコードではなく短い英語ラベル（`STORE` `COMMIT` `MERGE` など）を入れる
+- **資料に無いことを足さない。** Git の実コマンド（`git commit` など）は資料に一切出てこないので、
+  この学習ノートにも書いていない。補足したいことは `.tip` / `.warn` に隔離し、
+  「資料はここまでしか言っていない」と分かる書き方にする
+- 出典セクション（`github/index.html` の `#source`）に、公式コースではないことと、
+  コマンドを補っていないことを明記してある。ここは消さない
+- **このコースだけ、マスコットに `img/clawd.png` を使わない。** ヒーロー・章末・
+  本番モードの目隠し・採点結果のすべてで `img/github-mark.png` を出す。
+  マークは 512×512 の正方形なので、`.hero__clawd` に `is-mark` を足して
+  `aspect-ratio` を上書きし、章末は `.endmark--mark` で幅を変えている。
+  採点結果のぶんは `window.QUIZ_SITE.mascot` で差し替える（既定は `img/clawd.png`）
+
+### コース専用の試験を足すとき（`github/quiz.html` が先例）
+
+試験のレンダリングと採点は `assets/quiz.js` ひとつを全コースで共有している。
+コースごとに違うのは**レッスンの対応表とリンクの前置だけ**なので、ページ側で
+`assets/quiz.js` を読み込む**前**に `window.QUIZ_SITE` を定義して差し替える。
+
+```html
+<script>
+window.QUIZ_SITE = {
+  img: '../',                              // clawd.png への前置（サブディレクトリなら '../'）
+  standard: 'GitHub 完全ガイド（全問）',    // レベル別セットが無いときのバンク名
+  lessons: { "01": ["01-what-is-git.html", "Git とは何か"], … },   // 試験ページから見た相対パス
+  links: [["index.html","目次に戻る"], ["../index.html","ホームへ"]]  // 結果画面の行き先
+};
+</script>
+<script src="../assets/exam.js"></script>
+<script src="quiz-data.js"></script>
+<script src="../assets/quiz.js"></script>
+```
+
+- **`assets/quiz.js` をコースごとに複製しない。** 足りない差し替え項目が出たら、
+  `SITE.〜 || 既定値` の形で1つ足す（既定値は Claude Code 入門コースのもの）
+- 問題バンクの書式は `assets/quiz-data.js` と同一。`src` にはそのコースのレッスン番号を書く
+- レベル別セットが要らないコースは `window.QUIZ_SETS` を定義しない。
+  `#bankCards` を置かなければバンク選択の UI ごと出ない
+- **本番モードで隠れる場所に、答えにつながるものを置かない。**
+  おさらい（`.recap`）とナビは `body.exam` で隠れる。ここに手を入れたら実ブラウザで確かめる
+
 ### `tools/` の前提（壊しやすいので注意）
 
 - `tools/rebuild-nav.py` は `NAV_ITEMS`（nav に載せる項目）と `TARGETS`（nav を書き換える対象ファイル）が
@@ -247,6 +303,9 @@ python3 tools/check-quiz.py            # 散らしたあともう一度
   正解数・合格必要数・判定（`#qScoreLine`）は採点まで `hidden` のまま。
   `#qSubmit`（採点する）を押して初めて全問を採点し、正誤と解説をまとめて開く。
   **ここに手を入れるときは、途中で答えが漏れないことを必ず実ブラウザで確かめる**
+- **このページは Claude Code 入門コース専用ではない。** `assets/quiz.js` は全コース共有で、
+  コース側は `window.QUIZ_SITE` で対応表とリンクを差し替える（`github/quiz.html` が先例）。
+  ここに手を入れるときは、GitHub コースの試験も一緒に確かめること
 - 問題バンクは2系統。`assets/quiz-data.js` の `window.QUIZ`（標準・全22問）と、
   `assets/quiz-levels.js` の `window.QUIZ_SETS`（レベル1〜3のチャレンジ・各10問）。
   バンク選択（`#bankCards`）は `window.QUIZ_SETS` から動的に生成しているので、
@@ -298,6 +357,21 @@ node tools/build-answers.mjs 9999     # 合言葉を変える（この番号を�
 - 試験ページからの導線は `#quizRecap` の中に置く。`body.exam` で隠れる場所なので、
   **本番モード中に解答集へのリンクが出ない**。ここから動かすときは同じ条件を満たすこと
 - `<meta name="robots" content="noindex, nofollow">` を入れてある
+
+## 合言葉のゲート（`assets/gate.js`）
+
+`educators/`（全5ページ）と `cloudflare.html` は、開くと合言葉（`1245`）の入力画面が出る。
+
+- **これは中身を守る仕組みではない。** 公開リポジトリの GitHub Pages で配信しているので、
+  画像やHTMLの直リンク、ソース表示、GitHub 上のファイル閲覧、検索エンジンのクロールは
+  どれもこの画面を通らない。JS を切れば素通りする。**目的は「一覧からうっかり開かない」ことだけ**。
+  本当に読ませたくないものは、リポジトリを非公開にするか `answers/` のように本文を暗号化すること
+- 掛けるページは `</head>` の直前で `gate.js` を読み込み、`<html>` に
+  `data-gate-home="…/index.html"`（戻り先）を持たせる。サブディレクトリなら `../` 前置
+- 解除は `sessionStorage`（`gate.v1`）に持つので**タブを閉じれば掛け直る**。
+  キーはサイト共通なので、片方を解除すればもう片方も開く
+- 本文は `html.is-gated body > *{display:none}` で伏せる。`visibility:hidden` だと
+  選択やスクリーンリーダーに残るので使わない
 
 ## 版面と余白の決まり（後戻りしやすい）
 

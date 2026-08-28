@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 ブランチとマージ — GitHub 完全ガイド 学習ノート</title>
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。Branch は main から枝分かれした安全な作業場所、MERGE は別々の変更を main に統合する操作。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ" aria-current="page">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 03 / GitHub</p>
+    <p class="eyebrow" style="color:var(--caution)">社内研修資料 — 公式コース外</p>
+  </div>
+
+  <h1 class="hero__title">ブランチと<br><em>マージ</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <a href="02-commit-and-main.html">02</a> で <code>main</code> は壊さないと決めた。では作りかけの仕事はどこでやるのか。資料の答えは<strong>枝（Branch）</strong>で、枝で仕上がったものを本線に戻す操作が<strong>MERGE</strong>。この2つが揃うと、チームで同時に手を動かせるようになる。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
+    <div><dt>Slides</dt><dd><small>06 — 08</small></dd></div>
+    <div><dt>Format</dt><dd><small>スライド資料（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">BRANCH</span><span class="sec__kind">枝</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">Branch ＝ 枝</h2>
+      <p>資料は <strong>Branch を「枝」</strong>とだけ訳し、性格を一行で足す——<strong>main から枝分かれした、安全な作業場所</strong>。「安全な」が効いている。枝で何をしても、<a href="02-commit-and-main.html">02</a> で守ると決めた本線は無傷のままだからだ。</p>
+      <p>スライドは1本の木で説明している。</p>
+
+      <ul class="acts">
+        <li><h3>main ＝ 真ん中の太い部分</h3><p>幹。プロジェクトの本線。</p></li>
+        <li><h3>新しい Branch を作る ＝ 下書きノートを作成</h3><p>幹から伸びる枝。作りかけを置く場所。</p></li>
+      </ul>
+
+      <p><strong>「下書きノートを作成」</strong>という言い換えが、この回でいちばん持ち帰りやすい。清書（<code>main</code>）に直接書き込むのではなく、下書きを1冊増やしてそこで書く、という手続きになる。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-06.jpg" alt="1本の木が描かれ、幹に「main ＝ 真ん中の太い部分」、細い枝の先に「新しいBranchを作る ＝ 下書きノートを作成」という吹き出しが伸びている図。" loading="lazy">
+        <figcaption>研修資料 スライド06 — <em>Branch ＝ 枝</em>／<em>main から枝分かれした、安全な作業場所。</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料が Branch を「安全な作業場所」と呼ぶのは、そこで作業しているあいだ何が起きないからか。
+          <ul class="chk__c"><li>幹にあたる本線が、その作業のせいで書き換わらない</li><li>作業中のファイルが自動で保存され、消えなくなる</li><li>他の人がその枝を見られなくなる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 枝分かれした場所で書いているので、幹（main）はそのまま残る。</p>
+          <p>資料はこれを「下書きノートを作成」と言い換えている。清書には手を付けない、という意味になる。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">PARALLEL</span><span class="sec__kind">同時進行</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">main と Branch の関係</h2>
+      <p>枝が1本ではなく複数あるとどうなるか。資料は2人を例に出す。</p>
+
+      <ul class="acts">
+        <li><h3>A さん</h3><p>ログイン機能を作る。</p></li>
+        <li><h3>B さん</h3><p>デザインを直す。</p></li>
+      </ul>
+
+      <p>2人はそれぞれ別の枝にいる。だからスライドの結論はこうなる——<strong>枝ごとに、別々の作業を同時に進められます</strong>。順番待ちが要らないのがブランチの効き目で、これがチーム開発で Git を使う直接の理由になる。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-07.jpg" alt="幹に main と書かれた木から左右に枝が伸び、左の枝に「ログイン機能を作る Aさん」、右の枝に「デザインを直す Bさん」の吹き出しが付いている図。" loading="lazy">
+        <figcaption>研修資料 スライド07 — <em>main と Branch の関係</em>／<em>枝ごとに、別々の作業を同時に進められます。</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          A さんと B さんが別々の枝で作業できることの利点として、資料が示しているのはどれか。
+          <ul class="chk__c"><li>2人の変更が自動的に同じ内容にそろう</li><li>2人のうち片方だけが main を書き換えられるようになる</li><li>片方の作業が終わるのを待たずに、両方を同時に進められる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 枝が分かれているので、順番待ちが発生しない。</p>
+          <p>同時に進んだ2つの変更を最後にどうするかが、この次の話になる。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">MERGE</span><span class="sec__kind">統合</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">MERGE ＝ 統合する</h2>
+      <p>同時に進めた変更は、いつか1つに戻さなければ意味がない。その操作が <strong>MERGE ＝ 統合する</strong>。資料の定義は<strong>「別々の変更を、main に統合する操作」</strong>。</p>
+      <p>スライドでは、さきほどの2人の枝に名前が付いている。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">枝</div><div class="cmp__a">誰が</div><div class="cmp__b">何をした</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">feature/login</div><div class="cmp__a">A さん</div><div class="cmp__b">ログイン機能を作った</div></div>
+        <div class="cmp__row"><div class="cmp__ax">feature/design</div><div class="cmp__a">B さん</div><div class="cmp__b">トップページのデザインを直した</div></div>
+      </div>
+
+      <p>この2本が合流点で1本になり、<code>main</code> に入る。スライドの結びは<strong>「2つの変更を、最終的に main へ統合（MERGE）」</strong>。<a href="02-commit-and-main.html">02</a> で見た「確認された完成形を置く場所」という <code>main</code> の性格と合わせて読むと、マージは<strong>完成したものだけを本線に入れる関所</strong>にあたる。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-08.jpg" alt="左に A さんと B さんのカード、そこから feature/login と feature/design の2本の線が伸びて中央の合流アイコンで1本になり、右の main へつながる図。下部に2つのパズルのピースを合わせるイラスト。" loading="lazy">
+        <figcaption>研修資料 スライド08 — <em>MERGE ＝ 統合する</em>／<em>別々の変更を、main に統合する操作。</em>／<em>2つの変更を、最終的に main へ統合（MERGE）</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>feature/login</code> と <code>feature/design</code> の2本について、資料が描いている行き先はどれか。
+          <ul class="chk__c"><li>それぞれが独立したまま、本線とは別に残り続ける</li><li>先に終わったほうだけが採用され、もう一方は捨てられる</li><li>合流して1本になり、最終的に main へ入る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 2つの変更を最終的に main へ統合するのが MERGE。</p>
+          <p>どちらか一方を捨てるという話ではない。ただし、同じ場所を両方が触っていた場合には別の問題が起きる。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">Branch は<em>main から枝分かれした安全な作業場所</em>。MERGE は<em>別々の変更を main に統合する操作</em>。</p>
+      <p>枝を分ければ同時に進められ、マージすれば1つに戻る。ここまでは1台のパソコンの中の話としても読める。次の回は<strong>場所</strong>の話——自分のパソコンと、チーム全員が集まるクラウド上の保管場所をどう行き来するか。</p>
+
+      <ul class="chips">
+        <li><a href="04-push-and-pull.html">04 ローカル・リモートと PUSH / PULL</a></li>
+        <li><a href="05-conflict.html">05 コンフリクト</a></li>
+        <li><a href="index.html">GitHub 完全ガイド 目次</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="02-commit-and-main.html"><b>前のレッスン — 02</b><em>コミットと main</em></a>
+  <a class="is-next" href="04-push-and-pull.html"><b>次のレッスン — 04</b><em>ローカル・リモートと PUSH / PULL</em></a>
+</div>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — 社内研修資料『超簡単！GitHub完全ガイド』スライド06〜08</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

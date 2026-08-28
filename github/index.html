@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub 完全ガイド — 学習ノート</title>
+<meta name="description" content="社内研修資料『超簡単！GitHub完全ガイド』を日本語で再構成した学習ノート。コミット・ブランチ・マージ・PUSH・PULL・コンフリクトと、7ステップの開発フローを全6レッスン＋試験で。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次" aria-current="page">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">GitHub / Git 入門研修</p>
+    <p class="eyebrow" style="color:var(--caution)">社内研修資料 — Anthropic 公式コースとは別系統</p>
+  </div>
+
+  <h1 class="hero__title">超簡単！<br><em>GitHub 完全ガイド</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    研修資料『超簡単！GitHub完全ガイド — マージ・コンフリクト・PUSH・PULL の仕組みを徹底図解』全18枚を、日本語の読み物として再構成した学習ノート。資料の副題は<strong>チーム開発のための『履歴付きコピーマシン』をマスターしよう</strong>。用語を1つずつ覚えるのではなく、<strong>「管理しているのはファイルではなく履歴だ」</strong>という一行から全部をぶら下げる構成にしています。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
+    <div><dt>Slides</dt><dd><small>全18枚</small></dd></div>
+    <div><dt>Lessons</dt><dd><small>全6レッスン ＋ 試験18問</small></dd></div>
+  </dl>
+</header>
+
+<main class="shell">
+
+  <div class="lessons">
+
+    <a class="lsn" href="01-what-is-git.html">
+      <div class="lsn__n">01</div>
+      <div>
+        <div class="lsn__en">What is Git?</div>
+        <h2 class="lsn__ja">Git とは何か</h2>
+        <p class="lsn__sum">結論は「コードの保管庫」。ただのファイル共有ではなく、誰が・いつ・どこを・どう変えたかが一緒に残る。そして一番大事な考え方——<strong>ファイルを見るな、履歴を見ろ</strong>。<code>最新版_final_絶対最後.zip</code> をやめる理由がここにある。</p>
+        <ul class="lsn__tags"><li>コードの保管庫</li><li>履歴を管理する</li><li>悪い例と良い例</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド02〜03</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="02-commit-and-main.html">
+      <div class="lsn__n">02</div>
+      <div>
+        <div class="lsn__en">Commit &amp; main</div>
+        <h2 class="lsn__ja">コミットと main</h2>
+        <p class="lsn__sum">コミットは変更を1つずつ履歴として残すセーブポイント。まとめて1回ではなく、作業の区切りごとに1つ。<code>main</code> は「本番の出し物」＝公式の最新版で、<strong>壊さない</strong>・<strong>いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
+        <ul class="lsn__tags"><li>セーブポイント</li><li>本番の出し物</li><li>main は壊さない</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド04〜05</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="03-branch-and-merge.html">
+      <div class="lsn__n">03</div>
+      <div>
+        <div class="lsn__en">Branch &amp; Merge</div>
+        <h2 class="lsn__ja">ブランチとマージ</h2>
+        <p class="lsn__sum">Branch は枝。main から枝分かれした安全な作業場所で、資料の言い換えは「下書きノートを作成」。枝ごとに別々の作業を同時に進められ、仕上がったものを MERGE で main に統合する。</p>
+        <ul class="lsn__tags"><li>下書きノート</li><li>同時進行</li><li>統合する</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド06〜08</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="04-push-and-pull.html">
+      <div class="lsn__n">04</div>
+      <div>
+        <div class="lsn__en">Local, Remote, PUSH &amp; PULL</div>
+        <h2 class="lsn__ja">ローカル・リモートと PUSH / PULL</h2>
+        <p class="lsn__sum">ローカルは自分だけの場所、リモートはチーム全員の集合場所。PUSH＝アップロード、PULL＝ダウンロード、MERGE＝履歴の統合。そして「なぜ別のパソコンでもマージできるのか」——共有しているのがファイルではなく履歴だから。</p>
+        <ul class="lsn__tags"><li>空間のルール</li><li>Action Matrix</li><li>履歴を共有する</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド09〜11・14〜15</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="05-conflict.html">
+      <div class="lsn__n">05</div>
+      <div>
+        <div class="lsn__en">Conflict</div>
+        <h2 class="lsn__ja">コンフリクト</h2>
+        <p class="lsn__sum">同じ画面を別々に変更したときに起きる衝突。どちらの変更も正しいので、機械には決められない——決めるのは人。直し方は2手順で、GitHub が箇所を提示し、Claude Code / Codex に修正を頼む。</p>
+        <ul class="lsn__tags"><li>どちらを採用する？</li><li>衝突の印</li><li>AI に修正を頼む</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド12〜13</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="06-development-flow.html">
+      <div class="lsn__n">06</div>
+      <div>
+        <div class="lsn__en">The Development Flow</div>
+        <h2 class="lsn__ja">実際の開発フロー</h2>
+        <p class="lsn__sum">PULL → ブランチ → 作業 → コミット → PUSH → プルリクエスト → 確認してマージ。7つのうち本線に触るのは最後の1つだけで、その手前に確認が入る。だから「この流れを守れば main は絶対に壊れない」。</p>
+        <ul class="lsn__tags"><li>7つのステップ</li><li>全体地図</li><li>結論</li></ul>
+      </div>
+      <div class="lsn__side"><span>スライド16〜18</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+  <div class="lessons" style="border-top:0">
+    <a class="lsn" href="quiz.html">
+      <div class="lsn__n" style="color:var(--signal)">試験</div>
+      <div>
+        <div class="lsn__en">Exam — ranked, 3 formats</div>
+        <h2 class="lsn__ja">試験</h2>
+        <p class="lsn__sum">レッスン01〜06から全18問。4択・正誤判定・並べ替えの3形式で、出題順は毎回シャッフル。解いている間は正誤も解説も出ません。提出してはじめて採点され、ランクと、1問ごとの正解・解説がまとめて出ます。</p>
+        <ul class="lsn__tags"><li>全18問</li><li>3形式</li><li>提出後に採点</li><li>ランク判定</li></ul>
+      </div>
+      <div class="lsn__side"><span>合格ライン80%</span><span class="lsn__go">挑戦する →</span></div>
+    </a>
+  </div>
+
+  <section class="gloss">
+    <h2>このコースの用語</h2>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--ink-2)">
+      各ページの本文でも、<span style="text-decoration:underline dotted var(--signal);text-underline-offset:4px">点線のついた語</span>にカーソルを合わせる（スマホならタップする）と、やさしい言い換えが出ます。
+    </p>
+    <dl>
+      <div><dt>コミット</dt><dd>変更を1つずつ履歴として残すセーブポイント。資料はこれを「ファイルの保存」と等号で結んでいる。</dd></div>
+      <div><dt>main</dt><dd>プロジェクトの公式の最新版。確認された完成形を置く場所で、壊さず、いつでも動く状態に保つ。</dd></div>
+      <div><dt>Branch（ブランチ）</dt><dd>main から枝分かれした安全な作業場所。資料の言い換えは「下書きノート」。</dd></div>
+      <div><dt>MERGE（マージ）</dt><dd>別々の変更を main に統合する操作。移動の方向はブランチから main へ。</dd></div>
+      <div><dt>ローカル / リモート</dt><dd>ローカルは自分のパソコン＝自分だけが作業する場所。リモート（GitHub）はクラウド上の保管場所＝チーム全員の集合場所。</dd></div>
+      <div><dt>PUSH（プッシュ）</dt><dd>ローカルで作った変更をリモートに送る操作。アップロードにあたる。</dd></div>
+      <div><dt>PULL（プル）</dt><dd>リモートの最新変更をローカルに取り込む操作。ダウンロードにあたる。</dd></div>
+      <div><dt>Conflict（コンフリクト）</dt><dd>同じ画面を別々に変更したときに起きる衝突。どちらを採用するかは人が決める。</dd></div>
+      <div><dt>プルリクエスト</dt><dd>7ステップの6番目。作った枝を本線に入れたい、という申請にあたる。</dd></div>
+    </dl>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2 id="source">出典</h2>
+    <div class="warn">
+      <b>出典 — Anthropic 公式コースではありません</b>
+      <p>このセクション（<code>github/</code>）は<strong>社内研修資料『超簡単！GitHub完全ガイド』（全18枚のスライド、v3）</strong>を出典とする学習ノートです。本サイトの他コースが Anthropic の公式動画・公式コース本文を出典とするのに対し、こちらは<strong>公式コースに属さない別系統の資料</strong>を扱います。本文・図版はすべてこの資料に基づいており、<strong>資料に書かれていない Git のコマンドや操作手順は補っていません</strong>。実際に手を動かす段になったら、それぞれのツールの公式ドキュメントを併せて参照してください。</p>
+    </div>
+    <div class="tip">
+      <b>Claude Code 入門コースとのつながり</b>
+      <p>スライド13は、コンフリクトの修正を <strong>Claude Code / Codex</strong> に頼む流れを示しています。Claude Code そのものについては <a href="../claude-code.html">Claude Code 入門コース</a>（全11レッスン）に、コミットからプルリクエスト作成までを扱う <a href="../11-review-and-ship.html">11 レビューして出荷する</a> があります。</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — 社内研修資料『超簡単！GitHub完全ガイド』（全18枚・v3）</span>
+  <a href="../index.html">コースを選ぶ</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

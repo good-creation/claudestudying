@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 コンフリクト — GitHub 完全ガイド 学習ノート</title>
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。Conflict は同じ画面を別々に変更したときに起きる衝突。GitHub が箇所を提示し、AI に修正を頼む直し方まで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト" aria-current="page">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 05 / GitHub</p>
+    <p class="eyebrow" style="color:var(--caution)">社内研修資料 — 公式コース外</p>
+  </div>
+
+  <h1 class="hero__title">コン<br><em>フリクト</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    枝を分けて同時に進めれば速い。ただし2人が<strong>同じ場所</strong>を触っていたときだけ、Git は自分で決められなくなる。それが <strong>Conflict ＝ 衝突</strong>。資料はこれを事故ではなく、<strong>人が決めるべき場面</strong>として扱っていて、直し方まで2手順で示している。
+  </p>
+
+  <dl class="meta">
+    <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
+    <div><dt>Slides</dt><dd><small>12 — 13</small></dd></div>
+    <div><dt>Format</dt><dd><small>スライド資料（動画なし）</small></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">CLASH</span><span class="sec__kind">衝突</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">Conflict ＝ 衝突</h2>
+      <p>資料の定義は短い。<strong>同じ画面を、別々に変更したときに起きます。</strong></p>
+      <p>スライドはタスク管理の画面を例にしている。元の画面には「保存する」ボタンがあり、そこから2人が別々に手を入れた。</p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">元の画面</div><div class="cmp__a">A さんの変更</div><div class="cmp__b">B さんの変更</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">保存ボタン</div><div class="cmp__a">ボタンを青にした</div><div class="cmp__b">ボタンを赤にした</div></div>
+      </div>
+
+      <p>2つの変更は、どちらも正しく作られている。ただし対象が同じ1か所なので、機械には決められない。スライドで Git が発しているのは<strong>「どちらを採用する？」</strong>という問いで、答えは <strong>A か B</strong> のどちらか——つまり<strong>人が選ぶ</strong>。</p>
+
+      <div class="tip">
+        <b>衝突するのは「同じ場所」だけ</b>
+        <p><a href="03-branch-and-merge.html">03</a> の A さんと B さんは、ログイン機能とデザインという別々のところを触っていたので、そのまま統合できた。同じ画面の同じ部分を2人が変えたときにだけ、この問いが立つ。</p>
+      </div>
+
+      <figure class="fig">
+        <img src="../img/gh-12.jpg" alt="元のタスク管理画面から矢印が伸び、青いボタンに変えた A さんの画面と赤いボタンに変えた B さんの画面が並び、中央で Conflict と書かれた円がぶつかっている図。右上に「A or B」の吹き出し。" loading="lazy">
+        <figcaption>研修資料 スライド12 — <em>Conflict ＝ 衝突</em>／<em>同じ画面を、別々に変更したときに起きます。</em>／<em>A さんの変更 ボタンを青にした</em>／<em>B さんの変更 ボタンを赤にした</em>／<em>どちらを採用する？</em></figcaption>
+      </figure>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料の例で Git が自分では決められなくなったのは、2人の変更にどんな関係があったからか。
+          <ul class="chk__c"><li>片方の変更にだけ誤りが含まれていた</li><li>2人が同時刻に変更を送ってしまった</li><li>2人が同じ画面の同じ部分を、別々に変えていた</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — どちらの変更も正しく作られているが、対象が同じ1か所だった。</p>
+          <p>だから機械は選べず、「どちらを採用する？」という問いが人に返ってくる。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">FIX</span><span class="sec__kind">直し方</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">Conflict の直し方</h2>
+      <p>資料は直し方を2手順に畳んでいる。</p>
+
+      <ol class="steps">
+        <li><h3>GitHub が Conflict 箇所を提示</h3><p>衝突した場所がファイルの中に印として現れる。</p></li>
+        <li><h3>Claude Code / Codex に「修正して」</h3><p>その場所を AI に直してもらう。</p></li>
+      </ol>
+
+      <p>①のスライドには、実際に印の入った <code>app.js</code> が写っている。<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> と <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code> で挟まれた範囲が衝突箇所で、<code>=======</code> がその中の区切りにあたる。</p>
+
+      <div class="prompt">
+        <b>スライドに写っている衝突中の app.js</b>
+        <pre class="tree">function greeting(name) {
+  console.log("Hello, " + name);
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    console.log("Welcome!");
+=======
+    console.log("Nice to meet you!");
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main
+}</pre>
+      </div>
+
+      <p>②では、その印が消えて片方だけが残った状態になっている。</p>
+
+      <div class="prompt">
+        <b>修正後の app.js</b>
+        <pre class="tree">function greeting(name) {
+  console.log("Hello, " + name);
+  console.log("Nice to meet you!");
+}</pre>
+      </div>
+
+      <p>スライドの結びは<strong>「場所を確認して、AI に修正を頼むだけ。」</strong>——衝突を人力で読み解く作業ではなく、<strong>場所の特定は GitHub、修正は AI</strong> という分担として説明されている。</p>
+
+      <figure class="fig">
+        <img src="../img/gh-13.jpg" alt="左に「① GitHub が Conflict 箇所を提示」として衝突の印が入ったコード、右に「② Claude Code / Codex に『修正して』」として印の消えたコードが並ぶ図。" loading="lazy">
+        <figcaption>研修資料 スライド13 — <em>Conflict の直し方</em>／<em>① GitHub が Conflict 箇所を提示</em>／<em>② Claude Code / Codex に「修正して」</em>／<em>場所を確認して、AI に修正を頼むだけ。</em></figcaption>
+      </figure>
+
+      <div class="tip">
+        <b>この学習ノートの他コースとつながるところ</b>
+        <p>ここで名前が挙がっている Claude Code については、<a href="../claude-code.html">Claude Code 入門コース</a>に11レッスンぶんの解説がある。<a href="../11-review-and-ship.html">11 レビューして出荷する</a>では、コミットからプルリクエスト作成までを一手で済ませる操作も扱っている。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          資料が示す直し方で、衝突した場所を教えてくれるのは何か。
+          <ul class="chk__c"><li>GitHub。ファイルの中に衝突箇所が印として現れる</li><li>チームのレビュアーが目視で探して知らせる</li><li>ローカルのパソコンが自動で片方を選んで消す</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 場所の提示は GitHub 側の仕事で、修正を頼む相手が AI。</p>
+          <p>資料はこの2手順を「場所を確認して、AI に修正を頼むだけ」とまとめている。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめ</h2>
+      <p class="wrapup">Conflict は<em>同じ画面を別々に変更したとき</em>に起きる。決めるのは機械ではなく人。</p>
+      <p>衝突は失敗ではなく、同時に進めたことの当然の帰結として起きる。次の回は、ここまでの用語をすべて順番に並べた<strong>実際の開発フロー</strong>を見る。この流れを守っていれば、衝突が起きても本線は壊れない。</p>
+
+      <ul class="chips">
+        <li><a href="06-development-flow.html">06 実際の開発フロー</a></li>
+        <li><a href="03-branch-and-merge.html">03 ブランチとマージ</a></li>
+        <li><a href="index.html">GitHub 完全ガイド 目次</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="04-push-and-pull.html"><b>前のレッスン — 04</b><em>ローカル・リモートと PUSH / PULL</em></a>
+  <a class="is-next" href="06-development-flow.html"><b>次のレッスン — 06</b><em>実際の開発フロー</em></a>
+</div>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — 社内研修資料『超簡単！GitHub完全ガイド』スライド12〜13</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

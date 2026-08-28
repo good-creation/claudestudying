@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試験 — GitHub 完全ガイド 学習ノート</title>
+<meta name="description" content="GitHub 完全ガイド コース（レッスン01〜06）の理解度を確認する試験。全18問・4択／正誤判定／並べ替えの3形式、出題順ランダム、合格ライン80%。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<div class="examlock" id="examLock">
+  <div>
+    <img class="clawd clawd--lg" src="../img/github-mark.png" alt="GitHub のマーク" style="margin:0 auto 22px">
+    <p class="examlock__k">Exam mode — content hidden</p>
+    <h2>問題を隠しました</h2>
+    <p>本番モード中に他の画面へ切り替えたため、内容を非表示にしました。戻って続けるには下のボタンを押してください。<strong>離席は記録され、採点結果に表示されます。</strong></p>
+    <button type="button">本番モードに戻る</button>
+    <p class="examlock__count">離席 <span id="examLockCount">0</span> 回</p>
+  </div>
+</div>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">GitHub 完全ガイド / 学習ノート</a>
+  <nav>
+      <a href="index.html" title="GitHub 完全ガイド 目次" aria-label="GitHub 完全ガイド 目次">目次</a>
+      <a href="01-what-is-git.html" title="Git とは何か" aria-label="01 Git とは何か">01</a>
+      <a href="02-commit-and-main.html" title="コミットと main" aria-label="02 コミットと main">02</a>
+      <a href="03-branch-and-merge.html" title="ブランチとマージ" aria-label="03 ブランチとマージ">03</a>
+      <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
+      <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
+      <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問" aria-current="page">試験</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">試験 / Exam</p>
+    <p class="eyebrow" style="color:var(--signal)">全18問 · 3形式 · 出題順ランダム · 合格ライン80%</p>
+  </div>
+
+  <h1 class="hero__title"><em>試験</em></h1>
+
+  <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    このコースのレッスン01〜06の理解度を確認する試験。<strong>出題順も選択肢の並びも、読み込むたびにシャッフルされます。</strong><strong>解答中は正誤・得点を一切表示しません。</strong>全問（または途中で）採点すると、正解と解説をまとめて振り返れます。
+  </p>
+
+  <ul class="qlegend">
+    <li><b style="color:var(--signal)">4択</b>用語と考え方の理解を問う</li>
+    <li><b style="color:var(--caution)">正誤判定</b>誤解しやすい記述の ○ / ×</li>
+    <li><b style="color:#1F6F5C">並べ替え</b>手順を正しい順にクリック</li>
+  </ul>
+</header>
+
+<section class="recap shell" id="quizRecap">
+  <div class="recap__top">
+    <p class="eyebrow">解く前のおさらい / Recap</p>
+    <p class="eyebrow"><a href="#examGate">おさらいを飛ばして開始方法へ ↓</a></p>
+  </div>
+  <h2>レッスン01〜06を、一枚に。</h2>
+
+  <p class="recap__lede">
+    出題範囲は<strong>このコースの全6レッスン</strong>。6本を貫いているのは<strong>「管理しているのはファイルではなく履歴だ」</strong>という一行で、コミットもブランチも PUSH / PULL も、すべてその一行の言い換えとして出てくる。
+  </p>
+
+  <div class="cards">
+    <article>
+      <p class="cards__k">01 — 02 / 土台</p>
+      <h3>履歴を管理する、という発想</h3>
+      <p>Git は<strong>誰が・いつ・どこを・どう変えたか</strong>まで残るコードの保管庫。管理の対象はファイルではなく履歴で、その履歴を1つずつ刻む操作が<strong>コミット</strong>、集まる先が <code>main</code>。</p>
+    </article>
+    <article>
+      <p class="cards__k">03 — 04 / 場所と操作</p>
+      <h3>枝で分けて、送って、取ってくる</h3>
+      <p>作りかけは<strong>Branch</strong>で書き、仕上がったら <strong>MERGE</strong> で本線へ。手元とクラウドのあいだは <strong>PUSH</strong>（送る）と <strong>PULL</strong>（取ってくる）で行き来する。</p>
+    </article>
+    <article>
+      <p class="cards__k">05 — 06 / 運用</p>
+      <h3>衝突は人が決め、本線は最後に動く</h3>
+      <p>同じ場所を2人が触ると <strong>Conflict</strong>。場所は GitHub が示し、修正は AI に頼める。7つのステップを守れば、本線が書き換わるのは最後の1回だけ。</p>
+    </article>
+  </div>
+
+  <ol class="steps recap__list">
+    <li>
+      <h3><a href="01-what-is-git.html">Git とは何か</a></h3>
+      <p>結論は「コードの保管庫」。ただのファイル共有ではなく、誰が・いつ・どこを・どう変えたかが一緒に残る。そして一番大事な考え方が<strong>ファイルを見るな、履歴を見ろ</strong>。</p>
+    </li>
+    <li>
+      <h3><a href="02-commit-and-main.html">コミットと main</a></h3>
+      <p>コミットは変更を1つずつ履歴として残すセーブポイント。<code>main</code> は本番の出し物であり公式の最新版で、<strong>壊さない・いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
+    </li>
+    <li>
+      <h3><a href="03-branch-and-merge.html">ブランチとマージ</a></h3>
+      <p>Branch は main から枝分かれした安全な作業場所＝<strong>下書きノート</strong>。枝ごとに別々の作業を同時に進められ、MERGE で別々の変更を main に統合する。</p>
+    </li>
+    <li>
+      <h3><a href="04-push-and-pull.html">ローカル・リモートと PUSH / PULL</a></h3>
+      <p>ローカルは自分だけの場所、リモートはチーム全員の集合場所。<strong>PUSH＝アップロード、PULL＝ダウンロード、MERGE＝履歴の統合</strong>。別の PC でもマージできるのは、共有しているのが履歴だから。</p>
+    </li>
+    <li>
+      <h3><a href="05-conflict.html">コンフリクト</a></h3>
+      <p>同じ画面を別々に変更したときに起きる衝突。<strong>どちらを採用するかは人が決める</strong>。GitHub が箇所を提示し、Claude Code / Codex に修正を頼む2手順。</p>
+    </li>
+    <li>
+      <h3><a href="06-development-flow.html">実際の開発フロー</a></h3>
+      <p>PULL → ブランチ → 作業 → コミット → PUSH → プルリクエスト → 確認してマージ。この流れを守れば <code>main</code> は絶対に壊れない。</p>
+    </li>
+  </ol>
+
+  <div class="tip">
+    <b>この先の全18問との対応</b>
+    <p>各問題には「出題範囲 — 04 ローカル・リモートと PUSH / PULL」のようにレッスン番号が付いています。間違えた問題はその番号のレッスンに戻るのがいちばん早い経路です。</p>
+  </div>
+</section>
+
+<section class="examgate shell" id="examGate">
+  <p class="eyebrow">開始の手順 / Start</p>
+  <h2>モードを選べば、始まります。</h2>
+  <p class="recap__lede" style="margin-top:10px">
+    このコースの試験は<strong>全18問の1種類だけ</strong>です。本番モードと練習モードのどちらかを選んでください。
+  </p>
+
+  <p class="examgate__rulesk">始める前に知っておくこと</p>
+  <ul class="examgate__rules">
+    <li><b>合格ラインは 80%</b>。全<span id="ruleTotal">18</span>問中 <b><span id="ruleNeed">15</span>問以上</b>の正解で合格です。</li>
+    <li>解答中は<b>正誤・得点を表示しません</b>。採点すると、全問の正解・解説がまとめて表示されます。</li>
+    <li>本番モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
+    <li>他のタブやアプリに切り替えると、<b>その瞬間に問題文を隠します</b>。戻れば続きから再開できます。</li>
+    <li>離席した回数は記録され、<b>採点結果に表示されます</b>。</li>
+    <li>ページを閉じたり再読み込みしようとすると確認が出ます。<b>再読み込みすると解答は失われます。</b></li>
+  </ul>
+
+  <div class="startbox">
+    <p class="startbox__k">これから始める試験</p>
+    <p class="startbox__pick">
+      <b id="gatePickName">GitHub 完全ガイド（全問）</b>
+      <span class="startbox__meta" id="gatePickMeta">全18問 ・ 合格ライン 15問（80%）</span>
+    </p>
+    <div class="examgate__btns">
+      <button type="button" id="examStart">本番モードで開始する</button>
+      <button type="button" id="examPractice">練習モードで解く</button>
+    </div>
+    <p class="startbox__hint">先に内容を確かめたいときは、<a href="#quizRecap">↑ おさらい</a>か <a href="index.html">目次</a>へ。</p>
+  </div>
+
+  <p class="examgate__note">
+    <strong>技術的な限界について。</strong>Web ページは、他のタブやアプリを開くこと自体を禁止できません。ブラウザがページにその権限を与えていないためです。本番モードができるのは「<strong>離れたことを検知して、即座に内容を隠し、記録する</strong>」ところまでです。カンニングを物理的に不可能にする仕組みではなく、集中を保つための補助として使ってください。
+  </p>
+</section>
+
+<div id="quizMain" hidden>
+  <div class="quizbar">
+    <div class="shell quizbar__in">
+      <span class="quizbar__line">回答 <b id="qDone">0</b> / <span id="qTotal">18</span>
+        <span class="quizbar__bank" id="qBankLabel"></span></span>
+      <span class="quizbar__score" id="qScoreLine" hidden>
+        正解 <b id="qRight">0</b>
+        &nbsp;·&nbsp; 合格に必要 <span id="qNeed">15</span>問
+        &nbsp;·&nbsp; <span class="quizbar__verdict" id="qVerdict">判定前</span></span>
+      <span class="quizbar__leave">離席 <b id="qLeave">0</b>回</span>
+      <button type="button" id="qSubmit" disabled>採点する</button>
+      <button type="button" id="qQuit">ここまでで採点する</button>
+      <button type="button" id="qReset">シャッフルしてやり直す</button>
+    </div>
+  </div>
+
+  <main class="doc shell">
+    <p class="q__hint" id="qAnswerNote">選んだ回答はあとから選び直せます。全問答え終えると「採点する」が押せます。採点するまで正誤・得点は表示されません。</p>
+    <div id="quizList"></div>
+    <div class="qresult" id="quizResult"></div>
+  </main>
+</div>
+
+<noscript>
+  <p class="shell" style="padding:40px 0">この試験は JavaScript で出題順のシャッフルと採点を行っています。ブラウザの JavaScript を有効にしてください。</p>
+</noscript>
+
+<div class="pager">
+  <a href="06-development-flow.html"><b>前 — 06</b><em>実際の開発フロー</em></a>
+  <a class="is-next" href="index.html"><b>コース</b><em>目次に戻る</em></a>
+</div>
+
+<div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>試験 — 出典は社内研修資料『超簡単！GitHub完全ガイド』</span>
+  <a href="index.html">目次へ</a>
+</footer>
+
+<script>
+/* 試験の仕組みは Claude Code 入門コースと共有している（assets/quiz.js）。
+   レッスンの並びと結果画面のリンクだけ、このコースのものに差し替える。 */
+window.QUIZ_SITE = {
+  img: '../',
+  mascot: '../img/github-mark.png',
+  standard: 'GitHub 完全ガイド（全問）',
+  lessons: {
+    "01":["01-what-is-git.html","Git とは何か"],
+    "02":["02-commit-and-main.html","コミットと main"],
+    "03":["03-branch-and-merge.html","ブランチとマージ"],
+    "04":["04-push-and-pull.html","ローカル・リモートと PUSH / PULL"],
+    "05":["05-conflict.html","コンフリクト"],
+    "06":["06-development-flow.html","実際の開発フロー"]
+  },
+  links: [["index.html","目次に戻る"],["../index.html","ホームへ"]]
+};
+</script>
+<script src="../assets/exam.js"></script>
+<script src="quiz-data.js"></script>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>
