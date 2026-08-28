@@ -26,7 +26,7 @@ python3 tools/validate.py
 # Structure
 
 ```
-index.html                  コース選択の玄関（3コースのカードのみ）
+index.html                  コース選択の玄関（全6コースのカードのみ）
 NN-<slug>.html              レッスンページ（01〜11・公式コース由来）
 cloudflare.html             付録（公式コース外・タイムラインなし）
 claude-code.html            Claude Code 入門コースの目次 + 用語インデックス

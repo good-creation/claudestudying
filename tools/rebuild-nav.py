@@ -9,7 +9,7 @@ import re, os, io, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-# サイト全体の玄関ページ。3コースを選ぶだけの入口で、レッスン番号は持たない。
+# サイト全体の玄関ページ。全6コースを選ぶだけの入口で、レッスン番号は持たない。
 HOME = ("index.html", "ホーム", "コースを選ぶ")
 
 # Claude Code 入門コースの目次ページ（玄関から分離）。このページ自身も nav を持つ。
