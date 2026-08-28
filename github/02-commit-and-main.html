@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>02 コミットと main — GitHub 完全ガイド 学習ノート</title>
-<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。コミットは変更を1つずつ履歴として残すセーブポイント、main はプロジェクトの公式の最新版。">
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。コミットは変更を1つずつ履歴として残すセーブポイント、その手前の待機場所が git add、main はプロジェクトの公式の最新版。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
       <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
       <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
       <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
-      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全20問" aria-label="試験 — 全20問">試験</a>
       <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
     </nav>
 </div></div>
@@ -38,7 +38,7 @@
   <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    <a href="01-what-is-git.html">01</a> で「管理するのは履歴だ」と決めた。ではその履歴は、誰がどうやって刻むのか。答えが<strong>コミット</strong>で、刻まれた履歴が最後に集まる本線が <strong>main</strong>。この2つは、あとの回に出てくる用語がすべてぶら下がる幹になる。
+    <a href="01-what-is-git.html">01</a> で「管理するのは履歴だ」と決めた。ではその履歴は、誰がどうやって刻むのか。答えが<strong>コミット</strong>で、刻まれた履歴が最後に集まる本線が <strong>main</strong>。あわせて、コミットの手前にある待機場所（<code>git add</code>）も補足として置く。この2つは、あとの回に出てくる用語がすべてぶら下がる幹になる。
   </p>
 
   <dl class="meta">
@@ -85,6 +85,55 @@
   </section>
 
   <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">STAGE</span><span class="sec__kind">補足</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">コミットの手前にある待機場所 — <code>git add</code></h2>
+
+      <div class="warn">
+        <b>ここは研修資料に出てこない補足です</b>
+        <p>スライドはコミットを「保存」とだけ説明していて、その手前の段には触れていません。ただ、実際に手を動かすと必ず通る段なので、この学習ノートでは1節だけ足しています。<strong>以下はスライドの内容ではありません。</strong></p>
+      </div>
+
+      <p><code>git add</code> は、ファイルの変更や新しく作ったファイルを、<strong>次のコミット（履歴の記録）の準備状態＝ステージングエリア</strong>へ登録するコマンド。コミットが「保存」なら、その直前にある<strong>「何を保存するか選ぶ」段</strong>にあたる。</p>
+
+      <ul class="acts">
+        <li><h3>変更の選択</h3><p>編集したファイルの中から、<strong>履歴に残したいものだけ</strong>を選んで登録できる。</p></li>
+        <li><h3>ステージング</h3><p>コミットする直前の<strong>「待機場所」</strong>にデータを送り、記録の準備をする。</p></li>
+        <li><h3>ローカルでの完結</h3><p>この操作は<strong>自分のパソコン内だけ</strong>で行われ、GitHub などのリモートサーバーにはまだ送信されない。</p></li>
+      </ul>
+
+      <div class="prompt">
+        <b>手元 → 待機場所 → 履歴</b>
+        <pre class="tree">作業ツリー          ステージングエリア        履歴
+（編集した状態）  ──add──▶（待機場所）  ──commit──▶（セーブポイント）
+    ここまで全部ローカル。リモートへ送るのは、このあとの PUSH。</pre>
+      </div>
+
+      <div class="tip">
+        <b>「変更を1つずつ」が成り立つ理由</b>
+        <p>この節の前で見たとおり、資料はコミットを<strong>変更を1つずつ</strong>置くものとして説明していた。3つの作業を別々のセーブポイントに分けられるのは、<strong>登録するものを選べる</strong>段が手前にあるから。<code>git add</code> は、その「1つずつ」を実際に成り立たせている操作にあたる。</p>
+      </div>
+
+      <div class="tip">
+        <b><a href="04-push-and-pull.html">04</a> の「空間のルール」とのつながり</b>
+        <p>add もコミットも、動いているのは<strong>自分のパソコンの中だけ</strong>。チームが見られる場所に出るのは、<a href="04-push-and-pull.html">04</a> の PUSH を通ってから。手元で何度 add と commit を繰り返しても、リモートには何も届いていない。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>git add</code> を済ませた時点で、その変更はどこまで届いているか。
+          <ul class="chk__c"><li>チームが見られるクラウド上の保管場所まで届いている</li><li>自分のパソコンの中の待機場所まで。リモートには何も送られていない</li><li>プロジェクトの本線に取り込まれるところまで進んでいる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — この操作はローカルで完結する。リモートに出るのは、あとに続く別の操作を通ってから。</p>
+          <p>待機場所に置くことと、記録すること、そして送ることは、それぞれ別の段になっている。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
     <div class="sec__mark"><div><span class="sec__t">MAIN</span><span class="sec__kind">本線</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">main とは何か？</h2>
@@ -117,11 +166,11 @@
     </div>
   </section>
 
-  <section class="sec" id="s3">
+  <section class="sec" id="s4">
     <div class="sec__mark"><div><span class="sec__t">KEY</span><span class="sec__kind">まとめ</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">まとめ</h2>
-      <p class="wrapup">コミットは<em>変更を1つずつ</em>刻むセーブポイント。main は<em>公式の最新版</em>で、壊さず、いつでも動く状態に保つ。</p>
+      <p class="wrapup">コミットは<em>変更を1つずつ</em>刻むセーブポイント。その手前に<em>待機場所（ステージングエリア）</em>があり、main は<em>公式の最新版</em>として壊さずに保つ。</p>
       <p>ここまでで「履歴をどう刻むか」と「刻んだものが最後にどこへ集まるか」が決まった。残るのは、完成する前の作業をどこで進めるか。次の回で<strong>ブランチ</strong>と<strong>マージ</strong>を見る。</p>
 
       <ul class="chips">

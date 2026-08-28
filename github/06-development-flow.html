@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>06 実際の開発フロー — GitHub 完全ガイド 学習ノート</title>
-<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。PULL から MERGE までの7ステップと、Git の全体地図、そして結論。">
+<meta name="description" content="研修資料『超簡単！GitHub完全ガイド』を再構成した日本語の学習ノート。PULL から MERGE までの8ステップ（git add を含む）と、Git の全体地図、そして結論。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
       <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
       <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
       <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー" aria-current="page">06</a>
-      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全20問" aria-label="試験 — 全20問">試験</a>
       <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
     </nav>
 </div></div>
@@ -38,7 +38,7 @@
   <img class="hero__clawd is-mark" src="../img/github-mark.png" alt="" aria-hidden="true">
 
   <p class="hero__lede">
-    ここまでの用語が、ようやく1本の順番に並ぶ。<strong>7つのステップ</strong>と、それを1枚に畳んだ<strong>全体地図</strong>。資料がこの流れに与えている約束はひとつだけ——<strong>この流れを守れば、main は絶対に壊れない。</strong>
+    ここまでの用語が、ようやく1本の順番に並ぶ。資料の<strong>7つのステップ</strong>に <code>git add</code> を足した<strong>8つ</strong>と、それを1枚に畳んだ<strong>全体地図</strong>。資料がこの流れに与えている約束はひとつだけ——<strong>この流れを守れば、main は絶対に壊れない。</strong>
   </p>
 
   <dl class="meta">
@@ -51,22 +51,30 @@
 <main class="doc shell">
 
   <section class="sec" id="s1">
-    <div class="sec__mark"><div><span class="sec__t">FLOW</span><span class="sec__kind">7ステップ</span></div></div>
+    <div class="sec__mark"><div><span class="sec__t">FLOW</span><span class="sec__kind">8ステップ</span></div></div>
     <div class="sec__body">
-      <h2 class="sec__h">実際の開発フロー — 7つのステップ</h2>
-      <p>資料が挙げる順番はこの7つ。</p>
+      <h2 class="sec__h">実際の開発フロー — 8つのステップ</h2>
+      <p>資料が挙げるのは7つ。この学習ノートでは、そこに <code>git add</code> を1つ足して<strong>8つ</strong>で数えている。</p>
 
       <ol class="steps">
         <li><h3>main の最新版を PULL</h3><p>いちばん最初が取り込みであることに注意。古い状態から枝を切らないための一手。</p></li>
         <li><h3>新しいブランチを作る</h3><p><a href="03-branch-and-merge.html">03</a> の「下書きノートを作成」。</p></li>
         <li><h3>自分の作業をする</h3><p>枝の中で書く。本線には触らない。</p></li>
+        <li><h3><code>git add</code> で待機場所へ登録する</h3><p><a href="02-commit-and-main.html#s2">02 のステージング</a>。編集したファイルのうち、<strong>履歴に残したいものだけ</strong>を選んで登録する。<strong>資料には無い段。</strong></p></li>
         <li><h3>コミットする</h3><p><a href="02-commit-and-main.html">02</a> のセーブポイントを、区切りごとに置いていく。</p></li>
-        <li><h3>PUSH する</h3><p>手元の変更を、チームが見られる場所へ送る。</p></li>
+        <li><h3>PUSH する</h3><p>手元の変更を、チームが見られる場所へ送る。<strong>ここではじめて手元を離れる。</strong></p></li>
         <li><h3>プルリクエストを作る</h3><p>「この枝を本線に入れたい」という申請。</p></li>
         <li><h3>確認して main にマージ</h3><p>確認を経てから統合する。ここではじめて本線が動く。</p></li>
       </ol>
 
-      <p>7つのうち<strong>本線に触るのは最後の1つだけ</strong>で、しかもその手前に「確認して」が挟まっている。<a href="02-commit-and-main.html">02</a> で <code>main</code> を「確認された完成形を置く場所」と定義したことが、そのまま手順に落ちている。</p>
+      <p>8つのうち<strong>本線に触るのは最後の1つだけ</strong>で、しかもその手前に「確認して」が挟まっている。<a href="02-commit-and-main.html">02</a> で <code>main</code> を「確認された完成形を置く場所」と定義したことが、そのまま手順に落ちている。</p>
+
+      <p>並べ直すと、境目が2つ見えてくる。<strong>①〜⑤はすべて自分のパソコンの中</strong>——取り込み・枝・作業・登録・記録。⑥でようやく手元を離れ、⑧で本線が動く。</p>
+
+      <div class="warn">
+        <b>④は資料に無い段です</b>
+        <p>スライド16が挙げているのは7つで、<code>git add</code> は含まれていません。ただ、コミットの手前には必ず「何を記録するか選ぶ」段があるので、この学習ノートでは1つ足して8つで数えています。<strong>下の図版は資料のままなので、7つのカードで描かれています。</strong></p>
+      </div>
 
       <div class="warn">
         <b>①が PULL から始まる理由</b>
@@ -81,11 +89,11 @@
       <details class="chk">
         <summary>
           <b>確認</b>
-          この7ステップのうち、本線が実際に書き換わるのはどの時点か。
-          <ul class="chk__c"><li>確認を経て統合する、いちばん最後の時点</li><li>枝で作業してコミットした時点</li><li>PUSH してチームが見られる場所に送った時点</li></ul>
+          この一連のステップのうち、本線が実際に書き換わるのはどの時点か。
+          <ul class="chk__c"><li>待機場所に登録してコミットした時点</li><li>確認を経て統合する、いちばん最後の時点</li><li>PUSH してチームが見られる場所に送った時点</li></ul>
         </summary>
         <div class="chk__a">
-          <p><b>答え: A</b> — 手前の6つはすべて枝と場所の話で、本線に触るのは最後の1つだけ。</p>
+          <p><b>答え: B</b> — 手前の段はすべて枝と場所の話で、本線に触るのは最後の1つだけ。</p>
           <p>しかもその直前に「確認して」が入っている。これが「main は絶対に壊れない」と言える理由になっている。</p>
         </div>
       </details>
@@ -96,19 +104,20 @@
     <div class="sec__mark"><div><span class="sec__t">MAP</span><span class="sec__kind">全体地図</span></div></div>
     <div class="sec__body">
       <h2 class="sec__h">一番大事なまとめ：Git の全体地図</h2>
-      <p>同じ7ステップを、場所つきで描き直したのがこの1枚。上に<strong>リモート（GitHub）＝ コードの集合場所</strong>があり、そこから出て、そこへ戻る円になっている。</p>
+      <p>同じ流れを、場所つきで描き直したのがこの1枚。上に<strong>リモート（GitHub）＝ コードの集合場所</strong>があり、そこから出て、そこへ戻る円になっている。</p>
 
       <ol class="steps">
         <li><h3>main を PULL</h3><p>リモートから下りてくる。</p></li>
         <li><h3>Branch を作る</h3><p>ここから手元の作業。</p></li>
         <li><h3>作業する</h3></li>
+        <li><h3><code>git add</code></h3><p>待機場所へ登録する。<strong>資料には無い段。</strong></p></li>
         <li><h3>コミット</h3></li>
         <li><h3>PUSH</h3><p>ここで手元を離れる。</p></li>
         <li><h3>プルリクエスト</h3></li>
         <li><h3>main に MERGE</h3><p>リモートへ戻り、次の周回の①になる。</p></li>
       </ol>
 
-      <p>始まりと終わりが同じ場所にあるので、この地図は<strong>一度きりの手順ではなく、回り続ける輪</strong>として読める。1周するたびに、リモートの <code>main</code> が1つ進む。</p>
+      <p>始まりと終わりが同じ場所にあるので、この地図は<strong>一度きりの手順ではなく、回り続ける輪</strong>として読める。1周するたびに、リモートの <code>main</code> が1つ進む。輪の下半分——作業・登録・記録——は、まるごと自分のパソコンの中の出来事になっている。</p>
 
       <figure class="fig">
         <img src="../img/gh-17.jpg" alt="上部に「リモート（GitHub）コードの集合場所」の枠があり、その下に mainをPULL、Branchを作る、作業する、コミット、PUSH、プルリクエスト、mainにMERGE の7つの円が輪になって並ぶ図。" loading="lazy">
@@ -118,11 +127,11 @@
       <details class="chk">
         <summary>
           <b>確認</b>
-          全体地図で、7つのステップの始点と終点はどこに置かれているか。
-          <ul class="chk__c"><li>どちらもリモート側に置かれていて、輪になっている</li><li>どちらも手元のパソコンの中に置かれている</li><li>始点は手元、終点はチームのレビュー画面に置かれている</li></ul>
+          全体地図で、一連のステップの始点と終点はどこに置かれているか。
+          <ul class="chk__c"><li>どちらも手元のパソコンの中に置かれている</li><li>始点は手元、終点はチームのレビュー画面に置かれている</li><li>どちらもリモート側に置かれていて、輪になっている</li></ul>
         </summary>
         <div class="chk__a">
-          <p><b>答え: A</b> — 取り込みで始まり、統合で戻る。出発点と着地点が同じ場所にある。</p>
+          <p><b>答え: C</b> — 取り込みで始まり、統合で戻る。出発点と着地点が同じ場所にある。</p>
           <p>だからこの図は一度きりの手順ではなく、繰り返される輪として読める。</p>
         </div>
       </details>
@@ -135,7 +144,7 @@
       <h2 class="sec__h">結論：Git は安全に作成するためのコード保管庫</h2>
       <p>資料は最後に、<a href="01-what-is-git.html">01</a> の結論へ戻る。ただし一語増えている——<strong>安全に作成するための</strong>コード保管庫。</p>
       <p class="wrapup">変更を履歴として残し、<em>いつでも確認・復元できます</em>。</p>
-      <p>そして締めの一行。<strong>失敗を恐れず、安全にコードを書ける最強の味方です。</strong>ここまで出てきた枝も、確認も、7つの順番も、目的はすべてこの一行に集約されている。壊さないための仕組みではなく、<strong>壊すことを恐れずに手を動かすための仕組み</strong>だという読み方になる。</p>
+      <p>そして締めの一行。<strong>失敗を恐れず、安全にコードを書ける最強の味方です。</strong>ここまで出てきた枝も、確認も、8つの順番も、目的はすべてこの一行に集約されている。壊さないための仕組みではなく、<strong>壊すことを恐れずに手を動かすための仕組み</strong>だという読み方になる。</p>
 
       <figure class="fig">
         <img src="../img/gh-18.jpg" alt="金庫と盾のイラストの左に「結論：Gitは安全に作成するためのコード保管庫！」の見出しが置かれ、その下に説明の2行と「さっそくGitを使ってみる」のボタンが並ぶ図。" loading="lazy">
@@ -155,7 +164,7 @@
 
 <div class="pager">
   <a href="05-conflict.html"><b>前のレッスン — 05</b><em>コンフリクト</em></a>
-  <a class="is-next" href="quiz.html"><b>次 — 試験</b><em>全18問・ランク判定</em></a>
+  <a class="is-next" href="quiz.html"><b>次 — 試験</b><em>全20問・ランク判定</em></a>
 </div>
 
 <div class="endmark endmark--mark"><img src="../img/github-mark.png" alt="" aria-hidden="true"></div>

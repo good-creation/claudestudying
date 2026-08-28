@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GitHub 完全ガイド — 学習ノート</title>
-<meta name="description" content="社内研修資料『超簡単！GitHub完全ガイド』を日本語で再構成した学習ノート。コミット・ブランチ・マージ・PUSH・PULL・コンフリクトと、7ステップの開発フローを全6レッスン＋試験で。">
+<meta name="description" content="社内研修資料『超簡単！GitHub完全ガイド』を日本語で再構成した学習ノート。コミット・git add・ブランチ・マージ・PUSH・PULL・コンフリクトと、8ステップの開発フローを全6レッスン＋試験で。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
       <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
       <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
       <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
-      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問">試験</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全20問" aria-label="試験 — 全20問">試験</a>
       <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
     </nav>
 </div></div>
@@ -44,7 +44,7 @@
   <dl class="meta">
     <div><dt>Source</dt><dd>社内研修資料<br><small>超簡単！GitHub完全ガイド</small></dd></div>
     <div><dt>Slides</dt><dd><small>全18枚</small></dd></div>
-    <div><dt>Lessons</dt><dd><small>全6レッスン ＋ 試験18問</small></dd></div>
+    <div><dt>Lessons</dt><dd><small>全6レッスン ＋ 試験20問</small></dd></div>
   </dl>
 </header>
 
@@ -68,10 +68,10 @@
       <div>
         <div class="lsn__en">Commit &amp; main</div>
         <h2 class="lsn__ja">コミットと main</h2>
-        <p class="lsn__sum">コミットは変更を1つずつ履歴として残すセーブポイント。まとめて1回ではなく、作業の区切りごとに1つ。<code>main</code> は「本番の出し物」＝公式の最新版で、<strong>壊さない</strong>・<strong>いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
-        <ul class="lsn__tags"><li>セーブポイント</li><li>本番の出し物</li><li>main は壊さない</li></ul>
+        <p class="lsn__sum">コミットは変更を1つずつ履歴として残すセーブポイント。まとめて1回ではなく、作業の区切りごとに1つ。その「1つずつ」を成り立たせている <code>git add</code>（ステージングエリア）も補足として置いた。<code>main</code> は「本番の出し物」＝公式の最新版で、<strong>壊さない</strong>・<strong>いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
+        <ul class="lsn__tags"><li>セーブポイント</li><li>git add</li><li>ステージング</li><li>main は壊さない</li></ul>
       </div>
-      <div class="lsn__side"><span>スライド04〜05</span><span class="lsn__go">読む →</span></div>
+      <div class="lsn__side"><span>スライド04〜05 ＋ 補足</span><span class="lsn__go">読む →</span></div>
     </a>
 
     <a class="lsn" href="03-branch-and-merge.html">
@@ -112,10 +112,10 @@
       <div>
         <div class="lsn__en">The Development Flow</div>
         <h2 class="lsn__ja">実際の開発フロー</h2>
-        <p class="lsn__sum">PULL → ブランチ → 作業 → コミット → PUSH → プルリクエスト → 確認してマージ。7つのうち本線に触るのは最後の1つだけで、その手前に確認が入る。だから「この流れを守れば main は絶対に壊れない」。</p>
-        <ul class="lsn__tags"><li>7つのステップ</li><li>全体地図</li><li>結論</li></ul>
+        <p class="lsn__sum">PULL → ブランチ → 作業 → <code>git add</code> → コミット → PUSH → プルリクエスト → 確認してマージ。資料の7つに add を足した8つで、本線に触るのは最後の1つだけ。だから「この流れを守れば main は絶対に壊れない」。</p>
+        <ul class="lsn__tags"><li>8つのステップ</li><li>全体地図</li><li>結論</li></ul>
       </div>
-      <div class="lsn__side"><span>スライド16〜18</span><span class="lsn__go">読む →</span></div>
+      <div class="lsn__side"><span>スライド16〜18 ＋ 補足</span><span class="lsn__go">読む →</span></div>
     </a>
 
   </div>
@@ -126,8 +126,8 @@
       <div>
         <div class="lsn__en">Exam — ranked, 3 formats</div>
         <h2 class="lsn__ja">試験</h2>
-        <p class="lsn__sum">レッスン01〜06から全18問。4択・正誤判定・並べ替えの3形式で、出題順は毎回シャッフル。解いている間は正誤も解説も出ません。提出してはじめて採点され、ランクと、1問ごとの正解・解説がまとめて出ます。</p>
-        <ul class="lsn__tags"><li>全18問</li><li>3形式</li><li>提出後に採点</li><li>ランク判定</li></ul>
+        <p class="lsn__sum">レッスン01〜06から全20問。4択・正誤判定・並べ替えの3形式で、出題順は毎回シャッフル。解いている間は正誤も解説も出ません。提出してはじめて採点され、ランクと、1問ごとの正解・解説がまとめて出ます。</p>
+        <ul class="lsn__tags"><li>全20問</li><li>3形式</li><li>提出後に採点</li><li>ランク判定</li></ul>
       </div>
       <div class="lsn__side"><span>合格ライン80%</span><span class="lsn__go">挑戦する →</span></div>
     </a>
@@ -140,6 +140,7 @@
     </p>
     <dl>
       <div><dt>コミット</dt><dd>変更を1つずつ履歴として残すセーブポイント。資料はこれを「ファイルの保存」と等号で結んでいる。</dd></div>
+      <div><dt>git add / ステージングエリア</dt><dd>コミットの直前にある待機場所へ、履歴に残したい変更だけを選んで登録する操作。自分のパソコン内で完結し、リモートにはまだ送られない。<strong>研修資料には無い補足。</strong></dd></div>
       <div><dt>main</dt><dd>プロジェクトの公式の最新版。確認された完成形を置く場所で、壊さず、いつでも動く状態に保つ。</dd></div>
       <div><dt>Branch（ブランチ）</dt><dd>main から枝分かれした安全な作業場所。資料の言い換えは「下書きノート」。</dd></div>
       <div><dt>MERGE（マージ）</dt><dd>別々の変更を main に統合する操作。移動の方向はブランチから main へ。</dd></div>
@@ -155,7 +156,8 @@
     <h2 id="source">出典</h2>
     <div class="warn">
       <b>出典 — Anthropic 公式コースではありません</b>
-      <p>このセクション（<code>github/</code>）は<strong>社内研修資料『超簡単！GitHub完全ガイド』（全18枚のスライド、v3）</strong>を出典とする学習ノートです。本サイトの他コースが Anthropic の公式動画・公式コース本文を出典とするのに対し、こちらは<strong>公式コースに属さない別系統の資料</strong>を扱います。本文・図版はすべてこの資料に基づいており、<strong>資料に書かれていない Git のコマンドや操作手順は補っていません</strong>。実際に手を動かす段になったら、それぞれのツールの公式ドキュメントを併せて参照してください。</p>
+      <p>このセクション（<code>github/</code>）は<strong>社内研修資料『超簡単！GitHub完全ガイド』（全18枚のスライド、v3）</strong>を出典とする学習ノートです。本サイトの他コースが Anthropic の公式動画・公式コース本文を出典とするのに対し、こちらは<strong>公式コースに属さない別系統の資料</strong>を扱います。本文・図版はすべてこの資料に基づいており、実際に手を動かす段になったら、それぞれのツールの公式ドキュメントを併せて参照してください。</p>
+      <p><strong>1点だけ、資料に無い内容を足しています。</strong><a href="02-commit-and-main.html#s2"><code>git add</code> とステージングエリア</a>（レッスン02の1節）と、それにともなう<a href="06-development-flow.html">開発フローの8ステップ化</a>（資料は7ステップ）です。該当箇所には「資料に出てこない補足」と明記し、図版は資料のまま7ステップで載せてあります。</p>
     </div>
     <div class="tip">
       <b>Claude Code 入門コースとのつながり</b>

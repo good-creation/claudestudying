@@ -249,7 +249,7 @@ def gh_nav_for(current):
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
-    rows.append('      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問"%s>試験</a>'
+    rows.append('      <a class="is-appendix" href="quiz.html" title="試験 — 全20問" aria-label="試験 — 全20問"%s>試験</a>'
                 % (' aria-current="page"' if current == "quiz.html" else ""))
     rows.append('      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>')
     rows.append("    </nav>")
@@ -257,7 +257,7 @@ def gh_nav_for(current):
 
 for href, num, ja in ([("index.html", "目次", "GitHub 完全ガイド 目次")]
                       + GH_LESSONS
-                      + [("quiz.html", "試験", "試験 — 全18問")]):
+                      + [("quiz.html", "試験", "試験 — 全20問")]):
     path = os.path.join("github", href)
     if not os.path.exists(path):
         print("  SKIP  %s (not found)" % path); continue

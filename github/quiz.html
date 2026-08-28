@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>試験 — GitHub 完全ガイド 学習ノート</title>
-<meta name="description" content="GitHub 完全ガイド コース（レッスン01〜06）の理解度を確認する試験。全18問・4択／正誤判定／並べ替えの3形式、出題順ランダム、合格ライン80%。">
+<meta name="description" content="GitHub 完全ガイド コース（レッスン01〜06）の理解度を確認する試験。全20問・4択／正誤判定／並べ替えの3形式、出題順ランダム、合格ライン80%。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
       <a href="04-push-and-pull.html" title="ローカル・リモートと PUSH / PULL" aria-label="04 ローカル・リモートと PUSH / PULL">04</a>
       <a href="05-conflict.html" title="コンフリクト" aria-label="05 コンフリクト">05</a>
       <a href="06-development-flow.html" title="実際の開発フロー" aria-label="06 実際の開発フロー">06</a>
-      <a class="is-appendix" href="quiz.html" title="試験 — 全18問" aria-label="試験 — 全18問" aria-current="page">試験</a>
+      <a class="is-appendix" href="quiz.html" title="試験 — 全20問" aria-label="試験 — 全20問" aria-current="page">試験</a>
       <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
     </nav>
 </div></div>
@@ -41,7 +41,7 @@
 <header class="hero shell">
   <div class="hero__top">
     <p class="eyebrow">試験 / Exam</p>
-    <p class="eyebrow" style="color:var(--signal)">全18問 · 3形式 · 出題順ランダム · 合格ライン80%</p>
+    <p class="eyebrow" style="color:var(--signal)">全20問 · 3形式 · 出題順ランダム · 合格ライン80%</p>
   </div>
 
   <h1 class="hero__title"><em>試験</em></h1>
@@ -74,7 +74,7 @@
     <article>
       <p class="cards__k">01 — 02 / 土台</p>
       <h3>履歴を管理する、という発想</h3>
-      <p>Git は<strong>誰が・いつ・どこを・どう変えたか</strong>まで残るコードの保管庫。管理の対象はファイルではなく履歴で、その履歴を1つずつ刻む操作が<strong>コミット</strong>、集まる先が <code>main</code>。</p>
+      <p>Git は<strong>誰が・いつ・どこを・どう変えたか</strong>まで残るコードの保管庫。管理の対象はファイルではなく履歴で、その履歴を1つずつ刻む操作が<strong>コミット</strong>（手前に <code>git add</code> の待機場所）、集まる先が <code>main</code>。</p>
     </article>
     <article>
       <p class="cards__k">03 — 04 / 場所と操作</p>
@@ -84,7 +84,7 @@
     <article>
       <p class="cards__k">05 — 06 / 運用</p>
       <h3>衝突は人が決め、本線は最後に動く</h3>
-      <p>同じ場所を2人が触ると <strong>Conflict</strong>。場所は GitHub が示し、修正は AI に頼める。7つのステップを守れば、本線が書き換わるのは最後の1回だけ。</p>
+      <p>同じ場所を2人が触ると <strong>Conflict</strong>。場所は GitHub が示し、修正は AI に頼める。8つのステップを守れば、本線が書き換わるのは最後の1回だけ。</p>
     </article>
   </div>
 
@@ -95,7 +95,7 @@
     </li>
     <li>
       <h3><a href="02-commit-and-main.html">コミットと main</a></h3>
-      <p>コミットは変更を1つずつ履歴として残すセーブポイント。<code>main</code> は本番の出し物であり公式の最新版で、<strong>壊さない・いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
+      <p>コミットは変更を1つずつ履歴として残すセーブポイント。その手前には <code>git add</code> の待機場所がある。<code>main</code> は本番の出し物であり公式の最新版で、<strong>壊さない・いつでも動く状態にする</strong>という2つの決まりを持つ。</p>
     </li>
     <li>
       <h3><a href="03-branch-and-merge.html">ブランチとマージ</a></h3>
@@ -111,12 +111,12 @@
     </li>
     <li>
       <h3><a href="06-development-flow.html">実際の開発フロー</a></h3>
-      <p>PULL → ブランチ → 作業 → コミット → PUSH → プルリクエスト → 確認してマージ。この流れを守れば <code>main</code> は絶対に壊れない。</p>
+      <p>PULL → ブランチ → 作業 → <code>git add</code> → コミット → PUSH → プルリクエスト → 確認してマージ。この流れを守れば <code>main</code> は絶対に壊れない。</p>
     </li>
   </ol>
 
   <div class="tip">
-    <b>この先の全18問との対応</b>
+    <b>この先の全20問との対応</b>
     <p>各問題には「出題範囲 — 04 ローカル・リモートと PUSH / PULL」のようにレッスン番号が付いています。間違えた問題はその番号のレッスンに戻るのがいちばん早い経路です。</p>
   </div>
 </section>
@@ -125,12 +125,12 @@
   <p class="eyebrow">開始の手順 / Start</p>
   <h2>モードを選べば、始まります。</h2>
   <p class="recap__lede" style="margin-top:10px">
-    このコースの試験は<strong>全18問の1種類だけ</strong>です。本番モードと練習モードのどちらかを選んでください。
+    このコースの試験は<strong>全20問の1種類だけ</strong>です。本番モードと練習モードのどちらかを選んでください。
   </p>
 
   <p class="examgate__rulesk">始める前に知っておくこと</p>
   <ul class="examgate__rules">
-    <li><b>合格ラインは 80%</b>。全<span id="ruleTotal">18</span>問中 <b><span id="ruleNeed">15</span>問以上</b>の正解で合格です。</li>
+    <li><b>合格ラインは 80%</b>。全<span id="ruleTotal">20</span>問中 <b><span id="ruleNeed">16</span>問以上</b>の正解で合格です。</li>
     <li>解答中は<b>正誤・得点を表示しません</b>。採点すると、全問の正解・解説がまとめて表示されます。</li>
     <li>本番モードでは<b>全画面表示</b>になり、サイト内の他ページへの移動リンクが隠れます。</li>
     <li>他のタブやアプリに切り替えると、<b>その瞬間に問題文を隠します</b>。戻れば続きから再開できます。</li>
@@ -142,7 +142,7 @@
     <p class="startbox__k">これから始める試験</p>
     <p class="startbox__pick">
       <b id="gatePickName">GitHub 完全ガイド（全問）</b>
-      <span class="startbox__meta" id="gatePickMeta">全18問 ・ 合格ライン 15問（80%）</span>
+      <span class="startbox__meta" id="gatePickMeta">全20問 ・ 合格ライン 16問（80%）</span>
     </p>
     <div class="examgate__btns">
       <button type="button" id="examStart">本番モードで開始する</button>
@@ -159,11 +159,11 @@
 <div id="quizMain" hidden>
   <div class="quizbar">
     <div class="shell quizbar__in">
-      <span class="quizbar__line">回答 <b id="qDone">0</b> / <span id="qTotal">18</span>
+      <span class="quizbar__line">回答 <b id="qDone">0</b> / <span id="qTotal">20</span>
         <span class="quizbar__bank" id="qBankLabel"></span></span>
       <span class="quizbar__score" id="qScoreLine" hidden>
         正解 <b id="qRight">0</b>
-        &nbsp;·&nbsp; 合格に必要 <span id="qNeed">15</span>問
+        &nbsp;·&nbsp; 合格に必要 <span id="qNeed">16</span>問
         &nbsp;·&nbsp; <span class="quizbar__verdict" id="qVerdict">判定前</span></span>
       <span class="quizbar__leave">離席 <b id="qLeave">0</b>回</span>
       <button type="button" id="qSubmit" disabled>採点する</button>
