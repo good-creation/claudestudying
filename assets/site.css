@@ -724,15 +724,15 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
 
 /* デスクトップでは専用列を確保し、タイトルやタイムラインと重ならないようにする */
 .hero{position:relative}
-.hero__clawd{display:block;width:84px;height:auto;aspect-ratio:600 / 487;margin:26px 0 0 auto;pointer-events:none}
+.hero__clawd{display:block;width:112px;height:auto;aspect-ratio:600 / 487;margin:26px clamp(12px,6vw,44px) 0 auto;pointer-events:none}
 /* GitHub コースだけは Claude のマスコットではなく GitHub のマークを使う。
    マークは正方形なので 600/487 を上書きする。マスコットと違って表情が無く、
    小さいと何のマークか読み取れないので、幅はマスコットより大きく取る。 */
-.hero__clawd.is-mark{width:clamp(96px,9vw,124px);aspect-ratio:1 / 1}
+.hero__clawd.is-mark{width:clamp(116px,10.5vw,156px);aspect-ratio:1 / 1}
 @media (min-width:1001px){
   .hero{
     display:grid;
-    grid-template-columns:minmax(0,1fr) clamp(112px,10vw,144px);
+    grid-template-columns:minmax(0,1fr) clamp(160px,16vw,250px);
     column-gap:clamp(24px,4vw,56px);
   }
   .hero > *{grid-column:1 / -1}
@@ -742,8 +742,9 @@ body.exam #quizList{-webkit-user-select:none;user-select:none}
     grid-row:2 / 4;
     align-self:center;
     justify-self:end;
-    width:clamp(88px,8.5vw,128px);
-    margin:0;
+    width:clamp(120px,11.5vw,172px);
+    /* 版面の右端に貼り付かないよう、少し内側へ寄せる */
+    margin:0 clamp(24px,4vw,64px) 0 0;
   }
   .hero__lede{grid-column:1;grid-row:3}
 }
