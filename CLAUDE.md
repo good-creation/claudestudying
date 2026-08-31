@@ -53,6 +53,8 @@ img/github-mark.png         GitHub コースのマーク（このコースだけ
 assets/progress.js          読んだレッスンを localStorage に控える（表示は index.html の1行だけ）
 assets/gate.js              合言葉の目隠し（educators/ と cloudflare.html。見た目だけ）
 img/*.jpg                   公式図版（ページから相対パスで参照）
+img/favicon.png             タブのアイコン（clawd.png を正方形に整えたもの・生成物）
+img/favicon-github.png      同上。github/ 配下だけこちらを使う（github-mark.png 由来）
 tools/validate.py           リンク・画像・タイムライン整合性チェック
 tools/check-quiz.py         小問題（.chk）の検査
 tools/shuffle-quiz.py       小問題の正解位置を散らす
@@ -283,18 +285,141 @@ python3 tools/check-quiz.py            # 散らしたあともう一度
 
 # デザイン
 
-製図フィルム調のクールグレー地 + ウルトラマリン。注意喚起にだけ焦げ金を使う。
+製図フィルム調のクールグレー地に、焦げオレンジ1色。注意喚起にだけ赤を使う。
+**装飾は 1px の罫線と余白だけで作る。** 角丸・グラデーション・落ち影は使わない
+（`box-shadow` の用途は、格子を描く `0 0 0 1px` と、選択状態を示す `inset 3px 0 0`、
+用語ツールチップの1つだけ）。
+
+## 色
+
 **色は必ず `assets/site.css` の `:root` トークン経由で参照する**（生の16進数を各ページに書かない）。
 
-| トークン | 用途 |
-|---|---|
-| `--ground` `--paper` | 地色・カード地 |
-| `--ink` `--ink-2` | 本文・副次テキスト |
-| `--signal` | タイムライン、リンク、強調（ウルトラマリン） |
-| `--caution` `--caution-bg` | 警告のみ。他の用途に流用しない |
+| トークン | 値 | 用途 |
+|---|---|---|
+| `--ground` | `#E9EBE6` | ページの地色 |
+| `--paper` | `#F5F6F2` | カード・入力欄・`code` の地。地より一段明るい |
+| `--ink` / `--ink-2` | `#171A17` / `#4A514A` | 本文 / 副次テキスト・キャプション |
+| `--rule` / `--rule-soft` | `#C3C8BF` / `#D6DAD2` | 外周と区切りの罫 / さらに内側の細い区切り |
+| `--signal` | `#AA4400` | リンク・タイムライン・ラベル・強調。地に対して 4.8:1（WCAG AA） |
+| `--signal-bright` | `#D2500C` | **大きな見出しだけ**。3.5:1 しかないので本文・リンクに広げない |
+| `--signal-wash` | `#F7DCC6` | `strong` の下線マーカー、選択中の行、`.chk` の地 |
+| `--caution` / `--caution-bg` | `#A02B25` / `#F3E3E0` | 警告・不正解・不合格のみ。他に流用しない |
 
-書体は3役 — 見出し=Zen Old Mincho / 本文=Zen Kaku Gothic New / タイムコード・端末=JetBrains Mono。
-いずれも macOS のヒラギノ等にフォールバックするので**オフラインでも崩れない**。
+- 純正の Cloudflare オレンジ `#F6821F` はこの地色に対して 2.1:1 しか無いので**使っていない**。
+  明るい方は見出し専用、という2段の切り分けを崩さないこと
+- 暗地は端末画面の表現（`.tr__body` と `.prompt`）の `#14181B` / `#D7DDE0` だけ。ここだけトークンを持たない
+- **色だけで意味を伝えない。** 試験の正誤は `::before` に「正解」「×」の文字を出し、
+  解答集は `.ans__a` で正解を文章としても書く
+
+## 書体
+
+3役。`--mincho` `--gothic` という名前は歴史的なもので、**実体は Optimistic Display /
+Optimistic Text（どちらもサンセリフ）**。明朝は使っていない。
+
+| トークン | 実体 | 使いどころ |
+|---|---|---|
+| `--mincho` | Optimistic Display | 見出し（`.hero__title` `.sec__h` `.cards h3` `.lsn__ja` `.quote p` `.wrapup` `.pager em`） |
+| `--gothic` | Optimistic Text | 本文・説明。`body` の既定 |
+| `--mono` | JetBrains Mono | タイムコード・英字ラベル・端末画面・数値。`letter-spacing:.1em` 前後と `text-transform:uppercase` を添えるのが定型 |
+
+- Optimistic は外部 CDN の `@font-face`、JetBrains Mono は各ページの `<link>`。
+  どちらも**ヒラギノ等にフォールバックするのでオフラインでも崩れない**
+- 本文は 16px / `line-height:1.9` / `font-feature-settings:"palt"`。読ませる文字は 14.5px を下限にする
+- 日本語の折り返しは `word-break:auto-phrase` + `line-break:strict` +（見出しと吹き出しは）`text-wrap:balance`。
+  途中で折られたくない識別子は `.nw` で囲む
+- `var(--sans,inherit)` が数か所に残っているが `--sans` は定義していない（本文書体に落ちるだけ）。**新しく書かない**
+
+## 骨格
+
+| 部品 | 決まり |
+|---|---|
+| `.shell` | 版面の幅。`max-width:1180px` + 左右 `--gutter`（`clamp(20px,5vw,64px)`） |
+| `.chrome` | 上端のナビ。`tools/rebuild-nav.py` が生成する。手で書かない |
+| `.hero` | eyebrow / 大見出し / リード / タイムライン / `.meta`。1001px 以上でマスコット専用列を持つ2列グリッドになる |
+| `.tl` | ヒーローのタイムライン。目盛りは `left:(data-start / data-duration * 100)%` |
+| `.rail` | 1081px 以上でだけ出る左の固定レール。そのぶん `body{padding-left:104px}`。狭い画面では上端 2px の `.topbar` に切り替わる |
+| `.sec` | 本文の1節。`grid-template-columns:88px minmax(0,1fr)`（左＝時刻と種別、右＝本文）。760px 以下で1段になる |
+| `.pager` `.foot` | 前後リンクとフッタ。全レッスンページの末尾に必ず置く |
+
+版面の幅の使い分け（読む文章は 44em、図版・表・端末画面は段いっぱい）と、
+格子の描き方・横スクロールの禁止は「## 版面と余白の決まり」に書いてある。**先にそちらを読むこと。**
+
+## 本文に置ける部品
+
+**新しい CSS を足す前にこの表から選ぶ。** 用途が近いものは、まず既存に寄せられないか試す。
+
+| クラス | 何のためのものか |
+|---|---|
+| `.tip` | こちらの補足。左に黒の細罫。動画が言っていないことはここに入れる |
+| `.warn` | 注意・断り書き。`--caution` 地。図と本文がずれる箇所には必ず添える |
+| `.quote` | 動画の発言の引用。`cite` に話者と時刻 |
+| `.chk` | 各節末尾の自己チェック（`<details>`、JS なし）。書式は「# 各セクションの小問題」を見る |
+| `.cards` | 概念カード。`.cards__k`（英字ラベル）+ `h3` + 説明。`is-caution` で警告色 |
+| `.acts` | できることの一覧。罫線区切りの `h3` + 1段落 |
+| `.steps` | 順番のある手順。`01` からの番号と縦罫が自動で付く |
+| `.chips` | 短い語の並び。`a` を入れればページ内目次になる |
+| `.cmp` | 2つを軸で比べる表（`.cmp__ax` / `.cmp__a` / `.cmp__b`） |
+| `.modes` | 多列の表。`--2col` `--3col` で列数だけ変えて見た目を流用する |
+| `.fig` | 図版。`figcaption` には画面に写っている文字列だけ |
+| `.prompt` | 端末・プロンプトの実例（暗地）。桁を揃えたい塊は中の `.tree` に入れる |
+| `.tr` | 原文トランスクリプト（`<details>`）。中身は手を入れずに載せる |
+| `.wrapup` | 節の締めの一文。大きめの見出し書体 |
+| `.meta` | ヒーロー下の諸元（尺・公開日・出典など） |
+| `kbd` / `code` | キー表記 / インラインのコード |
+
+ページ固有のもの（一覧・試験・解答集・ゲート）は
+`.lessons`/`.lsn`、`.gloss`、`.quizbar`/`.q`/`.qresult`、`.examgate`/`.examlock`、
+`.bankcards`/`.bankcard`、`.anslock`/`.anstoc`/`.ansset`、`.gate`、`.resumeline`、
+`.clawd`/`.hero__clawd`/`.endmark`。**これらをレッスン本文に持ち込まない。**
+
+## 状態は `is-` クラスで持つ
+
+JS が付け外しするクラスは全部 `is-` 前置（`is-on` `is-here` `is-picked` `is-correct` `is-wrong`
+`is-done` `is-selected` `is-pass` `is-fail` `is-over` `is-abort` `is-empty` `is-mark` `is-appendix`
+`is-caution`）。ページ全体にかかる状態だけ例外で、`body.exam`（試験中）と
+`html.is-gated`（合言葉ゲート）の2つ。
+
+- **`body.exam` は「答えにつながるものを隠す」ためのスイッチ。** `.recap` `.chk` `.qlegend` `.hero__lede`、
+  ナビ・`.pager`・フッタのリンクがまとめて消える。試験ページに何かを足すときは、
+  それが本番モードで見えてよいものかを必ず確かめる
+- 表示の切り替えは `display:none` を使う。`visibility:hidden` は選択とスクリーンリーダーに残るので使わない
+
+## 動きとアクセシビリティ
+
+- 動きは `opacity` と `transition .15〜.35s` 程度まで。`@media (prefers-reduced-motion:reduce)` で
+  `animation` と `transition` を**全部無効にしている**ので、動きを前提にした表現を作らない
+- 焦点表示は `a:focus-visible` などに `outline:2px solid var(--signal)`。消さない
+- 押せることを色でしか示せない場面では `@media (hover:none)` を用意する
+  （例: `.term` はタップ端末でだけ地色を敷く）
+- 図版の `alt` は、装飾なら `alt="" aria-hidden="true"`（マスコットがこれ）
+
+## ブレークポイント
+
+上から順に、何が変わるか。**新しく別の値を足さない。**
+
+| 幅 | 変わること |
+|---|---|
+| `min-width:1081px` | 左の固定レールを出し、`body` を右へ 104px 寄せる（以下では `.topbar` に切り替え） |
+| `min-width:1001px` | ヒーローがマスコット専用列を持つ2列グリッドになる |
+| `max-width:860px` | レッスン一覧 `.lsn` の右列（尺・種別）が本文の下へ落ちる |
+| `max-width:820px` / `520px` | 試験のバンク選択 `.bankcard` の段組み（説明を下へ → 肩書きと問数も下へ） |
+| `max-width:760px` | `.sec` が1段になる。`.modes` は見出し行を消し、各セルの頭に `data-h` を出す |
+| `max-width:700px` | `.cmp` が1列になる |
+| `max-width:660px` | タイムラインの目盛りのラベルを消す |
+| `max-width:640px` | `.pager` が1列になる |
+
+- **`.modes__c` には必ず `data-h="列の名前"` を持たせる。** 760px 以下では見出し行が消え、
+  この属性だけが列の意味を伝える（現状 145 か所すべてに付いている）
+- **`.cmp__a` `.cmp__b` にも `data-h` を持たせる。** 700px 以下では同じく見出し行が消えるため。
+  以前は `"Claude.ai — "` `"Claude Code — "` を CSS に直書きしていて、
+  他の対比に流用した表（`github/` `ai-fluency/`）が狭い画面で嘘のラベルを出していた。
+  値は**その表の見出し行と同じ文字列**にする
+
+## ファビコン
+
+`img/favicon.png`（`img/clawd.png` を正方形に整えたもの）を全ページの `<head>` で参照する。
+`github/` 配下だけは `img/favicon-github.png`（`img/github-mark.png` 由来）。
+**マスコットの差し替えの決まりと揃える** — 詳しくは「### スライド資料が出典のコース」を見る。
 
 ## 試験ページ（`quiz.html`）に何かを足すとき
 

@@ -212,8 +212,10 @@ code{font-family:var(--mono);font-size:.9em;background:var(--paper);border:1px s
 @media (max-width:700px){
   .cmp__row{grid-template-columns:1fr;gap:4px;padding:16px 0}
   .cmp__row--head{display:none}
-  .cmp__a::before{content:"Claude.ai — ";font-family:var(--mono);font-size:11px}
-  .cmp__b::before{content:"Claude Code — ";font-family:var(--mono);font-size:11px;color:var(--signal)}
+  /* 見出し行が消えるので、列の名前を各セルの頭に出す（.modes と同じ data-h 方式）。
+     表ごとに名前が違うので CSS に直書きしない。属性が無い表には何も足さない。 */
+  .cmp__a[data-h]::before,.cmp__b[data-h]::before{content:attr(data-h) " — ";font-family:var(--mono);font-size:11px}
+  .cmp__b[data-h]::before{color:var(--signal)}
 }
 
 /* ---------- loop svg ---------- */
