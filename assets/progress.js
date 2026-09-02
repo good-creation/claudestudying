@@ -31,6 +31,23 @@ window.NOTEPROGRESS = (function () {
       ]
     },
     {
+      id: 'easy',
+      home: 'easy/index.html',
+      lessons: [
+        ['easy/01-what-is-claude-code.html',      '01', 'Claude Code って何？'],
+        ['easy/02-how-claude-code-works.html',    '02', '中では何が起きているの？'],
+        ['easy/03-your-first-prompt.html',        '03', 'はじめてお願いしてみる'],
+        ['easy/04-explore-plan-code-commit.html', '04', '進め方の型をおぼえる'],
+        ['easy/05-context-management.html',       '05', '「机の広さ」を管理する'],
+        ['easy/06-claude-md.html',                '06', 'プロジェクトのメモ帳'],
+        ['easy/07-subagents.html',                '07', '調べ物をおまかせする'],
+        ['easy/08-skills.html',                   '08', '一度教えれば、覚えてくれる'],
+        ['easy/09-mcp.html',                      '09', '外の道具とつなぐ'],
+        ['easy/10-hooks.html',                    '10', '「必ず」やらせる仕組み'],
+        ['easy/11-review-and-ship.html',          '11', '見直して、世に出す']
+      ]
+    },
+    {
       id: 'ai-fluency',
       home: 'ai-fluency/index.html',
       lessons: [

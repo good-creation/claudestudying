@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>09 外の道具とつなぐ — やさしい版</title>
+<meta name="description" content="MCP を、やさしい日本語で。外のサービスにつなぐ共通の差し込み口。つなぎ方、届く範囲、つなぎっぱなしの代償。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ" aria-current="page">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 09 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">便利。ただし、ただではない</p>
+  </div>
+
+  <h1 class="hero__title">外の道具と<br><em>つなぐ</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <strong>あなたが必要とする情報の多くは、プログラムの外にあります。</strong>データの置き場所、仕事で使うサービス、公開されている資料。<strong>MCP</strong> は、そこにつなぐための<strong>共通の差し込み口</strong>です。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>つなぐ判断と<br><small>切る判断ができる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★★</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../09-mcp.html">09 MCP で外部につなぐ</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">WHY</span><span class="sec__kind">正体</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">MCP って何のこと？</h2>
+      <p><strong>AI と外のサービスをつなぐときの、共通の決まりごとです。</strong></p>
+
+      <p><span class="nw">Model Context Protocol</span> の頭文字。この決まりに従っていれば、Claude Code はいろいろな外のサービスにつながれます。</p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>USB の差し込み口です。マウスもキーボードも外付けの記憶装置も、<strong>形と決まりが同じ</strong>だから同じ穴に挿せます。ひとつ覚えれば、つなぎ先が変わっても同じやり方が通じます。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          MCP を「共通の決まりごと」と呼ぶのは、どういう意味ですか。
+          <ul class="chk__c"><li>どのサービスにつないでも、同じ情報が返ってくるということ</li><li>つなぎ方の形がそろっているので、相手が変わっても同じやり方が通じるということ</li><li>接続できるサービスの数が、あらかじめ決められているということ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 形と手順がそろっていることが「共通」の意味です。</p>
+          <p>だから、つなぎ先ごとに別のやり方を覚え直す必要がありません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">EXAMPLE</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">何につなぐと、何ができるのか</h2>
+      <p><strong>プログラムの外にある情報を、持ってこられるようになります。</strong></p>
+
+      <ul class="acts">
+        <li><h3>仕事の管理サービスにつなぐ</h3><p>特定の作業項目の中身を取り込めます。「この案件を読んで、計画を立てて」が通ります。</p></li>
+        <li><h3>最新の説明書を取ってくるサービスにつなぐ</h3><p>いま使っている部品の、最新の説明書を届けてくれます。</p></li>
+      </ul>
+
+      <p>つないだ道具も、ふつうの道具と同じで<strong>使う前に確認を求めてきます</strong>。勝手に外へ問い合わせが飛ぶことはありません。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          外につないだ道具を使うとき、確認はどうなりますか。
+          <ul class="chk__c"><li>ふつうの道具と同じように、使う前に確認を求めてくる</li><li>外への接続なので、確認は必ず省略される</li><li>最初の一回だけ確認され、それ以降は自動で通る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 特別あつかいはされず、いつもの許可の仕組みが働きます。</p>
+          <p>知らないうちに外へ問い合わせが飛ぶ、ということにはなりません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">ADD</span><span class="sec__kind">つなぎ方</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">つなぐ、そして管理する</h2>
+      <p><strong>追加は <code>claude mcp add</code>。相手がどこで動いているかで2種類に分かれます。</strong></p>
+
+      <ul class="acts">
+        <li><h3>HTTP — 遠くにあるサービス向け</h3><p>相手のサービス側で動いていて、ネットワーク越しにつながります。</p></li>
+        <li><h3>stdio — 手元で動かすもの向け</h3><p>自分のパソコンの中で動いていて、プログラム同士が直接やりとりします。</p></li>
+      </ul>
+
+      <p>つないだあとの管理は <code>/mcp</code>。何がつながっているか、動いているか、そして<strong>要らないものを切ること</strong>ができます。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          2つのつなぎ方は、何によって分かれていますか。
+          <ul class="chk__c"><li>相手が遠くのサービスか、自分のパソコンの中かのちがい</li><li>扱えるデータの量のちがい</li><li>接続にかかる料金のちがい</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — つなぐ相手がどこで動いているかで、使うやり方が変わります。</p>
+          <p>どちらでつないでも、追加に使う命令そのものは同じです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">SCOPE</span><span class="sec__kind">届く範囲</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">どこまで届かせるか</h2>
+      <p><strong>ここも「誰のためか」で決まります。</strong></p>
+
+      <ul class="acts">
+        <li><h3>このプロジェクトだけ — 自分だけ</h3><p>いま開いているプロジェクトでのみ使えます。</p></li>
+        <li><h3>自分の全部 — 自分だけ</h3><p>どのプロジェクトでも使えます。</p></li>
+        <li><h3>チーム共有 — 関わる人全員</h3><p>プロジェクトの側に設定を入れておくと、全員が自動で同じ接続を得ます。</p></li>
+      </ul>
+
+      <div class="tip">
+        <b>ここまでで、同じ型が4回出てきました</b>
+        <p>メモ帳、スキル、このあとのフック、そして接続。どれも<strong>「プロジェクトに入れておけばチーム全員に配れる」</strong>という同じ形です。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          チーム全員に同じ接続を行きわたらせたいときは、どうしますか。
+          <ul class="chk__c"><li>各自が自分の設定に、同じ内容を書き写す</li><li>いちばん詳しい人の設定を、そのつど参照させる</li><li>プロジェクトの側に設定を入れて、共有できる形にする</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — プロジェクトに入れておけば、関わる人全員に自動で行きわたります。</p>
+          <p>メモ帳やスキルのときと、まったく同じ配り方です。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">COST</span><span class="sec__kind">代償</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">つなぎっぱなしには、代償がある</h2>
+      <p><strong>つないだサービスは、使っていなくても場所を取り続けます。</strong></p>
+
+      <div class="warn">
+        <b>なぜ場所を取るのか</b>
+        <p>呼び出していなくても、<strong>道具の説明ぶん</strong>がずっと居座るからです。たくさんつなぐと、それだけで<a href="05-context-management.html">机</a>が狭くなります。</p>
+      </div>
+
+      <p>対策は単純。<code>/mcp</code> で確認して、<strong>使っていないものを切る</strong>。つながずに済ませる手も2つあります。</p>
+
+      <ul class="acts">
+        <li><h3>命令で代わりができるなら、そちらを使う</h3><p>専用の命令があるなら、そのほうが場所を食いません。<strong>常に居座る説明ぶんが増えない</strong>からです。</p></li>
+        <li><h3>スキルに書いておく</h3><p>スキルは、ふだんは名前と説明文だけ。命令の使い方をそこに書いておく手です。</p></li>
+      </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          つないだサービスが場所を取り続けるのは、どんなときですか。
+          <ul class="chk__c"><li>実際に使ったあと、しばらくのあいだ</li><li>接続に失敗しているあいだだけ</li><li>使っていないときも、つながっているかぎりずっと</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 呼び出さなくても、道具の説明ぶんが居座り続けます。</p>
+          <p>だから、いま要らないものは切っておくのがいちばん効きます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <ul class="chips">
+        <li>命令でつなぐ</li><li>設定ファイルでチームに配る</li><li>使っていないものは切る</li>
+      </ul>
+
+      <p class="wrapup">つなげることと、<em>つなぎっぱなしにしてよいこと</em>は別の話。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>実際のサービス名や命令の書き方まで。→ <a href="../09-mcp.html">くわしい版 09</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="08-skills.html"><b>前のレッスン — 08</b><em>一度教えれば、覚えてくれる</em></a>
+  <a class="is-next" href="10-hooks.html"><b>次のレッスン — 10</b><em>「必ず」やらせる仕組み</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「MCP in Claude Code」／ claude.com/courses</span>
+  <a href="../09-mcp.html">くわしい版 09 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

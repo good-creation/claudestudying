@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 中では何が起きているの？ — やさしい版</title>
+<meta name="description" content="Claude Code の中身を、くり返しの仕組み・覚えていられる量・道具・許可の4つに分けて、やさしい日本語で説明します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？" aria-current="page">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 02 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">中身は4つの部品</p>
+  </div>
+
+  <h1 class="hero__title">中では<br><em>何が起きているの？</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    中身は魔法ではなく、<strong>ぐるぐる回る仕組み・覚えていられる量・道具・許可</strong>の4つでできています。この4つが分かると、うまくいかないときに<strong>どこが原因かを自分で切り分けられます</strong>。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>中の仕組みを<br><small>4つに分けて言える</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../02-how-claude-code-works.html">02 どう動いているのか</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">LOOP</span><span class="sec__kind">部品 01</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">ぐるぐる回る仕組み</h2>
+      <p><strong>頼んでから終わるまで、同じ輪を何周も回っています。</strong></p>
+
+      <ul class="steps">
+        <li><h3>あなたが頼む</h3></li>
+        <li><h3>必要な情報を集める</h3><p>ファイルを読んだり、命令を走らせて様子を見たり。</p></li>
+        <li><h3>実際にやってみる</h3><p>ここではじめて手が動きます。</p></li>
+        <li><h3>結果を見て、確かめる</h3><p><strong>自分の仕事を自分で見直すのが、エージェントの特徴です。</strong></p></li>
+        <li><h3>終わる、またはもう一周</h3><p>足りなければ最初に戻ります。</p></li>
+      </ul>
+
+      <p>大事なのは、この輪が<strong>閉じた自動機械ではない</strong>こと。回っている途中でも、情報を足す・止める・方向を変えるができます。</p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>ロボット掃除機です。ちがうのは、こちらは<strong>途中で「そっちじゃない」と言える</strong>ところ。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          この輪について、正しい説明はどれですか。
+          <ul class="chk__c"><li>いったん動き出すと、終わるまで人は手を出せない</li><li>一周したら必ず終わりで、二周目に入ることはない</li><li>回っている最中でも、人が情報を足したり方向を変えたりできる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 途中で割り込めることが、この仕組みの前提になっています。</p>
+          <p>確かめた結果が足りなければ最初に戻るので、一周で終わるとも限りません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">MEMORY</span><span class="sec__kind">部品 02</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">覚えていられる量</h2>
+      <p><strong>Claude が一度に頭に置いておける量のこと。作業机の広さだと思ってください。</strong></p>
+
+      <p>会話・読んだファイル・命令の結果が、ぜんぶこの机に積まれます。いっぱいになると、Claude Code は会話を<strong>短くまとめて</strong>場所を空けます。</p>
+
+      <div class="warn">
+        <b>ここに落とし穴</b>
+        <p>まとめられた部分は、<strong>もとの言葉のままでは残りません</strong>。「さっき言ったよね？」が通じなくなるのは、これが理由です。</p>
+      </div>
+
+      <p>だから<strong>忘れてほしくないことは、会話ではなくファイルに書いておきます</strong>（→ <a href="06-claude-md.html">06</a>）。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          置いておける量がいっぱいになったとき、何が起きますか。
+          <ul class="chk__c"><li>そこで作業が止まり、はじめからやり直すことになる</li><li>それまでの会話が短くまとめ直され、細かい部分は残らないことがある</li><li>置いておける量が自動で広がり、前の内容もそのまま残る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 短くまとめて場所を空けるので、細かいところは落ちます。</p>
+          <p>だから忘れられたら困る前提は、会話の中ではなくファイルに置いておくほうが確実です。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">TOOL</span><span class="sec__kind">部品 03</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">道具を持っている</h2>
+      <p><strong>ふつうの AI は文章を返すだけ。道具があると、その間に実際の行動が入ります。</strong></p>
+
+      <ul class="chips">
+        <li>ファイルを読む</li><li>ファイルを書き換える</li><li>命令を実行する</li><li>ウェブを検索する</li><li>…ほか</li>
+      </ul>
+
+      <p>しかも、決まった手順を再生しているのではありません。話の意味を見て、<strong>いまどの道具を呼ぶかをそのつど決めています</strong>。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          道具について、この節が「ふつうの AI とのちがい」として挙げているのはどれですか。
+          <ul class="chk__c"><li>返す文章の量が多くなり、説明がくわしくなること</li><li>文章を返すだけの間に、実際の行動が入ること</li><li>使える言語の種類が増えて、対応の幅が広がること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 受け取って返すだけの間に、手を動かす段階があるかどうかが分かれ目です。</p>
+          <p>しかも、どの道具をいつ呼ぶかは決まった手順ではなく、そのつど意味を見て判断されます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">PERMIT</span><span class="sec__kind">部品 04</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">どこまで勝手にやらせるか</h2>
+      <p><strong><kbd>Shift</kbd>+<kbd>Tab</kbd> で切り替わる、「どこまで確認なしで進めてよいか」のスイッチです。</strong></p>
+
+      <ul class="acts">
+        <li><h3>手動 — 毎回たずねる</h3><p>ファイルの書き換えも命令の実行も、そのつど確認します。よく知らないプログラムを触るときに。</p></li>
+        <li><h3>おまかせ編集 — 書き換えは確認なし</h3><p>ファイルの書き換えは自動で進み、命令の実行はたずねます。あとでまとめて読む前提のときに。</p></li>
+        <li><h3>計画モード — 何も書き換えない</h3><p>読むだけで調べて、やり方の案を出します。手をつける前に方針を見たいときに。</p></li>
+      </ul>
+
+      <div class="warn">
+        <b>確認を飛ばすときは慎重に</b>
+        <p>何でも確認なしにすると速くなります。ただし失っているのは<strong>まちがいに気づくための時間</strong>です。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          何でも確認なしで実行させたときに失うものは、何だと説明されていますか。
+          <ul class="chk__c"><li>まちがいが起きる前に気づいて止められる機会</li><li>あとから設定を変えられる自由</li><li>実行した内容を記録として残す仕組み</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 速さと引きかえに、割り込む時間そのものがなくなります。</p>
+          <p>だから、よく知らないプログラムを触るときほど、毎回たずねる設定のほうが向いています。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <p class="wrapup">中身は4つ。<em>ぐるぐる回る仕組み</em>、<em>覚えていられる量</em>、<em>道具</em>、<em>許可</em>。</p>
+      <p>前の回の「チャットと何がちがうのか」に、ここで答えが返ります。<strong>読んで、動いて、自分の仕事を自分で確かめられる。</strong></p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>いまのバージョンでは許可のモードがもっと増えています。その全体像は → <a href="../02-how-claude-code-works.html#s4">くわしい版 02</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="01-what-is-claude-code.html"><b>前のレッスン — 01</b><em>Claude Code って何？</em></a>
+  <a class="is-next" href="03-your-first-prompt.html"><b>次のレッスン — 03</b><em>はじめてお願いしてみる</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「How Claude Code Works」／ claude.com/courses</span>
+  <a href="../02-how-claude-code-works.html">くわしい版 02 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code 入門コース（やさしい版） — 学習ノート</title>
+<meta name="description" content="Claude Code 入門コースを、専門用語をひとつずつ言いかえながら、高校生でも読めるやさしい日本語に書き直した版。全11レッスン。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次" aria-current="page">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Claude Code 入門コース / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">11 レッスン · 高校生から読めます</p>
+  </div>
+
+  <h1 class="hero__title">Claude&nbsp;Code<br><em>やさしい版</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    もとの入門コースと<strong>同じ11レッスン</strong>を、専門用語をひとつずつ言いかえながら書き直した版です。むずかしい言葉は、その場でたとえ話にします。<strong>プログラミングをやったことがなくても、最後まで読めます。</strong>
+  </p>
+
+  <dl class="meta">
+    <div><dt>Lessons</dt><dd><span>11</span></dd></div>
+    <div><dt>Level</dt><dd><span>入門</span> <small>/ 高校生から</small></dd></div>
+    <div><dt>もとの版</dt><dd><a href="../claude-code.html">くわしい版はこちら</a></dd></div>
+    <div><dt>Source</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="shell">
+
+  <section class="gloss" id="howto" style="padding-bottom:clamp(30px,4vw,44px)">
+    <h2>このコースの読み方</h2>
+    <p style="margin:16px 0 0;font-size:15px;line-height:1.9;max-width:44em">
+      Claude Code は、<strong>パソコンの中で、あなたの代わりにプログラムを書いたり直したりしてくれる道具</strong>です。むずかしそうに見えて、やっていることは単純です。読むときは、次の3つだけ意識してください。
+    </p>
+
+    <ul class="acts">
+      <li>
+        <h3>01 から順に読む</h3>
+        <p>あとの回は、前の回に出てきた言葉をそのまま使います。とばすと急にむずかしく感じます。</p>
+      </li>
+      <li>
+        <h3>各節の最後にある「確認」で手を止める</h3>
+        <p>3択の問題が置いてあります。点数はつきません。答えを見る前に、自分で選んでみてください。</p>
+      </li>
+      <li>
+        <h3>物足りなくなったら、くわしい版へ移る</h3>
+        <p>各ページの最後に、対応する<a href="../claude-code.html">くわしい版</a>へのリンクがあります。英語の元の発言もそちらに。</p>
+      </li>
+    </ul>
+
+    <div class="tip" style="max-width:44em">
+      <b>点線がついた言葉</b>
+      <p><span style="text-decoration:underline dotted var(--signal);text-underline-offset:4px">点線の下線</span>がついた言葉は、カーソルを合わせる（スマホならタップ）と短い説明が出ます。</p>
+    </div>
+  </section>
+
+  <div class="lessons">
+
+    <a class="lsn" href="01-what-is-claude-code.html">
+      <div class="lsn__n">01</div>
+      <div>
+        <div class="lsn__en">What is Claude Code?</div>
+        <h2 class="lsn__ja">Claude Code って何？</h2>
+        <p class="lsn__sum">「レシピを教えてくれる人」ではなく「台所に一緒に立ってくれる人」。チャットの AI との違いは、ここにあります。</p>
+        <ul class="lsn__tags"><li>いちばん最初</li><li>チャットとの違い</li><li>たとえ話つき</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="02-how-claude-code-works.html">
+      <div class="lsn__n">02</div>
+      <div>
+        <div class="lsn__en">How Claude Code Works</div>
+        <h2 class="lsn__ja">中では何が起きているの？</h2>
+        <p class="lsn__sum">中身は魔法ではなく、4つの部品。ぐるぐる回る仕組み、覚えていられる量、道具、そして許可の設定。</p>
+        <ul class="lsn__tags"><li>くり返しの仕組み</li><li>記憶の量</li><li>道具</li><li>許可</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="03-your-first-prompt.html">
+      <div class="lsn__n">03</div>
+      <div>
+        <div class="lsn__en">Your first prompt</div>
+        <h2 class="lsn__ja">はじめてお願いしてみる</h2>
+        <p class="lsn__sum">特別な書き方はいりません。こわいのは「勝手に書き換えられること」なので、それを止める2つのスイッチを先に覚えます。</p>
+        <ul class="lsn__tags"><li>ふつうに話す</li><li>確認のしかた</li><li>先に計画</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="04-explore-plan-code-commit.html">
+      <div class="lsn__n">04</div>
+      <div>
+        <div class="lsn__en">Explore → Plan → Code → Commit</div>
+        <h2 class="lsn__ja">進め方の型をおぼえる</h2>
+        <p class="lsn__sum">「ひとつだけ持って帰るならこれ」と言われている回。しらべる → 計画する → 書く → 保存する、の4段。</p>
+        <ul class="lsn__tags"><li>いちばん大事</li><li>4つの段</li><li>やり直しを減らす</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="05-context-management.html">
+      <div class="lsn__n">05</div>
+      <div>
+        <div class="lsn__en">Context Management</div>
+        <h2 class="lsn__ja">「机の広さ」を管理する</h2>
+        <p class="lsn__sum">覚えていられる量には上限があります。何が場所を取るのか、「まとめる」と「捨てる」の使い分け。</p>
+        <ul class="lsn__tags"><li>覚えていられる量</li><li>まとめる</li><li>捨てる</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="06-claude-md.html">
+      <div class="lsn__n">06</div>
+      <div>
+        <div class="lsn__en">The CLAUDE.md file</div>
+        <h2 class="lsn__ja">プロジェクトのメモ帳</h2>
+        <p class="lsn__sum">毎回おなじ説明をしなくて済むように、1枚のメモを置く。新人に渡す「引き継ぎメモ」と同じ役割です。</p>
+        <ul class="lsn__tags"><li>引き継ぎメモ</li><li>毎回読まれる</li><li>短く保つ</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="07-subagents.html">
+      <div class="lsn__n">07</div>
+      <div>
+        <div class="lsn__en">What are subagents?</div>
+        <h2 class="lsn__ja">調べ物をおまかせする</h2>
+        <p class="lsn__sum">「探す過程はいらない。結果だけ教えて」。別の机で調べてもらい、答えだけ持ってきてもらう仕組み。</p>
+        <ul class="lsn__tags"><li>別の机</li><li>答えだけ返る</li><li>見えなくなるもの</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="08-skills.html">
+      <div class="lsn__n">08</div>
+      <div>
+        <div class="lsn__en">What are skills?</div>
+        <h2 class="lsn__ja">一度教えれば、覚えてくれる</h2>
+        <p class="lsn__sum">ふだんは名前しか出ていなくて、関係する場面になったときだけ中身が開かれるメモ。</p>
+        <ul class="lsn__tags"><li>くり返しをやめる</li><li>自動で開く</li><li>説明文が鍵</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="09-mcp.html">
+      <div class="lsn__n">09</div>
+      <div>
+        <div class="lsn__en">MCP in Claude Code</div>
+        <h2 class="lsn__ja">外の道具とつなぐ</h2>
+        <p class="lsn__sum">外のサービスにつなぐための、共通の差し込み口。便利ですが、つなぎっぱなしには代償があります。</p>
+        <ul class="lsn__tags"><li>差し込み口</li><li>共通の決まり</li><li>つなぎすぎ注意</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="10-hooks.html">
+      <div class="lsn__n">10</div>
+      <div>
+        <div class="lsn__en">Hooks in Claude Code</div>
+        <h2 class="lsn__ja">「必ず」やらせる仕組み</h2>
+        <p class="lsn__sum">ここまでは全部「お願い」でした。フックだけが、例外なく必ず走る仕組みです。</p>
+        <ul class="lsn__tags"><li>お願いではない</li><li>必ず走る</li><li>危ない操作を止める</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="11-review-and-ship.html">
+      <div class="lsn__n">11</div>
+      <div>
+        <div class="lsn__en">Review &amp; Ship</div>
+        <h2 class="lsn__ja">見直して、世に出す</h2>
+        <p class="lsn__sum">書いた本人に見直させない工夫、まとめて片づける命令、そしてあとから続きに戻る方法。</p>
+        <ul class="lsn__tags"><li>別の目で見直す</li><li>まとめて片づける</li><li>あとで戻る</li></ul>
+      </div>
+      <div class="lsn__side"><span>やさしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+  <div class="lessons" style="border-top:0">
+    <a class="lsn" href="../claude-code.html">
+      <div class="lsn__n" style="color:var(--caution)">次へ</div>
+      <div>
+        <div class="lsn__en">Full version</div>
+        <h2 class="lsn__ja">くわしい版へ進む</h2>
+        <p class="lsn__sum">同じ11レッスンを、動画の時間の流れに沿って、英語の元の発言つきで。いまのバージョンとの差分もこちらに。</p>
+        <ul class="lsn__tags"><li>全11レッスン</li><li>英語の原文つき</li><li>試験つき</li></ul>
+      </div>
+      <div class="lsn__side"><span>くわしい版</span><span class="lsn__go">読む →</span></div>
+    </a>
+  </div>
+
+  <section class="gloss">
+    <h2>この10語だけ、先に</h2>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--ink-2)">
+      コース全体でくり返し出てくる言葉です。いまは「ふーん」で構いません。
+    </p>
+    <dl>
+      <div>
+        <dt>Claude Code<b>クロード・コード</b></dt>
+        <dd>パソコンの中に住んでいて、あなたの代わりにプログラムを読んだり書いたりしてくれる道具。<a href="01-what-is-claude-code.html">01</a></dd>
+      </div>
+      <div>
+        <dt>Agent<b>エージェント</b></dt>
+        <dd>「考える → やってみる → 結果を見る」をひとりでくり返せるソフト。返事をするだけの AI との分かれ目。<a href="01-what-is-claude-code.html">01</a></dd>
+      </div>
+      <div>
+        <dt>Prompt<b>プロンプト</b></dt>
+        <dd>AI へのお願いの文章。特別な書き方はいらず、人に頼むときと同じ言葉でよい。<a href="03-your-first-prompt.html">03</a></dd>
+      </div>
+      <div>
+        <dt>Context window<b>覚えていられる量</b></dt>
+        <dd>Claude が一度に頭に置いておける量。机の広さのようなもので、はみ出した分は要約に置きかわる。<a href="05-context-management.html">05</a></dd>
+      </div>
+      <div>
+        <dt>Tool<b>ツール（道具）</b></dt>
+        <dd>ファイルを読む、コマンドを走らせる、といった「実際に手を動かす」能力のこと。<a href="02-how-claude-code-works.html">02</a></dd>
+      </div>
+      <div>
+        <dt>Plan mode<b>計画モード</b></dt>
+        <dd>何も書き換えず、調べて計画だけ出させる状態。やり直しがいちばん安く済む場所。<a href="03-your-first-prompt.html">03</a></dd>
+      </div>
+      <div>
+        <dt>CLAUDE.md<b>プロジェクトのメモ帳</b></dt>
+        <dd>始めるたびに自動で読まれる1枚のメモ。毎回おなじ説明をしなくて済むようになる。<a href="06-claude-md.html">06</a></dd>
+      </div>
+      <div>
+        <dt>Subagent<b>サブエージェント</b></dt>
+        <dd>調べ物を任せる別の担当。別の机で作業して、結果だけを持ってくる。<a href="07-subagents.html">07</a></dd>
+      </div>
+      <div>
+        <dt>Skill<b>スキル</b></dt>
+        <dd>やり方を書いて置いておくメモ。ふだんは名前だけが見えていて、関係する場面で中身が開かれる。<a href="08-skills.html">08</a></dd>
+      </div>
+      <div>
+        <dt>Hook<b>フック</b></dt>
+        <dd>決めた場面で必ず走る命令。唯一「お願い」ではなく「保証」になる仕組み。<a href="10-hooks.html">10</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="gloss" style="border-top:0">
+    <h2 id="source">この版について</h2>
+    <p style="margin:16px 0 0;font-size:15px;line-height:1.9;max-width:44em">
+      もとになっているのは、Anthropic 公式の Claude Code 入門コースです。話題・順番・結論は、このサイトの<a href="../claude-code.html">くわしい版</a>とそろえてあります。
+    </p>
+
+    <div class="warn" style="max-width:44em">
+      <b>公式の「やさしい版」ではありません</b>
+      <p>Anthropic がやさしい版を出しているわけではありません。これは公式コースの内容を<strong>このサイトが独自に書き直したもの</strong>です。言いかえやたとえ話は、読みやすさのためにこちらで足しています。</p>
+    </div>
+
+    <ul class="acts">
+      <li>
+        <h3>やさしくするために変えたこと</h3>
+        <p>専門用語を言いかえ、たとえ話を足し、一文を短くしました。英語の原文と、動画の時間に沿った並びは入れていません。</p>
+      </li>
+      <li>
+        <h3>変えていないこと</h3>
+        <p>公式が言っていない事実は足していません。コマンド名やファイル名は、実際に使うものなのでそのままです。</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル ／ claude.com/courses（やさしい版は当サイトによる書き直し）</span>
+  <a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>
