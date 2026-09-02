@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 一度教えれば、覚えてくれる — やさしい版</title>
+<meta name="description" content="スキルを、やさしい日本語で。やり方を書いて置いておくと、関係する場面で自動的に開かれる仕組み。説明文がすべてを決めます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる" aria-current="page">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 08 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">同じ説明を、もうしない</p>
+  </div>
+
+  <h1 class="hero__title">一度教えれば、<br><em>覚えてくれる</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <strong>チームの書き方のきまりを、あなたは何度説明したでしょうか。</strong>見直しのたびに指摘の形を説明し直し、記録を残すたびに好みを思い出させている。<strong>スキル</strong>は、それを一度で終わらせる仕組みです。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>他の仕組みとの<br><small>使い分けが分かる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../08-skills.html">08 スキルとは何か</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">PAIN</span><span class="sec__kind">困りごと</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">毎回、同じ説明をしている</h2>
+      <p><strong>毎回おなじことを言い直している。そこが出発点です。</strong></p>
+
+      <ul class="chips">
+        <li>チームの書き方のきまりを説明する</li><li>見直しのときの指摘の形を説明し直す</li><li>記録を残すときの好みの書き方を思い出させる</li>
+      </ul>
+
+      <p>そして一行で切ります。<strong>スキルはこれを解決します。</strong></p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          スキルが解決しようとしている困りごとは、どんなものですか。
+          <ul class="chk__c"><li>同じ説明を、場面が来るたびに何度もし直していること</li><li>説明した内容が、途中で書き換えられてしまうこと</li><li>チームの人数が増えると、指示が届かなくなること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — くり返しをやめるための仕組みです。</p>
+          <p>書き方のきまりも、見直しの形も、記録の残し方も、毎回言い直す必要がなくなります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">WHAT</span><span class="sec__kind">正体</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">一度書けば、あとは自動</h2>
+      <p><strong>やり方を一度だけ書いておくと、関係する場面で自動的に使われます。</strong></p>
+
+      <blockquote class="quote">
+        <p>スキルとは、何かのやり方を Claude に一度だけ教えるためのファイル。Claude はその知識を、関係する場面で自動的に使う。</p>
+        <cite>— 公式コースでの説明</cite>
+      </blockquote>
+
+      <p>Claude Code では <code>SKILL.md</code> という名前のファイルが実体です。</p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>職場の壁に貼ってある作業手順書です。ふだんは目に入りませんが、その作業をする場面になると<strong>自分から見に行く</strong>。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          スキルはどんなタイミングで使われますか。
+          <ul class="chk__c"><li>始めるたびに、必ず最初から読み込まれる</li><li>頼まれた内容が、そのスキルに関係するときに自動的に</li><li>スキルの名前を打って呼び出したときだけ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 名前を指定しなくても、場面が合えば自分から使われます。</p>
+          <p>いつも読み込まれているわけではないのが、あとで出てくる他の仕組みとのちがいです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">TRIGGER</span><span class="sec__kind">かなめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">「説明文」がすべてを決める</h2>
+      <p><strong>スキルにつけた説明文が、それを使うかどうかの判断材料になります。</strong></p>
+
+      <ul class="steps">
+        <li><h3>あなたが「この変更を見直して」と頼む</h3><p>スキル名を出す必要はありません。</p></li>
+        <li><h3>Claude が、手元のスキルの説明文と見くらべる</h3></li>
+        <li><h3>当てはまったものだけを開く</h3></li>
+      </ul>
+
+      <div class="warn">
+        <b>ここから導かれる、大事な書き方</b>
+        <p>中身がどれだけ良くても、<strong>説明文が実際の頼み方の言葉と噛み合わなければ一度も使われません</strong>。本当の仕事は、中身より<strong>「どんなときに使うか」を説明文に書くこと</strong>です。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          スキルを作るとき、いちばん気をつけるべきなのはどこですか。
+          <ul class="chk__c"><li>どんなときに使うのかが、説明文から伝わるようにすること</li><li>中身をできるだけ短くまとめること</li><li>ファイルを置く場所を、深い階層にしないこと</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 頼み方の言葉と噛み合わなければ、中身が良くても呼ばれません。</p>
+          <p>使うかどうかの判断は、説明文を見て行われるためです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">WHERE</span><span class="sec__kind">置き場所</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">誰のためのスキルか</h2>
+      <p><strong>そのスキルを必要とするのが誰かによって、置き場所が変わります。</strong></p>
+
+      <ul class="acts">
+        <li><h3>自分用 — どのプロジェクトにもついてくる</h3><p>記録の書き方、資料のまとめ方、説明のしかたの好み。</p></li>
+        <li><h3>プロジェクト用 — 関わる人全員に自動で行きわたる</h3><p>チームの決まり、会社の表記ルール、使う書体や色。</p></li>
+      </ul>
+
+      <p><a href="06-claude-md.html#s4">06 のメモ帳</a>と、まったく同じ考え方です。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          スキルの置き場所は、何によって決まりますか。
+          <ul class="chk__c"><li>自分だけに効かせたいのか、チーム全員に届けたいのか</li><li>そのスキルの中身が、どれくらいの長さになるか</li><li>そのスキルを、どれくらいの頻度で必要とするか</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 届けたい相手が誰なのかで、置き場所が分かれます。</p>
+          <p>プロジェクトのメモ帳を置き分けるときと、同じ考え方です。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">COMPARE</span><span class="sec__kind">使い分け</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">メモ帳・スキル・自分で打つ命令のちがい</h2>
+      <p><strong>ちがいは「いつ読み込まれるか」です。</strong></p>
+
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head">
+          <div>仕組み</div><div>いつ読み込まれるか</div><div>向いているもの</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">メモ帳<small>ALWAYS</small></div>
+          <div class="modes__c" data-h="いつ読み込まれるか">毎回かならず</div>
+          <div class="modes__c" data-h="向いているもの">全体に効かせたい決まりごと</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">スキル<small>ON DEMAND</small></div>
+          <div class="modes__c" data-h="いつ読み込まれるか">頼まれた内容に合ったときだけ、Claude が自動で</div>
+          <div class="modes__c" data-h="向いているもの">特定の作業のための専門知識</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">自分で打つ命令<small>MANUAL</small></div>
+          <div class="modes__c is-ask" data-h="いつ読み込まれるか">あなたが打ったとき</div>
+          <div class="modes__c" data-h="向いているもの">はっきり呼び出したい決まった処理</div>
+        </div>
+      </div>
+
+      <p><strong>スキルは、ふだんは名前と説明文しか読み込まれません。</strong>不具合を追っているときに、見直し用のチェックリストが机に居座っている必要はありません。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          メモ帳とスキルの、いちばん大きなちがいはどこですか。
+          <ul class="chk__c"><li>書ける内容の種類が制限されているかどうか</li><li>チームで共有できるかどうか</li><li>毎回読み込まれるか、場面に合ったときだけ開かれるか</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 常に効かせたい決まりと、その作業のときだけ要る知識で使い分けます。</p>
+          <p>ふだんは名前と説明文だけなので、置いておける量をむだに使いません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <p>いちばん効くのは、<strong>特定の作業に使う専門的な知識</strong>です。</p>
+
+      <ul class="chips">
+        <li>チームで守っている見直しの基準</li><li>好みの記録の書き方</li><li>会社の表記や見た目のきまり</li>
+      </ul>
+
+      <p class="wrapup">同じことを Claude に何度も説明していると気づいたなら——それは、<em>書かれるのを待っているスキル</em>だ。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>置き場所のパスや、実際の書き方まで。→ <a href="../08-skills.html">くわしい版 08</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="07-subagents.html"><b>前のレッスン — 07</b><em>調べ物をおまかせする</em></a>
+  <a class="is-next" href="09-mcp.html"><b>次のレッスン — 09</b><em>外の道具とつなぐ</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「What are skills?」／ claude.com/courses</span>
+  <a href="../08-skills.html">くわしい版 08 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

@@ -18,7 +18,8 @@ import re, io, glob, hashlib, sys
 APPLY = "--apply" in sys.argv
 FILES = sorted(glob.glob("0*.html")+glob.glob("1*.html")+["cloudflare.html","summary.html"]
                +glob.glob("ai-fluency/*.html")+glob.glob("advanced/*.html")
-               +glob.glob("educators/*.html")+glob.glob("github/*.html"))
+               +glob.glob("educators/*.html")+glob.glob("github/*.html")
+               +glob.glob("easy/*.html"))
 TABLE  = re.compile(r'表\s*[ABC]')
 POSREF = re.compile(r'(?<!答え: )(?<!答え:)\b[ABC]\b|[123]つめ|[一二三]つめ|[123]番目|最初の選択肢|最後の選択肢')
 

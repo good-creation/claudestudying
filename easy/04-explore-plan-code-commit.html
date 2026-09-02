@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 進め方の型をおぼえる — やさしい版</title>
+<meta name="description" content="しらべる → 計画する → 書く → 保存する。Claude Code のいちばん大事なワークフローを、やさしい日本語で。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる" aria-current="page">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 04 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">この回がいちばん大事</p>
+  </div>
+
+  <h1 class="hero__title">進め方の型を<br><em>おぼえる</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    公式コースが<strong>「ひとつだけ持って帰るならこれ」</strong>と言っている回です。順番は<strong>しらべる → 計画する → 書く → 保存する</strong>。多くの人はここをとばして、あとから直す作業を増やしています。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>4段の型を<br><small>自分の手順にする</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../04-explore-plan-code-commit.html">04 探索 → 計画 → コード → コミット</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">FLOW</span><span class="sec__kind">全体像</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">4段の型</h2>
+      <p><strong>しらべる → 計画する → 書く → 保存する。この順番を守るだけです。</strong></p>
+
+      <blockquote class="quote">
+        <p>Claude Code からひとつだけ持って帰るなら、このワークフローにしてほしい。</p>
+        <cite>— 公式コースでの説明</cite>
+      </blockquote>
+
+      <ul class="chips">
+        <li>しらべる / Explore</li><li>計画する / Plan</li><li>書く / Code</li><li>保存する / Commit</li>
+      </ul>
+
+      <p>とばすと何が起きるかも名指しされています。<strong>いきなり「書いて」と頼むから、あとで方向を直す作業が増える。</strong></p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>作文と同じです。<strong>構成を作らずに書き始めると、途中で行き詰まって最初から書き直す</strong>——あれがそのまま起きます。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          この型をとばすと、どうなると説明されていますか。
+          <ul class="chk__c"><li>あとから方向を直す作業が増える</li><li>できあがったものの動作が遅くなる</li><li>使える機能の種類が減ってしまう</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 先に段取りを組まないぶんのつけが、あとの手直しとして返ってきます。</p>
+          <p>だからこの回は、直す場所をできるだけ手前に移すことを扱っています。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">PLAN</span><span class="sec__kind">段 1–2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">しらべる、そして計画する</h2>
+      <p><strong>最初の2段は、計画モードひとつで片づきます。</strong></p>
+
+      <div class="prompt">
+        <b>頼み方の例（日本語にしたもの）</b>
+        <p>画像をアップロードする一連の流れに、軽い画像形式への変換を足したい。流れのどこでやるべきか、新しく必要な部品はあるか、どう進めるべきかを調べてほしい。</p>
+      </div>
+
+      <p>Claude は関係するファイルを読み、必要ならウェブでも調べて、<strong>やり方の案</strong>を出します。足りなければ「ここをもっとくわしく」と注文をつけられます。</p>
+
+      <div class="tip">
+        <b>この回のいちばん大事な一行</b>
+        <p><strong>方向を直すなら、ここでやります。まだコードが1行も書かれていないからです。</strong>計画を直すのと、書かれたものを直すのとでは、手間が何倍もちがいます。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          計画の段階が、方向を直すのに向いているのはなぜですか。
+          <ul class="chk__c"><li>その段階なら、あとで取り消せる形で記録が残るから</li><li>その時点ではまだ何も書かれておらず、直すのが安く済むから</li><li>その段階でだけ、細かい注文を受けつけてくれるから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 書かれたものを直すより、書かれる前に直すほうがずっと手間が少なくて済みます。</p>
+          <p>調べているあいだファイルは読まれるだけなので、この時点では何も壊れていません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">CODE</span><span class="sec__kind">段 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">書かせる</h2>
+      <p><strong>計画を承認したら、あとは順に進めさせます。</strong></p>
+
+      <p>Claude は「終わった」と判断する前に、<strong>できる範囲で自分でつまずきを直します</strong>。それでも、ときにはあなたの助けが必要になります。</p>
+
+      <div class="tip">
+        <b>計画モードのもうひとつの効き目</b>
+        <p>終わったあとも、<strong>どういう考えでそこにたどり着いたか</strong>が残っています。それが次の判断の材料になります。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          書かせている最中の Claude について、正しい説明はどれですか。
+          <ul class="chk__c"><li>できる範囲では自分で直そうとするが、人の助けが要ることもある</li><li>つまずいたら必ず止まって、人の指示を待つ</li><li>いったん始めたら、終わるまで人は口を出せない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 自分で解決を試みたうえで、それでも足りなければ人の出番になります。</p>
+          <p>どこまで自分で判断させるかは、確認のしかたの設定でも変えられます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">SHARP</span><span class="sec__kind">精度を上げる</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">うまく書かせるための3つ</h2>
+      <p><strong>Claude が自分の結果に自信を持つには、「正しい」とはどういう状態かがはっきりしていなければなりません。</strong></p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">Success criteria</p>
+          <h3>「できた」の条件を決める</h3>
+          <p>何ができたら終わりかを、計画の段階で書いておきます。条件がなければ<strong>「たぶんできた」以上のことは言えません</strong>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Tools</p>
+          <h3>道具を足す</h3>
+          <p>目的に合う道具があると、往復が減ります。画面まわりなら、ブラウザを操作できる道具があれば<strong>見た目を自分で確かめられます</strong>。</p>
+        </article>
+        <article>
+          <p class="cards__k">Test suite</p>
+          <h3>点検の仕組みを用意する</h3>
+          <p>正しく動くかを機械的に確かめる仕組み（テスト）があれば、何度でも自分で確認できます。ただし<strong>その点検が信用できるかを先に確かめてください</strong>。まちがった物差しは、まちがったまま合格を出します。</p>
+        </article>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          点検の仕組みを Claude 自身に書かせるとき、気をつけることは何ですか。
+          <ul class="chk__c"><li>書かせたあとで、内容を必ず短くまとめ直すこと</li><li>点検の数をできるだけ多くそろえておくこと</li><li>その点検そのものが信用できるかを、先に確かめること</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 物差しがまちがっていると、まちがったまま合格の判定が出ます。</p>
+          <p>そもそも、この節の前提は「正しいとはどういう状態か」をはっきりさせることでした。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">COMMIT</span><span class="sec__kind">段 4</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">保存する</h2>
+      <p><strong>記録に残す前に、別の担当に中身を見てもらいます。</strong></p>
+
+      <p>変更をひとまとまりの記録として残すことを<strong>コミット</strong>と言います（→ <a href="../github/02-commit-and-main.html">GitHub コース 02</a>）。</p>
+
+      <div class="tip">
+        <b>なぜ、わざわざ別の担当なのか</b>
+        <p>作業した本人は、途中の事情を知りすぎています。だからおかしなところに気づけません。<strong>書いた本人にチェックさせない</strong>——当たり前の原則を、ここでも守るためです。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          記録に残す前に別の担当へ見てもらうのは、なぜですか。
+          <ul class="chk__c"><li>作業していた本人が持っている思い込みを、引き継がずに見てもらえるから</li><li>そのほうが見てもらうのにかかる時間が短くて済むから</li><li>本人が見ると、記録に残すのを忘れてしまうことがあるから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 途中の事情を知らない目で見るほうが、おかしなところに気づけます。</p>
+          <p>書いた人と見る人を分ける、という考え方をそのまま仕組みにしたものです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <ul class="acts">
+        <li><h3>しらべる</h3><p>必要な情報を Claude に渡すため。</p></li>
+        <li><h3>計画する</h3><p>「できた」を測る行動計画を作るため。</p></li>
+        <li><h3>書く</h3><p>納得できる形に落ち着くまでやりとりするため。</p></li>
+        <li><h3>保存する</h3><p>見直してから残し、次に移るため。</p></li>
+      </ul>
+
+      <p class="wrapup">計画は、<em>Claude のためだけにあるのではない</em>。あなたが方向を直せる場所を、コードが書かれる前に一か所つくるためにある。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>実際の画面や、計画の保存場所まで。→ <a href="../04-explore-plan-code-commit.html">くわしい版 04</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="03-your-first-prompt.html"><b>前のレッスン — 03</b><em>はじめてお願いしてみる</em></a>
+  <a class="is-next" href="05-context-management.html"><b>次のレッスン — 05</b><em>「机の広さ」を管理する</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「The Explore → Plan → Code → Commit workflow」／ claude.com/courses</span>
+  <a href="../04-explore-plan-code-commit.html">くわしい版 04 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

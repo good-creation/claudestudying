@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 見直して、世に出す — やさしい版</title>
+<meta name="description" content="04 の最後の段を、実際の操作に落とす回。別の目で見直す、まとめて片づける、あとで続きに戻る。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す" aria-current="page">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 11 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">最後の一段</p>
+  </div>
+
+  <h1 class="hero__title">見直して、<br><em>世に出す</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    <a href="04-explore-plan-code-commit.html">04</a> の4段の型、その最後の<strong>「保存する」</strong>を実際の操作に落とします。やることは<strong>別の目で見直してもらう・まとめて片づける・あとで続きに戻る</strong>の3つです。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>作ったものを<br><small>安全に出すまでが分かる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../11-review-and-ship.html">11 レビューして出荷する</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">REVIEW</span><span class="sec__kind">段 1</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">別の目で見直してもらう</h2>
+      <p><strong>提出する前に、調べ役の担当に見直しを頼みます。</strong></p>
+
+      <blockquote class="quote">
+        <p>担当は自分の机で作業するので、新しい視点を持っている。書いていた本人が持っている思い込みを引き継がない。</p>
+        <cite>— 公式コース本文より</cite>
+      </blockquote>
+
+      <p>作文を出す前に友だちに読んでもらうのと同じです。自分では何度読み返しても誤字は見つかりません。</p>
+
+      <ul class="acts">
+        <li><h3>読むだけの道具に限る</h3><p>見直し役には<strong>書き換えの道具を渡しません</strong>。指摘するのが仕事で、直すのは仕事ではないからです。</p></li>
+        <li><h3>設定をプロジェクトに入れる</h3><p><strong>チーム全員が同じ見直し役を使えます。</strong></p></li>
+      </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          見直し役の担当に、書き換えの道具を渡さないのはなぜですか。
+          <ul class="chk__c"><li>見直す役目は問題を指摘することであって、自分で直すことではないから</li><li>書き換えの道具を渡すと、動きが遅くなってしまうから</li><li>書き換えの道具は、本体の側でしか使えない決まりだから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 役割を分けるために、できることのほうも分けておきます。</p>
+          <p>指摘する人が自分で直してしまうと、見直しとして成り立たなくなります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">SHIP</span><span class="sec__kind">段 2</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まとめて片づける</h2>
+      <p><strong><code>/commit-push-pr</code> というスキルが、3つの手順をまとめて片づけます。</strong></p>
+
+      <p>世に出すまでには、ふつう<strong>記録として残し、共有の置き場所へ送り、「これを取り込んでください」と申請する</strong>——という3段階があります。</p>
+
+      <div class="tip">
+        <b>用語のたね明かし</b>
+        <p>順に<strong>コミット</strong>、<strong>プッシュ</strong>、<strong>プルリクエスト</strong>と呼びます。名前だけ知っていれば十分ですが、気になったら<a href="../github/index.html">GitHub コース</a>へ。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/commit-push-pr</code> は何をしてくれますか。
+          <ul class="chk__c"><li>作ったものが正しく動くかを、自動で点検する</li><li>記録・送信・取り込みの申請を、ひとつの操作でまとめて行う</li><li>見直し役の担当を、自動で作ってくれる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 手順としてはばらばらの3つを、ひと続きにまとめたものです。</p>
+          <p>見直しは、これを走らせる前に別で済ませておきます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">RESUME</span><span class="sec__kind">段 3</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">あとで、続きに戻る</h2>
+      <p><strong>申請の番号さえ分かれば、中断したところから再開できます。</strong></p>
+
+      <p>Claude が申請を作ると、そのときのやりとりは<strong>自動的にその申請と結びつけられます</strong>。あとで戻りたくなったら、この命令を打つだけです。</p>
+
+      <div class="prompt">
+        <b>ターミナル</b>
+        <p class="tree">claude --from-pr &lt;申請の番号&gt;</p>
+      </div>
+
+      <div class="tip">
+        <b>なぜ、これが効くのか</b>
+        <p><a href="05-context-management.html#s3">05</a> のとおり、まっさらに戻せば流れは消えます。これは<strong>消えたはずの流れを、外にある目印から取り戻す</strong>手段です。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          あとから同じ作業の続きに戻れるのは、なぜですか。
+          <ul class="chk__c"><li>やりとりの内容が、消えないように保存され続けているから</li><li>置いておける量が、作業ごとに分けて確保されているから</li><li>作った申請とやりとりが結びついていて、その番号から呼び戻せるから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 外側にある目印をたどって、そこに戻る形です。</p>
+          <p>手元をまっさらにしていても、番号さえ分かれば続きから始められます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <ul class="acts">
+        <li><h3>出す前に、別の担当に見直させる</h3><p>思い込みの入っていない目で見てもらうため。</p></li>
+        <li><h3>記録から申請までを、ひとつの操作で</h3><p>手順をばらばらにやる手間をなくすため。</p></li>
+        <li><h3>あとで続きに戻れるようにする</h3><p>指摘への対応をあとから進められるように。</p></li>
+      </ul>
+
+      <p class="wrapup">どれも小さな機能。でも、<em>毎日のくり返しから、かなりの手間を取り除いてくれる</em>。</p>
+
+      <div class="tip">
+        <b>コースはここまでです</b>
+        <p>おつかれさまでした。次は、<a href="../claude-code.html">くわしい版</a>で同じ11回をもう一度たどるか、<a href="../quiz.html">試験</a>で確かめるか。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="10-hooks.html"><b>前のレッスン — 10</b><em>「必ず」やらせる仕組み</em></a>
+  <a class="is-next" href="index.html"><b>コース目次</b><em>やさしい版の目次に戻る</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 claude.com/courses ／ Claude 公式チャンネル</span>
+  <a href="../11-review-and-ship.html">くわしい版 11 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

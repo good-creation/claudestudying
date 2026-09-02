@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 はじめてお願いしてみる — やさしい版</title>
+<meta name="description" content="Claude Code へのはじめてのお願いを、やさしい日本語で。特別な書き方は不要。確認のしかたの切り替えと、先に計画だけ出させる使い方。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる" aria-current="page">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 03 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">こわさをなくす2つのスイッチ</p>
+  </div>
+
+  <h1 class="hero__title">はじめて<br><em>お願いしてみる</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    はじめて自分のプログラムを AI にさわらせるのは、こわいものです。その正体は<strong>「何をされるか分からない」</strong>こと。ここでは、それを先に見えるようにする<strong>2つのスイッチ</strong>を覚えます。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>こわがらずに<br><small>最初の一回を出せる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★☆☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../03-your-first-prompt.html">03 最初のプロンプトを書く</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">TALK</span><span class="sec__kind">入口</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まず、ふつうに話しかける</h2>
+      <p><strong>覚えるべき書き方はありません。人に頼むときと同じ言葉で通じます。</strong></p>
+
+      <div class="tip">
+        <b>安心してよい理由</b>
+        <p>「呪文みたいな書き方を覚えないと動かないのでは」と身がまえる人が多いのですが、そんなことはありません。うまくいかない原因は、たいてい書き方ではなく<strong>頼む内容があいまい</strong>なほうです。</p>
+      </div>
+
+      <p>そのうえで、送る前に決められることが2つ。<strong>どこまで確認させるか</strong>と、<strong>いきなり書かせるか、先に計画を出させるか</strong>です。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          Claude Code へのお願いの書き方について、この節が言っているのはどれですか。
+          <ul class="chk__c"><li>人に頼むときと同じ言葉づかいで構わない</li><li>決まった形式にそって項目を並べる必要がある</li><li>英語で書かないと正しく伝わらない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 覚えるべき特別な型はありません。</p>
+          <p>気をつけるとしたら書き方ではなく、頼む内容がはっきりしているかどうかです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">MODE</span><span class="sec__kind">スイッチ 01</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">どこまで確認させるか</h2>
+      <p><strong><kbd>Shift</kbd>+<kbd>Tab</kbd> で、確認の細かさを切り替えられます。</strong></p>
+
+      <ul class="acts">
+        <li><h3>手動 — 毎回たずねる</h3><p>書き換えも命令の実行も、そのつど止まって確認します。よく知らないプログラムを触るときに。</p></li>
+        <li><h3>おまかせ編集 — 書き換えは自動</h3><p>ファイルの書き換えは自動で進み、命令の実行はたずねます。あとでまとめて読む前提のときに。</p></li>
+      </ul>
+
+      <p>どちらが正しいということはありません。<strong>自分が落ち着いていられるほうを選べばいい</strong>——それが公式の言い方です。最初は手動、慣れたら切り替える、で十分。</p>
+
+      <div class="warn">
+        <b>いまのバージョンでは、少し変わっています</b>
+        <p>おまかせ編集は、ファイルを移す・消す命令も自動で通るようになりました。<strong>消す命令が黙って走ることがある</strong>のは覚えておいてください。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          どちらのモードを使うべきかについて、この節はどう説明していますか。
+          <ul class="chk__c"><li>手動のほうがつねに正しいので、慣れても変えないほうがよい</li><li>正解はなく、自分が落ち着いていられるほうを選んでよい</li><li>プログラムの規模によって、使えるモードが決まっている</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — どちらが正しいというものではない、という説明のしかたをしています。</p>
+          <p>不慣れなうちは毎回たずねる設定、慣れてきたら切り替える、という進め方で問題ありません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">PLAN</span><span class="sec__kind">スイッチ 02</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">計画モード：1行も書き換えさせない</h2>
+      <p><strong>調べて、やり方の案だけを出させるモードです。はじめての人にいちばん向いています。</strong></p>
+
+      <ul class="steps">
+        <li><h3>やりたいことを、ふつうに書く</h3></li>
+        <li><h3>読むだけで、中を調べる</h3><p><strong>このあいだ、ファイルは1文字も変わりません。</strong></p></li>
+        <li><h3>分からないところを聞いてくる</h3></li>
+        <li><h3>そのまま実行できる計画を出す</h3><p>どのファイルを、どういう順番で、どう変えるかまで。</p></li>
+      </ul>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>大工さんに「まず図面を見せて」と言うのと同じ。建て始めてから間取りを変えるより、図面の段階のほうがずっと安く済みます。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          計画モードで調べているあいだ、ファイルはどうなりますか。
+          <ul class="chk__c"><li>先に書き換えられ、気に入らなければ元に戻される</li><li>読まれるだけで、書き換えは行われない</li><li>いったん別の場所に写しが作られ、そちらが書き換えられる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 調べるだけなので、中身はそのままです。</p>
+          <p>だからこそ、まだ何も壊れていない状態で計画に注文をつけられます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">DEMO</span><span class="sec__kind">やってみる</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">例：画面を暗い配色に切り替える機能をつける</h2>
+      <p><strong>起動して、計画モードにして、やりたいことを書く。それだけです。</strong></p>
+
+      <div class="prompt">
+        <b>実際に入力された文章（日本語にしたもの）</b>
+        <p>アプリ全体にダークモードを入れたい。ヘッダーに、明るい表示と暗い表示を切り替えるスイッチを作ってほしい。いまの明るいほうの配色に合う、見やすい色を選んでほしい。</p>
+      </div>
+
+      <p>短い文ですが、うまく書けている理由が3つあります。</p>
+
+      <ul class="acts">
+        <li><h3>どこまでやるかが書いてある</h3><p>「アプリ全体に」。範囲が最初に決まっています。</p></li>
+        <li><h3>できあがりが目に見える</h3><p>「ヘッダーの切り替えスイッチ」。<strong>何ができたら終わりか</strong>がはっきりしています。</p></li>
+        <li><h3>迷いそうな部分に、物差しを渡している</h3><p>「いまの配色に合う、見やすい色」。答えがひとつに決まらない部分に、選び方の基準を先に渡しています。</p></li>
+      </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          例に出てきた文章が良いとされるのは、どんな点があるからですか。
+          <ul class="chk__c"><li>手を入れる範囲・完成の形・迷ったときの物差しが書いてあるから</li><li>専門用語をできるだけ多く使い、指示を短くまとめているから</li><li>使ってほしい部品の名前を、ひとつずつ指定しているから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — この3つがそろっていると、受け取った側が迷いません。</p>
+          <p>部品の名前まで細かく指定しているわけではなく、判断できる材料を渡しているのがポイントです。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <p class="wrapup">お願いは<em>できるだけ具体的に</em>。そして、コードが書かれる前に<em>計画を読む</em>。</p>
+      <p>この「まず計画、それから書く」は、次の回でワークフロー全体に広がります。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>実際の英語の文章と、画面の見た目つきで。→ <a href="../03-your-first-prompt.html">くわしい版 03</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="02-how-claude-code-works.html"><b>前のレッスン — 02</b><em>中では何が起きているの？</em></a>
+  <a class="is-next" href="04-explore-plan-code-commit.html"><b>次のレッスン — 04</b><em>進め方の型をおぼえる</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「Your first Claude Code prompt」／ claude.com/courses</span>
+  <a href="../03-your-first-prompt.html">くわしい版 03 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 調べ物をおまかせする — やさしい版</title>
+<meta name="description" content="サブエージェントを、やさしい日本語で。別の机で調べてもらい、答えだけを持ってきてもらう仕組みと、そのかわりに見えなくなるもの。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする" aria-current="page">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 07 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">机を散らかさない一番の方法</p>
+  </div>
+
+  <h1 class="hero__title">調べ物を<br><em>おまかせする</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    一言でまとめられます。<strong>「探した道のりはいらない。答えだけほしい」。</strong>たくさんのファイルを読んで分かった<strong>ひとつの事実</strong>だけを持ち帰り、途中で開いたものは全部捨てる仕組みです。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>調べ役に任せる場面が<br><small>判断できるようになる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../07-subagents.html">07 サブエージェントとは何か</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">WHAT</span><span class="sec__kind">正体</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">用事をまかせる担当</h2>
+      <p><strong>Claude が調べ物をまかせられる、別の担当のことです。</strong></p>
+
+      <blockquote class="quote">
+        <p>サブエージェントとは、Claude が仕事をまかせられる専門の担当のこと。</p>
+        <cite>— 公式コースでの説明</cite>
+      </blockquote>
+
+      <p>担当は<strong>自分専用の机</strong>を持って動きます。終わったとき、こちらに返るのは<strong>まとめだけ</strong>です。</p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>調べ物を後輩に頼むのと同じ。後輩は図書館で20冊めくって、戻ってきて<strong>「3階のこの本の、この章です」</strong>とだけ伝えます。<strong>めくった20冊は、あなたの机には来ません。</strong></p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          担当が仕事を終えたとき、こちら側に返ってくるのは何ですか。
+          <ul class="chk__c"><li>調べた過程がすべて記録された作業のログ</li><li>絞り込まれた結果のまとめだけ</li><li>読んだファイルの一覧と、その中身</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 途中でやったことは向こうに置いたまま、結論だけが渡されます。</p>
+          <p>だからこそ、こちらの机が調べ物で埋まりません。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">WHY</span><span class="sec__kind">効き目</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">なぜ机が守られるのか</h2>
+      <p><strong>担当を呼ぶと、そこで別の机が立ち上がるからです。</strong></p>
+
+      <p>渡されるのは2つだけ。</p>
+
+      <ul class="acts">
+        <li><h3>役割の説明</h3><p>その担当が何者で、どう振る舞うべきかの定義。</p></li>
+        <li><h3>今回の用事の内容</h3><p>あなたのお願いを、本体側が具体的な指示に書き直したもの。</p></li>
+      </ul>
+
+      <p>あとは担当が自分で進めます。読んでも、書き換えても、<strong>そのどれもこちらの会話には出てきません</strong>。向こうのやりとりは、終わったあと完全に消されます。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          担当に渡されるものは何ですか。
+          <ul class="chk__c"><li>役割の説明と、今回の用事の内容</li><li>これまでの会話の記録すべて</li><li>プロジェクトの全ファイルの中身</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 誰として振る舞うかと、何をしてほしいかの2つです。</p>
+          <p>これまでのやりとりを丸ごと引き継ぐわけではないので、向こうの机はきれいな状態から始まります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">EXAMPLE</span><span class="sec__kind">実例</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">道のりなしで、答えだけ</h2>
+      <p><strong>やることは同じ。ちがうのは、こちらの机に何が残るかだけです。</strong></p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">くらべる点</div><div class="cmp__a">まかせない場合</div><div class="cmp__b">まかせた場合</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">やること</div><div class="cmp__a" data-h="まかせない場合">たくさんのファイルを読み、何度も検索する</div><div class="cmp__b" data-h="まかせた場合">同じ作業を、別の机でやる</div></div>
+        <div class="cmp__row"><div class="cmp__ax">こちらに残るもの</div><div class="cmp__a" data-h="まかせない場合">その全部が机を埋める</div><div class="cmp__b" data-h="まかせた場合">絞られたまとめだけ</div></div>
+        <div class="cmp__row"><div class="cmp__ax">得られる答え</div><div class="cmp__a" data-h="まかせない場合">事実がひとつ</div><div class="cmp__b" data-h="まかせた場合">事実がひとつ</div></div>
+      </div>
+
+      <div class="warn">
+        <b>いいことばかりではありません</b>
+        <p>こちらからは、<strong>どうやってその結論に至ったのかが見えなくなります</strong>。<strong>まとめに入らなかったことは、こちらには存在しない</strong>のと同じです。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          まかせた場合の引きかえに、何が失われますか。
+          <ul class="chk__c"><li>結論にたどり着くまでの過程が、こちらからは見えなくなる</li><li>調べた内容の正確さが、まかせないときより下がる</li><li>同時にほかの作業を進められなくなる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 手元に来るのはまとめだけなので、そこに書かれなかったことは分かりません。</p>
+          <p>途中で何に気づいたのかも、こちらには伝わらないままになります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">BUILTIN</span><span class="sec__kind">最初から入っているもの</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">用意されている担当</h2>
+      <p><strong>自分で作らなくても、すぐ使える担当が入っています。</strong></p>
+
+      <ul class="acts">
+        <li><h3>general-purpose（なんでも屋）</h3><p>調べることと実行することの両方が必要な用事に。</p></li>
+        <li><h3>explore（調べ役）</h3><p>プログラムの中を素早く探すのに。</p></li>
+        <li><h3>plan（計画役）</h3><p>計画モードのときに裏で働き、計画を出す前の調査を担当します。</p></li>
+      </ul>
+
+      <p>つまり、計画モードを使っていた時点で<strong>すでに担当は裏で働いていた</strong>ということです。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          計画モードと、これらの担当の関係はどうなっていますか。
+          <ul class="chk__c"><li>計画モードでは担当は使われず、本体だけで調べている</li><li>計画モードを使うと、裏で調査を受け持つ担当が働いている</li><li>担当を自分で作らないかぎり、計画モードは使えない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 計画を出す前の調査は、専用の担当が受け持っています。</p>
+          <p>気づかないうちに、すでにこの仕組みの恩恵を受けていたことになります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">MAKE</span><span class="sec__kind">自分で作る</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">自分の担当を作る</h2>
+      <p><strong><code>/agents</code> と打って、いくつか答えるだけで作れます。</strong></p>
+
+      <p>聞かれるのは<strong>どこで使うか・何をする担当か・使わせる道具・色</strong>の4つ。すると名前・説明・役割の文章が作られます。このとき作られる<strong>説明文</strong>が、<strong>いつこの担当を呼ぶべきか</strong>の判断材料にもなります。</p>
+
+      <div class="tip">
+        <b>見直し役を作るときの作法</b>
+        <p>コードを見直す担当には<strong>読むだけの道具しか渡しません</strong>。見直す人は問題を指摘すべきで、自分で書き換えるべきではないからです（→ <a href="11-review-and-ship.html">11</a>）。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          自分で作った担当の説明文には、どんな役目がありますか。
+          <ul class="chk__c"><li>担当が使える道具の数を決める</li><li>担当が動くときの速さを決める</li><li>どんなときにその担当を呼ぶべきかの判断材料になる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 呼び出すかどうかは、この説明文を見て決められます。</p>
+          <p>だから「何ができるか」だけでなく「どんな場面で使うか」まで書いておくと、うまく呼ばれるようになります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <p class="wrapup">用事を別の机にわたし、<em>必要なものだけ持ち帰る</em>。こちらの机は、きれいなまま。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>記憶を持たせる設定や、スキルを読み込ませる話まで。→ <a href="../07-subagents.html">くわしい版 07</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="06-claude-md.html"><b>前のレッスン — 06</b><em>プロジェクトのメモ帳</em></a>
+  <a class="is-next" href="08-skills.html"><b>次のレッスン — 08</b><em>一度教えれば、覚えてくれる</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「What are subagents?」／ claude.com/courses</span>
+  <a href="../07-subagents.html">くわしい版 07 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

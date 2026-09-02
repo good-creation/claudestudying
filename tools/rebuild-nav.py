@@ -55,6 +55,12 @@ GITHUB = [
     ("github/index.html", "Git", "GitHub 完全ガイド（別コース）"),
 ]
 
+# 同じ Claude Code 入門コースを、高校生でも読める言葉に書き直した「やさしい版」。
+# 出典は公式コースと同じだが、独立したディレクトリを持ち専用 nav で回すので TARGETS には入れない。
+EASY = [
+    ("easy/index.html", "やさしい版", "Claude Code 入門コース（やさしい版）"),
+]
+
 # 別コース ai-fluency/ 側のレッスン。相対パスがルートと違うので nav も別に生成する。
 AF_LESSONS = [
     ("01-introduction.html",                "01", "AI活用力入門"),
@@ -73,7 +79,7 @@ AF_LESSONS = [
 ]
 
 # nav に載せる項目（表示用）
-NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + AI_FLUENCY + EDUCATORS + GITHUB
+NAV_ITEMS = [HOME, COURSE_INDEX] + LESSONS + APPENDIX + EASY + AI_FLUENCY + EDUCATORS + GITHUB
 
 # nav を書き換える対象ファイル（このサイト自身のページのみ。
 # ai-fluency/ 配下はコース専用 nav を手書きで持つため対象外）
@@ -90,7 +96,7 @@ def nav_for(current):
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
                     % (href, ja, num, ja, cur, num))
-    for href, num, ja in APPENDIX + AI_FLUENCY + EDUCATORS:
+    for href, num, ja in APPENDIX + EASY + AI_FLUENCY + EDUCATORS:
         cur = ' aria-current="page"' if href == current else ""
         rows.append('      <a class="is-appendix" href="%s" title="%s" aria-label="%s"%s>%s</a>'
                     % (href, ja, ja, cur, num))
@@ -263,6 +269,50 @@ for href, num, ja in ([("index.html", "目次", "GitHub 完全ガイド 目次")
         print("  SKIP  %s (not found)" % path); continue
     s_page = io.open(path, encoding="utf-8").read()
     new, n = pat.subn(gh_nav_for(href), s_page, count=1)
+    if n != 1:
+        print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
+    io.open(path, "w", encoding="utf-8").write(new)
+    print("  ok    %s" % path)
+
+
+# --- やさしい版 easy/ の nav ------------------------------------------------
+# 中身は Claude Code 入門コースと同じ11レッスンだが、言葉を書き直した別ページ群。
+# ai-fluency/ と同じく ../ 前置の専用 nav を持つので TARGETS には入れない。
+# 「くわしい版」へ戻る導線を必ず持たせる（この版だけを読んで終わりにさせないため）。
+
+EASY_LESSONS = [
+    ("01-what-is-claude-code.html",      "01", "Claude Code って何？"),
+    ("02-how-claude-code-works.html",    "02", "中では何が起きているの？"),
+    ("03-your-first-prompt.html",        "03", "はじめてお願いしてみる"),
+    ("04-explore-plan-code-commit.html", "04", "進め方の型をおぼえる"),
+    ("05-context-management.html",       "05", "「机の広さ」を管理する"),
+    ("06-claude-md.html",                "06", "プロジェクトのメモ帳"),
+    ("07-subagents.html",                "07", "調べ物をおまかせする"),
+    ("08-skills.html",                   "08", "一度教えれば、覚えてくれる"),
+    ("09-mcp.html",                      "09", "外の道具とつなぐ"),
+    ("10-hooks.html",                    "10", "「必ず」やらせる仕組み"),
+    ("11-review-and-ship.html",          "11", "見直して、世に出す"),
+]
+
+def easy_nav_for(current):
+    rows = ["<nav>"]
+    rows.append('      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次"%s>目次</a>'
+                % (' aria-current="page"' if current == "index.html" else ""))
+    for href, num, ja in EASY_LESSONS:
+        cur = ' aria-current="page"' if href == current else ""
+        rows.append('      <a href="%s" title="%s" aria-label="%s %s"%s>%s</a>'
+                    % (href, ja, num, ja, cur, num))
+    rows.append('      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>')
+    rows.append('      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>')
+    rows.append("    </nav>")
+    return "\n".join(rows)
+
+for href, num, ja in [("index.html", "目次", "やさしい版 目次")] + EASY_LESSONS:
+    path = os.path.join("easy", href)
+    if not os.path.exists(path):
+        print("  SKIP  %s (not found)" % path); continue
+    s_page = io.open(path, encoding="utf-8").read()
+    new, n = pat.subn(easy_nav_for(href), s_page, count=1)
     if n != 1:
         print("  FAIL  %s — found %d bare <nav>" % (path, n)); sys.exit(1)
     io.open(path, "w", encoding="utf-8").write(new)

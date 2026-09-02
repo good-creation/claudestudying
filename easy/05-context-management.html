@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 「机の広さ」を管理する — やさしい版</title>
+<meta name="description" content="Claude が一度に覚えていられる量の話を、やさしい日本語で。何が場所を取るのか、まとめると捨てるの使い分け、節約のコツ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する" aria-current="page">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 05 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">長い作業が失速する原因</p>
+  </div>
+
+  <h1 class="hero__title">「机の広さ」を<br><em>管理する</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    Claude が一度に覚えていられる量には上限があります。<strong>残りをどう見るか、いっぱいになったらどうするか、いつ捨てるか。</strong>長い作業がだんだんおかしくなるかどうかは、たいていここで決まります。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>まとめると捨てるを<br><small>使い分けられる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★☆</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../05-context-management.html">05 コンテキストを管理する</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">WHAT</span><span class="sec__kind">何が場所を取るか</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">何が机を埋めているのか</h2>
+      <p><strong>机に積まれるのは、この4つです。</strong></p>
+
+      <ul class="chips">
+        <li>あなたが書いた文章</li><li>Claude が読んだファイル</li><li>使った道具の呼び出し</li><li>道具から返ってきた結果</li>
+      </ul>
+
+      <p>見落とされやすいのは、うしろの2つ。<strong>道具を1回使うたびに、呼び出しと結果の両方が積まれます。</strong></p>
+
+      <div class="tip">
+        <b>たとえるなら</b>
+        <p>図書館の机です。本を持ってくるたびに狭くなり、戻さずに積み続けると、ノートを広げる場所がなくなります。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          場所を取るものとして、見落とされやすいと言われているのはどれですか。
+          <ul class="chk__c"><li>あなたが最初に書いたお願いの文章</li><li>道具を使ったときの呼び出しと、その結果</li><li>これから使う予定の道具の一覧</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 1回使うごとに、指示と返ってきた内容の両方が積まれます。</p>
+          <p>調べ物をさせればさせるほど、そのぶん空きが減っていきます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">COMPACT</span><span class="sec__kind">まとめる</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">いっぱいになるとまとめられる</h2>
+      <p><strong>上限に近づくと、机の上は自動的に片づけられます。</strong></p>
+
+      <p>やることは<strong>大事なところを短くまとめる</strong>ことと、<strong>もう使わない結果を捨てる</strong>こと。自分のタイミングでやるなら <code>/compact</code> です。</p>
+
+      <div class="warn">
+        <b>細かいところは落ちます</b>
+        <p>前に話したことが、あとから見ると<strong>要約しか残っていない</strong>状態になります。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/compact</code> はどんなときに使うものですか。
+          <ul class="chk__c"><li>これまでの話は手元に残したまま、場所だけを空けたいとき</li><li>これまでの話をすべて消して、まっさらな状態から始めたいとき</li><li>これまでに読ませたファイルを、もう一度読み直させたいとき</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 残すための操作です。</p>
+          <p>ただし短くまとめるので、細かい部分は落ちることを見込んでおいてください。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">CLEAR</span><span class="sec__kind">捨てる</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">まっさらに戻す</h2>
+      <p><strong><code>/clear</code> は、すべて消してゼロから始める操作です。</strong></p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">くらべる点</div><div class="cmp__a">/compact</div><div class="cmp__b">/clear</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">何のための操作か</div><div class="cmp__a" data-h="/compact">残すため</div><div class="cmp__b" data-h="/clear">捨てるため</div></div>
+        <div class="cmp__row"><div class="cmp__ax">残るもの</div><div class="cmp__a" data-h="/compact">短くまとめられた流れ</div><div class="cmp__b" data-h="/clear">何も残らない</div></div>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/clear</code> を実行すると、それまでの内容はどうなりますか。
+          <ul class="chk__c"><li>短い要約になって残る</li><li>大事な部分だけが選ばれて残る</li><li>すべて消えて、何も残らない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: C</b> — 引きずらずにやり直すための操作なので、残すことはしません。</p>
+          <p>まとめて残したいなら、もう一方の操作を使います。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">CHECK</span><span class="sec__kind">点検する</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">いまの残りを見る</h2>
+      <p><strong><code>/context</code> と打つと、いま何がどれくらい場所を取っているかが出ます。</strong></p>
+
+      <div class="tip">
+        <b>この画面の読み方</b>
+        <p>種類ごとに出るのが、この操作の価値です。<strong>道具の定義</strong>が大きければ外部との接続をつなぎすぎ、<strong>会話</strong>が大きければ話が長すぎ、と原因を切り分けられます。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          <code>/context</code> のいちばんの価値は、どんなところにありますか。
+          <ul class="chk__c"><li>何が場所を取っているかが種類ごとに分かり、原因を切り分けられるところ</li><li>使いすぎている部分を、自動で減らしてくれるところ</li><li>残りが少なくなったときに、知らせを出してくれるところ</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — どこが太っているかが見えるので、次に何を減らせばよいかが決まります。</p>
+          <p>減らす操作そのものは、まとめる／捨てるや、接続の見直しで別に行います。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">CHOOSE</span><span class="sec__kind">使い分け</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">どちらを使うべきか</h2>
+      <p><strong>基準はひとつ。いま取り組んでいるのが、さっきと同じものかどうかです。</strong></p>
+
+      <div class="cmp">
+        <div class="cmp__row cmp__row--head">
+          <div class="cmp__ax">くらべる点</div><div class="cmp__a">/compact</div><div class="cmp__b">/clear</div>
+        </div>
+        <div class="cmp__row"><div class="cmp__ax">使う場面</div><div class="cmp__a" data-h="/compact">同じ作業の続き。上限が近いが続けたい</div><div class="cmp__b" data-h="/clear">別の作業に取りかかる</div></div>
+        <div class="cmp__row"><div class="cmp__ax">ねらい</div><div class="cmp__a" data-h="/compact">いまの作業に関係する内容を残す</div><div class="cmp__b" data-h="/clear">前の話が新しい作業に引きずられるのを防ぐ</div></div>
+        <div class="cmp__row"><div class="cmp__ax">失うもの</div><div class="cmp__a" data-h="/compact">細かいところ</div><div class="cmp__b" data-h="/clear">すべて</div></div>
+      </div>
+
+      <p>どちらにも共通する備えがあります。<strong>次も覚えておいてほしいことは、会話ではなくファイルに書いておく</strong>こと。それが次の回の主役です。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          別の作業に取りかかるときに <code>/clear</code> が向いているのは、なぜですか。
+          <ul class="chk__c"><li>作業を切り替えたときだけ、空きを増やす仕組みが働くから</li><li>前の話が、新しい作業の判断に引きずられるのを防げるから</li><li>前の内容を残しておくと、あとで読み返せなくなるから</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 関係のない話が残っていると、新しい判断がそれに引っぱられます。</p>
+          <p>同じ作業を続けるなら、まとめて残すほうを選びます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">SAVE</span><span class="sec__kind">節約する</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">机を広く使う3つのコツ</h2>
+      <p><strong>3つとも「机に載せる前に減らす」という同じ考え方です。</strong></p>
+
+      <div class="cards">
+        <article>
+          <p class="cards__k">Be specific</p>
+          <h3>具体的に頼む</h3>
+          <p>逆説的ですが、<strong>あいまいなお願いのほうが場所を食います。</strong>はっきりした指示がないと、あちこち調べて推測するはめになるからです。</p>
+        </article>
+        <article>
+          <p class="cards__k">Manage servers</p>
+          <h3>外部との接続を絞る</h3>
+          <p>外につなぐ仕組みは、<strong>使っていなくても場所を取り続けます</strong>。関係ないものは切ります（→ <a href="09-mcp.html">09</a>）。</p>
+        </article>
+        <article>
+          <p class="cards__k">Use subagents</p>
+          <h3>調べ役に外へ出す</h3>
+          <p>調べ物を別の担当にまかせると、作業は<strong>別の机</strong>で行われます。結果だけが返るので、こちらは散らかりません（→ <a href="07-subagents.html">07</a>）。</p>
+        </article>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          あいまいなお願いについて、この節はどう説明していますか。
+          <ul class="chk__c"><li>短いぶん、置いておける量の節約になる</li><li>調べ回る手間が増えるので、かえって多くの場所を使う</li><li>あとから細かく指示し直せば、消費は元に戻る</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 短く見えても、そのあとの探索でずっと多くを使います。</p>
+          <p>はっきり書いた数行のほうが、結果として安く済みます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <p class="wrapup">長くなってきたら<em>まとめる</em>。話が変わったら<em>捨てる</em>。忘れられたら困ることは<em>ファイルに書く</em>。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>実際の画面と、数字の読み方まで。→ <a href="../05-context-management.html">くわしい版 05</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="04-explore-plan-code-commit.html"><b>前のレッスン — 04</b><em>進め方の型をおぼえる</em></a>
+  <a class="is-next" href="06-claude-md.html"><b>次のレッスン — 06</b><em>プロジェクトのメモ帳</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「Context Management in Claude Code」／ claude.com/courses</span>
+  <a href="../05-context-management.html">くわしい版 05 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>

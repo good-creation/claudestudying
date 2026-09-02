@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 「必ず」やらせる仕組み — やさしい版</title>
+<meta name="description" content="フックを、やさしい日本語で。お願いではなく保証。決めた場面で例外なく走る仕組みと、危ない操作を止める使い方。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/favicon.png">
+</head>
+<body>
+
+<div class="chrome"><div class="shell chrome__in">
+  <a class="chrome__home" href="index.html">Claude Code 入門コース（やさしい版）</a>
+  <nav>
+      <a href="index.html" title="やさしい版 目次" aria-label="やさしい版 目次">目次</a>
+      <a href="01-what-is-claude-code.html" title="Claude Code って何？" aria-label="01 Claude Code って何？">01</a>
+      <a href="02-how-claude-code-works.html" title="中では何が起きているの？" aria-label="02 中では何が起きているの？">02</a>
+      <a href="03-your-first-prompt.html" title="はじめてお願いしてみる" aria-label="03 はじめてお願いしてみる">03</a>
+      <a href="04-explore-plan-code-commit.html" title="進め方の型をおぼえる" aria-label="04 進め方の型をおぼえる">04</a>
+      <a href="05-context-management.html" title="「机の広さ」を管理する" aria-label="05 「机の広さ」を管理する">05</a>
+      <a href="06-claude-md.html" title="プロジェクトのメモ帳" aria-label="06 プロジェクトのメモ帳">06</a>
+      <a href="07-subagents.html" title="調べ物をおまかせする" aria-label="07 調べ物をおまかせする">07</a>
+      <a href="08-skills.html" title="一度教えれば、覚えてくれる" aria-label="08 一度教えれば、覚えてくれる">08</a>
+      <a href="09-mcp.html" title="外の道具とつなぐ" aria-label="09 外の道具とつなぐ">09</a>
+      <a href="10-hooks.html" title="「必ず」やらせる仕組み" aria-label="10 「必ず」やらせる仕組み" aria-current="page">10</a>
+      <a href="11-review-and-ship.html" title="見直して、世に出す" aria-label="11 見直して、世に出す">11</a>
+      <a class="is-appendix" href="../claude-code.html" title="くわしい版（同じ内容の元のコース）" aria-label="くわしい版へ">くわしい版</a>
+      <a class="is-appendix" href="../index.html" title="コースを選ぶ" aria-label="ホームへ戻る">ホーム</a>
+    </nav>
+</div></div>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Lesson 10 / やさしい版</p>
+    <p class="eyebrow" style="color:var(--signal)">唯一、お願いではないもの</p>
+  </div>
+
+  <h1 class="hero__title">「必ず」<br><em>やらせる仕組み</em></h1>
+
+  <img class="hero__clawd" src="../img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    ここまでの仕組みは、じつは全部<strong>「お願い」</strong>でした。だいたい聞いてくれますが、<strong>たまに聞いてくれません</strong>。<strong>フック</strong>だけがちがいます。決めた場面で、例外なく必ず走ります。
+  </p>
+
+  <dl class="meta">
+    <div><dt>この回のねらい</dt><dd>お願いと保証を<br><small>書き分けられる</small></dd></div>
+    <div><dt>むずかしさ</dt><dd><span>★★★</span></dd></div>
+    <div><dt>くわしい版</dt><dd><a href="../10-hooks.html">10 フックで確実に実行させる</a></dd></div>
+    <div><dt>もとの出典</dt><dd><a href="https://claude.com/courses" target="_blank" rel="noopener">claude.com/courses ↗</a></dd></div>
+  </dl>
+</header>
+
+<main class="doc shell">
+
+  <section class="sec" id="s1">
+    <div class="sec__mark"><div><span class="sec__t">WHY</span><span class="sec__kind">正体</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">お願いではなく、保証</h2>
+      <p><strong>決めた場面で、例外なく必ず走る仕組みです。</strong></p>
+
+      <blockquote class="quote">
+        <p>フックと他のすべてのちがいは、フックが必ず走ることにある。</p>
+        <cite>— 公式コースでの説明</cite>
+      </blockquote>
+
+      <p>くらべて出されるのが<a href="06-claude-md.html">メモ帳</a>です。「直したら毎回きれいに整えて」と書けます。たいていそうしてくれます。<strong>でも、ときどきしません。</strong></p>
+
+      <div class="tip">
+        <b>使い分けは、これだけ</b>
+        <p>メモ帳もスキルも頼み方も、すべて<strong>Claude の判断を通ります</strong>。フックだけが通りません。<strong>「だいたいやってほしいこと」はお願いに。「絶対に起きてほしいこと」はフックに。</strong></p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          フックが他の仕組みとちがうのは、どんな点ですか。
+          <ul class="chk__c"><li>Claude の判断を通らずに、決めた場面で必ず走る点</li><li>他の仕組みより、書ける内容が多い点</li><li>設定を書き換えなくても、自動で内容が変わる点</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 判断をはさまないので、例外が起きません。</p>
+          <p>だから「たまにやってくれない」が困る場面では、お願いではなくこちらを使います。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec__mark"><div><span class="sec__t">USE</span><span class="sec__kind">使いどころ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">よくある使い方</h2>
+      <p><strong>毎回かならず起きてほしいことを、ここに入れます。</strong></p>
+
+      <ul class="acts">
+        <li><h3>ファイルを直したあとに、書き方を自動でそろえる</h3><p>いちばん定番です。</p></li>
+        <li><h3>実行した命令をすべて記録に残す</h3><p>あとで確かめられるようにするため。</p></li>
+        <li><h3>危ない操作を止める</h3><p>本番で使っているファイルの書き換えなど、<strong>起きてはいけないこと</strong>を止めます。</p></li>
+        <li><h3>作業が終わったら自分に知らせる</h3><p>終わったタイミングで通知を飛ばします。</p></li>
+      </ul>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          フックの使い方として挙げられているのは、どれですか。
+          <ul class="chk__c"><li>お願いの文章を、より短く書き直してくれる</li><li>ファイルを直したあとの整形や、危ない操作を止めること</li><li>置いておける量が減ってきたら、自動でまとめてくれる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 決まった節目で必ず走らせたい処理が向いています。</p>
+          <p>記録を残すことや、終わったときの知らせもここに入ります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec__mark"><div><span class="sec__t">SETUP</span><span class="sec__kind">設定</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">決めるのは3つだけ</h2>
+      <p><strong>いつ走らせるか・何に対して走らせるか・何を走らせるか。それだけです。</strong></p>
+
+      <p>設定ファイル（<code>settings.json</code>）に書きます。「いつ」に選べるもののうち、よく使うのがこの3つ。</p>
+
+      <ul class="acts">
+        <li><h3>お願いを送った直後（Claude が読む前）</h3><p>内容を点検したり、情報を足したり。</p></li>
+        <li><h3>道具を使う<strong>前</strong></h3><p>危ない操作を止めるのに使います。</p></li>
+        <li><h3>道具を使い終わった<strong>あと</strong></h3><p>書き方の整形や、記録を残すのに使います。</p></li>
+      </ul>
+
+      <p>ほかにも、Claude が知らせを出すときや、返事を終えたときなど、たくさんあります。設定は <code>/hooks</code> と打って画面からでも行えます。</p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          道具を使う前と、使い終わったあとでは、それぞれ何に向いていますか。
+          <ul class="chk__c"><li>前は書き方の整形に、あとは危ない操作を止めるのに向いている</li><li>前は危ない操作を止めるのに、あとは書き方の整形に向いている</li><li>どちらも同じことができるので、使い分ける必要はない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: B</b> — 止めるなら実行される前、整えるなら書き換わったあとです。</p>
+          <p>やってしまったあとで止めることはできないので、この順番には意味があります。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec__mark"><div><span class="sec__t">BLOCK</span><span class="sec__kind">止める</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">実行される前に止める</h2>
+      <p><strong>道具を使う前のフックは、その操作を止められます。</strong></p>
+
+      <p>動きを決めるのは<strong>終了コード</strong>——処理が終わったときに返す番号です。</p>
+
+      <div class="modes modes--3col">
+        <div class="modes__row modes__row--head">
+          <div>返す番号</div><div>どうなるか</div><div>Claude 側に起きること</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">0<small>PROCEED</small></div>
+          <div class="modes__c" data-h="どうなるか">そのまま進む</div>
+          <div class="modes__c" data-h="Claude 側に起きること">なし</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">2<small>BLOCK</small></div>
+          <div class="modes__c is-ask" data-h="どうなるか">操作が止まる</div>
+          <div class="modes__c" data-h="Claude 側に起きること">止められた理由が伝わり、別のやり方を考え直せる</div>
+        </div>
+        <div class="modes__row">
+          <div class="modes__n">その他<small>ERROR</small></div>
+          <div class="modes__c" data-h="どうなるか">表示は出るが、止まらない</div>
+          <div class="modes__c" data-h="Claude 側に起きること">なし</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <b>止め方のうまいところ</b>
+        <p>ただ止めるだけでなく、<strong>なぜ止められたのかが伝わります</strong>。だから「別のやり方でいこう」と切り替えられます。理由がなければ、同じことを何度も試すことになります。</p>
+      </div>
+
+      <p>判断の基準もはっきりしています。<strong>チームにとって「おすすめ」ではなく「保証」が必要なものなら、何でも。</strong></p>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          操作を止めたときに、あわせて何が起きますか。
+          <ul class="chk__c"><li>止められた理由が伝わり、別のやり方に切り替えられる</li><li>その場でやりとりが終了する</li><li>止めた記録だけが残り、Claude には何も伝わらない</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — 理由まで伝わるところが、この止め方のうまい点です。</p>
+          <p>理由がなければ、同じやり方を何度もくり返すことになってしまいます。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec__mark"><div><span class="sec__t">SHARE</span><span class="sec__kind">共有</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">チームに配る</h2>
+      <p><strong>プロジェクトの設定に書けば、そのまま全員に行きわたります。</strong></p>
+
+      <div class="warn">
+        <b>ひとつだけ、実用上の注意</b>
+        <p>命令の中でファイルの場所を書くときは、<strong>プロジェクトの場所を指す決まった書き方</strong>を使います。そうしないと、Claude がどのフォルダで作業しているかによって、ファイルが見つからなくなります。</p>
+      </div>
+
+      <details class="chk">
+        <summary>
+          <b>確認</b>
+          チームで同じフックを使えるようにするには、どうしますか。
+          <ul class="chk__c"><li>プロジェクトの設定に書いて、そのまま共有する</li><li>各自が自分の設定に、同じ内容を書き写す</li><li>使うたびに、その場で読み込ませる</li></ul>
+        </summary>
+        <div class="chk__a">
+          <p><b>答え: A</b> — プロジェクトの側に置いておけば、関わる全員に自動で行きわたります。</p>
+          <p>メモ帳・スキル・外部との接続と、まったく同じ配り方です。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec__mark"><div><span class="sec__t">RECAP</span><span class="sec__kind">まとめ</span></div></div>
+    <div class="sec__body">
+      <h2 class="sec__h">この回のまとめ</h2>
+      <ul class="chips">
+        <li>整形と記録は、道具を使ったあと</li><li>危ない操作を止めるのは、道具を使う前</li><li>プロジェクトに入れて共有する</li>
+      </ul>
+
+      <p class="wrapup">何かが<em>毎回必ず</em>実行される必要があるなら、お願いの文章に書くのではなく、フックに入れる。</p>
+
+      <div class="tip">
+        <b>もっとくわしく</b>
+        <p>実際の設定の書き方や、選べるきっかけの一覧まで。→ <a href="../10-hooks.html">くわしい版 10</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="pager">
+  <a href="09-mcp.html"><b>前のレッスン — 09</b><em>外の道具とつなぐ</em></a>
+  <a class="is-next" href="11-review-and-ship.html"><b>次のレッスン — 11</b><em>見直して、世に出す</em></a>
+</div>
+
+<div class="endmark"><img src="../img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>やさしい版 — もとの出典 Claude 公式チャンネル「Hooks in Claude Code」／ claude.com/courses</span>
+  <a href="../10-hooks.html">くわしい版 10 →</a>
+</footer>
+
+<script src="../assets/progress.js"></script>
+<script src="../assets/terms.js"></script>
+</body>
+</html>
