@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ページが見つかりません — Anthropic 公式コース 学習ノート</title>
+<meta name="description" content="お探しのページは見つかりませんでした。ここから各コースの入口へ移動できます。">
+<meta name="robots" content="noindex, nofollow">
+<script>
+/* この1枚は、存在しないどの URL に対しても同じものが返る。
+   /easy/typo.html でも /github/typo.html でも同じ HTML なので、
+   相対パスで書くと assets もリンクも階層ごとにずれて壊れる。
+   そこでサイトの根（GitHub Pages のプロジェクトサイトなら /<リポジトリ名>/、
+   ローカルの http.server なら /）を先に割り出して <base> を差し込み、
+   以降の href / src はすべて index.html と同じ書き方で通す。 */
+(function () {
+  var seg  = location.pathname.split('/')[1];
+  var proj = /\.github\.io$/.test(location.hostname) && seg;
+  var b = document.createElement('base');
+  b.href = proj ? '/' + seg + '/' : '/';
+  document.head.appendChild(b);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
+</head>
+<body>
+
+<header class="hero shell">
+  <div class="hero__top">
+    <p class="eyebrow">Anthropic 公式コース / 日本語 学習ノート</p>
+    <p class="eyebrow" style="color:var(--caution)">404 — Not Found</p>
+  </div>
+
+  <h1 class="hero__title">そのページは<br><em>見つかりませんでした</em></h1>
+
+  <img class="hero__clawd" src="img/clawd.png" alt="" aria-hidden="true">
+
+  <p class="hero__lede">
+    開こうとした住所に、このサイトのページはありません。住所の打ち間違いか、古いブックマークの可能性があります。このサイトのページはすべて下の7つの入口のどれかからたどれるので、読みたいコースを選び直してください。
+  </p>
+</header>
+
+<main class="shell">
+
+  <p class="warn">
+    開こうとした住所は <code id="badPath">—</code> でした。レッスンのファイル名は <code>01-what-is-claude-code.html</code> のように<strong>2桁の番号 + 英語のスラッグ</strong>で、コースごとにディレクトリが分かれています（やさしい版は <code>easy/</code>、GitHub は <code>github/</code> など）。
+  </p>
+
+  <div class="lessons">
+
+    <a class="lsn" href="index.html">
+      <div class="lsn__n">TOP</div>
+      <div>
+        <div class="lsn__en">Start here</div>
+        <h2 class="lsn__ja">コースを選ぶ画面へ</h2>
+        <p class="lsn__sum">全6系統のコースを1枚に並べた玄関です。どこへ行けばいいか分からないときは、まずここへ。</p>
+      </div>
+      <div class="lsn__side"><span>玄関</span><span class="lsn__go">戻る →</span></div>
+    </a>
+
+    <a class="lsn" href="claude-code.html">
+      <div class="lsn__n">入門</div>
+      <div>
+        <div class="lsn__en">Claude Code — Getting Started</div>
+        <h2 class="lsn__ja">Claude Code 入門コース</h2>
+        <p class="lsn__sum">Anthropic 公式の入門コース。目次と用語インデックスはこのページにあります。</p>
+      </div>
+      <div class="lsn__side"><span>全11レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="easy/index.html">
+      <div class="lsn__n">やさしい</div>
+      <div>
+        <div class="lsn__en">Claude Code — Getting Started, in plain Japanese</div>
+        <h2 class="lsn__ja">Claude Code 入門コース（やさしい版）</h2>
+        <p class="lsn__sum">同じ11レッスンを、専門用語をひとつずつ言いかえながら書き直した版です。</p>
+      </div>
+      <div class="lsn__side"><span>全11レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="github/index.html">
+      <div class="lsn__n" style="color:var(--caution)">Git</div>
+      <div>
+        <div class="lsn__en" style="color:var(--caution)">GitHub — Another Course</div>
+        <h2 class="lsn__ja">超簡単！GitHub 完全ガイド</h2>
+        <p class="lsn__sum">社内研修資料をもとにした別系統のコース。試験つきです。</p>
+      </div>
+      <div class="lsn__side"><span>全6レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="ai-fluency/index.html">
+      <div class="lsn__n">AI</div>
+      <div>
+        <div class="lsn__en">AI Fluency</div>
+        <h2 class="lsn__ja">AI活用力（AI Fluency）</h2>
+        <p class="lsn__sum">4D フレームワーク（委任・記述・評価・倫理的責任）をたどる公式コースです。</p>
+      </div>
+      <div class="lsn__side"><span>全13レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="advanced/index.html">
+      <div class="lsn__n">上級</div>
+      <div>
+        <div class="lsn__en">Advanced</div>
+        <h2 class="lsn__ja">アドバンス</h2>
+        <p class="lsn__sum">トークン・埋め込み・ハルシネーション・バイアスなど、モデルの内側を扱います。</p>
+      </div>
+      <div class="lsn__side"><span>全9レッスン</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="educators/index.html">
+      <div class="lsn__n">教育</div>
+      <div>
+        <div class="lsn__en">AI Fluency for Educators</div>
+        <h2 class="lsn__ja">教育者のための AI Fluency</h2>
+        <p class="lsn__sum">授業設計と教材づくりに 4D を当てはめるコースです。合言葉が要ります。</p>
+      </div>
+      <div class="lsn__side"><span>合言葉つき</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+    <a class="lsn" href="cloudflare.html">
+      <div class="lsn__n" style="color:var(--caution)">付録</div>
+      <div>
+        <div class="lsn__en" style="color:var(--caution)">Appendix — 公式コース外</div>
+        <h2 class="lsn__ja">Cloudflare × Claude Code</h2>
+        <p class="lsn__sum">公式コースの外にある付録です。合言葉が要ります。</p>
+      </div>
+      <div class="lsn__side"><span>付録</span><span class="lsn__go">読む →</span></div>
+    </a>
+
+  </div>
+
+</main>
+
+<div class="endmark"><img src="img/clawd.png" alt="" aria-hidden="true"></div>
+
+<footer class="foot shell">
+  <span>出典 — Claude 公式チャンネル ／ claude.com/courses</span>
+  <a href="index.html">コースを選ぶ画面へ →</a>
+</footer>
+
+<script>
+/* どの住所で 404 になったのかを本人に見せる。
+   打ち間違いなら、これだけで気づけることが多い。 */
+(function () {
+  var el = document.getElementById('badPath');
+  if (!el) return;
+  var p = '';
+  try { p = decodeURIComponent(location.pathname); } catch (e) { p = location.pathname; }
+  if (p) el.textContent = p;
+})();
+</script>
+<script src="assets/terms.js"></script>
+</body>
+</html>
