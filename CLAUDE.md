@@ -62,6 +62,8 @@ tools/validate.py           リンク・画像・タイムライン整合性チ�
 tools/check-quiz.py         小問題（.chk）の検査
 tools/shuffle-quiz.py       小問題の正解位置を散らす
 tools/build-answers.mjs     解答集の本文を問題バンクから生成して暗号化する
+404.html                    存在しない URL に返す1枚（どの階層にも同じものが返るので <base> を自前で差し込む）
+.github/workflows/pages.yml main への push を GitHub Pages へ自動公開する（tools/ と CLAUDE.md は配らない）
 ```
 
 # レッスンページの構造

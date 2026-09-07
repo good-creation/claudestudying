@@ -1,0 +1,56 @@
+# main に push するたび、リポジトリの中身をそのまま GitHub Pages へ公開する。
+# ビルドは無い（素の HTML/CSS/JS のサイトなので、並べ替えずにそのまま配る）。
+#
+# configure-pages の enablement: true は、リポジトリの Pages が無効な場合に
+# 有効化してから公開する。Settings を手で触らなくても復旧できるようにするため。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # 画面から手動でも流せるようにしておく
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 公開は同時に1本だけ。走っている途中のものは打ち切らない（中途半端な公開を避ける）
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # 配るのはサイト本体だけ。開発用のものは持っていかない。
+      # .nojekyll は隠しファイルなので、rsync の ./ で拾われる形にしてある。
+      - name: 公開するものを集める
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '_site' \
+            --exclude 'tools' \
+            --exclude 'CLAUDE.md' \
+            ./ _site/
+          echo "--- 公開するファイル数 ---"
+          find _site -type f | wc -l
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
