@@ -3,6 +3,11 @@
 #
 # configure-pages の enablement: true は、リポジトリの Pages が無効な場合に
 # 有効化してから公開する。Settings を手で触らなくても復旧できるようにするため。
+#
+# 注意: リポジトリの Settings → Pages → Source が「Deploy from a branch」の設定のままだと、
+# GitHub の内部ワークフロー pages-build-deployment（レガシー方式）が同時に走って成功し、
+# このワークフロー側の deployment を上書きする。その結果、tools/ と CLAUDE.md が
+# 除外されず公開されたままになる。根本的に解消するには Settings を「GitHub Actions」に変更する必要がある。
 name: Deploy to GitHub Pages
 
 on:
